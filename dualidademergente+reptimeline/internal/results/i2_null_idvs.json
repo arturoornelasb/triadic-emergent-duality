@@ -1,0 +1,28 @@
+{
+  "n_perms": 10000,
+  "current_threshold": 0.8,
+  "null_max": {
+    "mean": 0.8607,
+    "p50": 0.8577,
+    "p90": 0.9164,
+    "p95": 0.931,
+    "p99": 0.9549
+  },
+  "null_mean": {
+    "mean": 0.712,
+    "p50": 0.7123,
+    "p95": 0.7557
+  },
+  "p_exceed_threshold": 0.917,
+  "verdict": "threshold_at_risk",
+  "observed_idvs": {
+    "Music": 1.0,
+    "Chemistry": 1.0,
+    "Biology": 1.0,
+    "Mathematics": 1.0,
+    "Philosophy": 1.0,
+    "Physics": 1.0,
+    "Linguistics": 1.0,
+    "Psychology": 1.0
+  }
+}

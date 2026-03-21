@@ -1,0 +1,30 @@
+{
+  "named_scores": {
+    "M_teo (proposed)": 0.5385,
+    "M_rev (reversed)": 0.1429,
+    "M_hegel": 0.5275,
+    "M_peirce": 0.4835
+  },
+  "random_baseline": {
+    "n": 1000,
+    "mean": 0.3381,
+    "std": 0.0824,
+    "max": 0.5714
+  },
+  "empirical_p_vs_random": 0.005,
+  "bayes_factors": {
+    "M_rev (reversed)": {
+      "bf": 121.39,
+      "interpretation": "decisive"
+    },
+    "M_hegel": {
+      "bf": 1.14,
+      "interpretation": "weak"
+    },
+    "M_peirce": {
+      "bf": 1.95,
+      "interpretation": "weak"
+    }
+  },
+  "concentration_k": 12.1
+}

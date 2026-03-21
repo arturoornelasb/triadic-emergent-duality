@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "triangularity": 0.5385,
+    "tree_fidelity": 1.0,
+    "mean_idvs": 1.0
+  },
+  "n_replicas": 500,
+  "perturbation_A_remove_edge": {
+    "mean_delta_tri": -0.003,
+    "pct_big_tri": 0.034,
+    "mean_delta_tree": -0.0037,
+    "pct_big_tree": 0.022
+  },
+  "perturbation_B_move_layer": {
+    "mean_delta_tri": 0.0,
+    "pct_big": 0.0
+  },
+  "perturbation_C_flip_dan": {
+    "mean_delta_idvs": -0.0595,
+    "pct_big": 0.714
+  }
+}

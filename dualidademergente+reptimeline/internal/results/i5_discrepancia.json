@@ -1,0 +1,30 @@
+{
+  "total_primitivos": 65,
+  "bits_in_range": 63,
+  "bits_unassigned": [],
+  "primitivos_no_bit": [],
+  "primitivos_out_of_range": [
+    {
+      "nombre": "proporción",
+      "bit": 63,
+      "capa": 3,
+      "primo": 311,
+      "deps": [
+        "más",
+        "información",
+        "orden"
+      ]
+    },
+    {
+      "nombre": "quietud",
+      "bit": 64,
+      "capa": 3,
+      "primo": 313,
+      "deps": [
+        "eje_profundidad"
+      ]
+    }
+  ],
+  "duplicate_bits": {},
+  "extra_count": 2
+}

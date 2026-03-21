@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "total": 65,
-  "descripcion": "63 primitivos del Sistema 7×7. Cada uno tiene un bit (posición), un primo (identidad algebraica), una capa dimensional (emergencia), y dependencias (qué primitivos de capas anteriores necesita para existir).",
+  "descripcion": "65 primitivos del Sistema 7×7: 63 con bit directo (0-62) + 2 overflow (bits 63-64) representados como composición de bits existentes. Cada uno tiene un primo (identidad algebraica), una capa dimensional (emergencia), y dependencias.",
 
   "capas": {
     "1": {"nombre": "Punto (0D)", "descripcion": "Un punto existe. La primera dualidad: existir/no existir."},
@@ -90,7 +90,7 @@
     {"bit": 39, "primo": 173, "nombre": "eterno_obs",        "capa": 6, "deps": ["consciente", "todo"],                      "def": "Observador fuera del tiempo", "dual": "temporal_obs"},
     {"bit": 42, "primo": 191, "nombre": "receptivo",         "capa": 6, "deps": ["consciente", "información"],               "def": "Que recibe, absorbe, escucha", "dual": "creador_obs"},
     {"bit": 43, "primo": 193, "nombre": "creador_obs",       "capa": 6, "deps": ["consciente", "creación", "hacer"],         "def": "Que crea, produce activamente", "dual": "receptivo"},
-    {"bit": 63, "primo": 311, "nombre": "proporción",        "capa": 3, "deps": ["más", "información", "orden"],              "def": "Relación cuantitativa entre magnitudes, ratio"},
-    {"bit": 64, "primo": 313, "nombre": "quietud",           "capa": 3, "deps": ["eje_profundidad"],                          "def": "Ausencia de desplazamiento, permanencia en posición", "dual": "mover"}
+    {"bit": 63, "primo": 311, "nombre": "proporción",        "capa": 3, "deps": ["más", "información", "orden"],              "def": "Relación cuantitativa entre magnitudes, ratio", "overflow": true, "composite": [61, 1, 22], "composite_rule": "proporción is active when bits 61(más) AND 1(información) AND 22(orden) are all active"},
+    {"bit": 64, "primo": 313, "nombre": "quietud",           "capa": 3, "deps": ["eje_profundidad"],                          "def": "Ausencia de desplazamiento, permanencia en posición", "dual": "mover", "overflow": true, "composite": [8], "composite_rule": "quietud is active when bit 8(eje_profundidad) is active AND bit 50(mover) is NOT active"}
   ]
 }

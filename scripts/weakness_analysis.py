@@ -510,7 +510,7 @@ print()
 STATES = ['D', 'A', 'N']
 N_REPS = 1000
 K_RANGE = list(range(1, 11))
-IDVS_THRESHOLD = 0.85
+IDVS_THRESHOLD = 0.90
 
 # Layer weights: higher layers -> more ambiguous -> more likely to be perturbed
 LAYER_WEIGHTS = {1: 0.05, 2: 0.10, 3: 0.15, 4: 0.20, 5: 0.25, 6: 0.25}

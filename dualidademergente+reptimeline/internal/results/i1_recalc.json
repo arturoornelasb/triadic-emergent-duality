@@ -1,0 +1,163 @@
+{
+  "families": {
+    "emergence": {
+      "n_tests": 6,
+      "n_significant": 0,
+      "tests": [
+        {
+          "test": "depth_circle",
+          "p_raw": 0.482,
+          "significant_bh": false,
+          "rho": 0.321
+        },
+        {
+          "test": "depth_spiral",
+          "p_raw": 0.119,
+          "significant_bh": false,
+          "rho": 0.643
+        },
+        {
+          "test": "depth_combined",
+          "p_raw": 0.659,
+          "significant_bh": false,
+          "rho": -0.13
+        },
+        {
+          "test": "drate_circle",
+          "p_raw": 0.819,
+          "significant_bh": false,
+          "rho": 0.107
+        },
+        {
+          "test": "drate_spiral",
+          "p_raw": 0.645,
+          "significant_bh": false,
+          "rho": 0.214
+        },
+        {
+          "test": "drate_combined",
+          "p_raw": 0.24,
+          "significant_bh": false,
+          "rho": 0.336
+        }
+      ]
+    },
+    "signatures": {
+      "n_tests": 6,
+      "n_significant": 0,
+      "tests": [
+        {
+          "test": "sigma_dep_circle",
+          "p_raw": 0.2,
+          "significant_bh": false,
+          "rho": 0.607
+        },
+        {
+          "test": "sigma_dep_spiral",
+          "p_raw": 0.05,
+          "significant_bh": false,
+          "rho": 0.857
+        },
+        {
+          "test": "sigma_dep_combined",
+          "p_raw": 0.1,
+          "significant_bh": false,
+          "rho": 0.521
+        },
+        {
+          "test": "sigma_ext_circle",
+          "p_raw": 0.05,
+          "significant_bh": false,
+          "rho": 0.857
+        },
+        {
+          "test": "sigma_ext_spiral",
+          "p_raw": 0.5,
+          "significant_bh": false,
+          "rho": 0.0
+        },
+        {
+          "test": "sigma_ext_combined",
+          "p_raw": 0.5,
+          "significant_bh": false,
+          "rho": 0.055
+        }
+      ]
+    },
+    "anchor_perm": {
+      "n_tests": 8,
+      "n_significant": 8,
+      "tests": [
+        {
+          "test": "perm_music",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_chemistry",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_biology",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_mathematics",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_philosophy",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_physics",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_linguistics",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        },
+        {
+          "test": "perm_astrology_ctrl",
+          "p_raw": 0.0001,
+          "significant_bh": true,
+          "rho": null
+        }
+      ]
+    }
+  },
+  "program": {
+    "n_tests": 20,
+    "n_significant_holm": 8,
+    "surviving_tests": [
+      "perm_music",
+      "perm_chemistry",
+      "perm_biology",
+      "perm_mathematics",
+      "perm_philosophy",
+      "perm_physics",
+      "perm_linguistics",
+      "perm_astrology_ctrl"
+    ]
+  },
+  "key_findings": {
+    "spearman_surviving_bh": 0,
+    "spearman_total": 12,
+    "permutation_surviving_bh": 8,
+    "permutation_total": 8,
+    "conclusion": "Anchor consistency (permutation tests) is robust. Spearman rank correlations (Doc 34/35) do not survive FDR correction — low power with n=7/14 is the likely cause."
+  }
+}

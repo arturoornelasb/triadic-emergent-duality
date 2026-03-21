@@ -194,7 +194,7 @@ for dname, dinfo in sorted(domains.items()):
 
     is_positive = dinfo['type'] == 'positive'
     if is_positive:
-        status = 'PASS' if idvs >= 0.85 else 'FAIL'
+        status = 'PASS' if idvs >= 0.90 else 'FAIL'
     else:
         status = 'PASS' if idvs < 0.50 else 'FAIL'
 
@@ -202,7 +202,7 @@ for dname, dinfo in sorted(domains.items()):
 
 # Check pass/fail
 positive_pass = all(
-    idvs_results[d]['idvs'] >= 0.85
+    idvs_results[d]['idvs'] >= 0.90
     for d, info in domains.items() if info['type'] == 'positive'
 )
 negative_pass = all(
@@ -211,7 +211,7 @@ negative_pass = all(
 )
 
 print()
-check("IDVS: 8 positives >= 0.85", positive_pass,
+check("IDVS: 8 positives >= 0.90", positive_pass,
       ", ".join(f"{d}={idvs_results[d]['idvs']:.3f}"
                 for d in sorted(domains) if domains[d]['type'] == 'positive'))
 check("IDVS: Astrology < 0.50", negative_pass,

@@ -49,6 +49,11 @@ for p in prims:
 total_edges = len(dep_pairs)
 
 # Duality orderings
+# NOTE (from i4_bayesian_orders.py): This order is significantly better than
+# random (p=0.005, only 4/1000 exceed it) and decisively better than reversed
+# (BF=121.4). However, Hegel-inspired and Peirce-inspired orderings achieve
+# comparable triangularity (BF=1.1 and 1.9 respectively). This is ONE valid
+# ordering, not THE unique ordering.
 CIRCLE_ORDER = ['D1_existir', 'D2_espacio', 'D3_tiempo',
                 'D4_posibilidad', 'D5_identidad', 'D6_movimiento', 'D7_orden']
 SPIRAL_ORDER = ['D8_uno_muchos', 'D9_dentro_fuera', 'D10_parte_todo',
@@ -805,6 +810,18 @@ print(f'  {"Bidirectional pairs":<35} '
 print(f'  {"Ejes assigned":<35} '
       f'{sum(eje_duality_count.get(dk, 0) for dk in CIRCLE_ORDER):>14} '
       f'{assigned_count:>14}')
+print()
+
+# FDR caveat (added by I1 audit)
+print('=' * 78)
+print('  FDR CAVEAT (from dualidademergente+reptimeline/internal/i1)')
+print('=' * 78)
+print()
+print('  NONE of the Spearman correlations above survive Benjamini-Hochberg')
+print('  FDR correction (alpha=0.05) when tested jointly with all 12 rank')
+print('  correlations from Doc 34 + Doc 35. With n=7 and n=14, statistical')
+print('  power is 0.14-0.45 — far below the 0.80 convention.')
+print('  Triangularity and tree fidelity remain valid structural metrics.')
 print()
 
 # ######################################################################

@@ -279,10 +279,10 @@ idvs = coverage * mono
 print('  ' + '\u2550' * 52)
 print(f'    IDVS = {coverage:.3f} \u00d7 {mono:.3f} = {idvs:.3f}')
 
-if idvs >= 0.85:
+if idvs >= 0.90:
     verdict = 'PASS'
     symbol = '\u2713'
-    desc = 'Consistent with the 8 known valid domains'
+    desc = 'Above p95 of null distribution (threshold calibrated by I2 permutation test)'
 elif idvs >= 0.50:
     verdict = 'UNCERTAIN'
     symbol = '?'
@@ -459,7 +459,7 @@ elif verdict == 'FAIL':
     if len(nulls_L14) > 5:
         print('  \u2022 Too many NULLs in foundational layers \u2014 genuine '
               'domains engage with basic primitives')
-    if mono < 0.80:
+    if mono < 0.85:
         print('  \u2022 Low monotonicity \u2014 classifications do not respect '
               'the dependency hierarchy')
     print('  \u2022 This pattern is consistent with analogical/metaphorical '

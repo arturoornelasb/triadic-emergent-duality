@@ -1,0 +1,40 @@
+{
+  "classifications": {
+    "Q1": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q2": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q3": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q4": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q5": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q6": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q7": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    },
+    "Q8": {
+      "status": "not_run",
+      "note": "Probe not executed"
+    }
+  },
+  "counts": {
+    "not_run": 8
+  },
+  "recommendations": []
+}

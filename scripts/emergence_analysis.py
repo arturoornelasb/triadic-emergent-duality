@@ -555,6 +555,7 @@ print()
 # Correlations
 print(f'  Spearman ρ (depth vs circle):  {rho_depth:>+.3f}  (p ≈ {p_depth:.3f})')
 print(f'  Spearman ρ (D-rate vs circle): {rho_drate:>+.3f}  (p ≈ {p_drate:.3f})')
+print(f'  NOTE: These do not survive BH-FDR correction (0/12). See i1_recalc_pvalues.py.')
 print()
 
 # Dependency matrix triangularity

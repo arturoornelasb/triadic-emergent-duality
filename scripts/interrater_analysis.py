@@ -382,7 +382,7 @@ print('=' * 78)
 print()
 
 K_RANGE = list(range(1, 11))
-IDVS_THRESHOLD = 0.80
+IDVS_THRESHOLD = 0.90
 
 perturb_modes = [
     ('Uniform', perturb),
