@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "dualidades": {
+    "D1_existir": {
+      "nombre": "Existir / No existir",
+      "dominio": "Ontología + Información",
+      "rol": "ESCENARIO",
+      "anclas": ["vacío", "información", "uno"],
+      "secundarios": [],
+      "capas_involucradas": [1]
+    },
+    "D2_espacio": {
+      "nombre": "Aquí / No aquí",
+      "dominio": "Geometría",
+      "rol": "ESCENARIO",
+      "anclas": ["eje_profundidad", "eje_vertical", "eje_lateral"],
+      "secundarios": ["contención", "equilibrio"],
+      "capas_involucradas": [2, 4]
+    },
+    "D3_tiempo": {
+      "nombre": "Antes / Después",
+      "dominio": "Cronología",
+      "rol": "ESCENARIO",
+      "anclas": ["posición_temporal", "flujo_temporal"],
+      "secundarios": ["porque", "si_entonces", "proporción"],
+      "capas_involucradas": [3]
+    },
+    "D4_posibilidad": {
+      "nombre": "Posible / Imposible",
+      "dominio": "Lógica modal",
+      "rol": "BISAGRA",
+      "anclas": ["puede", "debe", "tal_vez"],
+      "secundarios": ["libertad", "control"],
+      "capas_involucradas": [4]
+    },
+    "D5_identidad": {
+      "nombre": "Ser / No ser",
+      "dominio": "Metafísica",
+      "rol": "DINÁMICO",
+      "anclas": ["tipo_de", "algunos", "muchos", "todo"],
+      "secundarios": ["individual", "colectivo"],
+      "capas_involucradas": [4, 5]
+    },
+    "D6_movimiento": {
+      "nombre": "Movimiento / Quietud",
+      "dominio": "Física",
+      "rol": "DINÁMICO",
+      "anclas": ["mover", "hacer", "quietud"],
+      "secundarios": ["fuerza", "creación", "destrucción"],
+      "capas_involucradas": [2, 3]
+    },
+    "D7_orden": {
+      "nombre": "Orden / Caos",
+      "dominio": "Información funcional",
+      "rol": "DINÁMICO",
+      "anclas": ["orden", "caos"],
+      "secundarios": ["bien", "mal", "verdad", "mentira"],
+      "capas_involucradas": [3, 4]
+    },
+    "D8_uno_muchos": {
+      "nombre": "Uno / Muchos",
+      "dominio": "Cantidad",
+      "rol": "BIFURCACIÓN",
+      "anclas": ["uno", "muchos"],
+      "secundarios": ["más", "menos"],
+      "capas_involucradas": [1, 2, 4]
+    },
+    "D9_dentro_fuera": {
+      "nombre": "Dentro / Fuera",
+      "dominio": "Topología",
+      "rol": "TRONCO",
+      "anclas": ["contención"],
+      "secundarios": ["unión", "separación"],
+      "capas_involucradas": [2]
+    },
+    "D10_parte_todo": {
+      "nombre": "Parte / Todo",
+      "dominio": "Mereología",
+      "rol": "TRONCO",
+      "anclas": ["parte_de", "todo"],
+      "secundarios": ["algunos"],
+      "capas_involucradas": [2, 4]
+    },
+    "D11_vida_muerte": {
+      "nombre": "Vida / Muerte",
+      "dominio": "Biología",
+      "rol": "REUNIFICACIÓN",
+      "anclas": ["vida", "muerte"],
+      "secundarios": ["placer", "dolor", "interocepción", "tierra", "agua", "aire", "fuego"],
+      "capas_involucradas": [5]
+    },
+    "D12_causa_efecto": {
+      "nombre": "Causa / Efecto",
+      "dominio": "Causalidad",
+      "rol": "LATERAL",
+      "anclas": ["porque", "si_entonces"],
+      "secundarios": [],
+      "capas_involucradas": [3]
+    },
+    "D13_semejante_diferente": {
+      "nombre": "Semejante / Diferente",
+      "dominio": "Taxonomía",
+      "rol": "LATERAL",
+      "anclas": ["tipo_de"],
+      "secundarios": [],
+      "capas_involucradas": [4]
+    },
+    "D14_sujeto_objeto": {
+      "nombre": "Sujeto / Objeto",
+      "dominio": "Fenomenología",
+      "rol": "TERMINAL",
+      "anclas": ["consciente", "ausente"],
+      "secundarios": ["vista", "oído", "tacto", "gusto", "olfato", "querer", "saber", "pensar", "decir", "temporal_obs", "eterno_obs", "receptivo", "creador_obs", "individual", "colectivo"],
+      "capas_involucradas": [4, 5, 6]
+    }
+  }
+}

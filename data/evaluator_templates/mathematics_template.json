@@ -1,0 +1,657 @@
+{
+  "evaluator": "YOUR_NAME",
+  "domain": "Mathematics",
+  "instructions": "For each primitive, assign D (Direct), A (Analogical), or N (Null). D = the primitive operates directly in this domain. A = the primitive applies by metaphor/analogy. N = the primitive does not apply at all.",
+  "classifications": {
+    "vacío": {
+      "class": "?",
+      "definition": "Ausencia como sustancia, espacio potencial",
+      "layer": 1,
+      "dependencies": [],
+      "reference_class": "D"
+    },
+    "información": {
+      "class": "?",
+      "definition": "Patrón, código, estructura abstracta",
+      "layer": 1,
+      "dependencies": [],
+      "reference_class": "D"
+    },
+    "uno": {
+      "class": "?",
+      "definition": "Singularidad, unidad",
+      "layer": 1,
+      "dependencies": [],
+      "reference_class": "D"
+    },
+    "fuerza": {
+      "class": "?",
+      "definition": "Capacidad de cambio, empuje, potencial",
+      "layer": 2,
+      "dependencies": [
+        "uno"
+      ],
+      "reference_class": "A"
+    },
+    "eje_profundidad": {
+      "class": "?",
+      "definition": "Dimensión adelante-atrás",
+      "layer": 2,
+      "dependencies": [
+        "uno"
+      ],
+      "reference_class": "A"
+    },
+    "contención": {
+      "class": "?",
+      "definition": "Dentro/fuera, límites y fronteras",
+      "layer": 2,
+      "dependencies": [
+        "uno",
+        "separación"
+      ],
+      "reference_class": "D"
+    },
+    "unión": {
+      "class": "?",
+      "definition": "Juntar, conectar, vincular",
+      "layer": 2,
+      "dependencies": [
+        "uno"
+      ],
+      "reference_class": "D"
+    },
+    "separación": {
+      "class": "?",
+      "definition": "Dividir, aislar, desconectar",
+      "layer": 2,
+      "dependencies": [
+        "uno"
+      ],
+      "reference_class": "D"
+    },
+    "parte_de": {
+      "class": "?",
+      "definition": "Inclusión, pertenencia",
+      "layer": 2,
+      "dependencies": [
+        "uno",
+        "contención"
+      ],
+      "reference_class": "A"
+    },
+    "más": {
+      "class": "?",
+      "definition": "Aumento, incremento",
+      "layer": 2,
+      "dependencies": [
+        "uno"
+      ],
+      "reference_class": "D"
+    },
+    "menos": {
+      "class": "?",
+      "definition": "Disminución, reducción",
+      "layer": 2,
+      "dependencies": [
+        "uno",
+        "vacío"
+      ],
+      "reference_class": "D"
+    },
+    "posición_temporal": {
+      "class": "?",
+      "definition": "Pasado, presente, futuro",
+      "layer": 3,
+      "dependencies": [
+        "mover"
+      ],
+      "reference_class": "D"
+    },
+    "flujo_temporal": {
+      "class": "?",
+      "definition": "Cómo pasa el tiempo, duración",
+      "layer": 3,
+      "dependencies": [
+        "mover",
+        "posición_temporal"
+      ],
+      "reference_class": "D"
+    },
+    "orden": {
+      "class": "?",
+      "definition": "Estructura, regularidad",
+      "layer": 3,
+      "dependencies": [
+        "más",
+        "posición_temporal"
+      ],
+      "reference_class": "D"
+    },
+    "caos": {
+      "class": "?",
+      "definition": "Desorden, turbulencia",
+      "layer": 3,
+      "dependencies": [
+        "más",
+        "posición_temporal"
+      ],
+      "reference_class": "D"
+    },
+    "creación": {
+      "class": "?",
+      "definition": "Generar algo nuevo",
+      "layer": 3,
+      "dependencies": [
+        "hacer",
+        "información"
+      ],
+      "reference_class": "D"
+    },
+    "destrucción": {
+      "class": "?",
+      "definition": "Eliminar, deshacer",
+      "layer": 3,
+      "dependencies": [
+        "hacer",
+        "información"
+      ],
+      "reference_class": "A"
+    },
+    "hacer": {
+      "class": "?",
+      "definition": "Acción, ejecución, producción",
+      "layer": 3,
+      "dependencies": [
+        "fuerza",
+        "mover"
+      ],
+      "reference_class": "A"
+    },
+    "mover": {
+      "class": "?",
+      "definition": "Desplazamiento, cambio de posición",
+      "layer": 3,
+      "dependencies": [
+        "fuerza",
+        "eje_profundidad"
+      ],
+      "reference_class": "D"
+    },
+    "porque": {
+      "class": "?",
+      "definition": "Causalidad, razón",
+      "layer": 3,
+      "dependencies": [
+        "posición_temporal",
+        "información"
+      ],
+      "reference_class": "D"
+    },
+    "si_entonces": {
+      "class": "?",
+      "definition": "Condicionalidad, implicación",
+      "layer": 3,
+      "dependencies": [
+        "porque"
+      ],
+      "reference_class": "A"
+    },
+    "proporción": {
+      "class": "?",
+      "definition": "Relación cuantitativa entre magnitudes, ratio",
+      "layer": 3,
+      "dependencies": [
+        "más",
+        "información",
+        "orden"
+      ],
+      "reference_class": "D"
+    },
+    "quietud": {
+      "class": "?",
+      "definition": "Ausencia de desplazamiento, permanencia en posición",
+      "layer": 3,
+      "dependencies": [
+        "eje_profundidad"
+      ],
+      "reference_class": "D"
+    },
+    "eje_vertical": {
+      "class": "?",
+      "definition": "Dimensión arriba-abajo",
+      "layer": 4,
+      "dependencies": [
+        "eje_profundidad"
+      ],
+      "reference_class": "D"
+    },
+    "eje_lateral": {
+      "class": "?",
+      "definition": "Dimensión izquierda-derecha",
+      "layer": 4,
+      "dependencies": [
+        "eje_profundidad",
+        "eje_vertical"
+      ],
+      "reference_class": "D"
+    },
+    "vista": {
+      "class": "?",
+      "definition": "Percepción visual",
+      "layer": 4,
+      "dependencies": [
+        "información",
+        "eje_profundidad",
+        "eje_vertical"
+      ],
+      "reference_class": "A"
+    },
+    "equilibrio": {
+      "class": "?",
+      "definition": "Balance, orientación espacial",
+      "layer": 4,
+      "dependencies": [
+        "eje_vertical",
+        "eje_lateral"
+      ],
+      "reference_class": "D"
+    },
+    "bien": {
+      "class": "?",
+      "definition": "Polo moral positivo",
+      "layer": 4,
+      "dependencies": [
+        "contención",
+        "orden",
+        "unión"
+      ],
+      "reference_class": "A"
+    },
+    "mal": {
+      "class": "?",
+      "definition": "Polo moral negativo",
+      "layer": 4,
+      "dependencies": [
+        "contención",
+        "caos",
+        "separación"
+      ],
+      "reference_class": "A"
+    },
+    "verdad": {
+      "class": "?",
+      "definition": "Correspondencia con realidad",
+      "layer": 4,
+      "dependencies": [
+        "información",
+        "orden"
+      ],
+      "reference_class": "D"
+    },
+    "mentira": {
+      "class": "?",
+      "definition": "Distorsión de realidad",
+      "layer": 4,
+      "dependencies": [
+        "información",
+        "caos"
+      ],
+      "reference_class": "D"
+    },
+    "libertad": {
+      "class": "?",
+      "definition": "Autodeterminación",
+      "layer": 4,
+      "dependencies": [
+        "mover",
+        "eje_vertical"
+      ],
+      "reference_class": "A"
+    },
+    "control": {
+      "class": "?",
+      "definition": "Restricción, regulación",
+      "layer": 4,
+      "dependencies": [
+        "fuerza",
+        "contención"
+      ],
+      "reference_class": "A"
+    },
+    "muchos": {
+      "class": "?",
+      "definition": "Pluralidad",
+      "layer": 4,
+      "dependencies": [
+        "más",
+        "uno"
+      ],
+      "reference_class": "A"
+    },
+    "todo": {
+      "class": "?",
+      "definition": "Totalidad, completitud",
+      "layer": 4,
+      "dependencies": [
+        "muchos",
+        "contención"
+      ],
+      "reference_class": "D"
+    },
+    "algunos": {
+      "class": "?",
+      "definition": "Parte, porción",
+      "layer": 4,
+      "dependencies": [
+        "más",
+        "parte_de"
+      ],
+      "reference_class": "D"
+    },
+    "puede": {
+      "class": "?",
+      "definition": "Posibilidad, capacidad",
+      "layer": 4,
+      "dependencies": [
+        "hacer",
+        "libertad"
+      ],
+      "reference_class": "A"
+    },
+    "debe": {
+      "class": "?",
+      "definition": "Obligación, necesidad",
+      "layer": 4,
+      "dependencies": [
+        "hacer",
+        "control"
+      ],
+      "reference_class": "A"
+    },
+    "tal_vez": {
+      "class": "?",
+      "definition": "Incertidumbre, apertura",
+      "layer": 4,
+      "dependencies": [
+        "puede",
+        "información"
+      ],
+      "reference_class": "A"
+    },
+    "tipo_de": {
+      "class": "?",
+      "definition": "Clasificación, categoría",
+      "layer": 4,
+      "dependencies": [
+        "información",
+        "orden",
+        "más"
+      ],
+      "reference_class": "D"
+    },
+    "fuego": {
+      "class": "?",
+      "definition": "Transformación, calor, radiancia",
+      "layer": 5,
+      "dependencies": [
+        "fuerza",
+        "creación",
+        "destrucción"
+      ],
+      "reference_class": "N"
+    },
+    "tierra": {
+      "class": "?",
+      "definition": "Solidez, fundamento, lo tangible",
+      "layer": 5,
+      "dependencies": [
+        "fuerza",
+        "contención",
+        "orden"
+      ],
+      "reference_class": "N"
+    },
+    "agua": {
+      "class": "?",
+      "definition": "Fluidez, adaptación, profundidad",
+      "layer": 5,
+      "dependencies": [
+        "fuerza",
+        "mover",
+        "contención"
+      ],
+      "reference_class": "N"
+    },
+    "aire": {
+      "class": "?",
+      "definition": "Expansión, respiración, ubicuidad",
+      "layer": 5,
+      "dependencies": [
+        "mover",
+        "libertad"
+      ],
+      "reference_class": "N"
+    },
+    "oído": {
+      "class": "?",
+      "definition": "Sonido, música, lenguaje hablado",
+      "layer": 5,
+      "dependencies": [
+        "mover",
+        "información",
+        "flujo_temporal"
+      ],
+      "reference_class": "N"
+    },
+    "tacto": {
+      "class": "?",
+      "definition": "Presión, temperatura, textura",
+      "layer": 5,
+      "dependencies": [
+        "fuerza",
+        "contención",
+        "información"
+      ],
+      "reference_class": "N"
+    },
+    "gusto": {
+      "class": "?",
+      "definition": "Percepción gustativa",
+      "layer": 5,
+      "dependencies": [
+        "contención",
+        "información"
+      ],
+      "reference_class": "N"
+    },
+    "olfato": {
+      "class": "?",
+      "definition": "Percepción olfativa",
+      "layer": 5,
+      "dependencies": [
+        "mover",
+        "información"
+      ],
+      "reference_class": "N"
+    },
+    "interocepción": {
+      "class": "?",
+      "definition": "Estado interno del cuerpo",
+      "layer": 5,
+      "dependencies": [
+        "contención",
+        "información",
+        "vida"
+      ],
+      "reference_class": "N"
+    },
+    "vida": {
+      "class": "?",
+      "definition": "Animación, crecimiento",
+      "layer": 5,
+      "dependencies": [
+        "creación",
+        "contención",
+        "flujo_temporal",
+        "orden",
+        "parte_de"
+      ],
+      "reference_class": "N"
+    },
+    "muerte": {
+      "class": "?",
+      "definition": "Cese vital, disolución",
+      "layer": 5,
+      "dependencies": [
+        "vida",
+        "destrucción"
+      ],
+      "reference_class": "N"
+    },
+    "placer": {
+      "class": "?",
+      "definition": "Experiencia hedónica positiva",
+      "layer": 5,
+      "dependencies": [
+        "vida",
+        "información"
+      ],
+      "reference_class": "A"
+    },
+    "dolor": {
+      "class": "?",
+      "definition": "Experiencia hedónica negativa",
+      "layer": 5,
+      "dependencies": [
+        "vida",
+        "información"
+      ],
+      "reference_class": "N"
+    },
+    "consciente": {
+      "class": "?",
+      "definition": "Awareness, presencia de conciencia",
+      "layer": 5,
+      "dependencies": [
+        "vida",
+        "información",
+        "vista"
+      ],
+      "reference_class": "N"
+    },
+    "ausente": {
+      "class": "?",
+      "definition": "Ausencia de conciencia",
+      "layer": 5,
+      "dependencies": [
+        "consciente"
+      ],
+      "reference_class": "N"
+    },
+    "individual": {
+      "class": "?",
+      "definition": "Uno solo, particular",
+      "layer": 5,
+      "dependencies": [
+        "uno",
+        "contención",
+        "vida"
+      ],
+      "reference_class": "A"
+    },
+    "colectivo": {
+      "class": "?",
+      "definition": "Grupo, comunidad",
+      "layer": 5,
+      "dependencies": [
+        "muchos",
+        "individual"
+      ],
+      "reference_class": "A"
+    },
+    "querer": {
+      "class": "?",
+      "definition": "Deseo, voluntad, intención",
+      "layer": 5,
+      "dependencies": [
+        "consciente",
+        "hacer"
+      ],
+      "reference_class": "N"
+    },
+    "saber": {
+      "class": "?",
+      "definition": "Conocimiento, comprensión",
+      "layer": 5,
+      "dependencies": [
+        "consciente",
+        "información",
+        "orden"
+      ],
+      "reference_class": "A"
+    },
+    "pensar": {
+      "class": "?",
+      "definition": "Razonamiento, reflexión",
+      "layer": 5,
+      "dependencies": [
+        "consciente",
+        "información"
+      ],
+      "reference_class": "A"
+    },
+    "decir": {
+      "class": "?",
+      "definition": "Comunicación verbal",
+      "layer": 5,
+      "dependencies": [
+        "consciente",
+        "oído",
+        "hacer"
+      ],
+      "reference_class": "N"
+    },
+    "temporal_obs": {
+      "class": "?",
+      "definition": "Observador mortal, atado al tiempo",
+      "layer": 6,
+      "dependencies": [
+        "consciente",
+        "posición_temporal"
+      ],
+      "reference_class": "N"
+    },
+    "eterno_obs": {
+      "class": "?",
+      "definition": "Observador fuera del tiempo",
+      "layer": 6,
+      "dependencies": [
+        "consciente",
+        "todo"
+      ],
+      "reference_class": "N"
+    },
+    "receptivo": {
+      "class": "?",
+      "definition": "Que recibe, absorbe, escucha",
+      "layer": 6,
+      "dependencies": [
+        "consciente",
+        "información"
+      ],
+      "reference_class": "N"
+    },
+    "creador_obs": {
+      "class": "?",
+      "definition": "Que crea, produce activamente",
+      "layer": 6,
+      "dependencies": [
+        "consciente",
+        "creación",
+        "hacer"
+      ],
+      "reference_class": "N"
+    }
+  }
+}
