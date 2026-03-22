@@ -9,10 +9,18 @@ Architecture:
     Input tokens -> [GPT-2 Pre-trained] -> hidden states (768/1024D)
                                                |
                                                +-> LM Head (next-token prediction)
-                                               +-> Triadic Head (65 bits via tanh)
+                                               +-> Triadic Head (65 bits)
+
+Head modes:
+    simple: Linear(hidden_size, n_bits) — blueprint default (1 layer)
+    deep:   Linear→GELU→Dropout→Linear  — 2-layer MLP
+
+Activation modes:
+    tanh:  torch.tanh(x) — standard, but concentrates near 0
+    ifsq:  2*sigmoid(1.6*x)-1 — distributes activations more uniformly
 
 Usage:
-    model = GPT2Triadic('gpt2-medium', n_bits=65, freeze_base=False)
+    model = GPT2Triadic('gpt2-medium', n_bits=65, head_mode='simple', activation='ifsq')
     outputs, triadic_proj = model(input_ids, attention_mask=mask, labels=labels)
 """
 
@@ -31,11 +39,14 @@ class GPT2Triadic(nn.Module):
     """GPT-2 with Triadic Projection Head for 65 primitivos."""
 
     def __init__(self, model_name='gpt2-medium', n_triadic_bits=65,
-                 freeze_base=False, dropout=0.1):
+                 freeze_base=False, dropout=0.1,
+                 head_mode='simple', activation='ifsq'):
         super().__init__()
         self.model_name = model_name
         self.n_triadic_bits = n_triadic_bits
         self.freeze_base = freeze_base
+        self.head_mode = head_mode
+        self.activation = activation
 
         # Load pre-trained GPT-2
         self.gpt2 = GPT2LMHeadModel.from_pretrained(model_name)
@@ -45,18 +56,35 @@ class GPT2Triadic(nn.Module):
             for param in self.gpt2.parameters():
                 param.requires_grad = False
 
-        # Triadic Projection Head: hidden_size -> n_bits
-        self.triadic_proj = nn.Sequential(
-            nn.Linear(hidden_size, hidden_size // 2, bias=False),
-            nn.GELU(),
-            nn.Dropout(dropout),
-            nn.Linear(hidden_size // 2, n_triadic_bits, bias=False),
-        )
+        # Triadic Projection Head
+        if head_mode == 'simple':
+            # Blueprint: single linear layer (like triadic-microgpt)
+            self.triadic_head = nn.Linear(hidden_size, n_triadic_bits, bias=False)
+            nn.init.normal_(self.triadic_head.weight, mean=0.0, std=0.02)
+        elif head_mode == 'deep':
+            # 2-layer MLP with GELU
+            self.triadic_head = nn.Sequential(
+                nn.Linear(hidden_size, hidden_size // 2, bias=False),
+                nn.GELU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_size // 2, n_triadic_bits, bias=False),
+            )
+            for m in self.triadic_head.modules():
+                if isinstance(m, nn.Linear):
+                    nn.init.normal_(m.weight, mean=0.0, std=0.02)
+        else:
+            raise ValueError(f"head_mode must be 'simple' or 'deep', got '{head_mode}'")
 
-        # Initialize triadic head
-        for m in self.triadic_proj.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, mean=0.0, std=0.02)
+    def _activate(self, x):
+        """Apply triadic activation function."""
+        if self.activation == 'tanh':
+            return torch.tanh(x)
+        elif self.activation == 'ifsq':
+            # iFSQ (Tencent, 2025): distributes activations more uniformly
+            # than tanh, which concentrates near 0 causing dead bits
+            return 2 * torch.sigmoid(1.6 * x) - 1
+        else:
+            raise ValueError(f"activation must be 'tanh' or 'ifsq', got '{self.activation}'")
 
     def forward(self, input_ids, attention_mask=None, labels=None):
         """
@@ -64,7 +92,7 @@ class GPT2Triadic(nn.Module):
 
         Returns:
             outputs: GPT-2 outputs (with loss if labels provided)
-            triadic: (B, T, n_bits) tanh projections in [-1, 1]
+            triadic: (B, T, n_bits) projections in [-1, 1]
         """
         outputs = self.gpt2(
             input_ids,
@@ -77,12 +105,12 @@ class GPT2Triadic(nn.Module):
         hidden = outputs.hidden_states[-1]  # (B, T, hidden_size)
 
         # Triadic projection
-        triadic = torch.tanh(self.triadic_proj(hidden))  # (B, T, n_bits)
+        triadic = self._activate(self.triadic_head(hidden))  # (B, T, n_bits)
 
         return outputs, triadic
 
     def triadic_loss(self, triadic_proj, entropy_weight=1.0, input_ids=None,
-                     align_weight=5.0, align_mode='mse'):
+                     align_weight=5.0, align_mode='infonce'):
         """
         Multi-objective triadic loss (from triadic-microgpt).
 
@@ -113,12 +141,11 @@ class GPT2Triadic(nn.Module):
         # 3. Entropy regularization
         entropy_loss = torch.tensor(0.0, device=triadic_proj.device)
         if entropy_weight > 0:
-            flat = triadic_proj.reshape(-1, n_bits)
-            probs = (flat.mean(dim=0) + 1.0) / 2.0
+            probs = (bit_means + 1.0) / 2.0
             eps = 1e-7
             probs = probs.clamp(eps, 1.0 - eps)
-            bit_ent = -(probs * probs.log() + (1 - probs) * (1 - probs).log())
-            entropy_loss = (1.0 - bit_ent / math.log(2)).mean()
+            bit_ent = -(probs * torch.log2(probs) + (1 - probs) * torch.log2(1 - probs))
+            entropy_loss = (1.0 - bit_ent).mean()
 
         # 4. Embedding alignment
         alignment_loss = torch.tensor(0.0, device=triadic_proj.device)
@@ -188,12 +215,6 @@ class GPT2Triadic(nn.Module):
 
         logits = triadic_sim_matrix / temperature
         return F.cross_entropy(logits.reshape(-1, n_anchors), pos_labels.reshape(-1))
-
-    def distillation_loss(self, triadic_proj, targets_proj, mask):
-        """MSE loss to align triadic projections with gold standard bits."""
-        if not mask.any():
-            return torch.tensor(0.0, device=triadic_proj.device)
-        return F.mse_loss(triadic_proj[mask], (targets_proj[mask] * 2.0) - 1.0)
 
     @torch.no_grad()
     def generate(self, input_ids, attention_mask=None, max_new_tokens=100,
