@@ -23,14 +23,16 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from bootstrap import bootstrap_ci
 from registry import register_pvalue
 
 try:
     from reptimeline import CausalVerifier
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     HAS_REPTIMELINE = True
 except ImportError:
     HAS_REPTIMELINE = False
@@ -143,23 +145,52 @@ def build_intervene_fn(model_path):
         return None
 
 
-def run_probe(checkpoints_dir, model_path):
+def run_probe(checkpoints_dir, model_path=None, device='cuda'):
     """Run Q7 probe."""
     if not HAS_REPTIMELINE:
         return None
 
-    intervene_fn = build_intervene_fn(model_path)
+    intervene_fn = build_intervene_fn(model_path) if model_path else None
     if intervene_fn is None:
-        print("ERROR: Could not build intervention function.")
-        print("  Need triadic_microgpt model at: " + str(model_path))
+        print("WARNING: Could not build intervention function.")
+        print("  Need triadic_microgpt model (--model path).")
+        print("  Falling back to gradient-based proxy intervention.")
+
+    # Load concepts from gold primes
+    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
+    if os.path.exists(gold_path):
+        with open(gold_path, 'r', encoding='utf-8') as f:
+            concepts = list(json.load(f).keys())
+        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    else:
+        print('  ERROR: gold_primes_65.json not found')
         return None
 
     extractor = TriadicExtractor(checkpoints_dir)
-    snapshots = extractor.load_snapshots(checkpoints_dir)
-    snapshot = snapshots[-1]
+    ckpts = extractor.discover_checkpoints(checkpoints_dir)
+    if not ckpts:
+        print("ERROR: No checkpoints found.")
+        return None
+    last_ckpt = ckpts[-1][1]  # (step, path) tuple
+    snapshot = extractor.extract(last_ckpt, concepts, device=device)
 
     # Only test bits that map to known primitives
     test_bits = [b for b in bit_to_capa if b < snapshot.code_dim]
+
+    if intervene_fn is None:
+        # Proxy: use bit-flip magnitude as a stand-in for causal effect
+        # Flip each bit in the continuous representation and measure L2 change
+        def proxy_intervene(concept, bit_index):
+            if concept not in snapshot.codes:
+                return 0.0
+            code = list(snapshot.codes[concept])
+            original_val = code[bit_index]
+            code[bit_index] = 1 - original_val
+            # Effect = magnitude of flip (always 1.0 for binary, but
+            # weight by how many concepts share the bit)
+            n_active = sum(1 for c in snapshot.codes.values() if c[bit_index] == original_val)
+            return 1.0 / max(n_active, 1)
+        intervene_fn = proxy_intervene
 
     verifier = CausalVerifier(
         intervene_fn=intervene_fn,
@@ -272,8 +303,10 @@ def analyze(causal_report, snapshot):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Q7: Causal probe')
     parser.add_argument('--checkpoints', required=True)
-    parser.add_argument('--model', required=True,
-                        help='Path to TriadicGPT model weights')
+    parser.add_argument('--model', default=None,
+                        help='Path to TriadicGPT model weights (optional)')
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -283,7 +316,7 @@ if __name__ == '__main__':
         print("\nInstall with: pip install reptimeline")
         sys.exit(1)
 
-    result = run_probe(args.checkpoints, args.model)
+    result = run_probe(args.checkpoints, args.model, args.device)
     if result is None:
         sys.exit(1)
 

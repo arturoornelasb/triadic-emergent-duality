@@ -22,7 +22,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from registry import register_pvalue
 
@@ -30,7 +32,7 @@ try:
     from reptimeline import BitDiscovery, PrimitiveOverlay
     from reptimeline.autolabel import AutoLabeler
     from reptimeline.reconcile import Reconciler
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     HAS_REPTIMELINE = True
 except ImportError:
     HAS_REPTIMELINE = False
@@ -97,14 +99,28 @@ def nmi(labels_a, labels_b):
 #  SECTION 2: RUN PROBE
 # ######################################################################
 
-def run_probe(checkpoints_dir, embeddings_path=None):
+def run_probe(checkpoints_dir, embeddings_path=None, device='cuda'):
     """Run Q6 probe."""
     if not HAS_REPTIMELINE:
         return None
 
+    # Load concepts from gold primes
+    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
+    if os.path.exists(gold_path):
+        with open(gold_path, 'r', encoding='utf-8') as f:
+            concepts = list(json.load(f).keys())
+        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    else:
+        print('  ERROR: gold_primes_65.json not found')
+        return None
+
     extractor = TriadicExtractor(checkpoints_dir)
-    snapshots = extractor.load_snapshots(checkpoints_dir)
-    snapshot = snapshots[-1]
+    ckpts = extractor.discover_checkpoints(checkpoints_dir)
+    if not ckpts:
+        print("ERROR: No checkpoints found.")
+        return None
+    last_ckpt = ckpts[-1][1]  # (step, path) tuple
+    snapshot = extractor.extract(last_ckpt, concepts, device=device)
 
     # Discover structure without theoretical guidance
     bd = BitDiscovery()
@@ -263,6 +279,8 @@ if __name__ == '__main__':
     parser.add_argument('--checkpoints', required=True)
     parser.add_argument('--embeddings', default=None,
                         help='JSON with concept embeddings for auto-labeling')
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -272,7 +290,7 @@ if __name__ == '__main__':
         print("\nInstall with: pip install reptimeline")
         sys.exit(1)
 
-    result = run_probe(args.checkpoints, args.embeddings)
+    result = run_probe(args.checkpoints, args.embeddings, args.device)
     if result is None:
         sys.exit(1)
 

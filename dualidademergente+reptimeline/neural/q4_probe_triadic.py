@@ -27,14 +27,16 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from bh_fdr import benjamini_hochberg
 from registry import register_pvalue
 
 try:
     from reptimeline import BitDiscovery
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     HAS_REPTIMELINE = True
 except ImportError:
     HAS_REPTIMELINE = False
@@ -85,14 +87,28 @@ def classify_triadic(td):
 #  SECTION 2: RUN PROBE
 # ######################################################################
 
-def run_probe(checkpoints_dir):
+def run_probe(checkpoints_dir, device='cuda'):
     """Run Q4 probe."""
     if not HAS_REPTIMELINE:
         return None
 
+    # Load concepts from gold primes
+    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
+    if os.path.exists(gold_path):
+        with open(gold_path, 'r', encoding='utf-8') as f:
+            concepts = list(json.load(f).keys())
+        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    else:
+        print('  ERROR: gold_primes_65.json not found')
+        return None
+
     extractor = TriadicExtractor(checkpoints_dir)
-    snapshots = extractor.load_snapshots(checkpoints_dir)
-    snapshot = snapshots[-1]
+    ckpts = extractor.discover_checkpoints(checkpoints_dir)
+    if not ckpts:
+        print("ERROR: No checkpoints found.")
+        return None
+    last_ckpt = ckpts[-1][1]  # (step, path) tuple
+    snapshot = extractor.extract(last_ckpt, concepts, device=device)
 
     bd = BitDiscovery(triadic_threshold=0.6, triadic_min_interaction=0.15)
     discovery = bd.discover(snapshot)
@@ -219,6 +235,8 @@ def analyze(discovery, snapshot):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Q4: Triadic probe')
     parser.add_argument('--checkpoints', required=True)
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -228,7 +246,7 @@ if __name__ == '__main__':
         print("\nInstall with: pip install reptimeline")
         sys.exit(1)
 
-    result = run_probe(args.checkpoints)
+    result = run_probe(args.checkpoints, args.device)
     if result is None:
         sys.exit(1)
 

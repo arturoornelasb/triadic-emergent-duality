@@ -1,0 +1,9 @@
+# Model checkpoints (1.4GB each)
+checkpoints/
+*.pt
+
+# Corpus data
+corpus/
+
+# HuggingFace cache
+__pycache__/

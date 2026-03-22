@@ -22,7 +22,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from bh_fdr import benjamini_hochberg
 from bootstrap import bootstrap_ci
@@ -30,7 +32,7 @@ from registry import register_pvalue
 
 try:
     from reptimeline import PrimitiveOverlay, BitDiscovery
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     HAS_REPTIMELINE = True
 except ImportError:
     HAS_REPTIMELINE = False
@@ -49,13 +51,19 @@ ejes = prim_data.get('ejes_duales', [])
 dual_pairs = []
 name_to_bit = {p['nombre']: p.get('bit') for p in prims}
 for eje in ejes:
-    polo_a = eje.get('polo_a') or eje.get('primitivo_a')
-    polo_b = eje.get('polo_b') or eje.get('primitivo_b')
+    # ejes_duales can be a list of [polo_a, polo_b] or a list of dicts
+    if isinstance(eje, list):
+        polo_a, polo_b = eje[0], eje[1]
+        axis_name = f'{polo_a}-{polo_b}'
+    else:
+        polo_a = eje.get('polo_a') or eje.get('primitivo_a')
+        polo_b = eje.get('polo_b') or eje.get('primitivo_b')
+        axis_name = eje.get('nombre', f'{polo_a}-{polo_b}')
     bit_a = name_to_bit.get(polo_a)
     bit_b = name_to_bit.get(polo_b)
     if bit_a is not None and bit_b is not None:
         dual_pairs.append({
-            'axis': eje.get('nombre', f'{polo_a}-{polo_b}'),
+            'axis': axis_name,
             'polo_a': polo_a,
             'polo_b': polo_b,
             'bit_a': bit_a,
@@ -99,17 +107,32 @@ def correlation_perm_p(x, y, n_perms=5000, seed=42):
 #  SECTION 2: RUN PROBE
 # ######################################################################
 
-def run_probe(checkpoints_dir):
+def run_probe(checkpoints_dir, device='cuda'):
     """Run Q2 probe on saved checkpoints."""
     if not HAS_REPTIMELINE:
         print("ERROR: reptimeline not installed.")
         return None
 
-    extractor = TriadicExtractor(checkpoints_dir)
-    snapshots = extractor.load_snapshots(checkpoints_dir)
+    # Load concepts from gold primes
+    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
+    if os.path.exists(gold_path):
+        with open(gold_path, 'r', encoding='utf-8') as f:
+            concepts = list(json.load(f).keys())
+        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    else:
+        print('  ERROR: gold_primes_65.json not found')
+        return None
 
-    # Use the last snapshot for correlation analysis
-    snapshot = snapshots[-1]
+    extractor = TriadicExtractor(checkpoints_dir)
+
+    # Get the last checkpoint for single-snapshot analysis
+    ckpts = extractor.discover_checkpoints(checkpoints_dir)
+    if not ckpts:
+        print("ERROR: No checkpoints found.")
+        return None
+    last_ckpt = ckpts[-1][1]  # (step, path) tuple
+    snapshot = extractor.extract(last_ckpt, concepts, device=device)
+
     codes = snapshot.codes  # dict: concept -> list[int] (binary code)
 
     # BitDiscovery for discovered duals
@@ -255,6 +278,8 @@ def analyze(codes, discovery):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Q2: Dual coherence probe')
     parser.add_argument('--checkpoints', required=True)
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -264,7 +289,7 @@ if __name__ == '__main__':
         print("\nInstall with: pip install reptimeline")
         sys.exit(1)
 
-    result = run_probe(args.checkpoints)
+    result = run_probe(args.checkpoints, args.device)
     if result is None:
         sys.exit(1)
 

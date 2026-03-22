@@ -23,13 +23,15 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from registry import register_pvalue
 
 try:
     from reptimeline import BitDiscovery
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     HAS_REPTIMELINE = True
 except ImportError:
     HAS_REPTIMELINE = False
@@ -114,12 +116,16 @@ def shd(edges_a, edges_b):
 #  SECTION 2: RUN PROBE
 # ######################################################################
 
-def discover_from(extractor_cls, checkpoints_dir, name):
+def discover_from(extractor_cls, checkpoints_dir, name, concepts, device='cuda'):
     """Run BitDiscovery on a specific extractor."""
     print(f"\n  Running BitDiscovery on {name}...")
     extractor = extractor_cls(checkpoints_dir)
-    snapshots = extractor.load_snapshots(checkpoints_dir)
-    snapshot = snapshots[-1]
+    ckpts = extractor.discover_checkpoints(checkpoints_dir)
+    if not ckpts:
+        print(f"  ERROR: No checkpoints found for {name}.")
+        return None
+    last_ckpt = ckpts[-1][1]  # (step, path) tuple
+    snapshot = extractor.extract(last_ckpt, concepts, device=device)
 
     bd = BitDiscovery()
     discovery = bd.discover(snapshot)
@@ -149,30 +155,47 @@ def discover_from(extractor_cls, checkpoints_dir, name):
     }
 
 
-def run_probe(triadic_dir, sae_dir=None, vqvae_dir=None):
+def run_probe(triadic_dir, sae_dir=None, vqvae_dir=None, device='cuda'):
     """Run Q8 probe across architectures."""
     if not HAS_REPTIMELINE:
+        return None
+
+    # Load concepts from gold primes
+    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
+    if os.path.exists(gold_path):
+        with open(gold_path, 'r', encoding='utf-8') as f:
+            concepts = list(json.load(f).keys())
+        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    else:
+        print('  ERROR: gold_primes_65.json not found')
         return None
 
     architectures = []
 
     # Triadic (required)
-    arch_triadic = discover_from(TriadicExtractor, triadic_dir, 'triadic')
-    architectures.append(arch_triadic)
+    arch_triadic = discover_from(TriadicExtractor, triadic_dir, 'triadic', concepts, device)
+    if arch_triadic is not None:
+        architectures.append(arch_triadic)
 
     # SAE (optional)
     if sae_dir and HAS_SAE:
-        arch_sae = discover_from(SAEExtractor, sae_dir, 'sae')
-        architectures.append(arch_sae)
+        arch_sae = discover_from(SAEExtractor, sae_dir, 'sae', concepts, device)
+        if arch_sae is not None:
+            architectures.append(arch_sae)
     elif sae_dir:
         print("  WARN: SAEExtractor not available, skipping.")
 
     # VQ-VAE (optional)
     if vqvae_dir and HAS_VQVAE:
-        arch_vqvae = discover_from(VQVAEExtractor, vqvae_dir, 'vqvae')
-        architectures.append(arch_vqvae)
+        arch_vqvae = discover_from(VQVAEExtractor, vqvae_dir, 'vqvae', concepts, device)
+        if arch_vqvae is not None:
+            architectures.append(arch_vqvae)
     elif vqvae_dir:
         print("  WARN: VQVAEExtractor not available, skipping.")
+
+    if not architectures:
+        print("  ERROR: No architectures could be loaded.")
+        return None
 
     return architectures
 
@@ -288,9 +311,11 @@ def analyze(architectures):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Q8: Cross-architecture probe')
-    parser.add_argument('--checkpoints_triadic', required=True)
+    parser.add_argument('--checkpoints_triadic', '--checkpoints', required=True)
     parser.add_argument('--checkpoints_sae', default=None)
     parser.add_argument('--checkpoints_vqvae', default=None)
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -302,7 +327,8 @@ if __name__ == '__main__':
 
     architectures = run_probe(args.checkpoints_triadic,
                               args.checkpoints_sae,
-                              args.checkpoints_vqvae)
+                              args.checkpoints_vqvae,
+                              args.device)
     if architectures is None:
         sys.exit(1)
 

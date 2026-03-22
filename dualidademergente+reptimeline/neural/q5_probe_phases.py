@@ -22,13 +22,15 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from registry import register_pvalue
 
 try:
     from reptimeline import PrimitiveOverlay, TimelineTracker
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     HAS_REPTIMELINE = True
 except ImportError:
     HAS_REPTIMELINE = False
@@ -87,9 +89,19 @@ def variance_windows(series, window=10):
 #  SECTION 2: RUN PROBE
 # ######################################################################
 
-def run_probe(checkpoints_dir):
+def run_probe(checkpoints_dir, device='cuda'):
     """Run Q5 probe."""
     if not HAS_REPTIMELINE:
+        return None
+
+    # Load concepts from gold primes
+    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
+    if os.path.exists(gold_path):
+        with open(gold_path, 'r', encoding='utf-8') as f:
+            concepts = list(json.load(f).keys())
+        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    else:
+        print('  ERROR: gold_primes_65.json not found')
         return None
 
     overlay = PrimitiveOverlay(
@@ -98,9 +110,10 @@ def run_probe(checkpoints_dir):
     extractor = TriadicExtractor(checkpoints_dir)
     tracker = TimelineTracker(extractor=extractor, stability_window=3)
 
-    snapshots = extractor.load_snapshots(checkpoints_dir)
+    snapshots = extractor.extract_sequence(checkpoints_dir, concepts,
+                                           device=device, max_checkpoints=10)
     timeline = tracker.analyze(snapshots)
-    report = overlay.analyze(timeline)
+    report = overlay.analyze(timeline, concepts=concepts)
 
     return timeline, report
 
@@ -230,6 +243,8 @@ def analyze(timeline, report):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Q5: Phase transitions probe')
     parser.add_argument('--checkpoints', required=True)
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -239,7 +254,7 @@ if __name__ == '__main__':
         print("\nInstall with: pip install reptimeline")
         sys.exit(1)
 
-    result = run_probe(args.checkpoints)
+    result = run_probe(args.checkpoints, args.device)
     if result is None:
         sys.exit(1)
 

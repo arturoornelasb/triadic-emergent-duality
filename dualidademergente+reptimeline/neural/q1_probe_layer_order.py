@@ -22,7 +22,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 STATS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'stats'))
+MODEL_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model'))
 sys.path.insert(0, STATS_DIR)
+sys.path.insert(0, MODEL_DIR)
 
 from bootstrap import bootstrap_ci
 from registry import register_pvalue
@@ -30,7 +32,7 @@ from bh_fdr import benjamini_hochberg
 
 try:
     from reptimeline import PrimitiveOverlay, TimelineTracker
-    from reptimeline.extractors import TriadicExtractor
+    from triadic_extractor import TriadicExtractor
     from reptimeline.core import ConceptSnapshot
     HAS_REPTIMELINE = True
 except ImportError:
@@ -114,7 +116,7 @@ def spearman_p_perm(x, y, n_perms=5000, seed=42):
 #  SECTION 2: RUN PROBE
 # ######################################################################
 
-def run_probe(checkpoints_dir, vocab_path=None):
+def run_probe(checkpoints_dir, vocab_path=None, device='cuda'):
     """Run Q1 probe on saved checkpoints."""
     if not HAS_REPTIMELINE:
         print("ERROR: reptimeline not installed. pip install reptimeline")
@@ -129,14 +131,25 @@ def run_probe(checkpoints_dir, vocab_path=None):
     extractor = TriadicExtractor(checkpoints_dir)
     tracker = TimelineTracker(extractor=extractor, stability_window=3)
 
-    # Load concepts from vocab or use default
+    # Load concepts from vocab or gold primes
     concepts = None
     if vocab_path and os.path.exists(vocab_path):
         with open(vocab_path, 'r', encoding='utf-8') as f:
             concepts = json.load(f)
+    else:
+        gold_path = os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json')
+        gold_path = os.path.normpath(gold_path)
+        if os.path.exists(gold_path):
+            with open(gold_path, 'r', encoding='utf-8') as f:
+                concepts = list(json.load(f).keys())
+            print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+        else:
+            print('  ERROR: No concepts found. Provide --vocab or gold_primes_65.json')
+            return None
 
-    # Build snapshots
-    snapshots = extractor.load_snapshots(checkpoints_dir)
+    # Build snapshots from all checkpoints
+    snapshots = extractor.extract_sequence(checkpoints_dir, concepts,
+                                           device=device, max_checkpoints=10)
     timeline = tracker.analyze(snapshots)
 
     # Run overlay
@@ -262,6 +275,8 @@ if __name__ == '__main__':
                         help='JSON file with concept list')
     parser.add_argument('--freq', default=None,
                         help='JSON file with token frequencies')
+    parser.add_argument('--device', default='cuda',
+                        help='Device (cuda or cpu)')
     args = parser.parse_args()
 
     if not HAS_REPTIMELINE:
@@ -272,7 +287,7 @@ if __name__ == '__main__':
         print("Then re-run with: python q1_probe_layer_order.py --checkpoints <dir>")
         sys.exit(1)
 
-    result = run_probe(args.checkpoints, args.vocab)
+    result = run_probe(args.checkpoints, args.vocab, args.device)
     if result is None:
         sys.exit(1)
 
