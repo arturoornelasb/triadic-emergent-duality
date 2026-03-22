@@ -1,5 +1,11 @@
 """
-Training loop: GPT-2 + Triadic Head for 65 primitivos (v2).
+Training loop: GPT-2 + Triadic Head for 65 primitivos (v3).
+
+V3 changes from v2:
+  - Trains directly with 65 primitivos (not 262 domain anchors)
+  - Target = own bit ON + transitive deps ON (100% unique, 0 collisions)
+  - Uses English word + definition for GPT-2 context (Option D)
+  - Regla de tres quads use dual pairs from the circle
 
 Blueprint from triadic-microgpt Run 15 + Danza D-A14:
   L_total = L_lang + alpha * (L_tri + sup_weight * L_sup + sub_weight * L_sub)
@@ -34,6 +40,8 @@ import math
 import random
 import argparse
 
+import shutil
+
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -45,6 +53,9 @@ DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 sys.path.insert(0, SCRIPT_DIR)
 
 from gpt2_triadic import GPT2Triadic
+
+# V3: word + definition needs more tokens than single-word anchors
+MAX_CONCEPT_TOKENS = 20
 
 
 # ######################################################################
@@ -132,22 +143,23 @@ def load_anchors(tokenizer, n_bits, device, test_pct=0.2):
 
     Returns: (train_t, train_tgt, train_words, test_t, test_tgt, test_words)
     """
-    gold_path = os.path.join(SCRIPT_DIR, 'gold_primes_65.json')
+    gold_path = os.path.join(SCRIPT_DIR, 'gold_primitivos_65.json')
     if not os.path.exists(gold_path):
-        print('  No gold_primes_65.json found. Run anchors.py first.')
+        print('  No gold_primitivos_65.json found. Run generate_gold_primitivos.py first.')
         return None
 
     with open(gold_path, 'r', encoding='utf-8') as f:
         gold_data = json.load(f)
 
-    max_tok = 8
+    max_tok = MAX_CONCEPT_TOKENS
     all_items = []
     for concept, data in gold_data.items():
         sig = data['binary_signature'][:n_bits]
         while len(sig) < n_bits:
             sig.append(0)
         target = [2.0 * b - 1.0 for b in sig]
-        ids = tokenizer.encode(' ' + concept.replace('_', ' '))[:max_tok]
+        text = data.get('text', concept.replace('_', ' '))
+        ids = tokenizer.encode(' ' + text)[:max_tok]
         while len(ids) < max_tok:
             ids.append(tokenizer.eos_token_id)
         all_items.append((concept, ids, target))
@@ -168,14 +180,14 @@ def load_anchors(tokenizer, n_bits, device, test_pct=0.2):
     train_t, train_tgt, train_words = to_tensors(train_items)
     test_t, test_tgt, test_words = to_tensors(test_items)
 
-    print(f'  Anchors: {len(train_items)} train, {len(test_items)} test, {n_bits} bits')
+    print(f'  Primitivos: {len(train_items)} train, {len(test_items)} test, {n_bits} bits, {max_tok} max tokens')
     return (train_t, train_tgt, train_words, test_t, test_tgt, test_words, gold_data)
 
 
 def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2):
     """Build hypernym-hyponym pairs, split train/test."""
     items = list(gold_data.items())
-    max_tok = 8
+    max_tok = MAX_CONCEPT_TOKENS
 
     pairs = []
     for i, (w_a, d_a) in enumerate(items):
@@ -198,8 +210,10 @@ def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2):
     def to_tensors(pair_list):
         h_ids, y_ids = [], []
         for hyper, hypo in pair_list:
-            h = tokenizer.encode(' ' + hyper.replace('_', ' '))[:max_tok]
-            y = tokenizer.encode(' ' + hypo.replace('_', ' '))[:max_tok]
+            h_text = gold_data[hyper].get('text', hyper.replace('_', ' '))
+            y_text = gold_data[hypo].get('text', hypo.replace('_', ' '))
+            h = tokenizer.encode(' ' + h_text)[:max_tok]
+            y = tokenizer.encode(' ' + y_text)[:max_tok]
             while len(h) < max_tok:
                 h.append(tokenizer.eos_token_id)
             while len(y) < max_tok:
@@ -322,16 +336,16 @@ def evaluate_subsumption(model, hyper_t, hypo_t):
     return satisfied / N
 
 
-# Regla de tres analogy quads adapted for our 262 anchors
+# Regla de tres analogy quads using dual pairs from the 65 primitivos
 REGLA_DE_TRES_QUADS = [
-    ('entropy', 'order', 'freedom', 'control'),
-    ('hot', 'cold', 'light', 'dark'),
-    ('love', 'hate', 'harmony', 'dissonance'),
-    ('proton', 'electron', 'positive', 'negative'),
-    ('gravity', 'levitation', 'attraction', 'repulsion'),
-    ('evolution', 'extinction', 'growth', 'decay'),
-    ('synthesis', 'analysis', 'unity', 'division'),
-    ('melody', 'rhythm', 'pitch', 'tempo'),
+    ('good', 'evil', 'truth', 'lie'),                                       # moral ~ epistemic
+    ('creation', 'destruction', 'life', 'death'),                           # generative ~ vital
+    ('freedom', 'control', 'individual', 'collective'),                     # autonomy ~ social
+    ('pleasure', 'pain', 'conscious', 'absent'),                            # hedonic ~ awareness
+    ('union', 'separation', 'order', 'chaos'),                              # connection ~ structure
+    ('move', 'stillness', 'mortal_observer', 'eternal_observer'),           # kinetic ~ temporal
+    ('receptive', 'creator_observer', 'truth', 'lie'),                      # passive/active ~ epistemic
+    ('creation', 'destruction', 'union', 'separation'),                     # making ~ connecting
 ]
 
 
@@ -342,9 +356,12 @@ def evaluate_regla_de_tres(model, tokenizer, gold_data, device):
     results = []
 
     def get_proj(word):
-        ids = tokenizer.encode(' ' + word.replace('_', ' '))[:8]
+        text = gold_data.get(word, {}).get('text', word.replace('_', ' '))
+        ids = tokenizer.encode(' ' + text)[:MAX_CONCEPT_TOKENS]
         if not ids:
             return None
+        while len(ids) < MAX_CONCEPT_TOKENS:
+            ids.append(tokenizer.eos_token_id)
         x = torch.tensor([ids], dtype=torch.long, device=device)
         _, proj = model(x)
         return proj[0].mean(dim=0)
@@ -388,7 +405,7 @@ def train(args):
 
     print()
     print('=' * 70)
-    print('  GPT-2 TRIADIC v2 — Training for 65 primitivos')
+    print('  GPT-2 TRIADIC v3 — Training with 65 primitivos directly')
     print('=' * 70)
     print(f'  Device: {device}')
     if device.type == 'cuda':
@@ -497,18 +514,48 @@ def train(args):
     ckpt_dir = os.path.join(SCRIPT_DIR, 'checkpoints', args.run_name)
     os.makedirs(ckpt_dir, exist_ok=True)
 
+    # --- Save run configuration for reproducibility ---
+    gold_file = 'gold_primitivos_65.json'
+    gold_src = os.path.join(SCRIPT_DIR, gold_file)
+    if start_step == 0:
+        # Copy gold targets into checkpoint dir (frozen snapshot)
+        if os.path.exists(gold_src):
+            shutil.copy2(gold_src, os.path.join(ckpt_dir, gold_file))
+            print(f'  Gold targets snapshot: {ckpt_dir}/{gold_file}')
+
+        run_config = {
+            'run_name': args.run_name,
+            'date': time.strftime('%Y-%m-%d %H:%M:%S'),
+            'gold_file': gold_file,
+            'n_concepts': len(gold_data) if gold_data else 0,
+            'n_train': train_t.shape[0] if has_sup else 0,
+            'n_test': test_t.shape[0] if has_sup else 0,
+            'has_supervision': has_sup,
+            'has_subsumption': has_sub,
+            'args': {k: v for k, v in vars(args).items()},
+        }
+        config_path = os.path.join(ckpt_dir, 'run_config.json')
+        with open(config_path, 'w', encoding='utf-8') as f:
+            json.dump(run_config, f, indent=2, ensure_ascii=False)
+        print(f'  Run config: {config_path}')
+
     # --- CSV logging (full 12 columns like danza) ---
     csv_path = os.path.join(ckpt_dir, 'training_log.csv')
-    csv_file = open(csv_path, 'w', newline='')
+    if start_step > 0 and os.path.exists(csv_path):
+        csv_file = open(csv_path, 'a', newline='')
+    else:
+        csv_file = open(csv_path, 'w', newline='')
     csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(['step', 'loss', 'lang_loss', 'tri_loss', 'sup_loss', 'sub_loss',
-                         'bit_acc_train', 'bit_acc_test', 'sub_train', 'sub_test',
-                         'dead_bits', 'entropy'])
+    if start_step == 0 or not os.path.exists(csv_path):
+        csv_writer.writerow(['step', 'loss', 'lang_loss', 'tri_loss', 'sup_loss', 'sub_loss',
+                             'bit_acc_train', 'bit_acc_test', 'sub_train', 'sub_test',
+                             'dead_bits', 'entropy'])
 
     # --- Training ---
     print()
     print(f'[5/6] Training for {args.steps} steps (from step {start_step})...')
-    print(f'  Batch: {args.batch_size} | Block: {args.block} | LR: {args.lr}')
+    eff_batch = args.batch_size * args.accum_steps
+    print(f'  Batch: {args.batch_size} x {args.accum_steps} accum = {eff_batch} effective | Block: {args.block} | LR: {args.lr}')
     print(f'  Triadic warmup: step {triadic_warmup} ({args.triadic_warmup_pct*100:.0f}%)')
     print(f'  Alpha: {args.alpha} | Align: {args.align_mode}(w={args.align_weight})')
     print(f'  Supervision: L_sup(w={args.sup_weight}), L_sub(w={args.sub_weight})')
@@ -521,6 +568,7 @@ def train(args):
     step = start_step
     best_bit_acc = 0.0
     data_iter = iter(dataloader)
+    optimizer.zero_grad(set_to_none=True)
 
     while step < args.steps:
         try:
@@ -578,13 +626,20 @@ def train(args):
                 total_loss = lang_loss + current_alpha * (
                     tri_loss + args.sup_weight * l_sup + args.sub_weight * l_sub)
 
-        # Backward
-        optimizer.zero_grad(set_to_none=True)
+            # Scale loss for gradient accumulation
+            total_loss = total_loss / args.accum_steps
+
+        # Backward (accumulate gradients)
         scaler.scale(total_loss).backward()
-        scaler.unscale_(optimizer)
-        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-        scaler.step(optimizer)
-        scaler.update()
+
+        # Optimizer step only every accum_steps
+        accum_idx = (step - start_step) % args.accum_steps
+        if accum_idx == args.accum_steps - 1:
+            scaler.unscale_(optimizer)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            scaler.step(optimizer)
+            scaler.update()
+            optimizer.zero_grad(set_to_none=True)
 
         # Print progress
         if step % args.print_every == 0 or step == args.steps - 1:
@@ -634,6 +689,10 @@ def train(args):
                 bs = [f"{w['word']}({w['bit_accuracy']:.0%})" for w in eval_test['best_5'][-3:]]
                 print(f'  Best test:  {", ".join(bs)}')
 
+            # Free VRAM after eval to prevent OOM spikes
+            if device.type == 'cuda':
+                torch.cuda.empty_cache()
+
             # CSV
             csv_writer.writerow([
                 step + 1, total_loss.item(), lang_loss.item(),
@@ -651,11 +710,15 @@ def train(args):
                     'model_state_dict': model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
                     'config': {
+                        'run_name': args.run_name,
+                        'gold_file': gold_file,
                         'model_name': args.model,
                         'n_triadic_bits': args.bits,
                         'freeze_base': args.freeze_base,
                         'head_mode': args.head_mode,
                         'activation': args.activation,
+                        'lr': args.lr,
+                        'alpha': args.alpha,
                     },
                     'step': step + 1,
                     'bit_accuracy_test': ba_test,
@@ -670,11 +733,15 @@ def train(args):
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
                 'config': {
+                    'run_name': args.run_name,
+                    'gold_file': gold_file,
                     'model_name': args.model,
                     'n_triadic_bits': args.bits,
                     'freeze_base': args.freeze_base,
                     'head_mode': args.head_mode,
                     'activation': args.activation,
+                    'lr': args.lr,
+                    'alpha': args.alpha,
                 },
                 'step': step + 1,
                 'loss': lang_loss.item(),
@@ -710,17 +777,27 @@ def train(args):
     print(f'  Checkpoints: {ckpt_dir}')
     print('=' * 70)
 
-    # Save final results JSON
+    # Save final results JSON (complete metadata for archival)
     results_path = os.path.join(ckpt_dir, 'results.json')
     results = {
+        'run_name': args.run_name,
+        'date': time.strftime('%Y-%m-%d %H:%M:%S'),
         'model': args.model,
         'bits': args.bits,
         'head_mode': args.head_mode,
         'activation': args.activation,
         'steps': args.steps,
+        'lr': args.lr,
+        'alpha': args.alpha,
+        'batch_size': args.batch_size,
+        'accum_steps': args.accum_steps,
+        'effective_batch': args.batch_size * args.accum_steps,
+        'gold_file': gold_file,
+        'n_concepts': len(gold_data) if gold_data else 0,
         'best_bit_accuracy_test': best_bit_acc,
         'final_loss': lang_loss.item(),
         'elapsed_s': elapsed,
+        'elapsed_h': round(elapsed / 3600, 2),
     }
     if gold_data:
         results['regla_de_tres'] = r3_results
@@ -734,7 +811,7 @@ def train(args):
 # ######################################################################
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Train GPT-2 + Triadic Head v2')
+    parser = argparse.ArgumentParser(description='Train GPT-2 + Triadic Head v3')
 
     # Model
     parser.add_argument('--model', default='gpt2-medium',
@@ -746,7 +823,9 @@ if __name__ == '__main__':
                         help='Triadic head: simple (1 layer, blueprint) or deep (2 layer MLP)')
     parser.add_argument('--activation', default='ifsq', choices=['tanh', 'ifsq'],
                         help='Triadic activation: ifsq (prevents dead bits) or tanh')
-    parser.add_argument('--grad-checkpoint', action='store_true')
+    parser.add_argument('--grad-checkpoint', action='store_true', default=True,
+                        help='Gradient checkpointing (saves ~30%% VRAM, ON by default)')
+    parser.add_argument('--no-grad-checkpoint', dest='grad_checkpoint', action='store_false')
     parser.add_argument('--no-compile', action='store_true')
 
     # Data
@@ -757,7 +836,9 @@ if __name__ == '__main__':
 
     # Training
     parser.add_argument('--steps', type=int, default=50000)
-    parser.add_argument('--batch-size', type=int, default=8)
+    parser.add_argument('--batch-size', type=int, default=4)
+    parser.add_argument('--accum-steps', type=int, default=2,
+                        help='Gradient accumulation steps (effective batch = batch_size * accum)')
     parser.add_argument('--lr', type=float, default=3e-4)
     parser.add_argument('--alpha', type=float, default=0.05,
                         help='Triadic loss weight (>0.05 causes collapse)')
@@ -772,7 +853,7 @@ if __name__ == '__main__':
                         help='Resume from checkpoint path')
 
     # Output
-    parser.add_argument('--run-name', default='gpt2_triadic_65_v2')
+    parser.add_argument('--run-name', default='gpt2_triadic_65_v3')
     parser.add_argument('--print-every', type=int, default=50)
     parser.add_argument('--eval-every', type=int, default=1000)
     parser.add_argument('--save-every', type=int, default=2500)

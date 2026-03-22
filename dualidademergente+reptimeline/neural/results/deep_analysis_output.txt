@@ -1,0 +1,956 @@
+Loaded 262 concept signatures from exploration.json
+
+======================================================================
+  PART 1: CONCEPT CONNECTIONS (262 anchors)
+======================================================================
+
+  --- Biology (35 concepts) ---
+    DNA                  [41 bits] same:[gene(0.929), mutation(0.909)]  cross:[spin(Phys 0.952), reduction(Chem 0.951), translation(Ling 0.951)]
+    adaptation           [41 bits] same:[mutation(0.909), DNA(0.907)]  cross:[spin(Phys 0.952), velocity(Phys 0.929), pitch(Musi 0.927)]
+    animal               [39 bits] same:[virus(0.950), protein(0.949)]  cross:[electricity(Phys 0.974), radiation(Phys 0.950), evil(Phil 0.950)]
+    bacteria             [41 bits] same:[gene(0.976), fungus(0.953)]  cross:[acid(Chem 0.976), perception(Psyc 0.976), anxiety(Psyc 0.952)]
+    blood                [44 bits] same:[brain(0.889), cell(0.867)]  cross:[word(Ling 0.867), truth(Phil 0.848), dream(Psyc 0.848)]
+    bone                 [39 bits] same:[muscle(0.974), nerve(0.951)]  cross:[decay(Phys 1.000), density(Phys 1.000), crystal(Chem 1.000)]
+    brain                [41 bits] same:[gene(0.929), adaptation(0.907)]  cross:[god(Phil 0.951), acid(Chem 0.929), soul(Phil 0.929)]
+    cell                 [40 bits] same:[blood(0.867), growth(0.818)]  cross:[division(Math 0.833), justice(Phil 0.833), base(Chem 0.829)]
+    death_bio            [47 bits] same:[respiration(0.957), meiosis(0.957)]  cross:[consciousness_psy(Psyc 0.830), distillation(Chem 0.771), sublimation(Chem 0.755)]
+    ecosystem            [43 bits] same:[metabolism(1.000), organism(1.000)]  cross:[motivation(Psyc 0.935), trauma(Psyc 0.932), particle(Phys 0.930)]
+    enzyme               [42 bits] same:[reproduction(0.977), fungus(0.977)]  cross:[anxiety(Psyc 0.976), trauma(Psyc 0.953), perception(Psyc 0.952)]
+    evolution            [40 bits] same:[virus(0.927), gene(0.905)]  cross:[soul(Phil 0.951), fear(Psyc 0.951), dream(Psyc 0.929)]
+    fungus               [43 bits] same:[enzyme(0.977), reproduction(0.955)]  cross:[anxiety(Psyc 0.953), motivation(Psyc 0.935), trauma(Psyc 0.932)]
+    gene                 [40 bits] same:[bacteria(0.976), fungus(0.930)]  cross:[acid(Chem 1.000), beauty(Phil 0.975), perception(Psyc 0.951)]
+    growth               [40 bits] same:[plant(0.854), adaptation(0.841)]  cross:[speech(Ling 0.927), language(Ling 0.905), truth(Phil 0.884)]
+    habitat              [39 bits] same:[adaptation(0.905), brain(0.905)]  cross:[purpose(Phil 0.949), electricity(Phys 0.925), identity(Phil 0.925)]
+    hormone              [42 bits] same:[metabolism(0.977), ecosystem(0.977)]  cross:[motivation(Psyc 0.913), trauma(Psyc 0.909), particle(Phys 0.907)]
+    immunity             [42 bits] same:[reproduction(0.977), enzyme(0.953)]  cross:[trauma(Psyc 1.000), fusion(Phys 0.977), electron(Phys 0.976)]
+    meiosis              [45 bits] same:[respiration(1.000), symbiosis(1.000)]  cross:[consciousness_psy(Psyc 0.827), distillation(Chem 0.804), sublimation(Chem 0.787)]
+    metabolism           [43 bits] same:[ecosystem(1.000), organism(1.000)]  cross:[motivation(Psyc 0.935), trauma(Psyc 0.932), particle(Phys 0.930)]
+    mitosis              [48 bits] same:[respiration(0.938), meiosis(0.938)]  cross:[consciousness_psy(Psyc 0.885), fission(Phys 0.808), spacetime(Phys 0.784)]
+    muscle               [38 bits] same:[bone(0.974), nerve(0.927)]  cross:[chord(Musi 1.000), decay(Phys 0.974), density(Phys 0.974)]
+    mutation             [43 bits] same:[metabolism(0.955), ecosystem(0.955)]  cross:[electron(Phys 0.953), anxiety(Psyc 0.953), motivation(Psyc 0.935)]
+    nerve                [41 bits] same:[enzyme(0.976), mutation(0.953)]  cross:[anxiety(Psyc 1.000), perception(Psyc 0.976), unconscious(Psyc 0.976)]
+    nutrition            [44 bits] same:[metabolism(0.977), ecosystem(0.977)]  cross:[motivation(Psyc 0.957), fusion(Phys 0.933), cognition(Psyc 0.917)]
+    organism             [43 bits] same:[metabolism(1.000), ecosystem(1.000)]  cross:[motivation(Psyc 0.935), trauma(Psyc 0.932), particle(Phys 0.930)]
+    photosynthesis       [54 bits] same:[mitosis(0.889), death_bio(0.870)]  cross:[consciousness_psy(Psyc 0.891), fission(Phys 0.818), instinct(Psyc 0.807)]
+    plant                [36 bits] same:[growth(0.854), brain(0.833)]  cross:[god(Phil 0.875), learning(Psyc 0.875), attention(Psyc 0.875)]
+    predator             [40 bits] same:[bone(0.927), virus(0.927)]  cross:[velocity(Phys 0.951), fusion(Phys 0.930), spin(Phys 0.929)]
+    protein              [37 bits] same:[virus(0.949), animal(0.949)]  cross:[electricity(Phys 0.974), consciousness(Phil 0.974), anger(Psyc 0.974)]
+    reproduction         [43 bits] same:[enzyme(0.977), immunity(0.977)]  cross:[trauma(Psyc 0.977), fusion(Phys 0.955), electron(Phys 0.953)]
+    respiration          [45 bits] same:[meiosis(1.000), symbiosis(1.000)]  cross:[consciousness_psy(Psyc 0.827), distillation(Chem 0.804), sublimation(Chem 0.787)]
+    species              [40 bits] same:[growth(0.739), plant(0.727)]  cross:[group(Math 0.900), nothing(Phil 0.814), writing(Ling 0.795)]
+    symbiosis            [45 bits] same:[respiration(1.000), meiosis(1.000)]  cross:[consciousness_psy(Psyc 0.827), distillation(Chem 0.804), sublimation(Chem 0.787)]
+    virus                [39 bits] same:[animal(0.950), protein(0.949)]  cross:[radiation(Phys 1.000), evil(Phil 1.000), personality(Psyc 1.000)]
+
+  --- Chemistry (30 concepts) ---
+    acid                 [40 bits] same:[reduction(0.927), solution(0.927)]  cross:[gene(Biol 1.000), bacteria(Biol 0.976), beauty(Phil 0.975)]
+    alloy                [39 bits] same:[corrosion(0.923), polymer(0.905)]  cross:[algebra(Math 0.795), inertia(Phys 0.778), multiplication(Math 0.778)]
+    base                 [35 bits] same:[element(0.762), acid(0.744)]  cross:[habitat(Biol 0.850), energy(Phys 0.846), division(Math 0.846)]
+    bond                 [39 bits] same:[reduction(0.902), crystal(0.902)]  cross:[momentum(Phys 0.975), fraction(Math 0.975), integral(Math 0.975)]
+    catalyst             [38 bits] same:[mole(0.949), combustion(0.905)]  cross:[semantics(Ling 0.818), inertia(Phys 0.795), algebra(Math 0.773)]
+    combustion           [42 bits] same:[solvent(0.952), polymer(0.930)]  cross:[semantics(Ling 0.750), instinct(Psyc 0.750), respiration(Biol 0.740)]
+    compound             [39 bits] same:[crystal(0.950), mixture(0.950)]  cross:[decay(Phys 0.950), density(Phys 0.950), bone(Biol 0.950)]
+    concentration        [42 bits] same:[bond(0.884), reduction(0.884)]  cross:[conservation(Phys 0.907), proof(Math 0.907), creativity(Psyc 0.891)]
+    corrosion            [36 bits] same:[alloy(0.923), catalyst(0.897)]  cross:[algebra(Math 0.810), inertia(Phys 0.791), multiplication(Math 0.791)]
+    crystal              [39 bits] same:[reduction(0.950), solution(0.950)]  cross:[decay(Phys 1.000), density(Phys 1.000), bone(Biol 1.000)]
+    distillation         [38 bits] same:[sublimation(0.925), isotope(0.825)]  cross:[respiration(Biol 0.804), meiosis(Biol 0.804), symbiosis(Biol 0.804)]
+    element              [39 bits] same:[concentration(0.841), acid(0.837)]  cross:[truth(Phil 0.905), stress(Psyc 0.905), god(Phil 0.902)]
+    equilibrium_chem     [38 bits] same:[molecule(0.949), precipitate(0.921)]  cross:[acceleration(Phys 0.878), amplitude(Phys 0.878), syntax(Ling 0.878)]
+    ion                  [40 bits] same:[solution(0.927), crystal(0.927)]  cross:[unconscious(Psyc 0.951), fungus(Biol 0.930), electron(Phys 0.929)]
+    isotope              [35 bits] same:[sublimation(0.850), distillation(0.825)]  cross:[timbre(Musi 0.744), respiration(Biol 0.739), meiosis(Biol 0.739)]
+    mixture              [39 bits] same:[crystal(0.950), compound(0.950)]  cross:[equation(Math 0.975), decay(Phys 0.950), density(Phys 0.950)]
+    mole                 [38 bits] same:[solvent(0.950), catalyst(0.949)]  cross:[semantics(Ling 0.778), inertia(Phys 0.756), algebra(Math 0.733)]
+    molecule             [38 bits] same:[equilibrium_chem(0.949), oxidation(0.925)]  cross:[acceleration(Phys 0.925), amplitude(Phys 0.925), syntax(Ling 0.925)]
+    oxidation            [39 bits] same:[molecule(0.925), equilibrium_chem(0.878)]  cross:[acceleration(Phys 0.950), ambiguity(Ling 0.950), geometry(Math 0.925)]
+    pH                   [39 bits] same:[molecule(0.878), catalyst(0.878)]  cross:[inertia(Phys 0.860), amplitude(Phys 0.857), syntax(Ling 0.857)]
+    polymer              [41 bits] same:[solvent(0.976), combustion(0.930)]  cross:[semantics(Ling 0.766), inertia(Phys 0.745), paragraph(Ling 0.740)]
+    precipitate          [35 bits] same:[equilibrium_chem(0.921), molecule(0.872)]  cross:[interval(Musi 0.895), geometry(Math 0.872), dimension(Math 0.872)]
+    reaction             [38 bits] same:[acid(0.902), reduction(0.878)]  cross:[gene(Biol 0.902), perception(Psyc 0.902), consciousness(Phil 0.900)]
+    reduction            [39 bits] same:[crystal(0.950), acid(0.927)]  cross:[velocity(Phys 0.975), conservation(Phys 0.975), electron(Phys 0.951)]
+    solute               [38 bits] same:[sublimation(0.791), isotope(0.738)]  cross:[spacetime(Phys 0.723), oscillation(Phys 0.723), buoyancy(Phys 0.723)]
+    solution             [39 bits] same:[crystal(0.950), acid(0.927)]  cross:[bacteria(Biol 0.951), melody(Musi 0.951), decay(Phys 0.950)]
+    solvent              [40 bits] same:[polymer(0.976), combustion(0.952)]  cross:[semantics(Ling 0.745), inertia(Phys 0.723), paragraph(Ling 0.720)]
+    sublimation          [39 bits] same:[distillation(0.925), titration(0.881)]  cross:[respiration(Biol 0.787), meiosis(Biol 0.787), symbiosis(Biol 0.787)]
+    titration            [40 bits] same:[sublimation(0.881), distillation(0.814)]  cross:[self_concept(Psyc 0.776), spacetime(Phys 0.766), oscillation(Phys 0.766)]
+    valence              [35 bits] same:[distillation(0.780), sublimation(0.762)]  cross:[spacetime(Phys 0.696), oscillation(Phys 0.696), buoyancy(Phys 0.696)]
+
+  --- Linguistics (30 concepts) ---
+    adjective            [46 bits] same:[paragraph(1.000), noun(0.898)]  cross:[inertia(Phys 0.776), causation(Phil 0.774), conditioning(Psyc 0.774)]
+    ambiguity            [39 bits] same:[syntax(0.902), metaphor(0.860)]  cross:[acceleration(Phys 1.000), geometry(Math 0.974), dimension(Math 0.974)]
+    consonant            [50 bits] same:[phoneme(1.000), morpheme(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    creole               [34 bits] same:[metaphor(0.667), sentence(0.659)]  cross:[predator(Biol 0.721), fusion(Phys 0.711), quantum(Phys 0.705)]
+    dialect              [42 bits] same:[metaphor(0.930), grammar(0.886)]  cross:[mutation(Biol 0.932), electron(Phys 0.930), immunity(Biol 0.909)]
+    discourse            [41 bits] same:[vowel(0.976), verb(0.953)]  cross:[probability(Math 0.826), electron(Phys 0.822), quantum(Phys 0.822)]
+    etymology            [50 bits] same:[phoneme(1.000), morpheme(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    grammar              [41 bits] same:[metaphor(0.952), verb(0.909)]  cross:[probability(Math 0.909), electron(Phys 0.907), ethics(Phil 0.907)]
+    language             [40 bits] same:[speech(0.927), reference(0.881)]  cross:[depression(Psyc 0.925), growth(Biol 0.905), truth(Phil 0.884)]
+    lexicon              [50 bits] same:[phoneme(1.000), morpheme(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    metaphor             [41 bits] same:[grammar(0.952), sentence(0.951)]  cross:[electron(Phys 0.952), immunity(Biol 0.930), trauma(Psyc 0.930)]
+    morpheme             [50 bits] same:[phoneme(1.000), pragmatics(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    narrative            [35 bits] same:[speech(0.897), reference(0.850)]  cross:[justice(Phil 0.946), belief(Phil 0.946), freedom(Phil 0.944)]
+    noun                 [47 bits] same:[paragraph(0.898), adjective(0.898)]  cross:[causation(Phil 0.792), conditioning(Psyc 0.792), instinct(Psyc 0.778)]
+    paragraph            [46 bits] same:[adjective(1.000), noun(0.898)]  cross:[inertia(Phys 0.776), causation(Phil 0.774), conditioning(Psyc 0.774)]
+    phoneme              [50 bits] same:[morpheme(1.000), pragmatics(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    pragmatics           [50 bits] same:[phoneme(1.000), morpheme(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    prosody              [50 bits] same:[phoneme(1.000), morpheme(1.000)]  cross:[determinism(Phil 0.768), permanence(Phil 0.768), death_phil(Phil 0.768)]
+    reference            [39 bits] same:[speech(0.950), word(0.881)]  cross:[truth(Phil 0.951), attention(Psyc 0.950), scale(Musi 0.950)]
+    rhetoric             [51 bits] same:[noun(0.885), paragraph(0.865)]  cross:[cognition(Psyc 0.833), conditioning(Psyc 0.833), instinct(Psyc 0.818)]
+    semantics            [42 bits] same:[syntax(0.929), vowel(0.867)]  cross:[algebra(Math 0.907), inertia(Phys 0.886), symmetry(Phys 0.886)]
+    sentence             [39 bits] same:[metaphor(0.951), grammar(0.905)]  cross:[conservation(Phys 0.975), electron(Phys 0.951), decay(Phys 0.950)]
+    speech               [39 bits] same:[reference(0.950), language(0.927)]  cross:[truth(Phil 0.951), attention(Psyc 0.950), composition(Musi 0.950)]
+    symbol               [41 bits] same:[speech(0.860), translation(0.860)]  cross:[proof(Math 0.929), truth(Phil 0.907), dream(Psyc 0.907)]
+    syntax               [39 bits] same:[semantics(0.929), ambiguity(0.902)]  cross:[amplitude(Phys 0.950), algebra(Math 0.927), molecule(Chem 0.925)]
+    translation          [39 bits] same:[sentence(0.902), metaphor(0.860)]  cross:[spin(Phys 0.951), DNA(Biol 0.951), reduction(Chem 0.950)]
+    verb                 [43 bits] same:[vowel(0.977), discourse(0.953)]  cross:[probability(Math 0.830), electron(Phys 0.826), quantum(Phys 0.826)]
+    vowel                [42 bits] same:[verb(0.977), discourse(0.976)]  cross:[probability(Math 0.809), electron(Phys 0.804), quantum(Phys 0.804)]
+    word                 [40 bits] same:[speech(0.881), reference(0.881)]  cross:[brain(Biol 0.929), truth(Phil 0.929), dream(Psyc 0.929)]
+    writing              [39 bits] same:[language(0.756), speech(0.733)]  cross:[nothing(Phil 0.833), rest(Musi 0.833), species(Biol 0.795)]
+
+  --- Mathematics (35 concepts) ---
+    addition             [34 bits] same:[group(0.795), number(0.791)]  cross:[change(Phil 0.842), development(Psyc 0.838), nothing(Phil 0.800)]
+    algebra              [40 bits] same:[multiplication(0.976), infinity(0.905)]  cross:[amplitude(Phys 0.975), symmetry(Phys 0.929), acceleration(Phys 0.927)]
+    axiom                [30 bits] same:[subtraction(1.000), symmetry_math(1.000)]  cross:[timbre(Musi 0.658), symphony(Musi 0.658), cadence(Musi 0.632)]
+    constant             [38 bits] same:[limit(0.925), zero(0.923)]  cross:[fear(Psyc 0.950), doubt(Phil 0.949), dream(Psyc 0.927)]
+    derivative           [39 bits] same:[theorem(0.975), vector(0.974)]  cross:[friction(Phys 0.950), immunity(Biol 0.929), illusion(Phil 0.929)]
+    dimension            [38 bits] same:[geometry(1.000), matrix(0.974)]  cross:[acceleration(Phys 0.974), friction(Phys 0.974), ambiguity(Ling 0.974)]
+    division             [37 bits] same:[sequence(0.833), constant(0.829)]  cross:[justice(Phil 0.897), freedom(Phil 0.895), narrative(Ling 0.895)]
+    equation             [40 bits] same:[theorem(0.951), fraction(0.951)]  cross:[mixture(Chem 0.975), immunity(Biol 0.952), illusion(Phil 0.952)]
+    fraction             [40 bits] same:[theorem(0.951), equation(0.951)]  cross:[bond(Chem 0.975), immunity(Biol 0.952), illusion(Phil 0.952)]
+    function             [36 bits] same:[ring(0.875), sequence(0.854)]  cross:[identity(Phil 0.947), god(Phil 0.923), justice(Phil 0.921)]
+    geometry             [38 bits] same:[dimension(1.000), matrix(0.974)]  cross:[acceleration(Phys 0.974), friction(Phys 0.974), ambiguity(Ling 0.974)]
+    graph                [39 bits] same:[logic(1.000), theorem(0.975)]  cross:[momentum(Phys 0.975), grief(Psyc 0.975), electron(Phys 0.951)]
+    group                [36 bits] same:[addition(0.795), number(0.756)]  cross:[species(Biol 0.900), field(Phys 0.816), nothing(Phil 0.805)]
+    infinity             [40 bits] same:[multiplication(0.929), algebra(0.905)]  cross:[symmetry(Phys 0.929), torque(Phys 0.905), inertia(Phys 0.884)]
+    integral             [40 bits] same:[logic(0.975), graph(0.975)]  cross:[momentum(Phys 1.000), grief(Psyc 1.000), electron(Phys 0.976)]
+    limit                [39 bits] same:[proof(0.975), zero(0.949)]  cross:[stress(Psyc 0.951), reduction(Chem 0.950), beauty(Phil 0.950)]
+    logic                [39 bits] same:[graph(1.000), theorem(0.975)]  cross:[momentum(Phys 0.975), grief(Psyc 0.975), electron(Phys 0.951)]
+    matrix               [39 bits] same:[geometry(0.974), dimension(0.974)]  cross:[friction(Phys 1.000), quantum(Phys 0.951), acceleration(Phys 0.950)]
+    multiplication       [41 bits] same:[algebra(0.976), infinity(0.929)]  cross:[symmetry(Phys 0.952), amplitude(Phys 0.951), torque(Phys 0.929)]
+    number               [43 bits] same:[addition(0.791), group(0.756)]  cross:[species(Biol 0.766), development(Psyc 0.750), cell(Biol 0.729)]
+    prime_number         [30 bits] same:[axiom(0.622), subtraction(0.622)]  cross:[spacetime(Phys 0.659), oscillation(Phys 0.659), buoyancy(Phys 0.659)]
+    probability          [43 bits] same:[derivative(0.907), matrix(0.907)]  cross:[ethics(Phil 0.909), paradox(Phil 0.909), grammar(Ling 0.909)]
+    proof                [40 bits] same:[limit(0.975), zero(0.925)]  cross:[truth(Phil 0.929), symbol(Ling 0.929), dream(Psyc 0.929)]
+    ratio                [39 bits] same:[proof(0.881), equation(0.881)]  cross:[truth(Phil 0.905), attachment(Psyc 0.902), joy(Psyc 0.902)]
+    ring                 [39 bits] same:[sequence(0.881), function(0.875)]  cross:[wave(Phys 0.929), word(Ling 0.881), truth(Phil 0.860)]
+    sequence             [40 bits] same:[ring(0.881), proof(0.860)]  cross:[truth(Phil 0.929), wave(Phys 0.907), soul(Phil 0.905)]
+    set                  [41 bits] same:[number(0.750), group(0.711)]  cross:[species(Biol 0.723), being(Phil 0.717), writing(Ling 0.702)]
+    statistics           [39 bits] same:[equation(0.927), integral(0.927)]  cross:[bacteria(Biol 0.951), ethics(Phil 0.951), decay(Phys 0.950)]
+    subtraction          [30 bits] same:[axiom(1.000), symmetry_math(1.000)]  cross:[timbre(Musi 0.658), symphony(Musi 0.658), cadence(Musi 0.632)]
+    symmetry_math        [30 bits] same:[axiom(1.000), subtraction(1.000)]  cross:[timbre(Musi 0.658), symphony(Musi 0.658), cadence(Musi 0.632)]
+    theorem              [40 bits] same:[derivative(0.975), logic(0.975)]  cross:[immunity(Biol 0.952), illusion(Phil 0.952), trauma(Psyc 0.952)]
+    topology             [42 bits] same:[statistics(0.800), equation(0.745)]  cross:[solution(Chem 0.800), bacteria(Biol 0.766), ethics(Phil 0.766)]
+    variable             [38 bits] same:[limit(0.925), statistics(0.925)]  cross:[ethics(Phil 0.927), attachment(Psyc 0.925), rhythm(Musi 0.925)]
+    vector               [38 bits] same:[derivative(0.974), logic(0.974)]  cross:[momentum(Phys 0.950), grief(Psyc 0.950), electron(Phys 0.927)]
+    zero                 [37 bits] same:[limit(0.949), proof(0.925)]  cross:[temperature(Phys 1.000), muscle(Biol 0.974), consciousness(Phil 0.974)]
+
+  --- Music (30 concepts) ---
+    beat                 [37 bits] same:[melody(0.902), scale(0.900)]  cross:[reference(Ling 0.900), attention(Psyc 0.900), narrative(Ling 0.895)]
+    cadence              [32 bits] same:[dissonance(1.000), consonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    chord                [38 bits] same:[rhythm(0.974), melody(0.881)]  cross:[muscle(Biol 1.000), decay(Phys 0.974), density(Phys 0.974)]
+    composition          [39 bits] same:[scale(0.902), measure(0.902)]  cross:[truth(Phil 0.951), dream(Psyc 0.951), god(Phil 0.950)]
+    consonance           [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    counterpoint         [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    crescendo            [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    diminuendo           [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    dissonance           [32 bits] same:[cadence(1.000), consonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    dynamics             [37 bits] same:[harmony(0.947), interval(0.947)]  cross:[particle(Phys 0.925), atom(Phys 0.925), vacuum(Phys 0.925)]
+    fugue                [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    harmony              [37 bits] same:[dynamics(0.947), interval(0.897)]  cross:[immunity(Biol 0.881), trauma(Psyc 0.881), particle(Phys 0.878)]
+    improvisation        [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    interval             [37 bits] same:[dynamics(0.947), harmony(0.897)]  cross:[particle(Phys 0.925), atom(Phys 0.925), vacuum(Phys 0.925)]
+    key                  [37 bits] same:[scale(0.854), composition(0.854)]  cross:[speech(Ling 0.900), reference(Ling 0.900), knowledge(Phil 0.875)]
+    legato               [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    measure              [39 bits] same:[melody(0.905), scale(0.902)]  cross:[truth(Phil 0.951), stress(Psyc 0.951), god(Phil 0.950)]
+    melody               [41 bits] same:[rhythm(0.905), scale(0.905)]  cross:[solution(Chem 0.951), velocity(Phys 0.929), conservation(Phys 0.929)]
+    octave               [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    pitch                [38 bits] same:[melody(0.881), measure(0.878)]  cross:[spin(Phys 0.927), adaptation(Biol 0.927), habitat(Biol 0.925)]
+    rest                 [38 bits] same:[key(0.829), composition(0.750)]  cross:[nothing(Phil 0.854), development(Psyc 0.846), writing(Ling 0.833)]
+    rhythm               [39 bits] same:[chord(0.974), melody(0.905)]  cross:[muscle(Biol 0.974), bacteria(Biol 0.951), decay(Phys 0.950)]
+    scale                [39 bits] same:[melody(0.905), composition(0.902)]  cross:[reference(Ling 0.950), attention(Psyc 0.950), reality(Phil 0.925)]
+    silence              [39 bits] same:[melody(0.860), rhythm(0.857)]  cross:[ion(Chem 0.927), electron(Phys 0.905), ethics(Phil 0.905)]
+    sonata               [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    staccato             [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+    symphony             [33 bits] same:[cadence(0.970), dissonance(0.970)]  cross:[titration(Chem 0.738), fission(Phys 0.717), self_concept(Psyc 0.702)]
+    tempo                [39 bits] same:[rhythm(0.902), chord(0.878)]  cross:[electron(Phys 0.905), ethics(Phil 0.905), limit(Math 0.902)]
+    timbre               [33 bits] same:[cadence(0.970), dissonance(0.970)]  cross:[isotope(Chem 0.744), titration(Chem 0.738), respiration(Biol 0.733)]
+    vibrato              [32 bits] same:[cadence(1.000), dissonance(1.000)]  cross:[isotope(Chem 0.718), titration(Chem 0.714), respiration(Biol 0.711)]
+
+  --- Philosophy (32 concepts) ---
+    beauty               [39 bits] same:[consciousness(0.974), evil(0.950)]  cross:[acid(Chem 0.975), gene(Biol 0.975), fear(Psyc 0.975)]
+    becoming             [32 bits] same:[change(0.838), duty(0.838)]  cross:[development(Psyc 0.941), field(Phys 0.857), division(Math 0.816)]
+    being                [38 bits] same:[becoming(0.522), nothing(0.520)]  cross:[set(Math 0.717), number(Math 0.653), writing(Ling 0.604)]
+    belief               [37 bits] same:[knowledge(0.974), identity(0.974)]  cross:[speech(Ling 0.949), memory(Psyc 0.949), learning(Psyc 0.949)]
+    causation            [48 bits] same:[paradox(0.745), illusion(0.731)]  cross:[photon(Phys 0.920), instinct(Psyc 0.902), conditioning(Psyc 0.882)]
+    change               [36 bits] same:[freedom(0.868), reality(0.850)]  cross:[division(Math 0.872), depression(Psyc 0.872), narrative(Ling 0.868)]
+    consciousness        [38 bits] same:[beauty(0.974), evil(0.974)]  cross:[anger(Psyc 1.000), radiation(Phys 0.974), virus(Biol 0.974)]
+    death_phil           [49 bits] same:[determinism(1.000), permanence(1.000)]  cross:[phoneme(Ling 0.768), morpheme(Ling 0.768), pragmatics(Ling 0.768)]
+    determinism          [49 bits] same:[permanence(1.000), death_phil(1.000)]  cross:[phoneme(Ling 0.768), morpheme(Ling 0.768), pragmatics(Ling 0.768)]
+    dialectic            [49 bits] same:[determinism(1.000), permanence(1.000)]  cross:[phoneme(Ling 0.768), morpheme(Ling 0.768), pragmatics(Ling 0.768)]
+    doubt                [38 bits] same:[god(0.974), soul(0.950)]  cross:[fear(Psyc 0.950), electricity(Phys 0.949), constant(Math 0.949)]
+    duty                 [36 bits] same:[justice(0.872), belief(0.872)]  cross:[evolution(Biol 0.900), charge(Phys 0.895), memory(Psyc 0.875)]
+    ethics               [41 bits] same:[paradox(0.952), illusion(0.930)]  cross:[momentum(Phys 0.976), integral(Math 0.976), grief(Psyc 0.976)]
+    evil                 [39 bits] same:[consciousness(0.974), beauty(0.950)]  cross:[radiation(Phys 1.000), virus(Biol 1.000), personality(Psyc 1.000)]
+    existence            [38 bits] same:[evil(0.925), god(0.925)]  cross:[electricity(Phys 0.949), radiation(Phys 0.925), virus(Biol 0.925)]
+    free_will            [36 bits] same:[meaning(0.805), belief(0.780)]  cross:[depression(Psyc 0.780), narrative(Ling 0.775), language(Ling 0.767)]
+    freedom              [35 bits] same:[justice(0.895), belief(0.895)]  cross:[narrative(Ling 0.944), speech(Ling 0.897), composition(Musi 0.897)]
+    god                  [39 bits] same:[soul(0.975), identity(0.974)]  cross:[fear(Psyc 0.975), electricity(Phys 0.974), brain(Biol 0.951)]
+    identity             [38 bits] same:[god(0.974), justice(0.974)]  cross:[fear(Psyc 0.950), electricity(Phys 0.949), function(Math 0.947)]
+    illusion             [42 bits] same:[ethics(0.930), paradox(0.930)]  cross:[fusion(Phys 0.977), immunity(Biol 0.953), trauma(Psyc 0.953)]
+    justice              [37 bits] same:[identity(0.974), god(0.949)]  cross:[narrative(Ling 0.946), evolution(Biol 0.925), fear(Psyc 0.925)]
+    knowledge            [38 bits] same:[belief(0.974), identity(0.949)]  cross:[speech(Ling 0.925), memory(Psyc 0.925), learning(Psyc 0.925)]
+    meaning              [38 bits] same:[belief(0.875), soul(0.857)]  cross:[charge(Phys 0.850), mass(Phys 0.833), speech(Ling 0.833)]
+    nothing              [38 bits] same:[freedom(0.872), knowledge(0.854)]  cross:[rest(Musi 0.854), speech(Ling 0.833), writing(Ling 0.833)]
+    paradox              [41 bits] same:[ethics(0.952), illusion(0.930)]  cross:[momentum(Phys 0.929), integral(Math 0.929), grief(Psyc 0.929)]
+    permanence           [49 bits] same:[determinism(1.000), death_phil(1.000)]  cross:[phoneme(Ling 0.768), morpheme(Ling 0.768), pragmatics(Ling 0.768)]
+    purpose              [37 bits] same:[identity(0.974), evil(0.949)]  cross:[electricity(Phys 0.974), radiation(Phys 0.949), habitat(Biol 0.949)]
+    reality              [38 bits] same:[truth(0.927), god(0.925)]  cross:[attention(Psyc 0.974), stress(Psyc 0.927), speech(Ling 0.925)]
+    soul                 [40 bits] same:[god(0.975), identity(0.950)]  cross:[evolution(Biol 0.951), fear(Psyc 0.951), electricity(Phys 0.950)]
+    truth                [41 bits] same:[god(0.951), soul(0.929)]  cross:[dream(Psyc 0.952), stress(Psyc 0.952), speech(Ling 0.951)]
+    virtue               [37 bits] same:[wisdom(0.974), consciousness(0.923)]  cross:[gravity(Phys 0.974), muscle(Biol 0.974), chord(Musi 0.974)]
+    wisdom               [38 bits] same:[virtue(0.974), ethics(0.927)]  cross:[momentum(Phys 0.950), integral(Math 0.950), emotion(Psyc 0.950)]
+
+  --- Physics (40 concepts) ---
+    acceleration         [39 bits] same:[friction(0.950), amplitude(0.950)]  cross:[ambiguity(Ling 1.000), geometry(Math 0.974), dimension(Math 0.974)]
+    amplitude            [39 bits] same:[acceleration(0.950), torque(0.927)]  cross:[algebra(Math 0.975), multiplication(Math 0.951), syntax(Ling 0.950)]
+    atom                 [40 bits] same:[particle(1.000), vacuum(1.000)]  cross:[immunity(Biol 0.952), trauma(Psyc 0.952), theorem(Math 0.951)]
+    buoyancy             [43 bits] same:[spacetime(1.000), oscillation(1.000)]  cross:[consciousness_psy(Psyc 0.824), distillation(Chem 0.800), self_concept(Psyc 0.800)]
+    charge               [36 bits] same:[wave(0.814), spin(0.791)]  cross:[duty(Phil 0.895), evolution(Biol 0.854), meaning(Phil 0.850)]
+    conservation         [40 bits] same:[electron(0.976), decay(0.975)]  cross:[reduction(Chem 0.975), crystal(Chem 0.975), bone(Biol 0.975)]
+    decay                [39 bits] same:[density(1.000), conservation(0.975)]  cross:[crystal(Chem 1.000), bone(Biol 1.000), habit(Psyc 1.000)]
+    density              [39 bits] same:[decay(1.000), conservation(0.975)]  cross:[crystal(Chem 1.000), bone(Biol 1.000), habit(Psyc 1.000)]
+    electricity          [38 bits] same:[radiation(0.974), spin(0.927)]  cross:[virus(Biol 0.974), animal(Biol 0.974), evil(Phil 0.974)]
+    electron             [41 bits] same:[momentum(0.976), conservation(0.976)]  cross:[immunity(Biol 0.976), trauma(Psyc 0.976), integral(Math 0.976)]
+    energy               [37 bits] same:[electricity(0.875), radiation(0.854)]  cross:[element(Chem 0.900), truth(Phil 0.857), dream(Psyc 0.857)]
+    entropy              [40 bits] same:[torque(0.951), relativity(0.950)]  cross:[multiplication(Math 0.884), interval(Musi 0.878), empathy(Psyc 0.864)]
+    equilibrium          [40 bits] same:[particle(0.951), atom(0.951)]  cross:[theorem(Math 0.951), fraction(Math 0.951), ethics(Phil 0.929)]
+    field                [33 bits] same:[force(0.829), mass(0.756)]  cross:[becoming(Phil 0.857), group(Math 0.816), change(Phil 0.816)]
+    fission              [46 bits] same:[spacetime(0.935), oscillation(0.935)]  cross:[consciousness_psy(Psyc 0.846), self_concept(Psyc 0.824), photosynthesis(Biol 0.818)]
+    force                [31 bits] same:[field(0.829), charge(0.718)]  cross:[plant(Biol 0.811), division(Math 0.789), freedom(Phil 0.784)]
+    frequency            [36 bits] same:[temperature(0.973), gravity(0.947)]  cross:[zero(Math 0.973), virtue(Phil 0.973), muscle(Biol 0.947)]
+    friction             [39 bits] same:[quantum(0.951), acceleration(0.950)]  cross:[matrix(Math 1.000), geometry(Math 0.974), dimension(Math 0.974)]
+    fusion               [43 bits] same:[electron(0.953), momentum(0.930)]  cross:[immunity(Biol 0.977), illusion(Phil 0.977), trauma(Psyc 0.977)]
+    gravity              [38 bits] same:[frequency(0.947), decay(0.925)]  cross:[virtue(Phil 0.974), emotion(Psyc 0.950), muscle(Biol 0.949)]
+    inertia              [41 bits] same:[symmetry(0.952), entropy(0.929)]  cross:[multiplication(Math 0.907), semantics(Ling 0.886), infinity(Math 0.884)]
+    magnetism            [33 bits] same:[spacetime(0.689), oscillation(0.689)]  cross:[sublimation(Chem 0.756), distillation(Chem 0.732), isotope(Chem 0.700)]
+    mass                 [39 bits] same:[wave(0.884), electricity(0.878)]  cross:[soul(Phil 0.927), identity(Phil 0.925), doubt(Phil 0.925)]
+    momentum             [40 bits] same:[electron(0.976), conservation(0.951)]  cross:[integral(Math 1.000), grief(Psyc 1.000), ethics(Phil 0.976)]
+    oscillation          [43 bits] same:[spacetime(1.000), buoyancy(1.000)]  cross:[consciousness_psy(Psyc 0.824), distillation(Chem 0.800), self_concept(Psyc 0.800)]
+    particle             [40 bits] same:[atom(1.000), vacuum(1.000)]  cross:[immunity(Biol 0.952), trauma(Psyc 0.952), theorem(Math 0.951)]
+    photon               [48 bits] same:[quantum(0.854), inertia(0.854)]  cross:[conditioning(Psyc 0.959), instinct(Psyc 0.940), causation(Phil 0.920)]
+    pressure             [40 bits] same:[spin(0.841), radiation(0.837)]  cross:[truth(Phil 0.884), dream(Psyc 0.884), stress(Psyc 0.884)]
+    quantum              [41 bits] same:[particle(0.976), atom(0.976)]  cross:[matrix(Math 0.951), immunity(Biol 0.930), trauma(Psyc 0.930)]
+    radiation            [39 bits] same:[electricity(0.974), spin(0.951)]  cross:[virus(Biol 1.000), evil(Phil 1.000), personality(Psyc 1.000)]
+    relativity           [38 bits] same:[wavelength(1.000), entropy(0.950)]  cross:[interval(Musi 0.923), multiplication(Math 0.881), oxidation(Chem 0.878)]
+    spacetime            [43 bits] same:[oscillation(1.000), buoyancy(1.000)]  cross:[consciousness_psy(Psyc 0.824), distillation(Chem 0.800), self_concept(Psyc 0.800)]
+    spin                 [41 bits] same:[velocity(0.976), radiation(0.951)]  cross:[DNA(Biol 0.952), adaptation(Biol 0.952), stress(Psyc 0.952)]
+    symmetry             [41 bits] same:[torque(0.976), inertia(0.952)]  cross:[multiplication(Math 0.952), infinity(Math 0.929), algebra(Math 0.929)]
+    temperature          [37 bits] same:[frequency(0.973), decay(0.949)]  cross:[zero(Math 1.000), muscle(Biol 0.974), consciousness(Phil 0.974)]
+    torque               [40 bits] same:[symmetry(0.976), entropy(0.951)]  cross:[multiplication(Math 0.929), infinity(Math 0.905), algebra(Math 0.905)]
+    vacuum               [40 bits] same:[particle(1.000), atom(1.000)]  cross:[immunity(Biol 0.952), trauma(Psyc 0.952), theorem(Math 0.951)]
+    velocity             [40 bits] same:[spin(0.976), conservation(0.951)]  cross:[reduction(Chem 0.975), predator(Biol 0.951), DNA(Biol 0.929)]
+    wave                 [42 bits] same:[spin(0.886), mass(0.884)]  cross:[truth(Phil 0.930), ring(Math 0.929), speech(Ling 0.929)]
+    wavelength           [38 bits] same:[relativity(1.000), entropy(0.950)]  cross:[interval(Musi 0.923), multiplication(Math 0.881), oxidation(Chem 0.878)]
+
+  --- Psychology (30 concepts) ---
+    anger                [38 bits] same:[personality(0.974), joy(0.974)]  cross:[consciousness(Phil 1.000), radiation(Phys 0.974), virus(Biol 0.974)]
+    anxiety              [41 bits] same:[perception(0.976), unconscious(0.976)]  cross:[nerve(Biol 1.000), enzyme(Biol 0.976), mutation(Biol 0.953)]
+    attachment           [39 bits] same:[habit(0.950), joy(0.950)]  cross:[conservation(Phys 0.975), muscle(Biol 0.974), chord(Musi 0.974)]
+    attention            [39 bits] same:[stress(0.951), learning(0.950)]  cross:[reality(Phil 0.974), truth(Phil 0.951), god(Phil 0.950)]
+    behavior             [39 bits] same:[learning(0.950), personality(0.950)]  cross:[radiation(Phys 0.950), virus(Biol 0.950), evil(Phil 0.950)]
+    cognition            [48 bits] same:[motivation(0.958), conditioning(0.920)]  cross:[photon(Phys 0.920), nutrition(Biol 0.917), fusion(Phys 0.896)]
+    conditioning         [48 bits] same:[instinct(0.940), cognition(0.920)]  cross:[photon(Phys 0.959), causation(Phil 0.882), nutrition(Biol 0.878)]
+    consciousness_psy    [50 bits] same:[self_concept(0.830), instinct(0.737)]  cross:[photosynthesis(Biol 0.891), mitosis(Biol 0.885), fission(Phys 0.846)]
+    creativity           [45 bits] same:[motivation(0.936), anxiety(0.911)]  cross:[fusion(Phys 0.913), mutation(Biol 0.913), reproduction(Biol 0.913)]
+    depression           [37 bits] same:[attention(0.949), stress(0.902)]  cross:[speech(Ling 0.949), belief(Phil 0.947), language(Ling 0.925)]
+    desire               [35 bits] same:[dream(0.854), memory(0.850)]  cross:[speech(Ling 0.897), composition(Musi 0.897), belief(Phil 0.895)]
+    development          [34 bits] same:[desire(0.769), depression(0.732)]  cross:[becoming(Phil 0.941), rest(Musi 0.846), addition(Math 0.838)]
+    dream                [41 bits] same:[fear(0.976), stress(0.952)]  cross:[truth(Phil 0.952), radiation(Phys 0.951), virus(Biol 0.951)]
+    emotion              [40 bits] same:[anxiety(0.929), personality(0.927)]  cross:[gravity(Phys 0.950), wisdom(Phil 0.950), nerve(Biol 0.929)]
+    empathy              [42 bits] same:[creativity(0.891), motivation(0.872)]  cross:[vector(Math 0.905), fusion(Phys 0.889), mutation(Biol 0.889)]
+    fear                 [40 bits] same:[dream(0.976), stress(0.976)]  cross:[radiation(Phys 0.975), virus(Biol 0.975), beauty(Phil 0.975)]
+    grief                [40 bits] same:[trauma(0.952), unconscious(0.951)]  cross:[momentum(Phys 1.000), integral(Math 1.000), electron(Phys 0.976)]
+    habit                [39 bits] same:[perception(0.975), unconscious(0.975)]  cross:[decay(Phys 1.000), density(Phys 1.000), crystal(Chem 1.000)]
+    instinct             [49 bits] same:[conditioning(0.940), cognition(0.865)]  cross:[photon(Phys 0.940), causation(Phil 0.902), inertia(Phys 0.837)]
+    intelligence         [39 bits] same:[learning(1.000), fear(0.975)]  cross:[radiation(Phys 0.950), virus(Biol 0.950), beauty(Phil 0.950)]
+    joy                  [39 bits] same:[perception(0.975), anger(0.974)]  cross:[muscle(Biol 0.974), consciousness(Phil 0.974), chord(Musi 0.974)]
+    learning             [39 bits] same:[intelligence(1.000), fear(0.975)]  cross:[radiation(Phys 0.950), virus(Biol 0.950), beauty(Phil 0.950)]
+    memory               [39 bits] same:[learning(0.950), intelligence(0.950)]  cross:[belief(Phil 0.949), knowledge(Phil 0.925), identity(Phil 0.925)]
+    motivation           [46 bits] same:[cognition(0.958), creativity(0.936)]  cross:[nutrition(Biol 0.957), fusion(Phys 0.935), metabolism(Biol 0.935)]
+    perception           [40 bits] same:[anxiety(0.976), habit(0.975)]  cross:[nerve(Biol 0.976), bacteria(Biol 0.976), decay(Phys 0.975)]
+    personality          [39 bits] same:[fear(0.975), anger(0.974)]  cross:[radiation(Phys 1.000), virus(Biol 1.000), evil(Phil 1.000)]
+    self_concept         [47 bits] same:[consciousness_psy(0.830), conditioning(0.827)]  cross:[photon(Phys 0.827), causation(Phil 0.827), fission(Phys 0.824)]
+    stress               [41 bits] same:[fear(0.976), dream(0.952)]  cross:[spin(Phys 0.952), truth(Phil 0.952), radiation(Phys 0.951)]
+    trauma               [42 bits] same:[grief(0.952), unconscious(0.952)]  cross:[immunity(Biol 1.000), fusion(Phys 0.977), reproduction(Biol 0.977)]
+    unconscious          [40 bits] same:[anxiety(0.976), habit(0.975)]  cross:[electron(Phys 0.976), nerve(Biol 0.976), decay(Phys 0.975)]
+
+======================================================================
+  PART 2: CONCEPT CLUSTERS (Jaccard >= 0.90)
+======================================================================
+  Found 32 clusters:
+    Cluster 1 (CROSS-DOMAIN): ['gravity', 'momentum', 'velocity', 'temperature', 'electricity', 'frequency', 'conservation', 'decay', 'radiation', 'density', 'crystal', 'mixture', 'predator', 'bone', 'muscle', 'virus', 'zero', 'equation', 'variable', 'constant', 'integral', 'statistics', 'consciousness', 'illusion', 'virtue', 'evil', 'wisdom', 'doubt', 'perception', 'emotion', 'personality', 'attachment', 'habit', 'fear', 'anger', 'joy', 'grief', 'unconscious', 'rhythm', 'chord']
+    Cluster 2 (CROSS-DOMAIN): ['spin', 'acid', 'reduction', 'DNA', 'protein', 'gene', 'mutation', 'adaptation', 'brain', 'nerve', 'bacteria', 'animal', 'limit', 'beauty', 'sentence', 'translation', 'learning', 'attention', 'behavior', 'anxiety', 'intelligence', 'creativity', 'dream', 'stress', 'melody', 'measure']
+    Cluster 3 (CROSS-DOMAIN): ['particle', 'atom', 'electron', 'equilibrium', 'fusion', 'vacuum', 'bond', 'compound', 'metabolism', 'ecosystem', 'organism', 'reproduction', 'hormone', 'enzyme', 'nutrition', 'immunity', 'theorem', 'fraction', 'vector', 'logic', 'graph', 'trauma', 'dynamics']
+    Cluster 4 (CROSS-DOMAIN): ['acceleration', 'quantum', 'friction', 'amplitude', 'molecule', 'oxidation', 'multiplication', 'derivative', 'matrix', 'geometry', 'algebra', 'dimension', 'syntax', 'ambiguity', 'interval']
+    Cluster 5 (Music): ['timbre', 'cadence', 'dissonance', 'consonance', 'counterpoint', 'fugue', 'sonata', 'symphony', 'improvisation', 'crescendo', 'diminuendo', 'staccato', 'legato', 'vibrato', 'octave']
+    Cluster 6 (CROSS-DOMAIN): ['mass', 'habitat', 'justice', 'belief', 'purpose', 'identity', 'soul', 'god', 'scale']
+    Cluster 7 (CROSS-DOMAIN): ['wave', 'ring', 'sequence', 'truth', 'word', 'speech', 'pitch']
+    Cluster 8 (Linguistics): ['phoneme', 'morpheme', 'pragmatics', 'consonant', 'etymology', 'prosody', 'lexicon']
+    Cluster 9 (Physics): ['entropy', 'relativity', 'inertia', 'wavelength', 'symmetry', 'torque']
+    Cluster 10 (CROSS-DOMAIN): ['photon', 'causation', 'cognition', 'instinct', 'conditioning']
+    Cluster 11 (Biology): ['respiration', 'mitosis', 'meiosis', 'symbiosis', 'death_bio']
+    Cluster 12 (Physics): ['spacetime', 'oscillation', 'fission', 'buoyancy']
+    Cluster 13 (Chemistry): ['catalyst', 'solvent', 'combustion', 'mole']
+    Cluster 14 (CROSS-DOMAIN): ['solution', 'ion', 'fungus', 'ethics']
+    Cluster 15 (CROSS-DOMAIN): ['probability', 'paradox', 'grammar', 'metaphor']
+    Cluster 16 (Philosophy): ['determinism', 'permanence', 'death_phil', 'dialectic']
+    Cluster 17 (Mathematics): ['axiom', 'subtraction', 'symmetry_math']
+    Cluster 18 (CROSS-DOMAIN): ['reality', 'reference', 'composition']
+    Cluster 19 (Linguistics): ['vowel', 'verb', 'discourse']
+    Cluster 20 (CROSS-DOMAIN): ['energy', 'element']
+    Cluster 21 (Chemistry): ['polymer', 'alloy']
+    Cluster 22 (CROSS-DOMAIN): ['concentration', 'proof']
+    Cluster 23 (Chemistry): ['equilibrium_chem', 'precipitate']
+    Cluster 24 (Chemistry): ['distillation', 'sublimation']
+    Cluster 25 (CROSS-DOMAIN): ['evolution', 'duty']
+    Cluster 26 (CROSS-DOMAIN): ['species', 'group']
+    Cluster 27 (CROSS-DOMAIN): ['growth', 'language']
+    Cluster 28 (CROSS-DOMAIN): ['function', 'depression']
+    Cluster 29 (Philosophy): ['existence', 'knowledge']
+    Cluster 30 (CROSS-DOMAIN): ['freedom', 'narrative']
+    Cluster 31 (CROSS-DOMAIN): ['becoming', 'development']
+    Cluster 32 (Linguistics): ['paragraph', 'adjective']
+
+======================================================================
+  PART 3: FULL BITDISCOVERY (recomputing...)
+======================================================================
+
+  --- Triadic Dependencies (798) ---
+
+    Emergent bit 2 (rate=0.20, top=['spacetime', 'magnetism', 'oscillation']): 42 triadic deps
+      bit  0 AND bit 21 => bit  2  str=0.375  P(r|ij)=1.00  (['gravity', 'mass'] AND ['species', 'number'])
+      bit 12 AND bit 21 => bit  2  str=0.375  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['species', 'number'])
+      bit 21 AND bit 25 => bit  2  str=0.375  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 45 => bit  2  str=0.375  P(r|ij)=1.00  (['species', 'number'] AND ['momentum', 'acceleration'])
+      bit 21 AND bit 50 => bit  2  str=0.375  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 51 => bit  2  str=0.375  P(r|ij)=1.00  (['species', 'number'] AND ['solvent', 'polymer'])
+      bit 21 AND bit 52 => bit  2  str=0.375  P(r|ij)=1.00  (['species', 'number'] AND ['acceleration', 'photon'])
+      bit 21 AND bit 62 => bit  2  str=0.375  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit  3 AND bit 57 => bit  2  str=0.364  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit 12 AND bit 57 => bit  2  str=0.364  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['force', 'pressure'])
+
+    Emergent bit 3 (rate=0.31, top=['acceleration', 'entropy', 'particle']): 15 triadic deps
+      bit 15 AND bit 28 => bit  3  str=0.670  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 43 => bit  3  str=0.615  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'energy'])
+      bit 15 AND bit 58 => bit  3  str=0.446  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 18 AND bit 42 => bit  3  str=0.428  P(r|ij)=0.85  (['mass', 'energy'] AND ['gravity', 'momentum'])
+      bit 15 AND bit 42 => bit  3  str=0.417  P(r|ij)=0.83  (['spacetime', 'oscillation'] AND ['gravity', 'momentum'])
+      bit  5 AND bit 51 => bit  3  str=0.410  P(r|ij)=0.71  (['gravity', 'mass'] AND ['solvent', 'polymer'])
+      bit  4 AND bit 11 => bit  3  str=0.394  P(r|ij)=0.77  (['gravity', 'mass'] AND ['spacetime', 'magnetism'])
+      bit  4 AND bit 54 => bit  3  str=0.352  P(r|ij)=0.73  (['gravity', 'mass'] AND ['spacetime', 'oscillation'])
+      bit 18 AND bit 43 => bit  3  str=0.341  P(r|ij)=0.76  (['mass', 'energy'] AND ['gravity', 'energy'])
+      bit  4 AND bit 51 => bit  3  str=0.325  P(r|ij)=0.70  (['gravity', 'mass'] AND ['solvent', 'polymer'])
+
+    Emergent bit 4 (rate=0.79, top=['gravity', 'mass', 'energy']): 6 triadic deps
+      bit 13 AND bit 15 => bit  4  str=0.393  P(r|ij)=1.00  (['photosynthesis', 'respiration'] AND ['spacetime', 'oscillation'])
+      bit 13 AND bit 19 => bit  4  str=0.393  P(r|ij)=1.00  (['photosynthesis', 'respiration'] AND ['field', 'cell'])
+      bit 19 AND bit 63 => bit  4  str=0.313  P(r|ij)=0.89  (['field', 'cell'] AND ['entropy', 'photon'])
+      bit 15 AND bit 54 => bit  4  str=0.312  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['spacetime', 'oscillation'])
+      bit  2 AND bit 19 => bit  4  str=0.267  P(r|ij)=0.80  (['spacetime', 'magnetism'] AND ['field', 'cell'])
+      bit 15 AND bit 57 => bit  4  str=0.262  P(r|ij)=0.70  (['spacetime', 'oscillation'] AND ['force', 'pressure'])
+
+    Emergent bit 5 (rate=0.72, top=['gravity', 'mass', 'energy']): 17 triadic deps
+      bit 13 AND bit 15 => bit  5  str=0.531  P(r|ij)=1.00  (['photosynthesis', 'respiration'] AND ['spacetime', 'oscillation'])
+      bit 15 AND bit 38 => bit  5  str=0.531  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['set', 'being'])
+      bit 15 AND bit 53 => bit  5  str=0.531  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['fission', 'number'])
+      bit 15 AND bit 36 => bit  5  str=0.500  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['magnetism', 'catalyst'])
+      bit 15 AND bit 54 => bit  5  str=0.484  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['spacetime', 'oscillation'])
+      bit 18 AND bit 38 => bit  5  str=0.459  P(r|ij)=1.00  (['mass', 'energy'] AND ['set', 'being'])
+      bit  3 AND bit 57 => bit  5  str=0.333  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit 15 AND bit 57 => bit  5  str=0.333  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['force', 'pressure'])
+      bit 16 AND bit 57 => bit  5  str=0.333  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit  2 AND bit 16 => bit  5  str=0.331  P(r|ij)=0.91  (['spacetime', 'magnetism'] AND ['acceleration', 'entropy'])
+
+    Emergent bit 6 (rate=0.25, top=['energy', 'pressure', 'wave']): 55 triadic deps
+      bit 15 AND bit 20 => bit  6  str=0.562  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 47 => bit  6  str=0.562  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 49 => bit  6  str=0.562  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 55 => bit  6  str=0.562  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 11 AND bit 55 => bit  6  str=0.508  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  5 AND bit 21 => bit  6  str=0.500  P(r|ij)=1.00  (['gravity', 'mass'] AND ['species', 'number'])
+      bit 21 AND bit 37 => bit  6  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 47 => bit  6  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 55 => bit  6  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit  5 AND bit 15 => bit  6  str=0.496  P(r|ij)=0.93  (['gravity', 'mass'] AND ['spacetime', 'oscillation'])
+
+    Emergent bit 10 (rate=0.66, top=['momentum', 'velocity', 'acceleration']): 3 triadic deps
+      bit 21 AND bit 58 => bit 10  str=0.374  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit  4 AND bit 19 => bit 10  str=0.332  P(r|ij)=1.00  (['gravity', 'mass'] AND ['field', 'cell'])
+      bit 21 AND bit 62 => bit 10  str=0.309  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+
+    Emergent bit 11 (rate=0.23, top=['spacetime', 'magnetism', 'oscillation']): 41 triadic deps
+      bit  3 AND bit  6 => bit 11  str=0.413  P(r|ij)=0.88  (['acceleration', 'entropy'] AND ['energy', 'pressure'])
+      bit  6 AND bit 45 => bit 11  str=0.405  P(r|ij)=0.87  (['energy', 'pressure'] AND ['momentum', 'acceleration'])
+      bit  3 AND bit 57 => bit 11  str=0.394  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit 10 AND bit 57 => bit 11  str=0.394  P(r|ij)=1.00  (['momentum', 'velocity'] AND ['force', 'pressure'])
+      bit 12 AND bit 57 => bit 11  str=0.394  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['force', 'pressure'])
+      bit 45 AND bit 57 => bit 11  str=0.394  P(r|ij)=1.00  (['momentum', 'acceleration'] AND ['force', 'pressure'])
+      bit 52 AND bit 57 => bit 11  str=0.394  P(r|ij)=1.00  (['acceleration', 'photon'] AND ['force', 'pressure'])
+      bit  0 AND bit 21 => bit 11  str=0.375  P(r|ij)=1.00  (['gravity', 'mass'] AND ['species', 'number'])
+      bit 10 AND bit 21 => bit 11  str=0.375  P(r|ij)=1.00  (['momentum', 'velocity'] AND ['species', 'number'])
+      bit 12 AND bit 21 => bit 11  str=0.375  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['species', 'number'])
+
+    Emergent bit 12 (rate=0.63, top=['gravity', 'momentum', 'acceleration']): 7 triadic deps
+      bit  4 AND bit 19 => bit 12  str=0.361  P(r|ij)=1.00  (['gravity', 'mass'] AND ['field', 'cell'])
+      bit 21 AND bit 62 => bit 12  str=0.337  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 19 AND bit 25 => bit 12  str=0.311  P(r|ij)=1.00  (['field', 'cell'] AND ['gravity', 'mass'])
+      bit 21 AND bit 25 => bit 12  str=0.311  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 50 => bit 12  str=0.308  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 19 AND bit 62 => bit 12  str=0.226  P(r|ij)=0.89  (['field', 'cell'] AND ['gravity', 'mass'])
+      bit 21 AND bit 58 => bit 12  str=0.216  P(r|ij)=0.80  (['species', 'number'] AND ['gravity', 'mass'])
+
+    Emergent bit 13 (rate=0.11, top=['photosynthesis', 'respiration', 'mitosis']): 57 triadic deps
+      bit 52 AND bit 57 => bit 13  str=0.576  P(r|ij)=1.00  (['acceleration', 'photon'] AND ['force', 'pressure'])
+      bit  2 AND bit 42 => bit 13  str=0.551  P(r|ij)=0.92  (['spacetime', 'magnetism'] AND ['gravity', 'momentum'])
+      bit  2 AND bit 52 => bit 13  str=0.548  P(r|ij)=0.92  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit 19 AND bit 42 => bit 13  str=0.533  P(r|ij)=1.00  (['field', 'cell'] AND ['gravity', 'momentum'])
+      bit 19 AND bit 45 => bit 13  str=0.533  P(r|ij)=1.00  (['field', 'cell'] AND ['momentum', 'acceleration'])
+      bit  2 AND bit 37 => bit 13  str=0.510  P(r|ij)=0.88  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  0 AND bit 21 => bit 13  str=0.500  P(r|ij)=1.00  (['gravity', 'mass'] AND ['species', 'number'])
+      bit 12 AND bit 21 => bit 13  str=0.500  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['species', 'number'])
+      bit 21 AND bit 25 => bit 13  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 45 => bit 13  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['momentum', 'acceleration'])
+
+    Emergent bit 15 (rate=0.12, top=['spacetime', 'oscillation', 'fission']): 21 triadic deps
+      bit  5 AND bit 53 => bit 15  str=0.733  P(r|ij)=1.00  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 53 AND bit 55 => bit 15  str=0.733  P(r|ij)=1.00  (['fission', 'number'] AND ['gravity', 'mass'])
+      bit  3 AND bit 57 => bit 15  str=0.697  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit 18 AND bit 38 => bit 15  str=0.647  P(r|ij)=1.00  (['mass', 'energy'] AND ['set', 'being'])
+      bit  5 AND bit 13 => bit 15  str=0.603  P(r|ij)=0.89  (['gravity', 'mass'] AND ['photosynthesis', 'respiration'])
+      bit  5 AND bit 38 => bit 15  str=0.536  P(r|ij)=0.75  (['gravity', 'mass'] AND ['set', 'being'])
+      bit 16 AND bit 57 => bit 15  str=0.497  P(r|ij)=0.80  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit 13 AND bit 19 => bit 15  str=0.333  P(r|ij)=1.00  (['photosynthesis', 'respiration'] AND ['field', 'cell'])
+      bit 19 AND bit 42 => bit 15  str=0.333  P(r|ij)=1.00  (['field', 'cell'] AND ['gravity', 'momentum'])
+      bit 19 AND bit 45 => bit 15  str=0.333  P(r|ij)=1.00  (['field', 'cell'] AND ['momentum', 'acceleration'])
+
+    Emergent bit 16 (rate=0.24, top=['acceleration', 'entropy', 'photon']): 21 triadic deps
+      bit 11 AND bit 55 => bit 16  str=0.607  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 15 AND bit 37 => bit 16  str=0.519  P(r|ij)=0.80  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 47 => bit 16  str=0.469  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit  4 AND bit 51 => bit 16  str=0.452  P(r|ij)=0.80  (['gravity', 'mass'] AND ['solvent', 'polymer'])
+      bit  4 AND bit 11 => bit 16  str=0.376  P(r|ij)=0.77  (['gravity', 'mass'] AND ['spacetime', 'magnetism'])
+      bit 15 AND bit 36 => bit 16  str=0.371  P(r|ij)=0.80  (['spacetime', 'oscillation'] AND ['magnetism', 'catalyst'])
+      bit 13 AND bit 15 => bit 16  str=0.357  P(r|ij)=0.75  (['photosynthesis', 'respiration'] AND ['spacetime', 'oscillation'])
+      bit 18 AND bit 42 => bit 16  str=0.356  P(r|ij)=0.81  (['mass', 'energy'] AND ['gravity', 'momentum'])
+      bit  3 AND bit 51 => bit 16  str=0.320  P(r|ij)=0.86  (['acceleration', 'entropy'] AND ['solvent', 'polymer'])
+      bit  5 AND bit 11 => bit 16  str=0.310  P(r|ij)=0.70  (['gravity', 'mass'] AND ['spacetime', 'magnetism'])
+
+    Emergent bit 17 (rate=0.03, top=['distillation', 'photosynthesis', 'respiration']): 15 triadic deps
+      bit  2 AND bit 16 => bit 17  str=0.573  P(r|ij)=0.73  (['spacetime', 'magnetism'] AND ['acceleration', 'entropy'])
+      bit 15 AND bit 16 => bit 17  str=0.559  P(r|ij)=0.78  (['spacetime', 'oscillation'] AND ['acceleration', 'entropy'])
+      bit 13 AND bit 15 => bit 17  str=0.531  P(r|ij)=0.75  (['photosynthesis', 'respiration'] AND ['spacetime', 'oscillation'])
+      bit 15 AND bit 36 => bit 17  str=0.481  P(r|ij)=0.70  (['spacetime', 'oscillation'] AND ['magnetism', 'catalyst'])
+      bit 13 AND bit 19 => bit 17  str=0.390  P(r|ij)=0.86  (['photosynthesis', 'respiration'] AND ['field', 'cell'])
+      bit 19 AND bit 45 => bit 17  str=0.390  P(r|ij)=0.86  (['field', 'cell'] AND ['momentum', 'acceleration'])
+      bit 16 AND bit 19 => bit 17  str=0.311  P(r|ij)=0.78  (['acceleration', 'entropy'] AND ['field', 'cell'])
+      bit 19 AND bit 63 => bit 17  str=0.311  P(r|ij)=0.78  (['field', 'cell'] AND ['entropy', 'photon'])
+      bit  4 AND bit 19 => bit 17  str=0.283  P(r|ij)=0.75  (['gravity', 'mass'] AND ['field', 'cell'])
+      bit 12 AND bit 19 => bit 17  str=0.283  P(r|ij)=0.75  (['gravity', 'momentum'] AND ['field', 'cell'])
+
+    Emergent bit 18 (rate=0.32, top=['mass', 'energy', 'force']): 23 triadic deps
+      bit  3 AND bit 57 => bit 18  str=0.515  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit  5 AND bit 38 => bit 18  str=0.507  P(r|ij)=0.75  (['gravity', 'mass'] AND ['set', 'being'])
+      bit  5 AND bit 53 => bit 18  str=0.467  P(r|ij)=1.00  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit  9 AND bit 53 => bit 18  str=0.467  P(r|ij)=1.00  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 20 AND bit 53 => bit 18  str=0.467  P(r|ij)=1.00  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 34 AND bit 53 => bit 18  str=0.467  P(r|ij)=1.00  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 35 AND bit 53 => bit 18  str=0.467  P(r|ij)=1.00  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 53 AND bit 55 => bit 18  str=0.467  P(r|ij)=1.00  (['fission', 'number'] AND ['gravity', 'mass'])
+      bit  3 AND bit  6 => bit 18  str=0.425  P(r|ij)=0.88  (['acceleration', 'entropy'] AND ['energy', 'pressure'])
+      bit  3 AND bit 46 => bit 18  str=0.399  P(r|ij)=0.87  (['acceleration', 'entropy'] AND ['mass', 'wave'])
+
+    Emergent bit 19 (rate=0.06, top=['field', 'cell', 'photosynthesis']): 28 triadic deps
+      bit 53 AND bit 55 => bit 19  str=0.800  P(r|ij)=1.00  (['fission', 'number'] AND ['gravity', 'mass'])
+      bit 18 AND bit 38 => bit 19  str=0.786  P(r|ij)=1.00  (['mass', 'energy'] AND ['set', 'being'])
+      bit 15 AND bit 20 => bit 19  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 36 => bit 19  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['magnetism', 'catalyst'])
+      bit 15 AND bit 38 => bit 19  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['set', 'being'])
+      bit 15 AND bit 47 => bit 19  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 49 => bit 19  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 55 => bit 19  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 11 AND bit 55 => bit 19  str=0.586  P(r|ij)=0.75  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 15 AND bit 16 => bit 19  str=0.576  P(r|ij)=0.89  (['spacetime', 'oscillation'] AND ['acceleration', 'entropy'])
+
+    Emergent bit 20 (rate=0.60, top=['gravity', 'mass', 'momentum']): 6 triadic deps
+      bit 19 AND bit 53 => bit 20  str=0.467  P(r|ij)=1.00  (['field', 'cell'] AND ['fission', 'number'])
+      bit 18 AND bit 53 => bit 20  str=0.408  P(r|ij)=0.88  (['mass', 'energy'] AND ['fission', 'number'])
+      bit 15 AND bit 53 => bit 20  str=0.283  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['fission', 'number'])
+      bit  9 AND bit 53 => bit 20  str=0.259  P(r|ij)=0.88  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 34 AND bit 53 => bit 20  str=0.233  P(r|ij)=0.88  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 19 AND bit 46 => bit 20  str=0.217  P(r|ij)=0.75  (['field', 'cell'] AND ['mass', 'wave'])
+
+    Emergent bit 21 (rate=0.03, top=['species', 'number', 'set']): 7 triadic deps
+      bit 13 AND bit 20 => bit 21  str=0.657  P(r|ij)=0.80  (['photosynthesis', 'respiration'] AND ['gravity', 'mass'])
+      bit 20 AND bit 51 => bit 21  str=0.497  P(r|ij)=0.71  (['gravity', 'mass'] AND ['solvent', 'polymer'])
+      bit 20 AND bit 53 => bit 21  str=0.457  P(r|ij)=0.86  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 35 AND bit 53 => bit 21  str=0.400  P(r|ij)=0.80  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit  9 AND bit 53 => bit 21  str=0.350  P(r|ij)=0.75  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 18 AND bit 53 => bit 21  str=0.350  P(r|ij)=0.75  (['mass', 'energy'] AND ['fission', 'number'])
+      bit 34 AND bit 53 => bit 21  str=0.350  P(r|ij)=0.75  (['gravity', 'mass'] AND ['fission', 'number'])
+
+    Emergent bit 23 (rate=0.60, top=['mass', 'force', 'pressure']): 1 triadic deps
+      bit 49 AND bit 52 => bit 23  str=0.220  P(r|ij)=0.92  (['gravity', 'mass'] AND ['acceleration', 'photon'])
+
+    Emergent bit 26 (rate=0.59, top=['gravity', 'mass', 'energy']): 1 triadic deps
+      bit 16 AND bit 20 => bit 26  str=0.242  P(r|ij)=0.88  (['acceleration', 'entropy'] AND ['gravity', 'mass'])
+
+    Emergent bit 29 (rate=0.74, top=['gravity', 'mass', 'energy']): 3 triadic deps
+      bit  2 AND bit 52 => bit 29  str=0.346  P(r|ij)=0.85  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit  2 AND bit 51 => bit 29  str=0.276  P(r|ij)=0.93  (['spacetime', 'magnetism'] AND ['solvent', 'polymer'])
+      bit 13 AND bit 51 => bit 29  str=0.214  P(r|ij)=0.87  (['photosynthesis', 'respiration'] AND ['solvent', 'polymer'])
+
+    Emergent bit 33 (rate=0.51, top=['energy', 'force', 'pressure']): 48 triadic deps
+      bit 15 AND bit 47 => bit 33  str=0.476  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 11 AND bit 55 => bit 33  str=0.440  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 11 AND bit 58 => bit 33  str=0.401  P(r|ij)=0.96  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  4 AND bit 15 => bit 33  str=0.376  P(r|ij)=0.86  (['gravity', 'mass'] AND ['spacetime', 'oscillation'])
+      bit  5 AND bit 15 => bit 33  str=0.376  P(r|ij)=1.00  (['gravity', 'mass'] AND ['spacetime', 'oscillation'])
+      bit 11 AND bit 49 => bit 33  str=0.373  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 31 => bit 33  str=0.372  P(r|ij)=0.97  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 11 AND bit 56 => bit 33  str=0.366  P(r|ij)=0.92  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 58 => bit 33  str=0.360  P(r|ij)=0.96  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 15 AND bit 16 => bit 33  str=0.342  P(r|ij)=0.89  (['spacetime', 'oscillation'] AND ['acceleration', 'entropy'])
+
+    Emergent bit 36 (rate=0.16, top=['magnetism', 'catalyst', 'solvent']): 50 triadic deps
+      bit 15 AND bit 20 => bit 36  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 47 => bit 36  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 49 => bit 36  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 55 => bit 36  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 16 => bit 36  str=0.576  P(r|ij)=0.89  (['spacetime', 'oscillation'] AND ['acceleration', 'entropy'])
+      bit  2 AND bit 37 => bit 36  str=0.558  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 55 => bit 36  str=0.558  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 39 => bit 36  str=0.500  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['species', 'blood'])
+      bit  2 AND bit 52 => bit 36  str=0.500  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit  2 AND bit 49 => bit 36  str=0.495  P(r|ij)=0.94  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+
+    Emergent bit 37 (rate=0.79, top=['gravity', 'mass', 'momentum']): 2 triadic deps
+      bit 51 AND bit 63 => bit 37  str=0.246  P(r|ij)=0.94  (['solvent', 'polymer'] AND ['entropy', 'photon'])
+      bit 53 AND bit 63 => bit 37  str=0.244  P(r|ij)=0.78  (['fission', 'number'] AND ['entropy', 'photon'])
+
+    Emergent bit 38 (rate=0.05, top=['set', 'being', 'phoneme']): 14 triadic deps
+      bit 49 AND bit 63 => bit 38  str=0.603  P(r|ij)=0.80  (['gravity', 'mass'] AND ['entropy', 'photon'])
+      bit 42 AND bit 57 => bit 38  str=0.497  P(r|ij)=0.80  (['gravity', 'momentum'] AND ['force', 'pressure'])
+      bit 47 AND bit 51 => bit 38  str=0.478  P(r|ij)=1.00  (['gravity', 'mass'] AND ['solvent', 'polymer'])
+      bit 43 AND bit 57 => bit 38  str=0.475  P(r|ij)=0.78  (['gravity', 'energy'] AND ['force', 'pressure'])
+      bit 43 AND bit 54 => bit 38  str=0.410  P(r|ij)=0.70  (['gravity', 'energy'] AND ['spacetime', 'oscillation'])
+      bit 42 AND bit 53 => bit 38  str=0.400  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['fission', 'number'])
+      bit 43 AND bit 53 => bit 38  str=0.400  P(r|ij)=1.00  (['gravity', 'energy'] AND ['fission', 'number'])
+      bit 42 AND bit 51 => bit 38  str=0.324  P(r|ij)=0.85  (['gravity', 'momentum'] AND ['solvent', 'polymer'])
+      bit 47 AND bit 53 => bit 38  str=0.300  P(r|ij)=0.90  (['gravity', 'mass'] AND ['fission', 'number'])
+      bit 53 AND bit 63 => bit 38  str=0.289  P(r|ij)=0.89  (['fission', 'number'] AND ['entropy', 'photon'])
+
+    Emergent bit 39 (rate=0.04, top=['species', 'blood', 'animal']): 6 triadic deps
+      bit  2 AND bit 55 => bit 39  str=0.923  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  5 AND bit 21 => bit 39  str=0.375  P(r|ij)=0.75  (['gravity', 'mass'] AND ['species', 'number'])
+      bit  6 AND bit 21 => bit 39  str=0.375  P(r|ij)=0.75  (['energy', 'pressure'] AND ['species', 'number'])
+      bit 19 AND bit 21 => bit 39  str=0.375  P(r|ij)=0.75  (['field', 'cell'] AND ['species', 'number'])
+      bit 21 AND bit 47 => bit 39  str=0.375  P(r|ij)=0.75  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 55 => bit 39  str=0.375  P(r|ij)=0.75  (['species', 'number'] AND ['gravity', 'mass'])
+
+    Emergent bit 42 (rate=0.60, top=['gravity', 'momentum', 'velocity']): 4 triadic deps
+      bit 53 AND bit 63 => bit 42  str=0.311  P(r|ij)=0.78  (['fission', 'number'] AND ['entropy', 'photon'])
+      bit 49 AND bit 63 => bit 42  str=0.256  P(r|ij)=0.87  (['gravity', 'mass'] AND ['entropy', 'photon'])
+      bit 47 AND bit 51 => bit 42  str=0.236  P(r|ij)=0.92  (['gravity', 'mass'] AND ['solvent', 'polymer'])
+      bit  6 AND bit 51 => bit 42  str=0.235  P(r|ij)=0.80  (['energy', 'pressure'] AND ['solvent', 'polymer'])
+
+    Emergent bit 43 (rate=0.69, top=['gravity', 'energy', 'momentum']): 1 triadic deps
+      bit 53 AND bit 63 => bit 43  str=0.293  P(r|ij)=0.78  (['fission', 'number'] AND ['entropy', 'photon'])
+
+    Emergent bit 45 (rate=0.53, top=['momentum', 'acceleration', 'entropy']): 17 triadic deps
+      bit 21 AND bit 62 => bit 45  str=0.442  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 25 => bit 45  str=0.421  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 50 => bit 45  str=0.414  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit  0 AND bit 21 => bit 45  str=0.368  P(r|ij)=1.00  (['gravity', 'mass'] AND ['species', 'number'])
+      bit  4 AND bit 19 => bit 45  str=0.361  P(r|ij)=0.88  (['gravity', 'mass'] AND ['field', 'cell'])
+      bit  0 AND bit 57 => bit 45  str=0.316  P(r|ij)=0.95  (['gravity', 'mass'] AND ['force', 'pressure'])
+      bit 21 AND bit 58 => bit 45  str=0.300  P(r|ij)=0.80  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 19 AND bit 25 => bit 45  str=0.296  P(r|ij)=0.88  (['field', 'cell'] AND ['gravity', 'mass'])
+      bit 25 AND bit 57 => bit 45  str=0.278  P(r|ij)=0.86  (['gravity', 'mass'] AND ['force', 'pressure'])
+      bit 21 AND bit 28 => bit 45  str=0.278  P(r|ij)=0.80  (['species', 'number'] AND ['gravity', 'mass'])
+
+    Emergent bit 46 (rate=0.24, top=['mass', 'wave', 'photon']): 46 triadic deps
+      bit 15 AND bit 20 => bit 46  str=0.656  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 29 => bit 46  str=0.656  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 47 => bit 46  str=0.656  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 49 => bit 46  str=0.656  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 55 => bit 46  str=0.656  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 29 AND bit 63 => bit 46  str=0.545  P(r|ij)=1.00  (['gravity', 'mass'] AND ['entropy', 'photon'])
+      bit 33 AND bit 52 => bit 46  str=0.534  P(r|ij)=0.94  (['energy', 'force'] AND ['acceleration', 'photon'])
+      bit 49 AND bit 63 => bit 46  str=0.479  P(r|ij)=0.93  (['gravity', 'mass'] AND ['entropy', 'photon'])
+      bit  2 AND bit 29 => bit 46  str=0.462  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 11 AND bit 29 => bit 46  str=0.457  P(r|ij)=0.90  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+
+    Emergent bit 47 (rate=0.80, top=['gravity', 'mass', 'energy']): 3 triadic deps
+      bit 19 AND bit 21 => bit 47  str=0.400  P(r|ij)=1.00  (['field', 'cell'] AND ['species', 'number'])
+      bit 19 AND bit 53 => bit 47  str=0.333  P(r|ij)=1.00  (['field', 'cell'] AND ['fission', 'number'])
+      bit 53 AND bit 63 => bit 47  str=0.222  P(r|ij)=0.89  (['fission', 'number'] AND ['entropy', 'photon'])
+
+    Emergent bit 49 (rate=0.68, top=['gravity', 'mass', 'energy']): 5 triadic deps
+      bit  2 AND bit 52 => bit 49  str=0.495  P(r|ij)=0.92  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit 13 AND bit 54 => bit 49  str=0.239  P(r|ij)=0.85  (['photosynthesis', 'respiration'] AND ['spacetime', 'oscillation'])
+      bit 36 AND bit 54 => bit 49  str=0.214  P(r|ij)=0.83  (['magnetism', 'catalyst'] AND ['spacetime', 'oscillation'])
+      bit 52 AND bit 54 => bit 49  str=0.205  P(r|ij)=0.79  (['acceleration', 'photon'] AND ['spacetime', 'oscillation'])
+      bit 13 AND bit 52 => bit 49  str=0.202  P(r|ij)=0.81  (['photosynthesis', 'respiration'] AND ['acceleration', 'photon'])
+
+    Emergent bit 51 (rate=0.09, top=['solvent', 'polymer', 'combustion']): 31 triadic deps
+      bit 52 AND bit 57 => bit 51  str=0.553  P(r|ij)=0.92  (['acceleration', 'photon'] AND ['force', 'pressure'])
+      bit  2 AND bit 49 => bit 51  str=0.543  P(r|ij)=0.81  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  6 AND bit 52 => bit 51  str=0.518  P(r|ij)=0.88  (['energy', 'pressure'] AND ['acceleration', 'photon'])
+      bit  2 AND bit 52 => bit 51  str=0.489  P(r|ij)=0.85  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit 49 AND bit 63 => bit 51  str=0.476  P(r|ij)=0.73  (['gravity', 'mass'] AND ['entropy', 'photon'])
+      bit 13 AND bit 20 => bit 51  str=0.464  P(r|ij)=1.00  (['photosynthesis', 'respiration'] AND ['gravity', 'mass'])
+      bit  2 AND bit 43 => bit 51  str=0.458  P(r|ij)=0.73  (['spacetime', 'magnetism'] AND ['gravity', 'energy'])
+      bit 11 AND bit 49 => bit 51  str=0.455  P(r|ij)=0.73  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 11 AND bit 52 => bit 51  str=0.443  P(r|ij)=0.80  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit  2 AND bit 28 => bit 51  str=0.437  P(r|ij)=0.71  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+
+    Emergent bit 52 (rate=0.21, top=['acceleration', 'photon', 'quantum']): 32 triadic deps
+      bit  0 AND bit 21 => bit 52  str=0.500  P(r|ij)=1.00  (['gravity', 'mass'] AND ['species', 'number'])
+      bit  2 AND bit 49 => bit 52  str=0.500  P(r|ij)=0.75  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 12 AND bit 21 => bit 52  str=0.500  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['species', 'number'])
+      bit 21 AND bit 25 => bit 52  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 45 => bit 52  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['momentum', 'acceleration'])
+      bit 21 AND bit 50 => bit 52  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 21 AND bit 62 => bit 52  str=0.500  P(r|ij)=1.00  (['species', 'number'] AND ['gravity', 'mass'])
+      bit 11 AND bit 28 => bit 52  str=0.464  P(r|ij)=0.79  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 43 AND bit 54 => bit 52  str=0.448  P(r|ij)=0.90  (['gravity', 'energy'] AND ['spacetime', 'oscillation'])
+      bit  2 AND bit 43 => bit 52  str=0.447  P(r|ij)=0.73  (['spacetime', 'magnetism'] AND ['gravity', 'energy'])
+
+    Emergent bit 53 (rate=0.06, top=['fission', 'number', 'set']): 33 triadic deps
+      bit 15 AND bit 20 => bit 53  str=0.875  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 49 => bit 53  str=0.875  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 55 => bit 53  str=0.875  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 11 AND bit 49 => bit 53  str=0.637  P(r|ij)=0.87  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 15 AND bit 29 => bit 53  str=0.625  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 47 => bit 53  str=0.625  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit  2 AND bit 52 => bit 53  str=0.577  P(r|ij)=0.85  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit  2 AND bit 49 => bit 53  str=0.543  P(r|ij)=0.81  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 51 AND bit 57 => bit 53  str=0.478  P(r|ij)=1.00  (['solvent', 'polymer'] AND ['force', 'pressure'])
+      bit 52 AND bit 57 => bit 53  str=0.462  P(r|ij)=0.92  (['acceleration', 'photon'] AND ['force', 'pressure'])
+
+    Emergent bit 54 (rate=0.12, top=['spacetime', 'oscillation', 'fission']): 51 triadic deps
+      bit 15 AND bit 47 => bit 54  str=0.500  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 33 AND bit 52 => bit 54  str=0.472  P(r|ij)=0.72  (['energy', 'force'] AND ['acceleration', 'photon'])
+      bit  2 AND bit 29 => bit 54  str=0.469  P(r|ij)=0.95  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 49 => bit 54  str=0.457  P(r|ij)=0.94  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 47 => bit 54  str=0.453  P(r|ij)=0.93  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 52 => bit 54  str=0.442  P(r|ij)=0.92  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit 11 AND bit 29 => bit 54  str=0.423  P(r|ij)=0.80  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 11 AND bit 47 => bit 54  str=0.423  P(r|ij)=0.80  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit 11 AND bit 49 => bit 54  str=0.423  P(r|ij)=0.80  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 28 => bit 54  str=0.402  P(r|ij)=0.88  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+
+    Emergent bit 55 (rate=0.67, top=['gravity', 'mass', 'energy']): 5 triadic deps
+      bit 15 AND bit 53 => bit 55  str=0.550  P(r|ij)=0.75  (['spacetime', 'oscillation'] AND ['fission', 'number'])
+      bit  6 AND bit 21 => bit 55  str=0.477  P(r|ij)=1.00  (['energy', 'pressure'] AND ['species', 'number'])
+      bit 19 AND bit 21 => bit 55  str=0.467  P(r|ij)=1.00  (['field', 'cell'] AND ['species', 'number'])
+      bit 19 AND bit 53 => bit 55  str=0.467  P(r|ij)=1.00  (['field', 'cell'] AND ['fission', 'number'])
+      bit 19 AND bit 46 => bit 55  str=0.217  P(r|ij)=0.75  (['field', 'cell'] AND ['mass', 'wave'])
+
+    Emergent bit 57 (rate=0.13, top=['force', 'pressure', 'spacetime']): 40 triadic deps
+      bit 15 AND bit 20 => bit 57  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 47 => bit 57  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 49 => bit 57  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 15 AND bit 55 => bit 57  str=0.688  P(r|ij)=1.00  (['spacetime', 'oscillation'] AND ['gravity', 'mass'])
+      bit 17 AND bit 56 => bit 57  str=0.625  P(r|ij)=1.00  (['distillation', 'photosynthesis'] AND ['gravity', 'mass'])
+      bit 17 AND bit 58 => bit 57  str=0.625  P(r|ij)=1.00  (['distillation', 'photosynthesis'] AND ['gravity', 'mass'])
+      bit 11 AND bit 49 => bit 57  str=0.539  P(r|ij)=0.87  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 52 => bit 57  str=0.519  P(r|ij)=0.92  (['spacetime', 'magnetism'] AND ['acceleration', 'photon'])
+      bit 11 AND bit 58 => bit 57  str=0.505  P(r|ij)=0.83  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+      bit  2 AND bit 49 => bit 57  str=0.471  P(r|ij)=0.88  (['spacetime', 'magnetism'] AND ['gravity', 'mass'])
+
+    Emergent bit 58 (rate=0.82, top=['gravity', 'mass', 'energy']): 3 triadic deps
+      bit 11 AND bit 21 => bit 58  str=0.375  P(r|ij)=1.00  (['spacetime', 'magnetism'] AND ['species', 'number'])
+      bit  2 AND bit 51 => bit 58  str=0.248  P(r|ij)=0.86  (['spacetime', 'magnetism'] AND ['solvent', 'polymer'])
+      bit 18 AND bit 21 => bit 58  str=0.208  P(r|ij)=0.83  (['mass', 'energy'] AND ['species', 'number'])
+
+    Emergent bit 63 (rate=0.25, top=['entropy', 'photon', 'spacetime']): 38 triadic deps
+      bit  3 AND bit 57 => bit 63  str=0.545  P(r|ij)=1.00  (['acceleration', 'entropy'] AND ['force', 'pressure'])
+      bit  6 AND bit 45 => bit 63  str=0.480  P(r|ij)=0.93  (['energy', 'pressure'] AND ['momentum', 'acceleration'])
+      bit  3 AND bit 46 => bit 63  str=0.449  P(r|ij)=0.93  (['acceleration', 'entropy'] AND ['mass', 'wave'])
+      bit 42 AND bit 57 => bit 63  str=0.445  P(r|ij)=0.90  (['gravity', 'momentum'] AND ['force', 'pressure'])
+      bit  6 AND bit 52 => bit 63  str=0.438  P(r|ij)=0.94  (['energy', 'pressure'] AND ['acceleration', 'photon'])
+      bit  6 AND bit 12 => bit 63  str=0.402  P(r|ij)=0.85  (['energy', 'pressure'] AND ['gravity', 'momentum'])
+      bit  4 AND bit 19 => bit 63  str=0.400  P(r|ij)=1.00  (['gravity', 'mass'] AND ['field', 'cell'])
+      bit 12 AND bit 19 => bit 63  str=0.400  P(r|ij)=1.00  (['gravity', 'momentum'] AND ['field', 'cell'])
+      bit 19 AND bit 25 => bit 63  str=0.400  P(r|ij)=1.00  (['field', 'cell'] AND ['gravity', 'mass'])
+      bit 19 AND bit 42 => bit 63  str=0.400  P(r|ij)=1.00  (['field', 'cell'] AND ['gravity', 'momentum'])
+
+  --- Dependencies (966) ---
+  Top 50 dependencies:
+    bit  8 => bit  0  conf=1.000  support=220  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 22 => bit  0  conf=1.000  support=220  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 48 => bit  0  conf=1.000  support=220  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 59 => bit  0  conf=1.000  support=220  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 64 => bit  0  conf=1.000  support=220  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit  8 => bit  1  conf=1.000  support=252  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 22 => bit  1  conf=1.000  support=252  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 48 => bit  1  conf=1.000  support=252  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 59 => bit  1  conf=1.000  support=252  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 64 => bit  1  conf=1.000  support=252  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit  7 => bit  2  conf=1.000  support=52  (['gravity', 'mass'] => ['spacetime', 'magnetism'])
+    bit  8 => bit  2  conf=1.000  support=52  (['gravity', 'mass'] => ['spacetime', 'magnetism'])
+    bit 48 => bit  2  conf=1.000  support=52  (['gravity', 'mass'] => ['spacetime', 'magnetism'])
+    bit 59 => bit  2  conf=1.000  support=52  (['gravity', 'mass'] => ['spacetime', 'magnetism'])
+    bit  0 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit  1 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit  8 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit  9 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 22 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 25 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 30 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 32 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 40 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 48 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 50 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 59 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 62 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit 64 => bit  3  conf=1.000  support=80  (['gravity', 'mass'] => ['acceleration', 'entropy'])
+    bit  8 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit  9 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 22 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 30 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 32 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 40 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 48 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 59 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 64 => bit  4  conf=1.000  support=208  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit  8 => bit  5  conf=1.000  support=189  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit  9 => bit  5  conf=1.000  support=189  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 30 => bit  5  conf=1.000  support=189  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 48 => bit  5  conf=1.000  support=189  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 59 => bit  5  conf=1.000  support=189  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit  8 => bit  6  conf=1.000  support=65  (['gravity', 'mass'] => ['energy', 'pressure'])
+    bit 30 => bit  6  conf=1.000  support=65  (['gravity', 'mass'] => ['energy', 'pressure'])
+    bit 48 => bit  6  conf=1.000  support=65  (['gravity', 'mass'] => ['energy', 'pressure'])
+    bit 59 => bit  6  conf=1.000  support=65  (['gravity', 'mass'] => ['energy', 'pressure'])
+    bit  8 => bit  7  conf=1.000  support=239  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 48 => bit  7  conf=1.000  support=239  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 59 => bit  7  conf=1.000  support=239  (['gravity', 'mass'] => ['gravity', 'mass'])
+    bit 48 => bit  8  conf=1.000  support=262  (['gravity', 'mass'] => ['gravity', 'mass'])
+
+  --- Duals (199) ---
+    bit 11 <-> bit 47  r=-0.767  excl=241  both=15  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 55 <-> bit 63  r=-0.730  excl=231  both=5  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 11 <-> bit 55  r=-0.705  excl=228  both=4  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 11 <-> bit 56  r=-0.698  excl=235  both=26  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  9 <-> bit 38  r=-0.697  excl=255  both=7  (['gravity', 'mass', 'energy'] <-> ['set', 'being', 'phoneme'])
+    bit 20 <-> bit 45  r=-0.676  excl=216  both=40  (['gravity', 'mass', 'momentum'] <-> ['momentum', 'acceleration', 'entropy'])
+    bit  9 <-> bit 53  r=-0.672  excl=254  both=8  (['gravity', 'mass', 'energy'] <-> ['fission', 'number', 'set'])
+    bit  2 <-> bit 47  r=-0.640  excl=232  both=15  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 56 <-> bit 63  r=-0.637  excl=228  both=32  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 15 <-> bit 47  r=-0.633  excl=234  both=4  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 55  r=-0.624  excl=219  both=4  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 20 <-> bit 63  r=-0.620  excl=213  both=5  (['gravity', 'mass', 'momentum'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 45 <-> bit 49  r=-0.619  excl=204  both=56  (['momentum', 'acceleration', 'entropy'] <-> ['gravity', 'mass', 'energy'])
+    bit 47 <-> bit 63  r=-0.615  excl=226  both=25  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 45 <-> bit 55  r=-0.615  excl=204  both=55  (['momentum', 'acceleration', 'entropy'] <-> ['gravity', 'mass', 'energy'])
+    bit 15 <-> bit 28  r=-0.608  excl=229  both=3  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'momentum'])
+    bit 11 <-> bit 58  r=-0.603  excl=227  both=24  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 47  r=-0.595  excl=217  both=39  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 15 <-> bit 30  r=-0.590  excl=242  both=17  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 37  r=-0.589  excl=227  both=16  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'momentum'])
+    bit 29 <-> bit 63  r=-0.587  excl=221  both=20  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit  2 <-> bit  4  r=-0.574  excl=226  both=17  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 31  r=-0.574  excl=230  both=31  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  5 <-> bit 52  r=-0.569  excl=219  both=13  (['gravity', 'mass', 'energy'] <-> ['acceleration', 'photon', 'quantum'])
+    bit  5 <-> bit 45  r=-0.568  excl=194  both=67  (['gravity', 'mass', 'energy'] <-> ['momentum', 'acceleration', 'entropy'])
+    bit 18 <-> bit 55  r=-0.567  excl=212  both=24  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 58 <-> bit 63  r=-0.566  excl=222  both=29  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 18 <-> bit 37  r=-0.564  excl=214  both=39  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'momentum'])
+    bit 49 <-> bit 63  r=-0.556  excl=213  both=15  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit  2 <-> bit 56  r=-0.552  excl=228  both=25  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 26 <-> bit 43  r=-0.551  excl=187  both=75  (['gravity', 'mass', 'energy'] <-> ['gravity', 'energy', 'momentum'])
+    bit  3 <-> bit 49  r=-0.550  excl=211  both=23  (['acceleration', 'entropy', 'particle'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 49  r=-0.547  excl=210  both=26  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 12 <-> bit 20  r=-0.546  excl=192  both=65  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'momentum'])
+    bit  2 <-> bit 30  r=-0.546  excl=228  both=34  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 34 <-> bit 54  r=-0.535  excl=240  both=17  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit  9 <-> bit 51  r=-0.534  excl=246  both=16  (['gravity', 'mass', 'energy'] <-> ['solvent', 'polymer', 'combustion'])
+    bit 29 <-> bit 45  r=-0.534  excl=188  both=73  (['gravity', 'mass', 'energy'] <-> ['momentum', 'acceleration', 'entropy'])
+    bit 15 <-> bit 60  r=-0.534  excl=239  both=17  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 28  r=-0.534  excl=221  both=17  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'momentum'])
+    bit 10 <-> bit 20  r=-0.532  excl=187  both=72  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'momentum'])
+    bit 15 <-> bit 29  r=-0.529  excl=219  both=4  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 56  r=-0.529  excl=209  both=51  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 29  r=-0.528  excl=210  both=35  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 26 <-> bit 42  r=-0.527  excl=193  both=59  (['gravity', 'mass', 'energy'] <-> ['gravity', 'momentum', 'velocity'])
+    bit 11 <-> bit 29  r=-0.526  excl=216  both=20  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 43  r=-0.522  excl=212  both=11  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'energy', 'momentum'])
+    bit 15 <-> bit 31  r=-0.517  excl=238  both=17  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit 11 <-> bit 31  r=-0.517  excl=221  both=40  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 35 <-> bit 54  r=-0.516  excl=234  both=12  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit 12 <-> bit 49  r=-0.514  excl=180  both=81  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 11 <-> bit 37  r=-0.514  excl=218  both=25  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'momentum'])
+    bit 20 <-> bit 24  r=-0.510  excl=184  both=74  (['gravity', 'mass', 'momentum'] <-> ['momentum', 'velocity', 'acceleration'])
+    bit 11 <-> bit 20  r=-0.508  excl=200  both=9  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'momentum'])
+    bit 11 <-> bit 34  r=-0.508  excl=220  both=42  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  3 <-> bit 20  r=-0.506  excl=201  both=18  (['acceleration', 'entropy', 'particle'] <-> ['gravity', 'mass', 'momentum'])
+    bit 11 <-> bit 49  r=-0.506  excl=208  both=15  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 39 <-> bit 62  r=-0.505  excl=251  both=4  (['species', 'blood', 'animal'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 28  r=-0.505  excl=208  both=40  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'momentum'])
+    bit 11 <-> bit 28  r=-0.503  excl=216  both=24  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'momentum'])
+    bit  4 <-> bit 11  r=-0.501  excl=217  both=26  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'magnetism', 'oscillation'])
+    bit  7 <-> bit 52  r=-0.496  excl=223  both=36  (['gravity', 'mass', 'energy'] <-> ['acceleration', 'photon', 'quantum'])
+    bit 15 <-> bit 56  r=-0.494  excl=232  both=13  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 58  r=-0.494  excl=207  both=46  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 11 <-> bit 30  r=-0.493  excl=219  both=43  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 12 <-> bit 55  r=-0.490  excl=178  both=81  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 15 <-> bit 43  r=-0.487  excl=208  both=3  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'energy', 'momentum'])
+    bit 34 <-> bit 63  r=-0.482  excl=215  both=47  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit  2 <-> bit 58  r=-0.482  excl=220  both=23  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  9 <-> bit 13  r=-0.479  excl=241  both=21  (['gravity', 'mass', 'energy'] <-> ['photosynthesis', 'respiration', 'mitosis'])
+    bit  5 <-> bit 12  r=-0.477  excl=170  both=92  (['gravity', 'mass', 'energy'] <-> ['gravity', 'momentum', 'acceleration'])
+    bit 10 <-> bit 49  r=-0.476  excl=171  both=90  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 12 <-> bit 33  r=-0.471  excl=190  both=54  (['gravity', 'momentum', 'acceleration'] <-> ['energy', 'force', 'pressure'])
+    bit 30 <-> bit 63  r=-0.468  excl=214  both=48  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 35 <-> bit 46  r=-0.468  excl=217  both=36  (['gravity', 'mass', 'energy'] <-> ['mass', 'wave', 'photon'])
+    bit 13 <-> bit 55  r=-0.464  excl=201  both=1  (['photosynthesis', 'respiration', 'mitosis'] <-> ['gravity', 'mass', 'energy'])
+    bit 15 <-> bit 49  r=-0.464  excl=203  both=3  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit 23 <-> bit 42  r=-0.462  excl=184  both=65  (['mass', 'force', 'pressure'] <-> ['gravity', 'momentum', 'velocity'])
+    bit 16 <-> bit 29  r=-0.461  excl=209  both=25  (['acceleration', 'entropy', 'photon'] <-> ['gravity', 'mass', 'energy'])
+    bit 35 <-> bit 57  r=-0.460  excl=230  both=15  (['gravity', 'mass', 'energy'] <-> ['force', 'pressure', 'spacetime'])
+    bit 31 <-> bit 63  r=-0.458  excl=214  both=46  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 25 <-> bit 39  r=-0.457  excl=241  both=2  (['gravity', 'mass', 'energy'] <-> ['species', 'blood', 'animal'])
+    bit 15 <-> bit 55  r=-0.455  excl=201  both=3  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit  9 <-> bit 54  r=-0.452  excl=238  both=24  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit  2 <-> bit 60  r=-0.452  excl=223  both=35  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 34  r=-0.451  excl=223  both=36  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 10 <-> bit 55  r=-0.450  excl=169  both=90  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 12 <-> bit 29  r=-0.449  excl=164  both=98  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 20  r=-0.448  excl=194  both=24  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'momentum'])
+    bit 26 <-> bit 28  r=-0.448  excl=166  both=96  (['gravity', 'mass', 'energy'] <-> ['gravity', 'mass', 'momentum'])
+    bit  3 <-> bit 29  r=-0.447  excl=203  both=36  (['acceleration', 'entropy', 'particle'] <-> ['gravity', 'mass', 'energy'])
+    bit 24 <-> bit 55  r=-0.446  excl=168  both=91  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 43  r=-0.443  excl=199  both=34  (['mass', 'energy', 'force'] <-> ['gravity', 'energy', 'momentum'])
+    bit  4 <-> bit 53  r=-0.443  excl=221  both=1  (['gravity', 'mass', 'energy'] <-> ['fission', 'number', 'set'])
+    bit 57 <-> bit 62  r=-0.443  excl=236  both=23  (['force', 'pressure', 'spacetime'] <-> ['gravity', 'mass', 'energy'])
+    bit 36 <-> bit 55  r=-0.443  excl=201  both=8  (['magnetism', 'catalyst', 'solvent'] <-> ['gravity', 'mass', 'energy'])
+    bit 52 <-> bit 55  r=-0.443  excl=201  both=15  (['acceleration', 'photon', 'quantum'] <-> ['gravity', 'mass', 'energy'])
+    bit  5 <-> bit 10  r=-0.442  excl=161  both=101  (['gravity', 'mass', 'energy'] <-> ['momentum', 'velocity', 'acceleration'])
+    bit 11 <-> bit 43  r=-0.439  excl=203  both=20  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'energy', 'momentum'])
+    bit  5 <-> bit 24  r=-0.438  excl=160  both=102  (['gravity', 'mass', 'energy'] <-> ['momentum', 'velocity', 'acceleration'])
+    bit 15 <-> bit 37  r=-0.437  excl=219  both=10  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'momentum'])
+    bit 24 <-> bit 49  r=-0.437  excl=166  both=93  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit  9 <-> bit 57  r=-0.436  excl=236  both=26  (['gravity', 'mass', 'energy'] <-> ['force', 'pressure', 'spacetime'])
+    bit 34 <-> bit 51  r=-0.433  excl=240  both=13  (['gravity', 'mass', 'energy'] <-> ['solvent', 'polymer', 'combustion'])
+    bit 20 <-> bit 52  r=-0.429  excl=191  both=11  (['gravity', 'mass', 'momentum'] <-> ['acceleration', 'photon', 'quantum'])
+    bit 15 <-> bit 58  r=-0.426  excl=222  both=12  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit 11 <-> bit 14  r=-0.425  excl=215  both=46  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  6 <-> bit 35  r=-0.424  excl=212  both=40  (['energy', 'pressure', 'wave'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 35  r=-0.423  excl=219  both=30  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 23 <-> bit 43  r=-0.419  excl=170  both=85  (['mass', 'force', 'pressure'] <-> ['gravity', 'energy', 'momentum'])
+    bit 37 <-> bit 63  r=-0.413  excl=207  both=33  (['gravity', 'mass', 'momentum'] <-> ['entropy', 'photon', 'spacetime'])
+    bit  2 <-> bit 20  r=-0.413  excl=189  both=10  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'momentum'])
+    bit 51 <-> bit 55  r=-0.411  excl=196  both=1  (['solvent', 'polymer', 'combustion'] <-> ['gravity', 'mass', 'energy'])
+    bit 45 <-> bit 47  r=-0.411  excl=169  both=90  (['momentum', 'acceleration', 'entropy'] <-> ['gravity', 'mass', 'energy'])
+    bit  2 <-> bit 29  r=-0.410  excl=207  both=20  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 18 <-> bit 31  r=-0.408  excl=197  both=64  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit  4 <-> bit 26  r=-0.404  excl=159  both=102  (['gravity', 'mass', 'energy'] <-> ['gravity', 'mass', 'energy'])
+    bit 10 <-> bit 29  r=-0.398  excl=153  both=108  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 19 <-> bit 62  r=-0.398  excl=246  both=9  (['field', 'cell', 'photosynthesis'] <-> ['gravity', 'mass', 'energy'])
+    bit  4 <-> bit 54  r=-0.398  excl=217  both=11  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit  4 <-> bit 23  r=-0.394  excl=156  both=105  (['gravity', 'mass', 'energy'] <-> ['mass', 'force', 'pressure'])
+    bit 18 <-> bit 42  r=-0.392  excl=187  both=27  (['mass', 'energy', 'force'] <-> ['gravity', 'momentum', 'velocity'])
+    bit 18 <-> bit 30  r=-0.392  excl=195  both=67  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 34 <-> bit 38  r=-0.392  excl=243  both=7  (['gravity', 'mass', 'energy'] <-> ['set', 'being', 'phoneme'])
+    bit  2 <-> bit 49  r=-0.391  excl=197  both=16  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 26 <-> bit 37  r=-0.390  excl=158  both=102  (['gravity', 'mass', 'energy'] <-> ['gravity', 'mass', 'momentum'])
+    bit  7 <-> bit 16  r=-0.389  excl=211  both=46  (['gravity', 'mass', 'energy'] <-> ['acceleration', 'entropy', 'photon'])
+    bit 16 <-> bit 20  r=-0.387  excl=187  both=17  (['acceleration', 'entropy', 'photon'] <-> ['gravity', 'mass', 'momentum'])
+    bit 35 <-> bit 53  r=-0.386  excl=232  both=5  (['gravity', 'mass', 'energy'] <-> ['fission', 'number', 'set'])
+    bit 15 <-> bit 20  r=-0.385  excl=183  both=3  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'momentum'])
+    bit  5 <-> bit 63  r=-0.385  excl=199  both=28  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 16 <-> bit 49  r=-0.384  excl=195  both=23  (['acceleration', 'entropy', 'photon'] <-> ['gravity', 'mass', 'energy'])
+    bit  4 <-> bit 46  r=-0.382  excl=206  both=32  (['gravity', 'mass', 'energy'] <-> ['mass', 'wave', 'photon'])
+    bit 28 <-> bit 63  r=-0.382  excl=203  both=33  (['gravity', 'mass', 'momentum'] <-> ['entropy', 'photon', 'spacetime'])
+    bit  1 <-> bit 19  r=-0.380  excl=247  both=10  (['gravity', 'mass', 'energy'] <-> ['field', 'cell', 'photosynthesis'])
+    bit  9 <-> bit 36  r=-0.379  excl=227  both=35  (['gravity', 'mass', 'energy'] <-> ['magnetism', 'catalyst', 'solvent'])
+    bit 19 <-> bit 28  r=-0.378  excl=214  both=2  (['field', 'cell', 'photosynthesis'] <-> ['gravity', 'mass', 'momentum'])
+    bit 10 <-> bit 33  r=-0.377  excl=177  both=65  (['momentum', 'velocity', 'acceleration'] <-> ['energy', 'force', 'pressure'])
+    bit  4 <-> bit 57  r=-0.375  excl=215  both=13  (['gravity', 'mass', 'energy'] <-> ['force', 'pressure', 'spacetime'])
+    bit 34 <-> bit 53  r=-0.375  excl=242  both=8  (['gravity', 'mass', 'energy'] <-> ['fission', 'number', 'set'])
+    bit 25 <-> bit 46  r=-0.372  excl=211  both=43  (['gravity', 'mass', 'energy'] <-> ['mass', 'wave', 'photon'])
+    bit  2 <-> bit 42  r=-0.370  excl=184  both=12  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'momentum', 'velocity'])
+    bit 11 <-> bit 60  r=-0.370  excl=212  both=45  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 27 <-> bit 39  r=-0.369  excl=252  both=7  (['gravity', 'mass', 'energy'] <-> ['species', 'blood', 'animal'])
+    bit 54 <-> bit 55  r=-0.369  excl=194  both=6  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'mass', 'energy'])
+    bit 21 <-> bit 62  r=-0.368  excl=249  both=4  (['species', 'number', 'set'] <-> ['gravity', 'mass', 'energy'])
+    bit 11 <-> bit 35  r=-0.368  excl=210  both=39  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 14 <-> bit 63  r=-0.366  excl=208  both=52  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 12 <-> bit 26  r=-0.364  excl=170  both=75  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 24 <-> bit 29  r=-0.358  excl=148  both=111  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 35 <-> bit 38  r=-0.356  excl=231  both=5  (['gravity', 'mass', 'energy'] <-> ['set', 'being', 'phoneme'])
+    bit 11 <-> bit 42  r=-0.356  excl=183  both=17  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'momentum', 'velocity'])
+    bit 45 <-> bit 56  r=-0.353  excl=157  both=104  (['momentum', 'acceleration', 'entropy'] <-> ['gravity', 'mass', 'energy'])
+    bit 39 <-> bit 61  r=-0.353  excl=253  both=8  (['species', 'blood', 'animal'] <-> ['gravity', 'mass', 'energy'])
+    bit 17 <-> bit 22  r=-0.349  excl=255  both=7  (['distillation', 'photosynthesis', 'respiration'] <-> ['gravity', 'mass', 'energy'])
+    bit 17 <-> bit 64  r=-0.349  excl=255  both=7  (['distillation', 'photosynthesis', 'respiration'] <-> ['gravity', 'mass', 'energy'])
+    bit  4 <-> bit 21  r=-0.348  excl=216  both=0  (['gravity', 'mass', 'energy'] <-> ['species', 'number', 'set'])
+    bit 43 <-> bit 57  r=-0.348  excl=197  both=9  (['gravity', 'energy', 'momentum'] <-> ['force', 'pressure', 'spacetime'])
+    bit 60 <-> bit 63  r=-0.347  excl=207  both=50  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 23 <-> bit 28  r=-0.344  excl=153  both=104  (['mass', 'force', 'pressure'] <-> ['gravity', 'mass', 'momentum'])
+    bit  5 <-> bit 11  r=-0.343  excl=196  both=27  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'magnetism', 'oscillation'])
+    bit 12 <-> bit 47  r=-0.342  excl=145  both=115  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit  0 <-> bit 26  r=-0.342  excl=147  both=114  (['gravity', 'mass', 'energy'] <-> ['gravity', 'mass', 'energy'])
+    bit 32 <-> bit 54  r=-0.340  excl=235  both=27  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit 40 <-> bit 54  r=-0.340  excl=235  both=27  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit 34 <-> bit 57  r=-0.337  excl=230  both=23  (['gravity', 'mass', 'energy'] <-> ['force', 'pressure', 'spacetime'])
+    bit  0 <-> bit 20  r=-0.336  excl=145  both=116  (['gravity', 'mass', 'energy'] <-> ['gravity', 'mass', 'momentum'])
+    bit 19 <-> bit 43  r=-0.336  excl=195  both=1  (['field', 'cell', 'photosynthesis'] <-> ['gravity', 'energy', 'momentum'])
+    bit 18 <-> bit 60  r=-0.336  excl=192  both=67  (['mass', 'energy', 'force'] <-> ['gravity', 'mass', 'energy'])
+    bit 37 <-> bit 54  r=-0.333  excl=212  both=13  (['gravity', 'mass', 'momentum'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit  2 <-> bit  9  r=-0.333  excl=217  both=45  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit  4 <-> bit 18  r=-0.332  excl=191  both=51  (['gravity', 'mass', 'energy'] <-> ['mass', 'energy', 'force'])
+    bit  2 <-> bit  5  r=-0.331  excl=197  both=22  (['spacetime', 'magnetism', 'oscillation'] <-> ['gravity', 'mass', 'energy'])
+    bit 17 <-> bit 28  r=-0.329  excl=211  both=0  (['distillation', 'photosynthesis', 'respiration'] <-> ['gravity', 'mass', 'momentum'])
+    bit 34 <-> bit 46  r=-0.329  excl=209  both=48  (['gravity', 'mass', 'energy'] <-> ['mass', 'wave', 'photon'])
+    bit  4 <-> bit 15  r=-0.329  excl=212  both=14  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'oscillation', 'fission'])
+    bit  0 <-> bit 33  r=-0.326  excl=161  both=96  (['gravity', 'mass', 'energy'] <-> ['energy', 'force', 'pressure'])
+    bit 25 <-> bit 57  r=-0.325  excl=226  both=21  (['gravity', 'mass', 'energy'] <-> ['force', 'pressure', 'spacetime'])
+    bit 23 <-> bit 58  r=-0.324  excl=146  both=113  (['mass', 'force', 'pressure'] <-> ['gravity', 'mass', 'energy'])
+    bit 23 <-> bit 55  r=-0.324  excl=161  both=86  (['mass', 'force', 'pressure'] <-> ['gravity', 'mass', 'energy'])
+    bit  3 <-> bit  7  r=-0.321  excl=195  both=62  (['acceleration', 'entropy', 'particle'] <-> ['gravity', 'mass', 'energy'])
+    bit  9 <-> bit 52  r=-0.318  excl=213  both=49  (['gravity', 'mass', 'energy'] <-> ['acceleration', 'photon', 'quantum'])
+    bit  6 <-> bit 34  r=-0.316  excl=206  both=51  (['energy', 'pressure', 'wave'] <-> ['gravity', 'mass', 'energy'])
+    bit 16 <-> bit 55  r=-0.316  excl=187  both=26  (['acceleration', 'entropy', 'photon'] <-> ['gravity', 'mass', 'energy'])
+    bit 33 <-> bit 45  r=-0.315  excl=172  both=50  (['energy', 'force', 'pressure'] <-> ['momentum', 'acceleration', 'entropy'])
+    bit 10 <-> bit 47  r=-0.313  excl=136  both=124  (['momentum', 'velocity', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit 43 <-> bit 46  r=-0.313  excl=190  both=27  (['gravity', 'energy', 'momentum'] <-> ['mass', 'wave', 'photon'])
+    bit  4 <-> bit 63  r=-0.313  excl=198  both=38  (['gravity', 'mass', 'energy'] <-> ['entropy', 'photon', 'spacetime'])
+    bit 12 <-> bit 41  r=-0.312  excl=139  both=121  (['gravity', 'momentum', 'acceleration'] <-> ['mass', 'energy', 'velocity'])
+    bit  1 <-> bit 21  r=-0.312  excl=250  both=5  (['gravity', 'mass', 'energy'] <-> ['species', 'number', 'set'])
+    bit 22 <-> bit 39  r=-0.311  excl=253  both=9  (['gravity', 'mass', 'energy'] <-> ['species', 'blood', 'animal'])
+    bit 39 <-> bit 64  r=-0.311  excl=253  both=9  (['species', 'blood', 'animal'] <-> ['gravity', 'mass', 'energy'])
+    bit 15 <-> bit 42  r=-0.310  excl=176  both=6  (['spacetime', 'oscillation', 'fission'] <-> ['gravity', 'momentum', 'velocity'])
+    bit  5 <-> bit 13  r=-0.309  excl=199  both=9  (['gravity', 'mass', 'energy'] <-> ['photosynthesis', 'respiration', 'mitosis'])
+    bit 12 <-> bit 56  r=-0.306  excl=133  both=129  (['gravity', 'momentum', 'acceleration'] <-> ['gravity', 'mass', 'energy'])
+    bit  6 <-> bit 28  r=-0.304  excl=196  both=36  (['energy', 'pressure', 'wave'] <-> ['gravity', 'mass', 'momentum'])
+    bit 26 <-> bit 35  r=-0.303  excl=140  both=121  (['gravity', 'mass', 'energy'] <-> ['gravity', 'mass', 'energy'])
+    bit  9 <-> bit 11  r=-0.301  excl=208  both=54  (['gravity', 'mass', 'energy'] <-> ['spacetime', 'magnetism', 'oscillation'])
+    bit 14 <-> bit 16  r=-0.300  excl=206  both=52  (['gravity', 'mass', 'energy'] <-> ['acceleration', 'entropy', 'photon'])
+
+======================================================================
+  Saved to: C:\Github\dualidad_emergente\dualidademergente+reptimeline\neural\results\deep_analysis.json
+  Connections: 262 concepts
+  Clusters (J>=0.90): 32
+  Triadic: 798  Deps: 966  Duals: 199
+======================================================================
+
+Triadic discovery:   0%|          | 0/65 [00:00<?, ?bit/s]
+Triadic discovery:  11%|█         | 7/65 [00:00<00:00, 60.93bit/s]
+Triadic discovery:  22%|██�\ufffd       | 14/65 [00:00<00:00, 64.73bit/s]
+Triadic discovery:  35%|███▌      | 23/65 [00:00<00:00, 74.14bit/s]
+Triadic discovery:  51%|█████     | 33/65 [00:00<00:00, 82.98bit/s]
+Triadic discovery:  74%|███████�\ufffd  | 48/65 [00:00<00:00, 105.08bit/s]
+Triadic discovery: 100%|██████████| 65/65 [00:00<00:00, 114.39bit/s]
+
+

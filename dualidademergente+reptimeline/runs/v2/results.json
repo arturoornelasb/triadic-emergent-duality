@@ -1,0 +1,17 @@
+{
+  "model": "gpt2-medium",
+  "bits": 65,
+  "head_mode": "simple",
+  "activation": "ifsq",
+  "steps": 50000,
+  "best_bit_accuracy_test": 0.9582840204238892,
+  "final_loss": 4.589965343475342,
+  "elapsed_s": 17486.76077890396,
+  "regla_de_tres": [
+    {
+      "quad": "melody:rhythm=pitch:tempo",
+      "cosine": 0.8518,
+      "bit_accuracy": 0.8
+    }
+  ]
+}

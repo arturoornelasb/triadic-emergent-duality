@@ -1,0 +1,127 @@
+{
+  "run_id": "v2",
+  "date": "2026-03-22",
+  "model": "gpt2-medium",
+  "params": "355M",
+  "bits": 65,
+  "head_mode": "simple",
+  "activation": "ifsq",
+  "steps": 50000,
+  "batch_size": 4,
+  "accum_steps": 2,
+  "effective_batch": 8,
+  "lr": 0.0001,
+  "alpha": 0.05,
+  "n_anchors": 262,
+  "n_domains": 8,
+  "gpu": "RTX 4060 Ti 16GB",
+  "training_time_s": 17486.76077890396,
+  "training_time_h": 4.9,
+  "grad_checkpoint": true,
+  "metrics": {
+    "best_bit_accuracy_test": 0.9582840204238892,
+    "final_loss": 4.589965343475342,
+    "final_bit_acc_test": 0.9565088748931885,
+    "final_sub_test": 0.9903288201160542,
+    "dead_bits": 23,
+    "entropy": 0.5208237172575393
+  },
+  "target_analysis": {
+    "unique_targets": 10,
+    "unique_pct": 3.8,
+    "discriminative_bits": 31,
+    "bits_always_on": 21,
+    "jaccard_median": 0.6667
+  },
+  "learned_analysis": {
+    "unique_learned": 185,
+    "unique_pct": 70.6,
+    "active_bits": 56,
+    "dead_bits_explore": 9,
+    "n_duals": 199,
+    "n_deps": 966,
+    "n_triadic": 798,
+    "n_clusters_090": 32
+  },
+  "learned_vs_target": {
+    "overall_accuracy": 0.7037,
+    "unique_targets_asked": 23,
+    "unique_learned_created": 209,
+    "per_domain": {
+      "Biology": {
+        "mean_accuracy": 0.6905,
+        "min_accuracy": 0.5846,
+        "n_perfect": 3
+      },
+      "Chemistry": {
+        "mean_accuracy": 0.7231,
+        "min_accuracy": 0.5846,
+        "n_perfect": 1
+      },
+      "Linguistics": {
+        "mean_accuracy": 0.7538,
+        "min_accuracy": 0.5385,
+        "n_perfect": 7
+      },
+      "Mathematics": {
+        "mean_accuracy": 0.6246,
+        "min_accuracy": 0.4615,
+        "n_perfect": 3
+      },
+      "Music": {
+        "mean_accuracy": 0.819,
+        "min_accuracy": 0.5077,
+        "n_perfect": 14
+      },
+      "Philosophy": {
+        "mean_accuracy": 0.6928,
+        "min_accuracy": 0.4923,
+        "n_perfect": 4
+      },
+      "Physics": {
+        "mean_accuracy": 0.6865,
+        "min_accuracy": 0.5538,
+        "n_perfect": 3
+      },
+      "Psychology": {
+        "mean_accuracy": 0.661,
+        "min_accuracy": 0.5846,
+        "n_perfect": 1
+      }
+    }
+  },
+  "dual_coherence": {
+    "mover/quietud": 0.092,
+    "bien/mal": 0.949,
+    "verdad/mentira": 0.262,
+    "libertad/control": 0.0164,
+    "vida/muerte": 0.4903,
+    "placer/dolor": 0.0894,
+    "consciente/ausente": 0.8472,
+    "individual/colectivo": 0.1699,
+    "temporal_obs/eterno_obs": 0.9091,
+    "receptivo/creador_obs": 0.2211
+  },
+  "regla_de_tres": [
+    {
+      "quad": "melody:rhythm=pitch:tempo",
+      "cosine": 0.8518,
+      "bit_accuracy": 0.8
+    }
+  ],
+  "diagnosis": {
+    "root_cause": "Target signatures have only 3.8% uniqueness (10/262). 21/65 bits are always ON, only 31/65 bits are discriminative. Domains share massive base signatures (38-50 bits) with 0-4 variable bits.",
+    "model_behavior": "Model achieved 95.8% bit accuracy against targets, but created 209 unique signatures from 23 unique targets — it actually DIVERSIFIED beyond what was asked, which explains the 70.6% uniqueness.",
+    "worst_primitivos": "fuerza(19.8%), posición_temporal(23.3%), si_entonces(33.6%) — model fails to learn always-ON bits and rare bits.",
+    "recommendation": "Fix reference_domains.json to reduce base signature overlap. Move most primitivos from D to A for non-core domains. Increase concept-specific overrides in anchors.py."
+  },
+  "files": {
+    "training_log": "training_log.csv",
+    "results": "results.json",
+    "exploration": "exploration.json",
+    "deep_analysis": "deep_analysis.json",
+    "audit_targets": "audit_targets.json",
+    "audit_learned_vs_target": "audit_learned_vs_target.json",
+    "checkpoints": "checkpoints/"
+  }
+}

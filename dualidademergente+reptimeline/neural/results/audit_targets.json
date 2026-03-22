@@ -1,0 +1,507 @@
+{
+  "n_concepts": 262,
+  "n_unique_targets": 10,
+  "unique_pct": 3.8,
+  "n_collision_groups": 13,
+  "collision_groups": [
+    [
+      "gravity",
+      "mass",
+      "energy",
+      "momentum",
+      "velocity",
+      "acceleration",
+      "force",
+      "entropy",
+      "temperature",
+      "pressure",
+      "wave",
+      "particle",
+      "atom",
+      "electron",
+      "field",
+      "spacetime",
+      "relativity",
+      "quantum",
+      "spin",
+      "charge",
+      "magnetism",
+      "electricity",
+      "friction",
+      "inertia",
+      "equilibrium",
+      "oscillation",
+      "frequency",
+      "wavelength",
+      "amplitude",
+      "conservation",
+      "symmetry",
+      "decay",
+      "fusion",
+      "fission",
+      "vacuum",
+      "density",
+      "torque",
+      "buoyancy"
+    ],
+    [
+      "photon",
+      "radiation"
+    ],
+    [
+      "molecule",
+      "reaction",
+      "bond",
+      "catalyst",
+      "acid",
+      "base",
+      "oxidation",
+      "reduction",
+      "solvent",
+      "solute",
+      "solution",
+      "crystal",
+      "polymer",
+      "ion",
+      "isotope",
+      "element",
+      "compound",
+      "mixture",
+      "pH",
+      "concentration",
+      "equilibrium_chem",
+      "precipitate",
+      "combustion",
+      "distillation",
+      "titration",
+      "mole",
+      "valence",
+      "alloy",
+      "corrosion",
+      "sublimation"
+    ],
+    [
+      "cell",
+      "DNA",
+      "evolution",
+      "respiration",
+      "metabolism",
+      "protein",
+      "gene",
+      "mutation",
+      "mitosis",
+      "meiosis",
+      "ecosystem",
+      "predator",
+      "symbiosis",
+      "organism",
+      "species",
+      "habitat",
+      "adaptation",
+      "reproduction",
+      "death_bio",
+      "brain",
+      "nerve",
+      "blood",
+      "bone",
+      "muscle",
+      "virus",
+      "bacteria",
+      "fungus",
+      "plant",
+      "animal",
+      "hormone",
+      "enzyme",
+      "nutrition",
+      "immunity",
+      "growth"
+    ],
+    [
+      "number",
+      "zero",
+      "infinity",
+      "set",
+      "function",
+      "proof",
+      "theorem",
+      "axiom",
+      "equation",
+      "constant",
+      "addition",
+      "subtraction",
+      "multiplication",
+      "division",
+      "prime_number",
+      "fraction",
+      "ratio",
+      "limit",
+      "derivative",
+      "integral",
+      "matrix",
+      "vector",
+      "topology",
+      "symmetry_math",
+      "group",
+      "ring",
+      "statistics",
+      "geometry",
+      "algebra",
+      "logic",
+      "sequence",
+      "graph",
+      "dimension"
+    ],
+    [
+      "variable",
+      "probability"
+    ],
+    [
+      "truth",
+      "existence",
+      "consciousness",
+      "free_will",
+      "determinism",
+      "ethics",
+      "justice",
+      "knowledge",
+      "belief",
+      "reality",
+      "illusion",
+      "meaning",
+      "purpose",
+      "identity",
+      "change",
+      "permanence",
+      "freedom",
+      "duty",
+      "virtue",
+      "evil",
+      "death_phil",
+      "soul",
+      "being",
+      "becoming",
+      "dialectic",
+      "paradox",
+      "wisdom",
+      "doubt"
+    ],
+    [
+      "phoneme",
+      "morpheme",
+      "syntax",
+      "semantics",
+      "pragmatics",
+      "grammar",
+      "word",
+      "sentence",
+      "paragraph",
+      "language",
+      "speech",
+      "writing",
+      "vowel",
+      "consonant",
+      "noun",
+      "verb",
+      "adjective",
+      "metaphor",
+      "translation",
+      "dialect",
+      "etymology",
+      "discourse",
+      "narrative",
+      "symbol",
+      "reference",
+      "ambiguity",
+      "prosody",
+      "lexicon",
+      "creole"
+    ],
+    [
+      "perception",
+      "memory",
+      "emotion",
+      "learning",
+      "attention",
+      "personality",
+      "behavior",
+      "anxiety",
+      "depression",
+      "trauma",
+      "attachment",
+      "empathy",
+      "dream",
+      "habit",
+      "fear",
+      "anger",
+      "joy",
+      "grief",
+      "self_concept",
+      "development",
+      "consciousness_psy",
+      "unconscious",
+      "stress"
+    ],
+    [
+      "motivation",
+      "desire"
+    ],
+    [
+      "cognition",
+      "creativity"
+    ],
+    [
+      "instinct",
+      "conditioning"
+    ],
+    [
+      "melody",
+      "harmony",
+      "rhythm",
+      "tempo",
+      "pitch",
+      "dynamics",
+      "chord",
+      "scale",
+      "key",
+      "cadence",
+      "dissonance",
+      "consonance",
+      "counterpoint",
+      "fugue",
+      "sonata",
+      "composition",
+      "silence",
+      "crescendo",
+      "diminuendo",
+      "staccato",
+      "legato",
+      "vibrato",
+      "octave",
+      "interval",
+      "rest",
+      "beat",
+      "measure"
+    ]
+  ],
+  "bits_always_on": [
+    [
+      0,
+      "vacío"
+    ],
+    [
+      1,
+      "información"
+    ],
+    [
+      2,
+      "fuerza"
+    ],
+    [
+      7,
+      "eje_vertical"
+    ],
+    [
+      8,
+      "eje_profundidad"
+    ],
+    [
+      10,
+      "contención"
+    ],
+    [
+      11,
+      "posición_temporal"
+    ],
+    [
+      12,
+      "flujo_temporal"
+    ],
+    [
+      22,
+      "orden"
+    ],
+    [
+      23,
+      "caos"
+    ],
+    [
+      24,
+      "creación"
+    ],
+    [
+      26,
+      "unión"
+    ],
+    [
+      27,
+      "separación"
+    ],
+    [
+      44,
+      "uno"
+    ],
+    [
+      45,
+      "muchos"
+    ],
+    [
+      48,
+      "hacer"
+    ],
+    [
+      50,
+      "mover"
+    ],
+    [
+      59,
+      "parte_de"
+    ],
+    [
+      61,
+      "más"
+    ],
+    [
+      62,
+      "menos"
+    ],
+    [
+      64,
+      "quietud"
+    ]
+  ],
+  "bits_always_off": [
+    [
+      39,
+      "eterno_obs"
+    ],
+    [
+      55,
+      "si_entonces"
+    ]
+  ],
+  "n_discriminative_bits": 31,
+  "jaccard_stats": {
+    "min": 0.4643,
+    "p25": 0.5833,
+    "median": 0.6667,
+    "p75": 0.8,
+    "max": 1.0,
+    "mean": 0.691
+  },
+  "hamming_stats": {
+    "min": 0,
+    "median": 18,
+    "mean": 15.9,
+    "max": 30,
+    "identical_pairs": 3620
+  },
+  "per_bit_rates": [
+    1.0,
+    1.0,
+    1.0,
+    0.3855,
+    0.5153,
+    0.5153,
+    0.6298,
+    1.0,
+    1.0,
+    0.8855,
+    1.0,
+    1.0,
+    1.0,
+    0.4924,
+    0.7519,
+    0.5153,
+    0.2481,
+    0.2481,
+    0.8855,
+    0.2481,
+    0.126,
+    0.1221,
+    1.0,
+    1.0,
+    1.0,
+    0.8664,
+    1.0,
+    1.0,
+    0.3702,
+    0.3702,
+    0.7634,
+    0.7519,
+    0.8664,
+    0.7519,
+    0.4847,
+    0.4847,
+    0.4847,
+    0.3664,
+    0.229,
+    0.0038,
+    0.8664,
+    0.8664,
+    0.229,
+    0.1145,
+    1.0,
+    1.0,
+    0.6412,
+    0.2481,
+    1.0,
+    0.2443,
+    1.0,
+    0.2405,
+    0.2481,
+    0.2366,
+    0.5305,
+    0.0038,
+    0.5115,
+    0.5038,
+    0.5115,
+    1.0,
+    0.8893,
+    1.0,
+    1.0,
+    0.8817,
+    1.0
+  ],
+  "per_domain": {
+    "Biology": {
+      "n": 35,
+      "mean_active_bits": 45.0,
+      "within_jaccard": 0.9988
+    },
+    "Chemistry": {
+      "n": 30,
+      "mean_active_bits": 38.0,
+      "within_jaccard": 1.0
+    },
+    "Linguistics": {
+      "n": 30,
+      "mean_active_bits": 50.0,
+      "within_jaccard": 0.9987
+    },
+    "Mathematics": {
+      "n": 35,
+      "mean_active_bits": 30.2,
+      "within_jaccard": 0.9899
+    },
+    "Music": {
+      "n": 30,
+      "mean_active_bits": 32.1,
+      "within_jaccard": 0.994
+    },
+    "Philosophy": {
+      "n": 32,
+      "mean_active_bits": 49.1,
+      "within_jaccard": 0.995
+    },
+    "Physics": {
+      "n": 40,
+      "mean_active_bits": 43.0,
+      "within_jaccard": 0.9978
+    },
+    "Psychology": {
+      "n": 30,
+      "mean_active_bits": 50.3,
+      "within_jaccard": 0.9901
+    }
+  }
+}

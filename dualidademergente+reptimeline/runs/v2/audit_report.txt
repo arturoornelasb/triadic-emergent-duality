@@ -1,0 +1,75 @@
+======================================================================
+  V2 TRAINING RUN — AUDIT REPORT
+  Date: 2026-03-22
+======================================================================
+
+  MODEL: GPT-2 Medium (355M) + 65-bit triadic head (simple, iFSQ)
+  STEPS: 50,000  BATCH: 4 x 2 = 8 effective  LR: 1e-4  ALPHA: 0.05
+  GPU: RTX 4060 Ti 16GB  TIME: 4.9 hours
+  ANCHORS: 262 concepts across 8 domains
+
+--- TRAINING METRICS ---
+  Best bit accuracy (test): 0.9583
+  Final bit accuracy (test): 0.9565
+  Final subsumption (test):  0.9903
+  Final loss:                4.5900
+  Dead bits (training):      23
+  Entropy:                   0.5208
+
+--- TARGET SIGNATURE ANALYSIS ---
+  *** ROOT CAUSE OF LOW UNIQUENESS ***
+  Unique target signatures:  10 / 262 (3.8%)
+  Bits always ON in targets: 21 / 65
+  Discriminative bits:       31 / 65
+  Target Jaccard median:     0.667
+
+--- LEARNED SIGNATURE ANALYSIS ---
+  Unique learned signatures: 185 / 262 (70.6%)
+  Active bits:               56 / 65 (dead: 9)
+  Discovered duals:          199
+  Discovered deps:           966
+  Discovered triadic:        798
+  Concept clusters (J>=0.9): 32
+
+--- LEARNED vs TARGET ---
+  Overall per-bit accuracy:  0.7037
+  Targets asked: 23 unique signatures
+  Model created: 209 unique signatures (+186 diversification)
+
+  Per-domain accuracy:
+    Biology         mean=0.691  min=0.585  perfect=3
+    Chemistry       mean=0.723  min=0.585  perfect=1
+    Linguistics     mean=0.754  min=0.538  perfect=7
+    Mathematics     mean=0.625  min=0.462  perfect=3
+    Music           mean=0.819  min=0.508  perfect=14
+    Philosophy      mean=0.693  min=0.492  perfect=4
+    Physics         mean=0.686  min=0.554  perfect=3
+    Psychology      mean=0.661  min=0.585  perfect=1
+
+--- DUAL COHERENCE ---
+  mover/quietud                  0.092  [LOW]
+  bien/mal                       0.949  [OK]
+  verdad/mentira                 0.262  [LOW]
+  libertad/control               0.016  [LOW]
+  vida/muerte                    0.490  [LOW]
+  placer/dolor                   0.089  [LOW]
+  consciente/ausente             0.847  [OK]
+  individual/colectivo           0.170  [LOW]
+  temporal_obs/eterno_obs        0.909  [OK]
+  receptivo/creador_obs          0.221  [LOW]
+
+--- REGLA DE TRES ---
+  melody:rhythm=pitch:tempo  cos=0.852  bit_acc=0.80
+
+--- DIAGNOSIS ---
+  ROOT CAUSE: Target signatures have only 3.8% uniqueness (10/262). 21/65 bits are always ON, only 31/65 bits are discriminative. Domains share massive base signatures (38-50 bits) with 0-4 variable bits.
+
+  MODEL BEHAVIOR: Model achieved 95.8% bit accuracy against targets, but created 209 unique signatures from 23 unique targets — it actually DIVERSIFIED beyond what was asked, which explains the 70.6% uniqueness.
+
+  WORST PRIMITIVOS: fuerza(19.8%), posición_temporal(23.3%), si_entonces(33.6%) — model fails to learn always-ON bits and rare bits.
+
+  RECOMMENDATION: Fix reference_domains.json to reduce base signature overlap. Move most primitivos from D to A for non-core domains. Increase concept-specific overrides in anchors.py.
+
+======================================================================
+  Files archived in: C:\Github\dualidad_emergente\dualidademergente+reptimeline\runs\v2
+======================================================================
