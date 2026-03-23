@@ -2,7 +2,7 @@
   "checkpoint": "best.pt",
   "step": 0,
   "n_concepts": 72,
-  "device": "cpu",
+  "device": "cuda",
   "signature_uniqueness": {
     "total": 72,
     "unique": 72,
@@ -2637,27 +2637,27 @@
     {
       "a": "unión",
       "b": "separación",
-      "score": 0.2833
+      "score": 0.2481
     },
     {
       "a": "mover",
       "b": "quietud",
-      "score": 0.9124
+      "score": 0.9141
     },
     {
       "a": "creación",
       "b": "destrucción",
-      "score": 0.8831
+      "score": 0.8899
     },
     {
       "a": "orden",
       "b": "caos",
-      "score": 0.2902
+      "score": 0.2682
     },
     {
       "a": "bien",
       "b": "mal",
-      "score": 0.3127
+      "score": 0.2785
     },
     {
       "a": "verdad",
@@ -2667,32 +2667,32 @@
     {
       "a": "libertad",
       "b": "control",
-      "score": 0.8252
+      "score": 0.8244
     },
     {
       "a": "vida",
       "b": "muerte",
-      "score": 0.4577
+      "score": 0.4426
     },
     {
       "a": "placer",
       "b": "dolor",
-      "score": 0.9889
+      "score": 0.9901
     },
     {
       "a": "consciente",
       "b": "ausente",
-      "score": 0.8548
+      "score": 0.8404
     },
     {
       "a": "individual",
       "b": "colectivo",
-      "score": 0.8333
+      "score": 0.829
     },
     {
       "a": "temporal_obs",
       "b": "eterno_obs",
-      "score": 0.2651
+      "score": 0.2419
     },
     {
       "a": "receptivo",
@@ -2702,7 +2702,7 @@
     {
       "a": "atracción",
       "b": "aversión",
-      "score": 0.9343
+      "score": 0.9402
     }
   ],
   "layer_emergence": [
@@ -2718,66 +2718,77 @@
       "name": "Layer 2",
       "activated": 8,
       "total": 8,
-      "median_step": 10000
+      "median_step": 2500
     },
     {
       "layer": 3,
       "name": "Layer 3",
       "activated": 13,
       "total": 13,
-      "median_step": 10000
+      "median_step": 2500
     },
     {
       "layer": 4,
       "name": "Layer 4",
       "activated": 20,
       "total": 21,
-      "median_step": 10000
+      "median_step": 2500
     },
     {
       "layer": 5,
       "name": "Layer 5",
       "activated": 21,
       "total": 23,
-      "median_step": 10000
+      "median_step": 2500
     },
     {
       "layer": 6,
       "name": "Layer 6",
       "activated": 4,
       "total": 4,
-      "median_step": 10000
+      "median_step": 2500
     }
   ],
   "timeline": {
-    "n_snapshots": 10,
+    "n_snapshots": 15,
     "steps": [
-      10000,
-      15000,
-      20000,
       2500,
+      5000,
+      7500,
+      12500,
+      15000,
+      17500,
+      22500,
+      25000,
       27500,
       32500,
+      35000,
       37500,
       42500,
-      47500,
-      7500
+      45000,
+      50000
     ],
-    "n_births": 3361,
-    "n_deaths": 829,
+    "n_births": 3376,
+    "n_deaths": 1673,
     "n_connections": 2556,
-    "n_phase_transitions": 2,
+    "n_phase_transitions": 3,
     "phase_transitions": [
       {
-        "step": 7500,
+        "step": 27500,
         "metric": "entropy",
-        "delta": 0.5475,
-        "direction": "decrease"
+        "delta": 0.4297,
+        "direction": "increase"
       },
       {
         "step": 27500,
         "metric": "churn_rate",
         "delta": 1.0,
+        "direction": "increase"
+      },
+      {
+        "step": 27500,
+        "metric": "utilization",
+        "delta": 0.5694,
         "direction": "increase"
       }
     ]
