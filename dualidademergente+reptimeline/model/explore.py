@@ -1,7 +1,7 @@
 """
-Fase 3: Exploration — Map concepts through the trained 65-bit triadic head.
+Fase 3: Exploration — Map concepts through the trained triadic head.
 
-Uses the best checkpoint to extract 65-bit signatures for ALL concepts,
+Uses checkpoints to extract N-bit signatures for ALL concepts,
 then runs reptimeline BitDiscovery + PrimitiveOverlay to find:
   - Which concepts cluster together (shared bits)
   - What duals the model learned (anti-correlated bits)
@@ -9,11 +9,17 @@ then runs reptimeline BitDiscovery + PrimitiveOverlay to find:
   - Cross-capa structure (capa 1 ↔ capa 5?)
   - Per-capa separation (do capas form distinct clusters?)
 
+With --timeline: builds full multi-checkpoint timeline with visualizations:
+  - Swimlane diagram (concept code evolution)
+  - Phase dashboard (entropy, churn, utilization)
+  - Churn heatmap (per-bit stability)
+  - Layer emergence (when each capa's primitives stabilize)
+  - Reconciler (discovered vs theory comparison)
+
 Usage:
-    python explore.py                          # 65 gold primitivos
-    python explore.py --concepts extra.json    # custom concept list
+    python explore.py --run-name gpt2_triadic_72_v5_frozen --gold-file gold_primitivos_72.json --bits 72
+    python explore.py --timeline --plots-dir plots/v5  # full timeline + plots
     python explore.py --add "quantum,relativity,photon"  # add extras
-    python explore.py --device cuda            # use GPU (after training)
 
 Requires: reptimeline, torch, transformers (triadic-microgpt conda env)
 """
@@ -31,20 +37,22 @@ DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
 RESULTS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'neural', 'results'))
 sys.path.insert(0, SCRIPT_DIR)
 
+import glob as globmod
 import torch
 import torch.nn.functional as F
 from triadic_extractor import TriadicExtractor
 from reptimeline import TimelineTracker, BitDiscovery, PrimitiveOverlay
 from reptimeline.core import ConceptSnapshot
+from reptimeline.reconcile import Reconciler
 
 
 # ######################################################################
 #  SECTION 1: LOAD CONCEPTS
 # ######################################################################
 
-def load_gold_concepts():
-    """Load 65 gold primitivo concepts with capa labels."""
-    gold_path = os.path.join(SCRIPT_DIR, 'gold_primitivos_65.json')
+def load_gold_concepts(gold_file='gold_primitivos_65.json'):
+    """Load gold primitivo concepts with capa labels."""
+    gold_path = os.path.join(SCRIPT_DIR, gold_file)
     with open(gold_path, 'r', encoding='utf-8') as f:
         gold = json.load(f)
     return gold
@@ -61,9 +69,9 @@ def parse_extra_concepts(add_str):
 #  SECTION 2: EXTRACTION
 # ######################################################################
 
-def extract_all(checkpoint_path, concepts, device='cpu'):
-    """Extract 65-bit signatures for all concepts."""
-    extractor = TriadicExtractor(n_bits=65)
+def extract_all(checkpoint_path, concepts, device='cpu', n_bits=65):
+    """Extract n-bit signatures for all concepts."""
+    extractor = TriadicExtractor(n_bits=n_bits)
     snap = extractor.extract(checkpoint_path, concepts, device=device)
     return snap, extractor
 
@@ -235,7 +243,100 @@ def bit_usage_stats(snap):
 
 
 # ######################################################################
-#  SECTION 5: MAIN
+#  SECTION 5: TIMELINE & VISUALIZATION
+# ######################################################################
+
+def extract_timeline(ckpt_dir, concepts, extractor, device='cpu',
+                     max_checkpoints=20):
+    """Extract snapshots from multiple checkpoints for timeline analysis."""
+    # Find all step_*.pt files
+    step_files = sorted(globmod.glob(os.path.join(ckpt_dir, 'step_*.pt')))
+    best_file = os.path.join(ckpt_dir, 'best.pt')
+
+    if not step_files:
+        print('  WARNING: No step_*.pt files found, using best.pt only')
+        snap = extractor.extract(best_file, concepts, device=device)
+        return [snap]
+
+    # Sample evenly if too many checkpoints
+    if len(step_files) > max_checkpoints:
+        indices = [int(i * (len(step_files) - 1) / (max_checkpoints - 1))
+                   for i in range(max_checkpoints)]
+        step_files = [step_files[i] for i in indices]
+
+    print(f'  Extracting from {len(step_files)} checkpoints...')
+    snapshots = []
+    for i, sf in enumerate(step_files):
+        snap = extractor.extract(sf, concepts, device=device)
+        snapshots.append(snap)
+        if (i + 1) % 5 == 0 or i == len(step_files) - 1:
+            print(f'    {i+1}/{len(step_files)} done (step {snap.step})')
+
+    return snapshots
+
+
+def generate_plots(timeline, prim_report, plots_dir, snap):
+    """Generate all reptimeline visualizations."""
+    os.makedirs(plots_dir, exist_ok=True)
+    n_bits = snap.code_dim
+
+    from reptimeline.viz import (
+        plot_swimlane, plot_phase_dashboard, plot_churn_heatmap,
+    )
+
+    # 1. Phase dashboard (entropy, churn, utilization)
+    try:
+        print('    Phase dashboard...')
+        plot_phase_dashboard(timeline,
+                             save_path=os.path.join(plots_dir, 'phase_dashboard.png'))
+    except Exception as e:
+        print(f'    WARNING: phase_dashboard failed: {e}')
+
+    # 2. Swimlane (concept code evolution)
+    try:
+        print('    Swimlane diagram...')
+        plot_swimlane(timeline, max_bits=min(n_bits, 72),
+                      save_path=os.path.join(plots_dir, 'swimlane.png'))
+    except Exception as e:
+        print(f'    WARNING: swimlane failed: {e}')
+
+    # 3. Churn heatmap (per-bit stability)
+    try:
+        print('    Churn heatmap...')
+        plot_churn_heatmap(timeline, max_bits=min(n_bits, 72),
+                           save_path=os.path.join(plots_dir, 'churn_heatmap.png'))
+    except Exception as e:
+        print(f'    WARNING: churn_heatmap failed: {e}')
+
+    # 4. Layer emergence
+    if prim_report and prim_report.layer_emergence:
+        try:
+            from reptimeline.viz import plot_layer_emergence
+            print('    Layer emergence...')
+            plot_layer_emergence(prim_report,
+                                 save_path=os.path.join(plots_dir, 'layer_emergence.png'))
+        except Exception as e:
+            print(f'    WARNING: layer_emergence failed: {e}')
+
+    # 5. Interactive plots (HTML)
+    try:
+        from reptimeline.viz.interactive import (
+            plot_phase_dashboard_interactive,
+            plot_swimlane_interactive,
+        )
+        print('    Interactive phase dashboard (HTML)...')
+        plot_phase_dashboard_interactive(
+            timeline, save_html=os.path.join(plots_dir, 'phase_dashboard.html'))
+        print('    Interactive swimlane (HTML)...')
+        plot_swimlane_interactive(
+            timeline, max_bits=min(n_bits, 72),
+            save_html=os.path.join(plots_dir, 'swimlane.html'))
+    except Exception as e:
+        print(f'    WARNING: interactive plots failed: {e}')
+
+
+# ######################################################################
+#  SECTION 6: MAIN
 # ######################################################################
 
 def main():
@@ -250,6 +351,20 @@ def main():
                         help='Device (cpu or cuda)')
     parser.add_argument('--top-bridges', type=int, default=30,
                         help='Number of cross-capa bridges to show')
+    parser.add_argument('--gold-file', default='gold_primitivos_65.json',
+                        help='Gold file (default: gold_primitivos_65.json)')
+    parser.add_argument('--bits', type=int, default=65,
+                        help='Number of triadic bits (default: 65)')
+    parser.add_argument('--run-name', default=None,
+                        help='Checkpoint dir name (default: auto-detect)')
+    parser.add_argument('--timeline', action='store_true',
+                        help='Extract from multiple checkpoints for full timeline')
+    parser.add_argument('--max-checkpoints', type=int, default=15,
+                        help='Max checkpoints for timeline (default: 15)')
+    parser.add_argument('--plots-dir', default=None,
+                        help='Directory to save plots (default: plots/<run-name>)')
+    parser.add_argument('--csv-dir', default=None,
+                        help='Export timeline CSV to this directory')
     args = parser.parse_args()
 
     print()
@@ -261,26 +376,37 @@ def main():
     if args.checkpoint:
         ckpt_path = args.checkpoint
     else:
-        # Find best.pt in v3 checkpoints
-        ckpt_path = os.path.join(SCRIPT_DIR, 'checkpoints', 'gpt2_triadic_65_v3', 'best.pt')
+        # Auto-detect checkpoint dir
+        run_name = args.run_name
+        if run_name is None:
+            # Try v4 first, then v3
+            for candidate in ['gpt2_triadic_72_v4', 'gpt2_triadic_65_v3']:
+                if os.path.exists(os.path.join(SCRIPT_DIR, 'checkpoints', candidate, 'best.pt')):
+                    run_name = candidate
+                    break
+            if run_name is None:
+                run_name = 'gpt2_triadic_65_v3'
+        ckpt_path = os.path.join(SCRIPT_DIR, 'checkpoints', run_name, 'best.pt')
         if not os.path.exists(ckpt_path):
-            # Fallback to latest step_*.pt
             import glob
             steps = sorted(glob.glob(os.path.join(
-                SCRIPT_DIR, 'checkpoints', 'gpt2_triadic_65_v3', 'step_*.pt')))
+                SCRIPT_DIR, 'checkpoints', run_name, 'step_*.pt')))
             if steps:
                 ckpt_path = steps[-1]
             else:
-                print('  ERROR: No checkpoint found.')
+                print('  ERROR: No checkpoint found for %s.' % run_name)
                 sys.exit(1)
 
     print(f'  Checkpoint: {os.path.basename(ckpt_path)}')
     print(f'  Device: {args.device}')
 
     # --- Concepts ---
-    gold_data = load_gold_concepts()
+    gold_data = load_gold_concepts(args.gold_file)
     concepts = list(gold_data.keys())
+    n_bits = args.bits
+    print(f'  Gold file: {args.gold_file}')
     print(f'  Gold primitivos: {len(concepts)} (6 capas)')
+    print(f'  Bits: {n_bits}')
 
     if args.concepts:
         with open(args.concepts, 'r', encoding='utf-8') as f:
@@ -301,9 +427,9 @@ def main():
 
     # --- Extract ---
     print()
-    print('[1/5] Extracting 65-bit signatures...')
+    print('[1/5] Extracting %d-bit signatures...' % n_bits)
     t0 = time.time()
-    snap, extractor = extract_all(ckpt_path, concepts, device=args.device)
+    snap, extractor = extract_all(ckpt_path, concepts, device=args.device, n_bits=n_bits)
     elapsed = time.time() - t0
     print(f'  Extracted {len(snap.codes)} concepts in {elapsed:.1f}s')
     print(f'  Code dim: {snap.code_dim}')
@@ -320,9 +446,9 @@ def main():
 
     bit_rates = bit_usage_stats(snap)
     dead = sum(1 for r in bit_rates if r < 0.02 or r > 0.98)
-    active = 65 - dead
+    active = len(bit_rates) - dead
     mean_rate = sum(bit_rates) / len(bit_rates) if bit_rates else 0
-    print(f'  Active bits: {active}/65 (dead: {dead})')
+    print(f'  Active bits: {active}/{len(bit_rates)} (dead: {dead})')
     print(f'  Mean activation rate: {mean_rate:.3f} (ideal: 0.50)')
 
     # --- Capa separation ---
@@ -387,24 +513,109 @@ def main():
         print(f'    bit {b.bit_index:>2}: rate={b.activation_rate:.2f}  '
               f'top=[{top}]  anti=[{anti}]')
 
-    # --- Primitive Overlay ---
+    # --- Timeline extraction (multi-checkpoint) ---
+    timeline = None
+    snapshots = None
+    if args.timeline:
+        print()
+        print('[6/8] Timeline extraction (multi-checkpoint)...')
+        ckpt_dir = os.path.dirname(ckpt_path)
+        snapshots = extract_timeline(ckpt_dir, concepts, extractor,
+                                     device=args.device,
+                                     max_checkpoints=args.max_checkpoints)
+        tracker = TimelineTracker(extractor=extractor, stability_window=3)
+        timeline = tracker.analyze(snapshots)
+
+        print(f'  Snapshots: {len(snapshots)}')
+        print(f'  Steps: {timeline.steps[0]} → {timeline.steps[-1]}')
+        print(f'  Births: {len(timeline.births)}')
+        print(f'  Deaths: {len(timeline.deaths)}')
+        print(f'  Connections: {len(timeline.connections)}')
+        print(f'  Phase transitions: {len(timeline.phase_transitions)}')
+
+        if timeline.phase_transitions:
+            print('  Detected phase transitions:')
+            for pt in timeline.phase_transitions:
+                print(f'    step {pt.step}: {pt.metric} '
+                      f'delta={pt.delta:+.4f} ({pt.direction})')
+    else:
+        # Single-snapshot timeline for overlay (backward compat)
+        tracker = TimelineTracker(extractor=extractor, stability_window=1)
+        timeline = tracker.analyze([snap])
+
+    # --- Primitive Overlay (full analysis) ---
     prim_path = os.path.join(DATA_DIR, 'primitivos.json')
     prim_report = None
     if os.path.exists(prim_path):
+        step_label = '7/8' if args.timeline else '6/6'
         print()
-        print('  --- Primitive Overlay ---')
-        # Need timeline for overlay — build single-snapshot timeline
-        tracker = TimelineTracker(extractor=extractor, stability_window=1)
-        timeline = tracker.analyze([snap])
+        print(f'[{step_label}] Primitive Overlay (full analysis)...')
         overlay = PrimitiveOverlay(primitivos_path=prim_path)
         prim_report = overlay.analyze(timeline, concepts=list(snap.codes.keys()))
 
+        # Dual coherence (all 14+ pairs now)
         if prim_report.dual_coherence:
-            print('\n  Dual Coherence:')
+            print('\n  Dual Coherence (%d pairs):' % len(prim_report.dual_coherence))
             for dc in prim_report.dual_coherence:
                 status = 'OK' if dc.coherence_score > 0.5 else 'LOW'
                 print(f'    {dc.primitive_a:<20} <-> {dc.primitive_b:<20} '
                       f'coherence={dc.coherence_score:.3f}  [{status}]')
+            cohs = [dc.coherence_score for dc in prim_report.dual_coherence]
+            print(f'    {"MEAN":<20}     {"":20} '
+                  f'coherence={sum(cohs)/len(cohs):.3f}')
+
+        # Layer emergence
+        if prim_report.layer_emergence:
+            print('\n  Layer Emergence:')
+            for le in prim_report.layer_emergence:
+                print(f'    Layer {le.layer} ({le.layer_name}): '
+                      f'activated={le.primitives_activated}/{le.n_primitives} '
+                      f'median_step={le.median_activation_step}')
+
+        # Dependency completions (top 10)
+        if prim_report.deps_completions:
+            print(f'\n  Dependency Completions ({len(prim_report.deps_completions)} total):')
+            for dc in prim_report.deps_completions[:10]:
+                print(f'    {dc.primitive:<20} step={dc.step}  '
+                      f'deps={dc.deps}')
+
+        # Reconciler: theory vs discovered
+        try:
+            reconciler = Reconciler(overlay)
+            reconciliation = reconciler.reconcile(report, timeline)
+            print('\n  Reconciler (theory vs discovered):')
+            if hasattr(reconciliation, 'mismatches') and reconciliation.mismatches:
+                for mm in reconciliation.mismatches[:10]:
+                    print(f'    {mm}')
+            elif hasattr(reconciliation, 'summary'):
+                print(f'    {reconciliation.summary}')
+            else:
+                print(f'    {reconciliation}')
+        except Exception as e:
+            print(f'  Reconciler skipped: {e}')
+
+    # --- Visualizations ---
+    if args.timeline or args.plots_dir:
+        plots_dir = args.plots_dir
+        if plots_dir is None:
+            run_label = args.run_name or 'current'
+            plots_dir = os.path.normpath(
+                os.path.join(SCRIPT_DIR, '..', 'runs', run_label, 'plots'))
+
+        step_label = '8/8' if args.timeline else '7/7'
+        print()
+        print(f'[{step_label}] Generating visualizations...')
+        print(f'  Output: {plots_dir}')
+        generate_plots(timeline, prim_report, plots_dir, snap)
+        print(f'  Done — plots saved to {plots_dir}')
+
+    # --- CSV export ---
+    if args.csv_dir:
+        print()
+        print(f'  Exporting timeline CSV to {args.csv_dir}...')
+        csv_paths = timeline.to_csv(args.csv_dir)
+        for p in csv_paths:
+            print(f'    {p}')
 
     # ######################################################################
     #  SAVE RESULTS
@@ -453,6 +664,30 @@ def main():
             for dc in prim_report.dual_coherence
         ]
 
+    if prim_report and prim_report.layer_emergence:
+        results['layer_emergence'] = [
+            {'layer': le.layer, 'name': le.layer_name,
+             'activated': le.primitives_activated,
+             'total': le.n_primitives,
+             'median_step': le.median_activation_step}
+            for le in prim_report.layer_emergence
+        ]
+
+    if args.timeline and timeline:
+        results['timeline'] = {
+            'n_snapshots': len(timeline.steps),
+            'steps': timeline.steps,
+            'n_births': len(timeline.births),
+            'n_deaths': len(timeline.deaths),
+            'n_connections': len(timeline.connections),
+            'n_phase_transitions': len(timeline.phase_transitions),
+            'phase_transitions': [
+                {'step': pt.step, 'metric': pt.metric,
+                 'delta': round(pt.delta, 4), 'direction': pt.direction}
+                for pt in timeline.phase_transitions
+            ],
+        }
+
     # Save all concept signatures
     results['signatures'] = {
         concept: {
@@ -468,16 +703,30 @@ def main():
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 
+    # Save timeline JSON separately (for later re-analysis)
+    if args.timeline and timeline:
+        tl_path = os.path.join(RESULTS_DIR, 'timeline.json')
+        timeline.save_json(tl_path)
+        print(f'  Timeline saved: {tl_path}')
+
     print()
     print('=' * 70)
     print(f'  Results saved to: {out_path}')
     print(f'  Signatures: {len(snap.codes)} concepts x {snap.code_dim} bits')
-    print(f'  Unique: {uniq["unique_pct"]}%  Active bits: {active}/65')
+    print(f'  Unique: {uniq["unique_pct"]}%  Active bits: {active}/{snap.code_dim}')
     sep_mean = sum(d['separation_ratio'] for d in capa_sep.values()) / len(capa_sep) if capa_sep else 0
     print(f'  Mean capa separation: {sep_mean:.3f}')
     print(f'  Duals: {len(report.discovered_duals)}  '
           f'Deps: {len(report.discovered_deps)}  '
           f'Triadic: {len(report.discovered_triadic_deps)}')
+    if prim_report and prim_report.dual_coherence:
+        cohs = [dc.coherence_score for dc in prim_report.dual_coherence]
+        print(f'  Dual coherence: {sum(cohs)/len(cohs):.3f} '
+              f'({len(cohs)} pairs)')
+    if args.timeline:
+        plots_dir = args.plots_dir or os.path.normpath(
+            os.path.join(SCRIPT_DIR, '..', 'runs', args.run_name or 'current', 'plots'))
+        print(f'  Plots: {plots_dir}')
     print('=' * 70)
 
 

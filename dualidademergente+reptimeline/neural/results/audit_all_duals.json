@@ -1,0 +1,705 @@
+{
+  "run": "current",
+  "ejes_duales": [
+    {
+      "a_es": "bien",
+      "b_es": "mal",
+      "a_en": "good",
+      "b_en": "evil",
+      "coherence": 0.4166666666666667,
+      "jaccard": 0.5833333333333334,
+      "hamming": 15,
+      "both": 21,
+      "exclusive": 15
+    },
+    {
+      "a_es": "orden",
+      "b_es": "caos",
+      "a_en": "order",
+      "b_en": "chaos",
+      "coherence": 0.6,
+      "jaccard": 0.4,
+      "hamming": 15,
+      "both": 10,
+      "exclusive": 15
+    },
+    {
+      "a_es": "creación",
+      "b_es": "destrucción",
+      "a_en": "creation",
+      "b_en": "destruction",
+      "coherence": 0.375,
+      "jaccard": 0.625,
+      "hamming": 9,
+      "both": 15,
+      "exclusive": 9
+    },
+    {
+      "a_es": "unión",
+      "b_es": "separación",
+      "a_en": "union",
+      "b_en": "separation",
+      "coherence": 0.4444444444444444,
+      "jaccard": 0.5555555555555556,
+      "hamming": 12,
+      "both": 15,
+      "exclusive": 12
+    },
+    {
+      "a_es": "verdad",
+      "b_es": "mentira",
+      "a_en": "truth",
+      "b_en": "lie",
+      "coherence": 0.46875,
+      "jaccard": 0.53125,
+      "hamming": 15,
+      "both": 17,
+      "exclusive": 15
+    },
+    {
+      "a_es": "libertad",
+      "b_es": "control",
+      "a_en": "freedom",
+      "b_en": "control",
+      "coherence": 0.6666666666666666,
+      "jaccard": 0.3333333333333333,
+      "hamming": 18,
+      "both": 9,
+      "exclusive": 18
+    },
+    {
+      "a_es": "vida",
+      "b_es": "muerte",
+      "a_en": "life",
+      "b_en": "death",
+      "coherence": 0.4,
+      "jaccard": 0.6,
+      "hamming": 12,
+      "both": 18,
+      "exclusive": 12
+    },
+    {
+      "a_es": "placer",
+      "b_es": "dolor",
+      "a_en": "pleasure",
+      "b_en": "pain",
+      "coherence": 0.2916666666666667,
+      "jaccard": 0.7083333333333334,
+      "hamming": 7,
+      "both": 17,
+      "exclusive": 7
+    },
+    {
+      "a_es": "consciente",
+      "b_es": "ausente",
+      "a_en": "conscious",
+      "b_en": "absent",
+      "coherence": 0.5483870967741935,
+      "jaccard": 0.45161290322580644,
+      "hamming": 17,
+      "both": 14,
+      "exclusive": 17
+    },
+    {
+      "a_es": "temporal_obs",
+      "b_es": "eterno_obs",
+      "a_en": "mortal_observer",
+      "b_en": "eternal_observer",
+      "coherence": 0.3333333333333333,
+      "jaccard": 0.6666666666666666,
+      "hamming": 12,
+      "both": 24,
+      "exclusive": 12
+    },
+    {
+      "a_es": "individual",
+      "b_es": "colectivo",
+      "a_en": "individual",
+      "b_en": "collective",
+      "coherence": 0.3235294117647059,
+      "jaccard": 0.6764705882352942,
+      "hamming": 11,
+      "both": 23,
+      "exclusive": 11
+    },
+    {
+      "a_es": "receptivo",
+      "b_es": "creador_obs",
+      "a_en": "receptive",
+      "b_en": "creator_observer",
+      "coherence": 0.5428571428571428,
+      "jaccard": 0.45714285714285713,
+      "hamming": 19,
+      "both": 16,
+      "exclusive": 19
+    },
+    {
+      "a_es": "mover",
+      "b_es": "quietud",
+      "a_en": "move",
+      "b_en": "stillness",
+      "coherence": 0.6,
+      "jaccard": 0.4,
+      "hamming": 18,
+      "both": 12,
+      "exclusive": 18
+    },
+    {
+      "a_es": "atracción",
+      "b_es": "aversión",
+      "a_en": "attraction",
+      "b_en": "aversion",
+      "coherence": 0.391304347826087,
+      "jaccard": 0.6086956521739131,
+      "hamming": 9,
+      "both": 14,
+      "exclusive": 9
+    }
+  ],
+  "extra_pairs": [
+    {
+      "a_es": "más",
+      "b_es": "menos",
+      "a_en": "more",
+      "b_en": "less",
+      "coherence": 0.15625,
+      "jaccard": 0.84375,
+      "hamming": 5,
+      "category": "Quantity poles"
+    },
+    {
+      "a_es": "unión",
+      "b_es": "separación",
+      "a_en": "union",
+      "b_en": "separation",
+      "coherence": 0.4444444444444444,
+      "jaccard": 0.5555555555555556,
+      "hamming": 12,
+      "category": "Connection poles"
+    },
+    {
+      "a_es": "orden",
+      "b_es": "caos",
+      "a_en": "order",
+      "b_en": "chaos",
+      "coherence": 0.6,
+      "jaccard": 0.4,
+      "hamming": 15,
+      "category": "Structure poles"
+    },
+    {
+      "a_es": "creación",
+      "b_es": "destrucción",
+      "a_en": "creation",
+      "b_en": "destruction",
+      "coherence": 0.375,
+      "jaccard": 0.625,
+      "hamming": 9,
+      "category": "Making poles"
+    },
+    {
+      "a_es": "mover",
+      "b_es": "quietud",
+      "a_en": "move",
+      "b_en": "stillness",
+      "coherence": 0.6,
+      "jaccard": 0.4,
+      "hamming": 18,
+      "category": "Motion poles"
+    },
+    {
+      "a_es": "puede",
+      "b_es": "debe",
+      "a_en": "can",
+      "b_en": "must",
+      "coherence": 0.22580645161290322,
+      "jaccard": 0.7741935483870968,
+      "hamming": 7,
+      "category": "Modal poles"
+    },
+    {
+      "a_es": "tal_vez",
+      "b_es": "debe",
+      "a_en": "maybe",
+      "b_en": "must",
+      "coherence": 0.4358974358974359,
+      "jaccard": 0.5641025641025641,
+      "hamming": 17,
+      "category": "Certainty poles"
+    },
+    {
+      "a_es": "uno",
+      "b_es": "muchos",
+      "a_en": "one",
+      "b_en": "many",
+      "coherence": 0.36585365853658536,
+      "jaccard": 0.6341463414634146,
+      "hamming": 15,
+      "category": "Quantity scale"
+    },
+    {
+      "a_es": "algunos",
+      "b_es": "todo",
+      "a_en": "some",
+      "b_en": "all",
+      "coherence": 0.4772727272727273,
+      "jaccard": 0.5227272727272727,
+      "hamming": 21,
+      "category": "Scope scale"
+    },
+    {
+      "a_es": "vacío",
+      "b_es": "información",
+      "a_en": "void",
+      "b_en": "information",
+      "coherence": 0.8571428571428571,
+      "jaccard": 0.14285714285714285,
+      "hamming": 24,
+      "category": "Existence poles"
+    },
+    {
+      "a_es": "vacío",
+      "b_es": "uno",
+      "a_en": "void",
+      "b_en": "one",
+      "coherence": 0.8787878787878788,
+      "jaccard": 0.12121212121212122,
+      "hamming": 29,
+      "category": "Nothing/Something"
+    },
+    {
+      "a_es": "fuego",
+      "b_es": "agua",
+      "a_en": "fire",
+      "b_en": "water",
+      "coherence": 0.375,
+      "jaccard": 0.625,
+      "hamming": 9,
+      "category": "Classical elements"
+    },
+    {
+      "a_es": "tierra",
+      "b_es": "aire",
+      "a_en": "earth",
+      "b_en": "air",
+      "coherence": 0.45714285714285713,
+      "jaccard": 0.5428571428571428,
+      "hamming": 16,
+      "category": "Classical elements"
+    },
+    {
+      "a_es": "saber",
+      "b_es": "querer",
+      "a_en": "know",
+      "b_en": "want",
+      "coherence": 0.3103448275862069,
+      "jaccard": 0.6896551724137931,
+      "hamming": 9,
+      "category": "Cognition/Volition"
+    },
+    {
+      "a_es": "pensar",
+      "b_es": "decir",
+      "a_en": "think",
+      "b_en": "say",
+      "coherence": 0.34375,
+      "jaccard": 0.65625,
+      "hamming": 11,
+      "category": "Inner/Outer"
+    },
+    {
+      "a_es": "atracción",
+      "b_es": "decaimiento",
+      "a_en": "attraction",
+      "b_en": "decay",
+      "coherence": 0.5,
+      "jaccard": 0.5,
+      "hamming": 13,
+      "category": "Build/Erode"
+    },
+    {
+      "a_es": "cooperación",
+      "b_es": "aversión",
+      "a_en": "cooperation",
+      "b_en": "aversion",
+      "coherence": 0.5185185185185185,
+      "jaccard": 0.48148148148148145,
+      "hamming": 14,
+      "category": "Social poles"
+    },
+    {
+      "a_es": "atención",
+      "b_es": "intención",
+      "a_en": "attention",
+      "b_en": "intention",
+      "coherence": 0.4166666666666667,
+      "jaccard": 0.5833333333333334,
+      "hamming": 10,
+      "category": "Passive/Active focus"
+    },
+    {
+      "a_es": "parte_de",
+      "b_es": "contención",
+      "a_en": "part_of",
+      "b_en": "containment",
+      "coherence": 0.7941176470588235,
+      "jaccard": 0.20588235294117646,
+      "hamming": 27,
+      "category": "In/Contains"
+    },
+    {
+      "a_es": "pérdida",
+      "b_es": "atracción",
+      "a_en": "loss",
+      "b_en": "attraction",
+      "coherence": 0.4166666666666667,
+      "jaccard": 0.5833333333333334,
+      "hamming": 10,
+      "category": "Lose/Gain"
+    },
+    {
+      "a_es": "cooperación",
+      "b_es": "pérdida",
+      "a_en": "cooperation",
+      "b_en": "loss",
+      "coherence": 0.48148148148148145,
+      "jaccard": 0.5185185185185185,
+      "hamming": 13,
+      "category": "Together/Lost"
+    },
+    {
+      "a_es": "intención",
+      "b_es": "decaimiento",
+      "a_en": "intention",
+      "b_en": "decay",
+      "coherence": 0.6153846153846154,
+      "jaccard": 0.38461538461538464,
+      "hamming": 16,
+      "category": "Purpose/Entropy"
+    }
+  ],
+  "top_anti_correlated": [
+    {
+      "a": "pleasure",
+      "b": "attraction",
+      "coherence": 0.09090909090909091,
+      "jaccard": 0.9090909090909091,
+      "both": 20,
+      "exclusive": 2
+    },
+    {
+      "a": "truth",
+      "b": "life",
+      "coherence": 0.12,
+      "jaccard": 0.88,
+      "both": 22,
+      "exclusive": 3
+    },
+    {
+      "a": "freedom",
+      "b": "life",
+      "coherence": 0.12,
+      "jaccard": 0.88,
+      "both": 22,
+      "exclusive": 3
+    },
+    {
+      "a": "containment",
+      "b": "control",
+      "coherence": 0.14285714285714285,
+      "jaccard": 0.8571428571428571,
+      "both": 12,
+      "exclusive": 2
+    },
+    {
+      "a": "destruction",
+      "b": "decay",
+      "coherence": 0.14285714285714285,
+      "jaccard": 0.8571428571428571,
+      "both": 18,
+      "exclusive": 3
+    },
+    {
+      "a": "truth",
+      "b": "freedom",
+      "coherence": 0.15384615384615385,
+      "jaccard": 0.8461538461538461,
+      "both": 22,
+      "exclusive": 4
+    },
+    {
+      "a": "more",
+      "b": "less",
+      "coherence": 0.15625,
+      "jaccard": 0.84375,
+      "both": 27,
+      "exclusive": 5
+    },
+    {
+      "a": "conscious",
+      "b": "collective",
+      "coherence": 0.17857142857142858,
+      "jaccard": 0.8214285714285714,
+      "both": 23,
+      "exclusive": 5
+    },
+    {
+      "a": "some",
+      "b": "many",
+      "coherence": 0.1794871794871795,
+      "jaccard": 0.8205128205128205,
+      "both": 32,
+      "exclusive": 7
+    },
+    {
+      "a": "vertical_axis",
+      "b": "lateral_axis",
+      "coherence": 0.1875,
+      "jaccard": 0.8125,
+      "both": 13,
+      "exclusive": 3
+    },
+    {
+      "a": "evil",
+      "b": "collective",
+      "coherence": 0.1935483870967742,
+      "jaccard": 0.8064516129032258,
+      "both": 25,
+      "exclusive": 6
+    },
+    {
+      "a": "information",
+      "b": "attraction",
+      "coherence": 0.20833333333333334,
+      "jaccard": 0.7916666666666666,
+      "both": 19,
+      "exclusive": 5
+    },
+    {
+      "a": "can",
+      "b": "must",
+      "coherence": 0.22580645161290322,
+      "jaccard": 0.7741935483870968,
+      "both": 24,
+      "exclusive": 7
+    },
+    {
+      "a": "destruction",
+      "b": "pain",
+      "coherence": 0.22727272727272727,
+      "jaccard": 0.7727272727272727,
+      "both": 17,
+      "exclusive": 5
+    },
+    {
+      "a": "freedom",
+      "b": "pleasure",
+      "coherence": 0.23076923076923078,
+      "jaccard": 0.7692307692307693,
+      "both": 20,
+      "exclusive": 6
+    },
+    {
+      "a": "evil",
+      "b": "conscious",
+      "coherence": 0.23333333333333334,
+      "jaccard": 0.7666666666666667,
+      "both": 23,
+      "exclusive": 7
+    },
+    {
+      "a": "one",
+      "b": "some",
+      "coherence": 0.23529411764705882,
+      "jaccard": 0.7647058823529411,
+      "both": 26,
+      "exclusive": 8
+    },
+    {
+      "a": "information",
+      "b": "attention",
+      "coherence": 0.24,
+      "jaccard": 0.76,
+      "both": 19,
+      "exclusive": 6
+    },
+    {
+      "a": "freedom",
+      "b": "attraction",
+      "coherence": 0.24,
+      "jaccard": 0.76,
+      "both": 19,
+      "exclusive": 6
+    },
+    {
+      "a": "collective",
+      "b": "eternal_observer",
+      "coherence": 0.25,
+      "jaccard": 0.75,
+      "both": 24,
+      "exclusive": 8
+    }
+  ],
+  "top_correlated": [
+    {
+      "a": "pleasure",
+      "b": "attraction",
+      "coherence": 0.09090909090909091,
+      "jaccard": 0.9090909090909091,
+      "both": 20,
+      "exclusive": 2
+    },
+    {
+      "a": "truth",
+      "b": "life",
+      "coherence": 0.12,
+      "jaccard": 0.88,
+      "both": 22,
+      "exclusive": 3
+    },
+    {
+      "a": "freedom",
+      "b": "life",
+      "coherence": 0.12,
+      "jaccard": 0.88,
+      "both": 22,
+      "exclusive": 3
+    },
+    {
+      "a": "containment",
+      "b": "control",
+      "coherence": 0.14285714285714285,
+      "jaccard": 0.8571428571428571,
+      "both": 12,
+      "exclusive": 2
+    },
+    {
+      "a": "destruction",
+      "b": "decay",
+      "coherence": 0.14285714285714285,
+      "jaccard": 0.8571428571428571,
+      "both": 18,
+      "exclusive": 3
+    },
+    {
+      "a": "truth",
+      "b": "freedom",
+      "coherence": 0.15384615384615385,
+      "jaccard": 0.8461538461538461,
+      "both": 22,
+      "exclusive": 4
+    },
+    {
+      "a": "more",
+      "b": "less",
+      "coherence": 0.15625,
+      "jaccard": 0.84375,
+      "both": 27,
+      "exclusive": 5
+    },
+    {
+      "a": "conscious",
+      "b": "collective",
+      "coherence": 0.17857142857142858,
+      "jaccard": 0.8214285714285714,
+      "both": 23,
+      "exclusive": 5
+    },
+    {
+      "a": "some",
+      "b": "many",
+      "coherence": 0.1794871794871795,
+      "jaccard": 0.8205128205128205,
+      "both": 32,
+      "exclusive": 7
+    },
+    {
+      "a": "vertical_axis",
+      "b": "lateral_axis",
+      "coherence": 0.1875,
+      "jaccard": 0.8125,
+      "both": 13,
+      "exclusive": 3
+    },
+    {
+      "a": "evil",
+      "b": "collective",
+      "coherence": 0.1935483870967742,
+      "jaccard": 0.8064516129032258,
+      "both": 25,
+      "exclusive": 6
+    },
+    {
+      "a": "information",
+      "b": "attraction",
+      "coherence": 0.20833333333333334,
+      "jaccard": 0.7916666666666666,
+      "both": 19,
+      "exclusive": 5
+    },
+    {
+      "a": "can",
+      "b": "must",
+      "coherence": 0.22580645161290322,
+      "jaccard": 0.7741935483870968,
+      "both": 24,
+      "exclusive": 7
+    },
+    {
+      "a": "destruction",
+      "b": "pain",
+      "coherence": 0.22727272727272727,
+      "jaccard": 0.7727272727272727,
+      "both": 17,
+      "exclusive": 5
+    },
+    {
+      "a": "freedom",
+      "b": "pleasure",
+      "coherence": 0.23076923076923078,
+      "jaccard": 0.7692307692307693,
+      "both": 20,
+      "exclusive": 6
+    },
+    {
+      "a": "evil",
+      "b": "conscious",
+      "coherence": 0.23333333333333334,
+      "jaccard": 0.7666666666666667,
+      "both": 23,
+      "exclusive": 7
+    },
+    {
+      "a": "one",
+      "b": "some",
+      "coherence": 0.23529411764705882,
+      "jaccard": 0.7647058823529411,
+      "both": 26,
+      "exclusive": 8
+    },
+    {
+      "a": "information",
+      "b": "attention",
+      "coherence": 0.24,
+      "jaccard": 0.76,
+      "both": 19,
+      "exclusive": 6
+    },
+    {
+      "a": "freedom",
+      "b": "attraction",
+      "coherence": 0.24,
+      "jaccard": 0.76,
+      "both": 19,
+      "exclusive": 6
+    },
+    {
+      "a": "collective",
+      "b": "eternal_observer",
+      "coherence": 0.25,
+      "jaccard": 0.75,
+      "both": 24,
+      "exclusive": 8
+    }
+  ]
+}

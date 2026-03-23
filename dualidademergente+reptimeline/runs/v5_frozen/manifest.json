@@ -1,0 +1,173 @@
+{
+  "run_id": "v5_frozen",
+  "run_name": "gpt2_triadic_72_v5_frozen",
+  "date": "2026-03-23 07:55:47",
+  "model": "gpt2-medium",
+  "params": "355M",
+  "bits": 72,
+  "head_mode": "simple",
+  "activation": "ifsq",
+  "steps": 50000,
+  "batch_size": 4,
+  "accum_steps": 2,
+  "effective_batch": 8,
+  "lr": 0.0003,
+  "alpha": 0.05,
+  "gold_file": "gold_primitivos_72.json",
+  "n_concepts": 72,
+  "gpu": "RTX 4060 Ti 16GB",
+  "training_time_s": 15446.700241327286,
+  "training_time_h": 4.29,
+  "grad_checkpoint": true,
+  "metrics": {
+    "best_bit_accuracy_test": 0.907738208770752,
+    "final_loss": 8.889678955078125,
+    "final_bit_acc_test": 0.9057539701461792,
+    "final_sub_test": 0.9416666666666667,
+    "dead_bits": 68,
+    "entropy": 0.03880351201803665
+  },
+  "target_analysis": {
+    "unique_targets": 65,
+    "unique_pct": 100.0,
+    "discriminative_bits": 19,
+    "bits_always_on": 1,
+    "jaccard_median": 0.2608695652173913
+  },
+  "learned_analysis": {
+    "unique_learned": 72,
+    "unique_pct": 100.0,
+    "active_bits": 65,
+    "n_duals": 71,
+    "n_deps": 174,
+    "n_triadic": 918,
+    "n_clusters_090": 9
+  },
+  "learned_vs_target": {
+    "overall_accuracy": 0.724,
+    "unique_targets_asked": 72,
+    "unique_learned_created": 72,
+    "per_capa": {
+      "1": {
+        "mean_accuracy": 0.7269,
+        "min_accuracy": 0.5972,
+        "n_perfect": 0
+      },
+      "2": {
+        "mean_accuracy": 0.7066,
+        "min_accuracy": 0.5417,
+        "n_perfect": 0
+      },
+      "3": {
+        "mean_accuracy": 0.7447,
+        "min_accuracy": 0.6389,
+        "n_perfect": 0
+      },
+      "4": {
+        "mean_accuracy": 0.6951,
+        "min_accuracy": 0.4167,
+        "n_perfect": 0
+      },
+      "5": {
+        "mean_accuracy": 0.7452,
+        "min_accuracy": 0.6528,
+        "n_perfect": 0
+      },
+      "6": {
+        "mean_accuracy": 0.7188,
+        "min_accuracy": 0.6667,
+        "n_perfect": 0
+      }
+    }
+  },
+  "dual_coherence": {
+    "mover/quietud": 0.746,
+    "bien/mal": 0.9429,
+    "verdad/mentira": 1.0,
+    "libertad/control": 0.6842,
+    "vida/muerte": 0.9412,
+    "placer/dolor": 0.95,
+    "consciente/ausente": 0.8235,
+    "individual/colectivo": 0.7869,
+    "temporal_obs/eterno_obs": 0.5714,
+    "receptivo/creador_obs": 1.0,
+    "atracción/aversión": 0.9375
+  },
+  "regla_de_tres": [
+    {
+      "quad": "good:evil=truth:lie",
+      "cosine": 0.9982,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "creation:destruction=life:death",
+      "cosine": 0.9975,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "freedom:control=individual:collective",
+      "cosine": 0.9949,
+      "bit_accuracy": 0.9861
+    },
+    {
+      "quad": "pleasure:pain=conscious:absent",
+      "cosine": 0.996,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "union:separation=order:chaos",
+      "cosine": 0.9969,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "move:stillness=mortal_observer:eternal_observer",
+      "cosine": 0.9894,
+      "bit_accuracy": 0.9306
+    },
+    {
+      "quad": "receptive:creator_observer=truth:lie",
+      "cosine": 0.996,
+      "bit_accuracy": 0.9861
+    },
+    {
+      "quad": "creation:destruction=union:separation",
+      "cosine": 0.9965,
+      "bit_accuracy": 1.0
+    }
+  ],
+  "diagnosis": {},
+  "files": {
+    "results.json": "results.json",
+    "run_config.json": "run_config.json",
+    "training_log.csv": "training_log.csv",
+    "exploration.json": "exploration.json",
+    "deep_analysis.json": "deep_analysis.json",
+    "audit_targets.json": "audit_targets.json",
+    "audit_learned_vs_target.json": "audit_learned_vs_target.json",
+    "audit_primitivos_targets.json": "audit_primitivos_targets.json",
+    "gold_primitivos_72.json": "gold_primitivos_72.json"
+  },
+  "checkpoint_files": [
+    "best.pt",
+    "step_10000.pt",
+    "step_12500.pt",
+    "step_15000.pt",
+    "step_17500.pt",
+    "step_20000.pt",
+    "step_22500.pt",
+    "step_2500.pt",
+    "step_25000.pt",
+    "step_27500.pt",
+    "step_30000.pt",
+    "step_32500.pt",
+    "step_35000.pt",
+    "step_37500.pt",
+    "step_40000.pt",
+    "step_42500.pt",
+    "step_45000.pt",
+    "step_47500.pt",
+    "step_5000.pt",
+    "step_50000.pt",
+    "step_7500.pt"
+  ]
+}

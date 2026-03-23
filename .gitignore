@@ -27,3 +27,12 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Model checkpoints (too large for git — use LFS or store externally)
+dualidademergente+reptimeline/model/checkpoints/
+
+# Training corpus (downloaded separately)
+dualidademergente+reptimeline/model/corpus/
+
+# Temporary/experimental scripts
+dualidademergente+reptimeline/model/_*.py

@@ -51,32 +51,26 @@ runs/
 
 ## Runs Completados
 
-### v1 — Run Original
-- **Modelo:** GPT-2 + 65-bit head
-- **Checkpoints:** `model/checkpoints/gpt2_triadic_65/`
-- **Status:** Completado, no archivado formalmente
+> **Para el log completo de experimentos con resultados, decisiones y hallazgos, ver:**
+> **[../EXPERIMENT_LOG.md](../EXPERIMENT_LOG.md)**
 
-### v2 — 262 Domain Anchors (2026-03-22)
-- **Modelo:** GPT-2 Medium (355M) + 65-bit triadic head (simple, iFSQ)
-- **Targets:** 262 anchors de 8 dominios via `gold_primes_65.json`
-- **Steps:** 50,000 | **Batch:** 4×2=8 | **LR:** 3e-4 | **Alpha:** 0.05
-- **GPU:** RTX 4060 Ti 16GB | **Tiempo:** ~4.9 horas
-- **Resultado:** 95.8% bit accuracy — modelo correcto, TARGETS incorrectos
-- **Root cause:** Solo 10 firmas únicas en 262 targets (3.8%)
-- **Checkpoints:** `model/checkpoints/gpt2_triadic_65_v2/` (21 .pt)
-- **Archivo:** `runs/v2/` (10 archivos + manifest)
+| Run | Bits | Accuracy | Unique | Coherence | PPL | Key Change |
+|-----|------|----------|--------|-----------|-----|------------|
+| v1 | 65 | ~90%? | ? | ? | 2,777 | Baseline |
+| v2 | 65 | 95.8% | 3.8% | ? | 6,735 | 262 domain anchors (bad targets) |
+| v3 | 65 | 90.9% | 89.2% | 0.653 | 5,388 | 65 primitivos directos |
+| v4 | 72 | 92.5% | 100% | 0.876 | 5,608 | Circle expanded +7 primitivos |
+| v5_frozen | 72 | 90.8% | 100% | 0.818 | 31.95 | freeze_base (forgetting FIXED) |
 
-### v3 — 65 Primitivos Directos (PENDIENTE)
-- **Modelo:** GPT-2 Medium (355M) + 65-bit triadic head (simple, iFSQ)
-- **Targets:** 65 primitivos directos via `gold_primitivos_65.json`
-- **Cambios clave vs v2:**
-  - 65 conceptos (no 262) — cada uno con firma única (100%, 0 colisiones)
-  - Texto inglés "word: definition" para GPT-2 (Option D, max 20 tokens)
-  - Regla de Tres usa pares duales del círculo
-  - 515 pares de subsunción (del DAG transitivo)
-  - Jaccard mediana 0.261 (vs 0.667 en v2) — mucho más diverso
-- **Hyperparams:** Mismos que v2 (50K steps, 3e-4 lr, 0.05 alpha)
-- **Checkpoints:** `model/checkpoints/gpt2_triadic_65_v3/`
+### Checkpoints
+
+| Run | Dir | Gold file |
+|-----|-----|-----------|
+| v1 | `checkpoints/gpt2_triadic_65/` | `gold_primitivos_65.json` |
+| v2 | `checkpoints/gpt2_triadic_65_v2/` | `gold_primes_65.json` |
+| v3 | `checkpoints/gpt2_triadic_65_v3/` | `gold_primitivos_65.json` |
+| v4 | `checkpoints/gpt2_triadic_72_v4/` | `gold_primitivos_72.json` |
+| v5_frozen | `checkpoints/gpt2_triadic_72_v5_frozen/` | `gold_primitivos_72.json` |
 
 ## Cómo Lanzar un Entrenamiento
 

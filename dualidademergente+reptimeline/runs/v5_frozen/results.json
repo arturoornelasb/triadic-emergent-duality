@@ -1,0 +1,62 @@
+{
+  "run_name": "gpt2_triadic_72_v5_frozen",
+  "date": "2026-03-23 07:55:47",
+  "model": "gpt2-medium",
+  "bits": 72,
+  "head_mode": "simple",
+  "activation": "ifsq",
+  "steps": 50000,
+  "lr": 0.0003,
+  "alpha": 0.05,
+  "batch_size": 4,
+  "accum_steps": 2,
+  "effective_batch": 8,
+  "gold_file": "gold_primitivos_72.json",
+  "n_concepts": 72,
+  "best_bit_accuracy_test": 0.907738208770752,
+  "final_loss": 8.889678955078125,
+  "elapsed_s": 15446.700241327286,
+  "elapsed_h": 4.29,
+  "regla_de_tres": [
+    {
+      "quad": "good:evil=truth:lie",
+      "cosine": 0.9982,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "creation:destruction=life:death",
+      "cosine": 0.9975,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "freedom:control=individual:collective",
+      "cosine": 0.9949,
+      "bit_accuracy": 0.9861
+    },
+    {
+      "quad": "pleasure:pain=conscious:absent",
+      "cosine": 0.996,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "union:separation=order:chaos",
+      "cosine": 0.9969,
+      "bit_accuracy": 1.0
+    },
+    {
+      "quad": "move:stillness=mortal_observer:eternal_observer",
+      "cosine": 0.9894,
+      "bit_accuracy": 0.9306
+    },
+    {
+      "quad": "receptive:creator_observer=truth:lie",
+      "cosine": 0.996,
+      "bit_accuracy": 0.9861
+    },
+    {
+      "quad": "creation:destruction=union:separation",
+      "cosine": 0.9965,
+      "bit_accuracy": 1.0
+    }
+  ]
+}

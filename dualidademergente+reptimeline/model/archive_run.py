@@ -55,11 +55,28 @@ def load_csv_last_row(path):
 def main():
     parser = argparse.ArgumentParser(description='Archive a training run')
     parser.add_argument('version', help='Run version (e.g. v3, v4)')
+    parser.add_argument('--run-name', default=None,
+                        help='Override checkpoint dir name (default: auto-detect)')
     parser.add_argument('--force', action='store_true', help='Overwrite existing archive')
     args = parser.parse_args()
 
     version = args.version
-    run_name = f'gpt2_triadic_65_{version}'
+    if args.run_name:
+        run_name = args.run_name
+    else:
+        # Auto-detect: try common patterns
+        ckpt_base = os.path.join(SCRIPT_DIR, 'checkpoints')
+        candidates = [
+            f'gpt2_triadic_72_{version}',
+            f'gpt2_triadic_65_{version}',
+        ]
+        run_name = None
+        for c in candidates:
+            if os.path.exists(os.path.join(ckpt_base, c)):
+                run_name = c
+                break
+        if run_name is None:
+            run_name = f'gpt2_triadic_65_{version}'
     ckpt_dir = os.path.join(SCRIPT_DIR, 'checkpoints', run_name)
     run_dir = os.path.join(RUNS_DIR, version)
 

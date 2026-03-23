@@ -1,0 +1,621 @@
+{
+  "membership": {
+    "D1_existir": {
+      "ancla_capas": [
+        1
+      ],
+      "sec_capas": [],
+      "all_capas": [
+        1
+      ],
+      "span": 0,
+      "declared": [
+        1
+      ]
+    },
+    "D2_espacio": {
+      "ancla_capas": [
+        2,
+        4
+      ],
+      "sec_capas": [
+        2,
+        4
+      ],
+      "all_capas": [
+        2,
+        4
+      ],
+      "span": 2,
+      "declared": [
+        2,
+        4
+      ]
+    },
+    "D3_tiempo": {
+      "ancla_capas": [
+        3
+      ],
+      "sec_capas": [
+        3
+      ],
+      "all_capas": [
+        3
+      ],
+      "span": 0,
+      "declared": [
+        3
+      ]
+    },
+    "D4_posibilidad": {
+      "ancla_capas": [
+        4
+      ],
+      "sec_capas": [
+        4
+      ],
+      "all_capas": [
+        4
+      ],
+      "span": 0,
+      "declared": [
+        4
+      ]
+    },
+    "D5_identidad": {
+      "ancla_capas": [
+        4
+      ],
+      "sec_capas": [
+        5
+      ],
+      "all_capas": [
+        4,
+        5
+      ],
+      "span": 1,
+      "declared": [
+        4,
+        5
+      ]
+    },
+    "D6_movimiento": {
+      "ancla_capas": [
+        3
+      ],
+      "sec_capas": [
+        2,
+        3
+      ],
+      "all_capas": [
+        2,
+        3
+      ],
+      "span": 1,
+      "declared": [
+        2,
+        3
+      ]
+    },
+    "D7_orden": {
+      "ancla_capas": [
+        3
+      ],
+      "sec_capas": [
+        4
+      ],
+      "all_capas": [
+        3,
+        4
+      ],
+      "span": 1,
+      "declared": [
+        3,
+        4
+      ]
+    },
+    "D8_uno_muchos": {
+      "ancla_capas": [
+        1,
+        4
+      ],
+      "sec_capas": [
+        2
+      ],
+      "all_capas": [
+        1,
+        2,
+        4
+      ],
+      "span": 3,
+      "declared": [
+        1,
+        2,
+        4
+      ]
+    },
+    "D9_dentro_fuera": {
+      "ancla_capas": [
+        2
+      ],
+      "sec_capas": [
+        2
+      ],
+      "all_capas": [
+        2
+      ],
+      "span": 0,
+      "declared": [
+        2
+      ]
+    },
+    "D10_parte_todo": {
+      "ancla_capas": [
+        2,
+        4
+      ],
+      "sec_capas": [
+        4
+      ],
+      "all_capas": [
+        2,
+        4
+      ],
+      "span": 2,
+      "declared": [
+        2,
+        4
+      ]
+    },
+    "D11_vida_muerte": {
+      "ancla_capas": [
+        5
+      ],
+      "sec_capas": [
+        5
+      ],
+      "all_capas": [
+        5
+      ],
+      "span": 0,
+      "declared": [
+        5
+      ]
+    },
+    "D12_causa_efecto": {
+      "ancla_capas": [
+        3
+      ],
+      "sec_capas": [],
+      "all_capas": [
+        3
+      ],
+      "span": 0,
+      "declared": [
+        3
+      ]
+    },
+    "D13_semejante_diferente": {
+      "ancla_capas": [
+        4
+      ],
+      "sec_capas": [],
+      "all_capas": [
+        4
+      ],
+      "span": 0,
+      "declared": [
+        4
+      ]
+    },
+    "D14_sujeto_objeto": {
+      "ancla_capas": [
+        5
+      ],
+      "sec_capas": [
+        4,
+        5,
+        6
+      ],
+      "all_capas": [
+        4,
+        5,
+        6
+      ],
+      "span": 2,
+      "declared": [
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "classification": {
+    "D1_existir": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c1"
+    },
+    "D2_espacio": {
+      "computed": "SALTO",
+      "proposed": "SALTO",
+      "match": "YES",
+      "details": "2→4 (skip)"
+    },
+    "D3_tiempo": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c3"
+    },
+    "D4_posibilidad": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c4"
+    },
+    "D5_identidad": {
+      "computed": "TRANSICION",
+      "proposed": "TRANSICION",
+      "match": "YES",
+      "details": "4→5"
+    },
+    "D6_movimiento": {
+      "computed": "TRANSICION",
+      "proposed": "TRANSICION",
+      "match": "YES",
+      "details": "2→3"
+    },
+    "D7_orden": {
+      "computed": "TRANSICION",
+      "proposed": "TRANSICION",
+      "match": "YES",
+      "details": "3→4"
+    },
+    "D8_uno_muchos": {
+      "computed": "MULTI",
+      "proposed": "TRANSICION",
+      "match": "PARTIAL",
+      "details": "[1, 2, 4] (span=3)"
+    },
+    "D9_dentro_fuera": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c2"
+    },
+    "D10_parte_todo": {
+      "computed": "SALTO",
+      "proposed": "SALTO",
+      "match": "YES",
+      "details": "2→4 (skip)"
+    },
+    "D11_vida_muerte": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c5"
+    },
+    "D12_causa_efecto": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c3"
+    },
+    "D13_semejante_diferente": {
+      "computed": "INTERNO",
+      "proposed": "INTERNO",
+      "match": "YES",
+      "details": "c4"
+    },
+    "D14_sujeto_objeto": {
+      "computed": "MULTI",
+      "proposed": "TRANSICION",
+      "match": "PARTIAL",
+      "details": "[4, 5, 6] (span=2)"
+    }
+  },
+  "coverage": {
+    "(1, 2)": {
+      "covered": true,
+      "by": [
+        "D8_uno_muchos"
+      ]
+    },
+    "(2, 3)": {
+      "covered": true,
+      "by": [
+        "D6_movimiento"
+      ]
+    },
+    "(3, 4)": {
+      "covered": true,
+      "by": [
+        "D7_orden"
+      ]
+    },
+    "(4, 5)": {
+      "covered": true,
+      "by": [
+        "D5_identidad",
+        "D14_sujeto_objeto"
+      ]
+    },
+    "(5, 6)": {
+      "covered": true,
+      "by": [
+        "D14_sujeto_objeto"
+      ]
+    }
+  },
+  "internals_by_capa": {
+    "1": [
+      "D1_existir"
+    ],
+    "3": [
+      "D3_tiempo",
+      "D12_causa_efecto"
+    ],
+    "4": [
+      "D4_posibilidad",
+      "D13_semejante_diferente"
+    ],
+    "2": [
+      "D9_dentro_fuera"
+    ],
+    "5": [
+      "D11_vida_muerte"
+    ]
+  },
+  "dag_consistency": {
+    "D2_espacio": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "eje_vertical",
+          "to": "eje_profundidad",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "eje_lateral",
+          "to": "eje_profundidad",
+          "from_capa": 4,
+          "to_capa": 2
+        }
+      ]
+    },
+    "D5_identidad": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "individual",
+          "to": "uno",
+          "from_capa": 5,
+          "to_capa": 1
+        },
+        {
+          "from": "individual",
+          "to": "contención",
+          "from_capa": 5,
+          "to_capa": 2
+        },
+        {
+          "from": "colectivo",
+          "to": "muchos",
+          "from_capa": 5,
+          "to_capa": 4
+        },
+        {
+          "from": "colectivo",
+          "to": "cooperación",
+          "from_capa": 5,
+          "to_capa": 4
+        }
+      ]
+    },
+    "D6_movimiento": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "mover",
+          "to": "fuerza",
+          "from_capa": 3,
+          "to_capa": 2
+        },
+        {
+          "from": "mover",
+          "to": "eje_profundidad",
+          "from_capa": 3,
+          "to_capa": 2
+        },
+        {
+          "from": "hacer",
+          "to": "fuerza",
+          "from_capa": 3,
+          "to_capa": 2
+        },
+        {
+          "from": "quietud",
+          "to": "eje_profundidad",
+          "from_capa": 3,
+          "to_capa": 2
+        },
+        {
+          "from": "creación",
+          "to": "información",
+          "from_capa": 3,
+          "to_capa": 1
+        },
+        {
+          "from": "destrucción",
+          "to": "información",
+          "from_capa": 3,
+          "to_capa": 1
+        }
+      ]
+    },
+    "D7_orden": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "bien",
+          "to": "contención",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "bien",
+          "to": "orden",
+          "from_capa": 4,
+          "to_capa": 3
+        },
+        {
+          "from": "bien",
+          "to": "unión",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "mal",
+          "to": "contención",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "mal",
+          "to": "caos",
+          "from_capa": 4,
+          "to_capa": 3
+        },
+        {
+          "from": "mal",
+          "to": "separación",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "verdad",
+          "to": "información",
+          "from_capa": 4,
+          "to_capa": 1
+        },
+        {
+          "from": "verdad",
+          "to": "orden",
+          "from_capa": 4,
+          "to_capa": 3
+        },
+        {
+          "from": "mentira",
+          "to": "información",
+          "from_capa": 4,
+          "to_capa": 1
+        },
+        {
+          "from": "mentira",
+          "to": "caos",
+          "from_capa": 4,
+          "to_capa": 3
+        }
+      ]
+    },
+    "D8_uno_muchos": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "muchos",
+          "to": "uno",
+          "from_capa": 4,
+          "to_capa": 1
+        }
+      ]
+    },
+    "D10_parte_todo": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "todo",
+          "to": "contención",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "algunos",
+          "to": "más",
+          "from_capa": 4,
+          "to_capa": 2
+        },
+        {
+          "from": "algunos",
+          "to": "parte_de",
+          "from_capa": 4,
+          "to_capa": 2
+        }
+      ]
+    },
+    "D14_sujeto_objeto": {
+      "consistent": true,
+      "cross_deps": [
+        {
+          "from": "temporal_obs",
+          "to": "posición_temporal",
+          "from_capa": 6,
+          "to_capa": 3
+        },
+        {
+          "from": "eterno_obs",
+          "to": "todo",
+          "from_capa": 6,
+          "to_capa": 4
+        },
+        {
+          "from": "receptivo",
+          "to": "información",
+          "from_capa": 6,
+          "to_capa": 1
+        },
+        {
+          "from": "creador_obs",
+          "to": "creación",
+          "from_capa": 6,
+          "to_capa": 3
+        },
+        {
+          "from": "creador_obs",
+          "to": "hacer",
+          "from_capa": 6,
+          "to_capa": 3
+        }
+      ]
+    }
+  },
+  "bridge_vectors": {
+    "bridges": {
+      "D8_uno_muchos": 2,
+      "D6_movimiento": 7,
+      "D7_orden": 8,
+      "D5_identidad": 11,
+      "D14_sujeto_objeto": 23
+    },
+    "cosines": {
+      "D8_uno_muchos / D6_movimiento": 0.0,
+      "D8_uno_muchos / D7_orden": 0.0,
+      "D8_uno_muchos / D5_identidad": 0.0,
+      "D8_uno_muchos / D14_sujeto_objeto": 0.2949,
+      "D6_movimiento / D7_orden": 0.1336,
+      "D6_movimiento / D5_identidad": 0.2279,
+      "D6_movimiento / D14_sujeto_objeto": 0.3152,
+      "D7_orden / D5_identidad": 0.1066,
+      "D7_orden / D14_sujeto_objeto": 0.1474,
+      "D5_identidad / D14_sujeto_objeto": 0.3143
+    }
+  },
+  "synthesis": {
+    "classification_match_pct": 85.7,
+    "transition_coverage": 5,
+    "dag_consistency_pct": 100.0,
+    "capa6_internal_missing": true
+  }
+}

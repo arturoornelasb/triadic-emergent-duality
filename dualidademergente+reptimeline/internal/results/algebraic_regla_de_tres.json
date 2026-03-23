@@ -1,0 +1,396 @@
+{
+  "operator_representations": {
+    "D1_existir": {
+      "active_a": 3,
+      "active_b": 3,
+      "log_sigma": 10.207014320177532,
+      "log_sigma_ext": 10.207014320177532
+    },
+    "D2_espacio": {
+      "active_a": 4,
+      "active_b": 2,
+      "log_sigma": 13.62947046462817,
+      "log_sigma_ext": 24.649755965472817
+    },
+    "D3_tiempo": {
+      "active_a": 6,
+      "active_b": 1,
+      "log_sigma": 10.567005370247033,
+      "log_sigma_ext": 34.892319678863814
+    },
+    "D4_posibilidad": {
+      "active_a": 14,
+      "active_b": 6,
+      "log_sigma": 24.267353569959685,
+      "log_sigma_ext": 38.2894612582693
+    },
+    "D5_identidad": {
+      "active_a": 15,
+      "active_b": 11,
+      "log_sigma": 31.303281952003022,
+      "log_sigma_ext": 46.286943616350484
+    },
+    "D6_movimiento": {
+      "active_a": 6,
+      "active_b": 2,
+      "log_sigma": 23.980753478877812,
+      "log_sigma_ext": 39.560805898704096
+    },
+    "D7_orden": {
+      "active_a": 8,
+      "active_b": 2,
+      "log_sigma": 12.850772862313322,
+      "log_sigma_ext": 38.93274145656256
+    },
+    "D8_uno_muchos": {
+      "active_a": 3,
+      "active_b": 2,
+      "log_sigma": 15.258676440000025,
+      "log_sigma_ext": 31.715528139792454
+    },
+    "D9_dentro_fuera": {
+      "active_a": 3,
+      "active_b": 0,
+      "log_sigma": 4.954196310386875,
+      "log_sigma_ext": 18.38216382397124
+    },
+    "D10_parte_todo": {
+      "active_a": 7,
+      "active_b": 4,
+      "log_sigma": 15.85552550892811,
+      "log_sigma_ext": 23.656425408848417
+    },
+    "D11_vida_muerte": {
+      "active_a": 19,
+      "active_b": 4,
+      "log_sigma": 14.216973155684034,
+      "log_sigma_ext": 48.87898263506229
+    },
+    "D12_causa_efecto": {
+      "active_a": 8,
+      "active_b": 1,
+      "log_sigma": 16.04454353848618,
+      "log_sigma_ext": 16.04454353848618
+    },
+    "D13_semejante_diferente": {
+      "active_a": 9,
+      "active_b": 0,
+      "log_sigma": 8.144658242831882,
+      "log_sigma_ext": 8.144658242831882
+    },
+    "D14_sujeto_objeto": {
+      "active_a": 22,
+      "active_b": 4,
+      "log_sigma": 14.643348903122705,
+      "log_sigma_ext": 119.76188688701086
+    }
+  },
+  "transition_proportionality": {
+    "pairwise_cosines_a": {
+      "D8_uno_muchos/D6_movimiento": 0.2357,
+      "D8_uno_muchos/D7_orden": 0.4082,
+      "D8_uno_muchos/D5_identidad": 0.4472,
+      "D8_uno_muchos/D14_sujeto_objeto": 0.2462,
+      "D6_movimiento/D7_orden": 0.5774,
+      "D6_movimiento/D5_identidad": 0.4216,
+      "D6_movimiento/D14_sujeto_objeto": 0.4352,
+      "D7_orden/D5_identidad": 0.639,
+      "D7_orden/D14_sujeto_objeto": 0.5276,
+      "D5_identidad/D14_sujeto_objeto": 0.6055
+    },
+    "pairwise_cosines_b": {
+      "D8_uno_muchos/D6_movimiento": 0.0,
+      "D8_uno_muchos/D7_orden": 0.0,
+      "D8_uno_muchos/D5_identidad": 0.2132,
+      "D8_uno_muchos/D14_sujeto_objeto": 0.0,
+      "D6_movimiento/D7_orden": 0.0,
+      "D6_movimiento/D5_identidad": 0.0,
+      "D6_movimiento/D14_sujeto_objeto": 0.0,
+      "D7_orden/D5_identidad": 0.2132,
+      "D7_orden/D14_sujeto_objeto": 0.0,
+      "D5_identidad/D14_sujeto_objeto": 0.0
+    },
+    "ratios": [
+      {
+        "method": "OR-union",
+        "pair1": "D8_uno_muchos/D6_movimiento",
+        "pair2": "D6_movimiento/D7_orden",
+        "cos1": 0.2357,
+        "cos2": 0.5774,
+        "ratio": 0.4082,
+        "passed": false
+      },
+      {
+        "method": "OR-union",
+        "pair1": "D6_movimiento/D7_orden",
+        "pair2": "D7_orden/D5_identidad",
+        "cos1": 0.5774,
+        "cos2": 0.639,
+        "ratio": 0.9035,
+        "passed": true
+      },
+      {
+        "method": "OR-union",
+        "pair1": "D7_orden/D5_identidad",
+        "pair2": "D5_identidad/D14_sujeto_objeto",
+        "cos1": 0.639,
+        "cos2": 0.6055,
+        "ratio": 1.0553,
+        "passed": true
+      },
+      {
+        "method": "XOR-distinct",
+        "pair1": "D8_uno_muchos/D6_movimiento",
+        "pair2": "D6_movimiento/D7_orden",
+        "cos1": 0.0,
+        "cos2": 0.0,
+        "ratio": "inf",
+        "passed": false
+      },
+      {
+        "method": "XOR-distinct",
+        "pair1": "D6_movimiento/D7_orden",
+        "pair2": "D7_orden/D5_identidad",
+        "cos1": 0.0,
+        "cos2": 0.2132,
+        "ratio": 0.0,
+        "passed": false
+      },
+      {
+        "method": "XOR-distinct",
+        "pair1": "D7_orden/D5_identidad",
+        "pair2": "D5_identidad/D14_sujeto_objeto",
+        "cos1": 0.2132,
+        "cos2": 0.0,
+        "ratio": "inf",
+        "passed": false
+      }
+    ],
+    "sigma_chain": {
+      "log_sigmas": [
+        15.26,
+        23.98,
+        12.85,
+        31.3,
+        14.64
+      ],
+      "ratios": [
+        0.6363,
+        1.8661,
+        0.4105,
+        2.1377
+      ]
+    }
+  },
+  "internal_proportionality": {
+    "pairwise_cosines": {
+      "D1_existir/D9_dentro_fuera": 0.3333,
+      "D1_existir/D3_tiempo": 0.2357,
+      "D1_existir/D12_causa_efecto": 0.4082,
+      "D1_existir/D4_posibilidad": 0.3086,
+      "D1_existir/D13_semejante_diferente": 0.3849,
+      "D1_existir/D11_vida_muerte": 0.2649,
+      "D9_dentro_fuera/D3_tiempo": 0.2357,
+      "D9_dentro_fuera/D12_causa_efecto": 0.2041,
+      "D9_dentro_fuera/D4_posibilidad": 0.4629,
+      "D9_dentro_fuera/D13_semejante_diferente": 0.1925,
+      "D9_dentro_fuera/D11_vida_muerte": 0.3974,
+      "D3_tiempo/D12_causa_efecto": 0.7217,
+      "D3_tiempo/D4_posibilidad": 0.4364,
+      "D3_tiempo/D13_semejante_diferente": 0.6804,
+      "D3_tiempo/D11_vida_muerte": 0.562,
+      "D12_causa_efecto/D4_posibilidad": 0.4725,
+      "D12_causa_efecto/D13_semejante_diferente": 0.7071,
+      "D12_causa_efecto/D11_vida_muerte": 0.4867,
+      "D4_posibilidad/D13_semejante_diferente": 0.4454,
+      "D4_posibilidad/D11_vida_muerte": 0.4905,
+      "D13_semejante_diferente/D11_vida_muerte": 0.6118
+    },
+    "predicted_c6_vector": null,
+    "adjacent_cosines": [
+      {
+        "pair": "D1_existir/D9_dentro_fuera",
+        "capas": "1→2",
+        "cosine": 0.3333
+      },
+      {
+        "pair": "D9_dentro_fuera/D3_tiempo",
+        "capas": "2→3",
+        "cosine": 0.2357
+      },
+      {
+        "pair": "D3_tiempo/D12_causa_efecto",
+        "capas": "3→3",
+        "cosine": 0.7217
+      },
+      {
+        "pair": "D12_causa_efecto/D4_posibilidad",
+        "capas": "3→4",
+        "cosine": 0.4725
+      },
+      {
+        "pair": "D4_posibilidad/D13_semejante_diferente",
+        "capas": "4→4",
+        "cosine": 0.4454
+      },
+      {
+        "pair": "D13_semejante_diferente/D11_vida_muerte",
+        "capas": "4→5",
+        "cosine": 0.6118
+      }
+    ],
+    "prediction_note": "No c6 internal exists — prediction would require c6 anchor+secondary pattern. Based on internal chain pattern, the c6 operator should have cosine ~0.510 with D11_vida_muerte (average of last 3 adjacent cosines)."
+  },
+  "skip_composition": {
+    "D2_espacio": {
+      "cos_vs_AND_composition": 0.5,
+      "cos_vs_OR_composition": 0.3162,
+      "cos_vs_D6": 0.4082,
+      "cos_vs_D7": 0.3536,
+      "active_bits_skip": 4,
+      "active_bits_AND": 4,
+      "active_bits_OR": 10,
+      "hamming_vs_AND": 4,
+      "hamming_vs_OR": 10,
+      "sigma_skip": 12673,
+      "sigma_GCD_D6_D7": 1,
+      "sigma_LCM_D6_D7": 122290920721,
+      "sigma_divides_LCM": false
+    },
+    "D10_parte_todo": {
+      "cos_vs_AND_composition": 0.189,
+      "cos_vs_OR_composition": 0.239,
+      "cos_vs_D6": 0.1543,
+      "cos_vs_D7": 0.2673,
+      "active_bits_skip": 7,
+      "active_bits_AND": 4,
+      "active_bits_OR": 10,
+      "hamming_vs_AND": 9,
+      "hamming_vs_OR": 13,
+      "sigma_skip": 59291,
+      "sigma_GCD_D6_D7": 1,
+      "sigma_LCM_D6_D7": 122290920721,
+      "sigma_divides_LCM": false
+    }
+  },
+  "cross_method_consistency": {
+    "spearman_A_B": 0.1456,
+    "spearman_A_C": -0.1704,
+    "spearman_B_C": 0.1736
+  },
+  "v4_predictions": [
+    {
+      "id": "P1",
+      "hypothesis": "Algebraic distance predicts dual coherence",
+      "detail": "Pairs spanning more capas → more distinct signatures → higher coherence",
+      "groups": {
+        "distance_0": {
+          "desc": "Same-capa dual pairs (internal operators)",
+          "examples": [
+            "vida/muerte",
+            "placer/dolor",
+            "consciente/ausente"
+          ],
+          "expected_coherence": "LOWEST — high Jaccard overlap"
+        },
+        "distance_1": {
+          "desc": "Adjacent-capa dual pairs (transition operators)",
+          "examples": [
+            "individual/colectivo",
+            "mover/quietud"
+          ],
+          "expected_coherence": "MEDIUM — moderate overlap"
+        },
+        "distance_2": {
+          "desc": "Skip-capa dual pairs (skip operators)",
+          "examples": [
+            "atracción/aversión"
+          ],
+          "expected_coherence": "HIGHEST — low Jaccard overlap"
+        }
+      },
+      "test": "Compare mean coherence by algebraic distance group in V4 results"
+    },
+    {
+      "id": "P2",
+      "hypothesis": "72-bit circle reduces Jaccard of collapsed pairs",
+      "detail": "New primitivos (bits 65-71) add differentiation to high-Jaccard pairs",
+      "pairs": [
+        {
+          "pair": "vida/muerte",
+          "v3_jaccard": 0.789,
+          "v4_jaccard": 0.7895,
+          "improved": false,
+          "delta": -0.0005
+        },
+        {
+          "pair": "placer/dolor",
+          "v3_jaccard": 0.714,
+          "v4_jaccard": 0.7143,
+          "improved": false,
+          "delta": -0.0003
+        },
+        {
+          "pair": "consciente/ausente",
+          "v3_jaccard": 0.818,
+          "v4_jaccard": 0.8182,
+          "improved": false,
+          "delta": -0.0002
+        },
+        {
+          "pair": "individual/colectivo",
+          "v3_jaccard": 0.8,
+          "v4_jaccard": 0.8,
+          "improved": false,
+          "delta": 0.0
+        },
+        {
+          "pair": "receptivo/creador_obs",
+          "v3_jaccard": 0.75,
+          "v4_jaccard": 0.75,
+          "improved": false,
+          "delta": 0.0
+        }
+      ],
+      "test": "All 5 pairs should show Jaccard reduction in V4 vs V3"
+    },
+    {
+      "id": "P3",
+      "hypothesis": "Transition operators produce higher per-domain accuracy than internals",
+      "detail": "Transitions connect distinct algebraic domains → clearer gradient signal",
+      "transitions": [
+        "D8_uno_muchos",
+        "D6_movimiento",
+        "D7_orden",
+        "D5_identidad",
+        "D14_sujeto_objeto"
+      ],
+      "internals": [
+        "D1_existir",
+        "D9_dentro_fuera",
+        "D3_tiempo",
+        "D12_causa_efecto",
+        "D4_posibilidad",
+        "D13_semejante_diferente",
+        "D11_vida_muerte"
+      ],
+      "test": "Compare mean per-domain accuracy: transition domains vs internal domains in V4"
+    },
+    {
+      "id": "P4",
+      "hypothesis": "Capa 6 dual pairs have lowest coherence due to missing internal operator",
+      "detail": "temporal_obs/eterno_obs and receptivo/creador_obs lack algebraic internal structure",
+      "c6_pairs": [
+        "temporal_obs/eterno_obs",
+        "receptivo/creador_obs"
+      ],
+      "test": "C6 coherence < C5 coherence < C4 coherence in V4"
+    },
+    {
+      "id": "P5",
+      "hypothesis": "D14_sujeto_objeto domains show high variance due to multi-role spanning capas 4-6",
+      "detail": "D14 serves as transition 4→5, 5→6, AND 4→6 simultaneously — conflicting gradients",
+      "test": "Variance of per-capa accuracy for D14 members > mean variance of other dualidades"
+    }
+  ]
+}

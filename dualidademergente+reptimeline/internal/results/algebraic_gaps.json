@@ -1,0 +1,673 @@
+{
+  "coverage": {
+    "1→2": {
+      "operators": [
+        "D8_uno_muchos"
+      ],
+      "covered": true
+    },
+    "1→3": {
+      "operators": [],
+      "covered": false
+    },
+    "1→4": {
+      "operators": [
+        "D8_uno_muchos"
+      ],
+      "covered": true
+    },
+    "1→5": {
+      "operators": [],
+      "covered": false
+    },
+    "1→6": {
+      "operators": [],
+      "covered": false
+    },
+    "2→3": {
+      "operators": [
+        "D6_movimiento"
+      ],
+      "covered": true
+    },
+    "2→4": {
+      "operators": [
+        "D2_espacio",
+        "D8_uno_muchos",
+        "D10_parte_todo"
+      ],
+      "covered": true
+    },
+    "2→5": {
+      "operators": [],
+      "covered": false
+    },
+    "2→6": {
+      "operators": [],
+      "covered": false
+    },
+    "3→4": {
+      "operators": [
+        "D7_orden"
+      ],
+      "covered": true
+    },
+    "3→5": {
+      "operators": [],
+      "covered": false
+    },
+    "3→6": {
+      "operators": [],
+      "covered": false
+    },
+    "4→5": {
+      "operators": [
+        "D5_identidad",
+        "D14_sujeto_objeto"
+      ],
+      "covered": true
+    },
+    "4→6": {
+      "operators": [
+        "D14_sujeto_objeto"
+      ],
+      "covered": true
+    },
+    "5→6": {
+      "operators": [
+        "D14_sujeto_objeto"
+      ],
+      "covered": true
+    }
+  },
+  "covered_pairs": 8,
+  "total_pairs": 15,
+  "gaps": {
+    "1→3": {
+      "distance": 2,
+      "composable": true,
+      "composition_path": [
+        "D8_uno_muchos",
+        "D6_movimiento"
+      ]
+    },
+    "1→5": {
+      "distance": 4,
+      "composable": true,
+      "composition_path": [
+        "D8_uno_muchos",
+        "D6_movimiento",
+        "D7_orden",
+        "D5_identidad"
+      ]
+    },
+    "1→6": {
+      "distance": 5,
+      "composable": true,
+      "composition_path": [
+        "D8_uno_muchos",
+        "D6_movimiento",
+        "D7_orden",
+        "D5_identidad",
+        "D14_sujeto_objeto"
+      ]
+    },
+    "2→5": {
+      "distance": 3,
+      "composable": true,
+      "composition_path": [
+        "D6_movimiento",
+        "D7_orden",
+        "D5_identidad"
+      ]
+    },
+    "2→6": {
+      "distance": 4,
+      "composable": true,
+      "composition_path": [
+        "D6_movimiento",
+        "D7_orden",
+        "D5_identidad",
+        "D14_sujeto_objeto"
+      ]
+    },
+    "3→5": {
+      "distance": 2,
+      "composable": true,
+      "composition_path": [
+        "D7_orden",
+        "D5_identidad"
+      ]
+    },
+    "3→6": {
+      "distance": 3,
+      "composable": true,
+      "composition_path": [
+        "D7_orden",
+        "D5_identidad",
+        "D14_sujeto_objeto"
+      ]
+    }
+  },
+  "first_principles_matches": {
+    "capa6_internal": [
+      {
+        "principle": "Summary Table",
+        "keyword": "consciousness",
+        "source": "09_philosophy_of_science/philosophy_of_mind/first_principles.md"
+      },
+      {
+        "principle": "Summary Table",
+        "keyword": "measurement",
+        "source": "02_physics/quantum_mechanics/first_principles.md"
+      },
+      {
+        "principle": "Summary Table",
+        "keyword": "consciousness",
+        "source": "10_interdisciplinary/cognitive_science/first_principles.md"
+      },
+      {
+        "principle": "Summary Table",
+        "keyword": "autopoiesis",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "Overview",
+        "keyword": "consciousness",
+        "source": "09_philosophy_of_science/philosophy_of_mind/first_principles.md"
+      },
+      {
+        "principle": "Prerequisites",
+        "keyword": "consciousness",
+        "source": "09_philosophy_of_science/philosophy_of_mind/first_principles.md"
+      },
+      {
+        "principle": "Overview",
+        "keyword": "measurement",
+        "source": "02_physics/quantum_mechanics/first_principles.md"
+      },
+      {
+        "principle": "Prerequisites",
+        "keyword": "consciousness",
+        "source": "10_interdisciplinary/cognitive_science/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 1: The Mind-Body Problem",
+        "keyword": "qualia",
+        "source": "09_philosophy_of_science/philosophy_of_mind/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 2: Functionalism",
+        "keyword": "qualia",
+        "source": "09_philosophy_of_science/philosophy_of_mind/first_principles.md"
+      }
+    ],
+    "capa3_to_5": [
+      {
+        "principle": "Overview",
+        "keyword": "emergence",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 1: A System Is More Than the Sum of Its Parts (Emergence)",
+        "keyword": "emergence",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 4: The Principle of Requisite Variety (Ashby's Law)",
+        "keyword": "complexity",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 5: Self-Organization",
+        "keyword": "self-organization",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 6: Hierarchy and Modularity",
+        "keyword": "complexity",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 7: Entropy, Dissipative Structures, and Open Systems",
+        "keyword": "dissipative",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 9: Autopoiesis",
+        "keyword": "autopoiesis",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 12: Resilience and Adaptive Cycles",
+        "keyword": "adaptive",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "Summary Table",
+        "keyword": "emergence",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 14: Soft Systems Methodology (Checkland)",
+        "keyword": "emergence",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      }
+    ],
+    "capa1_to_3": [
+      {
+        "principle": "Overview",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 2: Feedback",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 3: Homeostasis and Equilibrium",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 4: The Principle of Requisite Variety (Ashby's Law)",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 5: Self-Organization",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 7: Entropy, Dissipative Structures, and Open Systems",
+        "keyword": "sequence",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 9: Autopoiesis",
+        "keyword": "process",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 10: Attractors and Stability in Dynamical Systems",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 11: Cybernetics and Control Theory",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      },
+      {
+        "principle": "PRINCIPLE 12: Resilience and Adaptive Cycles",
+        "keyword": "feedback",
+        "source": "07_formal_sciences/systems_theory/first_principles.md"
+      }
+    ]
+  },
+  "capa6_analysis": {
+    "primitivos": [
+      {
+        "nombre": "temporal_obs",
+        "english": "mortal_observer",
+        "deps": [
+          "consciente",
+          "posición_temporal"
+        ],
+        "dep_capas": [
+          5,
+          3
+        ]
+      },
+      {
+        "nombre": "eterno_obs",
+        "english": "eternal_observer",
+        "deps": [
+          "consciente",
+          "todo"
+        ],
+        "dep_capas": [
+          5,
+          4
+        ]
+      },
+      {
+        "nombre": "receptivo",
+        "english": "receptive",
+        "deps": [
+          "consciente",
+          "información",
+          "atención"
+        ],
+        "dep_capas": [
+          5,
+          1,
+          5
+        ]
+      },
+      {
+        "nombre": "creador_obs",
+        "english": "creator_observer",
+        "deps": [
+          "consciente",
+          "creación",
+          "hacer",
+          "intención"
+        ],
+        "dep_capas": [
+          5,
+          3,
+          3,
+          5
+        ]
+      }
+    ],
+    "dual_pairs": [
+      {
+        "pair": [
+          "temporal_obs",
+          "eterno_obs"
+        ],
+        "shared_deps": [
+          "consciente"
+        ],
+        "unique_a": [
+          "posición_temporal"
+        ],
+        "unique_b": [
+          "todo"
+        ]
+      },
+      {
+        "pair": [
+          "receptivo",
+          "creador_obs"
+        ],
+        "shared_deps": [
+          "consciente"
+        ],
+        "unique_a": [
+          "atención",
+          "información"
+        ],
+        "unique_b": [
+          "creación",
+          "hacer",
+          "intención"
+        ]
+      }
+    ],
+    "cross_pair": {
+      "shared_deps": [
+        "consciente"
+      ],
+      "unique_pair1": [
+        "posición_temporal",
+        "todo"
+      ],
+      "unique_pair2": [
+        "atención",
+        "creación",
+        "hacer",
+        "información",
+        "intención"
+      ]
+    },
+    "pair_jaccards": [
+      {
+        "pair": [
+          "temporal_obs",
+          "eterno_obs"
+        ],
+        "jaccard": 0.8182,
+        "diff_bits": 4
+      },
+      {
+        "pair": [
+          "receptivo",
+          "creador_obs"
+        ],
+        "jaccard": 0.75,
+        "diff_bits": 6
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Autopoiesis (Self-Production)",
+        "operation": "The observer produces its own components — operationally closed yet coupled",
+        "algebra": "Maps {0,?} → {0,?}: self-referential closure within probabilistic domain",
+        "source": "systems_theory/first_principles.md",
+        "connects": "Both dual pairs: temporal self-production AND receptive self-modeling",
+        "score": 0.85
+      },
+      {
+        "name": "Measurement/Collapse (Observer Effect)",
+        "operation": "Observation fixes indeterminate state — the act of observing changes the observed",
+        "algebra": "Maps {0,?} → {0,1}: reduces probabilistic to boolean (but within meta-level)",
+        "source": "quantum_mechanics/first_principles.md",
+        "connects": "temporal_obs↔eterno_obs (collapse of temporal superposition)",
+        "score": 0.8
+      },
+      {
+        "name": "Global Workspace (Conscious Access)",
+        "operation": "One process wins and broadcasts to all — selective gating of awareness",
+        "algebra": "Maps {0,?} → {0,?}: competitive selection within probabilistic states",
+        "source": "cognitive_science/first_principles.md",
+        "connects": "receptivo↔creador_obs (passive reception vs active broadcast)",
+        "score": 0.75
+      },
+      {
+        "name": "Intentionality (Aboutness)",
+        "operation": "Mental states are directed toward objects — the content-vehicle distinction",
+        "algebra": "Maps observer → observed: creates referential link within meta-level",
+        "source": "philosophy_of_mind/first_principles.md",
+        "connects": "Cross-pair: links what observer IS (temporal/eternal) to what it DOES (receive/create)",
+        "score": 0.7
+      }
+    ]
+  },
+  "proposals": [
+    {
+      "gap": "1→3",
+      "gap_name": "Boolean→Ordinal (Existence→Time)",
+      "candidate": "devenir (becoming)",
+      "definition": "The transition from pure existence to temporal sequence",
+      "proposed_capa": 2,
+      "deps": [
+        "vacío",
+        "uno",
+        "flujo_temporal"
+      ],
+      "source": "Process metaphysics (Whitehead), Systems theory (feedback)",
+      "impact": "Would create direct Boolean→Ordinal path without Fuzzy intermediary",
+      "priority": "LOW — composable via chain, and D8+D6 already covers this indirectly"
+    },
+    {
+      "gap": "1→5",
+      "gap_name": "Booleano {0,1}→Trivalente {−,0,+}",
+      "candidate": null,
+      "definition": null,
+      "proposed_capa": null,
+      "deps": null,
+      "source": "N/A — too far apart, composition via chain is natural",
+      "impact": "Would bypass 3-4 algebraic layers",
+      "priority": "NONE — long-range gaps are features, not bugs"
+    },
+    {
+      "gap": "1→6",
+      "gap_name": "Booleano {0,1}→Probabilístico {0,?}",
+      "candidate": null,
+      "definition": null,
+      "proposed_capa": null,
+      "deps": null,
+      "source": "N/A — too far apart, composition via chain is natural",
+      "impact": "Would bypass 3-4 algebraic layers",
+      "priority": "NONE — long-range gaps are features, not bugs"
+    },
+    {
+      "gap": "3→5",
+      "gap_name": "Ordinal→Trivalent (Time→Life)",
+      "candidate": "emergencia (emergence)",
+      "definition": "Spontaneous arising of organized complexity from temporal process",
+      "proposed_capa": 4,
+      "deps": [
+        "flujo_temporal",
+        "orden",
+        "vida"
+      ],
+      "source": "Systems theory (dissipative structures, self-organization)",
+      "impact": "Would create direct Ordinal→Trivalent path",
+      "priority": "LOW — composable via D7+D5, and biological emergence is implicit in vida deps"
+    },
+    {
+      "gap": "6↔6",
+      "gap_name": "Probabilistic internal operator",
+      "candidate": "reflexión (self-observation)",
+      "definition": "The observer observing itself — operational closure of meta-level",
+      "proposed_capa": 6,
+      "deps": [
+        "consciente",
+        "temporal_obs",
+        "receptivo"
+      ],
+      "source": "Autopoiesis (systems theory), Measurement problem (QM), Hard problem (philo of mind)",
+      "impact": "Would complete the algebraic layer system — every capa would have an internal operator",
+      "priority": "HIGH — structural gap, needed for theoretical completeness"
+    }
+  ],
+  "jaccard_impact": [
+    {
+      "candidate": "devenir (becoming)",
+      "gap": "1→3",
+      "new_dep_bits": [
+        0,
+        12,
+        44
+      ],
+      "affected": [
+        {
+          "primitivo": "temporal_obs",
+          "overlap_bits": [
+            12,
+            44
+          ],
+          "overlap_count": 2
+        },
+        {
+          "primitivo": "eterno_obs",
+          "overlap_bits": [
+            12,
+            44
+          ],
+          "overlap_count": 2
+        },
+        {
+          "primitivo": "receptivo",
+          "overlap_bits": [
+            12,
+            44
+          ],
+          "overlap_count": 2
+        },
+        {
+          "primitivo": "creador_obs",
+          "overlap_bits": [
+            12,
+            44
+          ],
+          "overlap_count": 2
+        }
+      ]
+    },
+    {
+      "candidate": "emergencia (emergence)",
+      "gap": "3→5",
+      "new_dep_bits": [
+        12,
+        22,
+        32
+      ],
+      "affected": [
+        {
+          "primitivo": "temporal_obs",
+          "overlap_bits": [
+            12,
+            22,
+            32
+          ],
+          "overlap_count": 3
+        },
+        {
+          "primitivo": "eterno_obs",
+          "overlap_bits": [
+            12,
+            22,
+            32
+          ],
+          "overlap_count": 3
+        },
+        {
+          "primitivo": "receptivo",
+          "overlap_bits": [
+            12,
+            22,
+            32
+          ],
+          "overlap_count": 3
+        },
+        {
+          "primitivo": "creador_obs",
+          "overlap_bits": [
+            12,
+            22,
+            32
+          ],
+          "overlap_count": 3
+        }
+      ]
+    },
+    {
+      "candidate": "reflexión (self-observation)",
+      "gap": "6↔6",
+      "new_dep_bits": [
+        36,
+        38,
+        42
+      ],
+      "affected": [
+        {
+          "primitivo": "temporal_obs",
+          "overlap_bits": [
+            36,
+            38
+          ],
+          "overlap_count": 2
+        },
+        {
+          "primitivo": "eterno_obs",
+          "overlap_bits": [
+            36
+          ],
+          "overlap_count": 1
+        },
+        {
+          "primitivo": "receptivo",
+          "overlap_bits": [
+            36,
+            42
+          ],
+          "overlap_count": 2
+        },
+        {
+          "primitivo": "creador_obs",
+          "overlap_bits": [
+            36
+          ],
+          "overlap_count": 1
+        }
+      ]
+    }
+  ]
+}

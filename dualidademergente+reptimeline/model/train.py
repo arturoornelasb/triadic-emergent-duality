@@ -138,14 +138,14 @@ def load_corpus(args, tokenizer):
 #  SECTION 2: ANCHOR & SUBSUMPTION LOADING
 # ######################################################################
 
-def load_anchors(tokenizer, n_bits, device, test_pct=0.2):
+def load_anchors(tokenizer, n_bits, device, gold_file='gold_primitivos_65.json', test_pct=0.2):
     """Load gold anchors, split train/test for evaluation.
 
     Returns: (train_t, train_tgt, train_words, test_t, test_tgt, test_words)
     """
-    gold_path = os.path.join(SCRIPT_DIR, 'gold_primitivos_65.json')
+    gold_path = os.path.join(SCRIPT_DIR, gold_file)
     if not os.path.exists(gold_path):
-        print('  No gold_primitivos_65.json found. Run generate_gold_primitivos.py first.')
+        print(f'  No {gold_file} found. Run the corresponding generate_gold_primitivos script first.')
         return None
 
     with open(gold_path, 'r', encoding='utf-8') as f:
@@ -466,7 +466,7 @@ def train(args):
     gold_data = None
 
     if not args.no_supervision:
-        anchor_data = load_anchors(tokenizer, args.bits, device)
+        anchor_data = load_anchors(tokenizer, args.bits, device, gold_file=args.gold_file)
         if anchor_data:
             train_t, train_tgt, train_words, test_t, test_tgt, test_words, gold_data = anchor_data
             sub_data = build_subsumption_pairs(gold_data, tokenizer, device)
@@ -515,7 +515,7 @@ def train(args):
     os.makedirs(ckpt_dir, exist_ok=True)
 
     # --- Save run configuration for reproducibility ---
-    gold_file = 'gold_primitivos_65.json'
+    gold_file = args.gold_file
     gold_src = os.path.join(SCRIPT_DIR, gold_file)
     if start_step == 0:
         # Copy gold targets into checkpoint dir (frozen snapshot)
@@ -853,6 +853,8 @@ if __name__ == '__main__':
                         help='Resume from checkpoint path')
 
     # Output
+    parser.add_argument('--gold-file', default='gold_primitivos_65.json',
+                        help='Gold targets JSON file (in model/ dir)')
     parser.add_argument('--run-name', default='gpt2_triadic_65_v3')
     parser.add_argument('--print-every', type=int, default=50)
     parser.add_argument('--eval-every', type=int, default=1000)

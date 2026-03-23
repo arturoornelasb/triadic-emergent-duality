@@ -15,8 +15,13 @@ RESULTS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'neural', 'results
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--gold-file', default='gold_primitivos_65.json')
+    args = parser.parse_args()
+
     # Load gold targets
-    gold_path = os.path.join(SCRIPT_DIR, 'gold_primitivos_65.json')
+    gold_path = os.path.join(SCRIPT_DIR, args.gold_file)
     with open(gold_path, 'r', encoding='utf-8') as f:
         gold = json.load(f)
 
@@ -49,9 +54,10 @@ def main():
         target = gold[c]['binary_signature']
         actual = learned[c]['bits']
         n_correct = sum(t == a for t, a in zip(target, actual))
-        n_wrong = 65 - n_correct
+        n_bits = len(target)
+        n_wrong = n_bits - n_correct
         wrong_bits = []
-        for i in range(65):
+        for i in range(n_bits):
             if target[i] != actual[i]:
                 wrong_bits.append({
                     'bit': i,
@@ -61,7 +67,7 @@ def main():
                 })
         per_concept[c] = {
             'capa': gold[c].get('capa', 0),
-            'accuracy': n_correct / 65,
+            'accuracy': n_correct / n_bits,
             'n_wrong': n_wrong,
             'wrong_bits': wrong_bits,
         }

@@ -1,0 +1,13 @@
+{
+  "v5_frozen": {
+    "checkpoint": "gpt2_triadic_72_v5_frozen",
+    "n_bits": 72,
+    "step": 41001,
+    "bit_accuracy": 0.907738208770752,
+    "alpha": 0.05,
+    "perplexity": 31.95,
+    "avg_loss": 3.464,
+    "total_tokens": 631,
+    "delta_vs_baseline_pct": null
+  }
+}
