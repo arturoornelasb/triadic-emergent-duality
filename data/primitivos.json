@@ -1,7 +1,7 @@
 {
-  "version": "1.0",
-  "total": 65,
-  "descripcion": "65 primitivos del Sistema 7×7: 63 con bit directo (0-62) + 2 overflow (bits 63-64) representados como composición de bits existentes. Cada uno tiene un primo (identidad algebraica), una capa dimensional (emergencia), y dependencias.",
+  "version": "1.1",
+  "total": 72,
+  "descripcion": "72 primitivos: 63 originales (bits 0-62) + 2 overflow (63-64) + 7 nuevos (65-71) añadidos para fortalecer la diferenciación de pares duales con Jaccard > 0.80. Fuentes: Thermodynamics, Systems Theory, Psychology, Neuroscience, Philosophy of Mind, Game Theory.",
 
   "capas": {
     "1": {"nombre": "Punto (0D)", "descripcion": "Un punto existe. La primera dualidad: existir/no existir."},
@@ -17,7 +17,8 @@
     ["unión", "separación"], ["verdad", "mentira"], ["libertad", "control"],
     ["vida", "muerte"], ["placer", "dolor"], ["consciente", "ausente"],
     ["temporal_obs", "eterno_obs"], ["individual", "colectivo"], ["receptivo", "creador_obs"],
-    ["mover", "quietud"]
+    ["mover", "quietud"],
+    ["atracción", "aversión"]
   ],
 
   "tres_estados": {
@@ -75,21 +76,28 @@
     {"bit": 17, "primo": 61,  "nombre": "olfato",            "capa": 5, "deps": ["mover", "información"],                    "def": "Percepción olfativa"},
     {"bit": 19, "primo": 71,  "nombre": "interocepción",     "capa": 5, "deps": ["contención", "información", "vida"],       "def": "Estado interno del cuerpo"},
     {"bit": 32, "primo": 137, "nombre": "vida",              "capa": 5, "deps": ["creación", "contención", "flujo_temporal", "orden", "parte_de"], "def": "Animación, crecimiento", "dual": "muerte"},
-    {"bit": 33, "primo": 139, "nombre": "muerte",            "capa": 5, "deps": ["vida", "destrucción"],                     "def": "Cese vital, disolución", "dual": "vida"},
-    {"bit": 34, "primo": 149, "nombre": "placer",            "capa": 5, "deps": ["vida", "información"],                     "def": "Experiencia hedónica positiva", "dual": "dolor"},
-    {"bit": 35, "primo": 151, "nombre": "dolor",             "capa": 5, "deps": ["vida", "información"],                     "def": "Experiencia hedónica negativa", "dual": "placer"},
+    {"bit": 33, "primo": 139, "nombre": "muerte",            "capa": 5, "deps": ["vida", "destrucción", "decaimiento"],      "def": "Cese vital, disolución", "dual": "vida"},
+    {"bit": 34, "primo": 149, "nombre": "placer",            "capa": 5, "deps": ["vida", "información", "atracción"],        "def": "Experiencia hedónica positiva", "dual": "dolor"},
+    {"bit": 35, "primo": 151, "nombre": "dolor",             "capa": 5, "deps": ["vida", "información", "aversión"],         "def": "Experiencia hedónica negativa", "dual": "placer"},
     {"bit": 36, "primo": 157, "nombre": "consciente",        "capa": 5, "deps": ["vida", "información", "vista"],            "def": "Awareness, presencia de conciencia", "dual": "ausente"},
-    {"bit": 37, "primo": 163, "nombre": "ausente",           "capa": 5, "deps": ["consciente"],                              "def": "Ausencia de conciencia", "dual": "consciente"},
+    {"bit": 37, "primo": 163, "nombre": "ausente",           "capa": 5, "deps": ["consciente", "pérdida"],                   "def": "Ausencia de conciencia", "dual": "consciente"},
     {"bit": 40, "primo": 179, "nombre": "individual",        "capa": 5, "deps": ["uno", "contención", "vida"],               "def": "Uno solo, particular", "dual": "colectivo"},
-    {"bit": 41, "primo": 181, "nombre": "colectivo",         "capa": 5, "deps": ["muchos", "individual"],                    "def": "Grupo, comunidad", "dual": "individual"},
+    {"bit": 41, "primo": 181, "nombre": "colectivo",         "capa": 5, "deps": ["muchos", "individual", "cooperación"],     "def": "Grupo, comunidad", "dual": "individual"},
     {"bit": 49, "primo": 229, "nombre": "querer",            "capa": 5, "deps": ["consciente", "hacer"],                     "def": "Deseo, voluntad, intención"},
     {"bit": 51, "primo": 239, "nombre": "saber",             "capa": 5, "deps": ["consciente", "información", "orden"],      "def": "Conocimiento, comprensión"},
     {"bit": 52, "primo": 241, "nombre": "pensar",            "capa": 5, "deps": ["consciente", "información"],               "def": "Razonamiento, reflexión"},
     {"bit": 53, "primo": 251, "nombre": "decir",             "capa": 5, "deps": ["consciente", "oído", "hacer"],             "def": "Comunicación verbal"},
     {"bit": 38, "primo": 167, "nombre": "temporal_obs",      "capa": 6, "deps": ["consciente", "posición_temporal"],         "def": "Observador mortal, atado al tiempo", "dual": "eterno_obs"},
     {"bit": 39, "primo": 173, "nombre": "eterno_obs",        "capa": 6, "deps": ["consciente", "todo"],                      "def": "Observador fuera del tiempo", "dual": "temporal_obs"},
-    {"bit": 42, "primo": 191, "nombre": "receptivo",         "capa": 6, "deps": ["consciente", "información"],               "def": "Que recibe, absorbe, escucha", "dual": "creador_obs"},
-    {"bit": 43, "primo": 193, "nombre": "creador_obs",       "capa": 6, "deps": ["consciente", "creación", "hacer"],         "def": "Que crea, produce activamente", "dual": "receptivo"},
+    {"bit": 42, "primo": 191, "nombre": "receptivo",         "capa": 6, "deps": ["consciente", "información", "atención"],   "def": "Que recibe, absorbe, escucha", "dual": "creador_obs"},
+    {"bit": 43, "primo": 193, "nombre": "creador_obs",       "capa": 6, "deps": ["consciente", "creación", "hacer", "intención"], "def": "Que crea, produce activamente", "dual": "receptivo"},
+    {"bit": 66, "primo": 331, "nombre": "atracción",         "capa": 3, "deps": ["fuerza", "unión"],                          "def": "Tendencia de aproximación, valencia positiva", "dual": "aversión", "source": "Physics fundamental forces, Psychology operant conditioning (reward), Neuroscience reward circuits"},
+    {"bit": 65, "primo": 317, "nombre": "decaimiento",       "capa": 4, "deps": ["destrucción", "caos"],                      "def": "Deterioro progresivo, disolución de estructura organizada", "source": "Thermodynamics 2nd Law (entropy increase), Biology apoptosis/senescence, Physics radioactive decay"},
+    {"bit": 67, "primo": 337, "nombre": "aversión",          "capa": 4, "deps": ["fuerza", "destrucción"],                    "def": "Tendencia de evitación, valencia negativa", "dual": "atracción", "source": "Psychology avoidance motivation, Neuroscience threat/pain circuits, Biology flight response"},
+    {"bit": 68, "primo": 347, "nombre": "cooperación",       "capa": 4, "deps": ["unión", "hacer"],                           "def": "Acción conjunta hacia objetivo compartido", "source": "Game Theory Nash equilibrium, Ecology mutualism, Sociology collective behavior (Durkheim)"},
+    {"bit": 69, "primo": 349, "nombre": "pérdida",           "capa": 4, "deps": ["vacío", "destrucción"],                     "def": "Ausencia tras haber tenido, vacío dejado por destrucción", "source": "Psychology loss/grief, Philosophy of Mind absence, Thermodynamics irreversibility"},
+    {"bit": 70, "primo": 353, "nombre": "atención",          "capa": 5, "deps": ["consciente", "quietud"],                    "def": "Foco selectivo de la conciencia, filtro perceptual", "source": "Cognitive Science computational theory of mind, Neuroscience predictive coding (Friston), Psychology dual-process theory"},
+    {"bit": 71, "primo": 359, "nombre": "intención",         "capa": 5, "deps": ["querer", "hacer"],                          "def": "Propósito dirigido, voluntad de actuar hacia un fin", "source": "Philosophy of Mind intentionality (Brentano), Phenomenology (Husserl), Cognitive Science embodied cognition"},
     {"bit": 63, "primo": 311, "nombre": "proporción",        "capa": 3, "deps": ["más", "información", "orden"],              "def": "Relación cuantitativa entre magnitudes, ratio", "overflow": true, "composite": [61, 1, 22], "composite_rule": "proporción is active when bits 61(más) AND 1(información) AND 22(orden) are all active"},
     {"bit": 64, "primo": 313, "nombre": "quietud",           "capa": 3, "deps": ["eje_profundidad"],                          "def": "Ausencia de desplazamiento, permanencia en posición", "dual": "mover", "overflow": true, "composite": [8], "composite_rule": "quietud is active when bit 8(eje_profundidad) is active AND bit 50(mover) is NOT active"}
   ]
