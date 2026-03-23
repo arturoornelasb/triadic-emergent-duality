@@ -140,8 +140,8 @@ def main():
     # ---- Per-domain accuracy ----
     out()
     out('--- PER-DOMAIN ACCURACY ---')
-    lta = a.get('learned_vs_target', {}).get('per_domain', {})
-    ltb = b.get('learned_vs_target', {}).get('per_domain', {})
+    lta = a.get('learned_vs_target', {}).get('per_capa', a.get('learned_vs_target', {}).get('per_domain', {}))
+    ltb = b.get('learned_vs_target', {}).get('per_capa', b.get('learned_vs_target', {}).get('per_domain', {}))
     all_doms = sorted(set(list(lta.keys()) + list(ltb.keys())))
     out('  %-15s %-12s %-12s %s' % ('Domain', args.run_a, args.run_b, 'Delta'))
     out('  ' + '-' * 50)

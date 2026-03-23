@@ -182,7 +182,7 @@ def main():
             'overall_accuracy': audit_learned.get('overall_accuracy', 0),
             'unique_targets_asked': audit_learned.get('unique_targets', 0),
             'unique_learned_created': audit_learned.get('unique_learned', 0),
-            'per_domain': audit_learned.get('per_domain', {}),
+            'per_capa': audit_learned.get('per_capa', audit_learned.get('per_domain', {})),
         }
 
     # Fill dual coherence

@@ -2,7 +2,7 @@
 Audit: Compare what we ASKED the model to learn (gold targets)
 vs what the model ACTUALLY learned (exploration signatures).
 
-Per-concept, per-domain, per-bit accuracy.
+Per-concept, per-capa, per-bit accuracy.
 """
 
 import sys
@@ -16,7 +16,7 @@ RESULTS_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'neural', 'results
 
 def main():
     # Load gold targets
-    gold_path = os.path.join(SCRIPT_DIR, 'gold_primes_65.json')
+    gold_path = os.path.join(SCRIPT_DIR, 'gold_primitivos_65.json')
     with open(gold_path, 'r', encoding='utf-8') as f:
         gold = json.load(f)
 
@@ -60,31 +60,31 @@ def main():
                     'actual': actual[i],
                 })
         per_concept[c] = {
-            'domain': gold[c]['domain'],
+            'capa': gold[c].get('capa', 0),
             'accuracy': n_correct / 65,
             'n_wrong': n_wrong,
             'wrong_bits': wrong_bits,
         }
 
-    # ---- Per-domain summary ----
+    # ---- Per-capa summary ----
     print()
-    print('  [1] PER-DOMAIN ACCURACY')
-    domains = {}
+    print('  [1] PER-CAPA ACCURACY')
+    capas = {}
     for c, info in per_concept.items():
-        d = info['domain']
-        if d not in domains:
-            domains[d] = []
-        domains[d].append(info)
+        d = info['capa']
+        if d not in capas:
+            capas[d] = []
+        capas[d].append(info)
 
-    for dom in sorted(domains.keys()):
-        infos = domains[dom]
+    for capa in sorted(capas.keys()):
+        infos = capas[capa]
         accs = [i['accuracy'] for i in infos]
         mean_acc = sum(accs) / len(accs)
         min_acc = min(accs)
         max_acc = max(accs)
         perfect = sum(1 for a in accs if a == 1.0)
-        print('    %-15s mean=%.3f  min=%.3f  max=%.3f  perfect=%d/%d' % (
-            dom, mean_acc, min_acc, max_acc, perfect, len(accs)))
+        print('    capa %-9s mean=%.3f  min=%.3f  max=%.3f  perfect=%d/%d' % (
+            capa, mean_acc, min_acc, max_acc, perfect, len(accs)))
 
     # ---- Overall stats ----
     all_accs = [info['accuracy'] for info in per_concept.values()]
@@ -108,8 +108,8 @@ def main():
     worst = sorted(per_concept.items(), key=lambda x: x[1]['accuracy'])
     for c, info in worst[:20]:
         wrong_names = [w['name'] for w in info['wrong_bits'][:5]]
-        print('    %-20s (%s) acc=%.3f  wrong=%d  bits: %s' % (
-            c, info['domain'][:4], info['accuracy'], info['n_wrong'],
+        print('    %-20s (capa %s) acc=%.3f  wrong=%d  bits: %s' % (
+            c, info['capa'], info['accuracy'], info['n_wrong'],
             wrong_names))
 
     # ---- Per-bit accuracy ----
@@ -167,7 +167,7 @@ def main():
     results = {
         'n_concepts': len(concepts),
         'overall_accuracy': round(sum(all_accs) / len(all_accs), 4),
-        'per_domain': {},
+        'per_capa': {},
         'per_concept': {},
         'per_bit_accuracy': [round(bit_correct[i] / bit_total[i], 4) for i in range(65)],
         'per_bit_false_pos': bit_false_pos,
@@ -176,10 +176,10 @@ def main():
         'unique_learned': len(learned_sigs),
     }
 
-    for dom in sorted(domains.keys()):
-        infos = domains[dom]
+    for capa in sorted(capas.keys()):
+        infos = capas[capa]
         accs = [i['accuracy'] for i in infos]
-        results['per_domain'][dom] = {
+        results['per_capa'][capa] = {
             'mean_accuracy': round(sum(accs) / len(accs), 4),
             'min_accuracy': round(min(accs), 4),
             'n_perfect': sum(1 for a in accs if a == 1.0),
@@ -187,7 +187,7 @@ def main():
 
     for c, info in per_concept.items():
         results['per_concept'][c] = {
-            'domain': info['domain'],
+            'capa': info['capa'],
             'accuracy': round(info['accuracy'], 4),
             'n_wrong': info['n_wrong'],
             'wrong_bits': [w['bit'] for w in info['wrong_bits']],

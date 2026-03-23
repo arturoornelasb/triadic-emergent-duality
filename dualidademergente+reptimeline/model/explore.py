@@ -6,11 +6,11 @@ then runs reptimeline BitDiscovery + PrimitiveOverlay to find:
   - Which concepts cluster together (shared bits)
   - What duals the model learned (anti-correlated bits)
   - What dependencies exist (if A active, B always active)
-  - Cross-domain structure (biology ↔ computer science?)
-  - Per-domain separation (do domains form distinct clusters?)
+  - Cross-capa structure (capa 1 ↔ capa 5?)
+  - Per-capa separation (do capas form distinct clusters?)
 
 Usage:
-    python explore.py                          # 262 gold anchors
+    python explore.py                          # 65 gold primitivos
     python explore.py --concepts extra.json    # custom concept list
     python explore.py --add "quantum,relativity,photon"  # add extras
     python explore.py --device cuda            # use GPU (after training)
@@ -43,8 +43,8 @@ from reptimeline.core import ConceptSnapshot
 # ######################################################################
 
 def load_gold_concepts():
-    """Load 262 gold anchor concepts with domain labels."""
-    gold_path = os.path.join(SCRIPT_DIR, 'gold_primes_65.json')
+    """Load 65 gold primitivo concepts with capa labels."""
+    gold_path = os.path.join(SCRIPT_DIR, 'gold_primitivos_65.json')
     with open(gold_path, 'r', encoding='utf-8') as f:
         gold = json.load(f)
     return gold
@@ -69,28 +69,28 @@ def extract_all(checkpoint_path, concepts, device='cpu'):
 
 
 # ######################################################################
-#  SECTION 3: DOMAIN ANALYSIS
+#  SECTION 3: CAPA ANALYSIS
 # ######################################################################
 
-def domain_separation(snap, gold_data):
-    """Compute within-domain vs between-domain similarity."""
-    domains = {}
+def capa_separation(snap, gold_data):
+    """Compute within-capa vs between-capa similarity."""
+    capas = {}
     for concept, data in gold_data.items():
         if concept in snap.codes:
-            dom = data['domain']
-            if dom not in domains:
-                domains[dom] = []
-            domains[dom].append(concept)
+            capa = 'capa_%d' % data.get('capa', 0)
+            if capa not in capas:
+                capas[capa] = []
+            capas[capa].append(concept)
 
     results = {}
-    domain_names = sorted(domains.keys())
+    group_names = sorted(capas.keys())
 
-    for dom in domain_names:
-        concepts = domains[dom]
+    for grp in group_names:
+        concepts = capas[grp]
         if len(concepts) < 2:
             continue
 
-        # Within-domain similarity (Jaccard)
+        # Within-capa similarity (Jaccard)
         within_sims = []
         for i in range(len(concepts)):
             for j in range(i + 1, len(concepts)):
@@ -100,9 +100,9 @@ def domain_separation(snap, gold_data):
                 if union:
                     within_sims.append(len(a & b) / len(union))
 
-        # Between-domain similarity (sample from other domains)
+        # Between-capa similarity (sample from other capas)
         between_sims = []
-        other_concepts = [c for d, cs in domains.items() if d != dom for c in cs]
+        other_concepts = [c for g, cs in capas.items() if g != grp for c in cs]
         import random
         rng = random.Random(42)
         n_sample = min(100, len(concepts) * len(other_concepts))
@@ -119,38 +119,38 @@ def domain_separation(snap, gold_data):
         between_mean = sum(between_sims) / len(between_sims) if between_sims else 0
         separation = within_mean / between_mean if between_mean > 0 else 0
 
-        results[dom] = {
+        results[grp] = {
             'n_concepts': len(concepts),
             'within_similarity': round(within_mean, 4),
             'between_similarity': round(between_mean, 4),
             'separation_ratio': round(separation, 4),
         }
-        print(f'    {dom:<15} n={len(concepts):>3}  '
+        print(f'    {grp:<15} n={len(concepts):>3}  '
               f'within={within_mean:.3f}  between={between_mean:.3f}  '
               f'sep={separation:.3f}')
 
     return results
 
 
-def cross_domain_matrix(snap, gold_data):
-    """Compute domain-to-domain mean Jaccard similarity matrix."""
-    domains = {}
+def cross_capa_matrix(snap, gold_data):
+    """Compute capa-to-capa mean Jaccard similarity matrix."""
+    capas = {}
     for concept, data in gold_data.items():
         if concept in snap.codes:
-            dom = data['domain']
-            if dom not in domains:
-                domains[dom] = []
-            domains[dom].append(concept)
+            capa = 'capa_%d' % data.get('capa', 0)
+            if capa not in capas:
+                capas[capa] = []
+            capas[capa].append(concept)
 
-    domain_names = sorted(domains.keys())
+    group_names = sorted(capas.keys())
     matrix = {}
 
-    for i, d1 in enumerate(domain_names):
-        matrix[d1] = {}
-        for j, d2 in enumerate(domain_names):
+    for i, g1 in enumerate(group_names):
+        matrix[g1] = {}
+        for j, g2 in enumerate(group_names):
             sims = []
-            for c1 in domains[d1]:
-                for c2 in domains[d2]:
+            for c1 in capas[g1]:
+                for c2 in capas[g2]:
                     if c1 == c2:
                         continue
                     a = set(k for k, v in enumerate(snap.codes[c1]) if v == 1)
@@ -158,23 +158,23 @@ def cross_domain_matrix(snap, gold_data):
                     union = a | b
                     if union:
                         sims.append(len(a & b) / len(union))
-            matrix[d1][d2] = round(sum(sims) / len(sims), 4) if sims else 0
+            matrix[g1][g2] = round(sum(sims) / len(sims), 4) if sims else 0
 
-    return matrix, domain_names
+    return matrix, group_names
 
 
-def find_cross_domain_bridges(snap, gold_data, top_n=20):
-    """Find concepts from different domains with highest similarity."""
+def find_cross_capa_bridges(snap, gold_data, top_n=20):
+    """Find concepts from different capas with highest similarity."""
     bridges = []
     concepts = list(snap.codes.keys())
-    domain_map = {c: gold_data[c]['domain'] for c in concepts if c in gold_data}
+    group_map = {c: 'capa_%d' % gold_data[c].get('capa', 0) for c in concepts if c in gold_data}
 
     for i in range(len(concepts)):
         for j in range(i + 1, len(concepts)):
             c1, c2 = concepts[i], concepts[j]
-            if c1 not in domain_map or c2 not in domain_map:
+            if c1 not in group_map or c2 not in group_map:
                 continue
-            if domain_map[c1] == domain_map[c2]:
+            if group_map[c1] == group_map[c2]:
                 continue
 
             a = set(k for k, v in enumerate(snap.codes[c1]) if v == 1)
@@ -185,8 +185,8 @@ def find_cross_domain_bridges(snap, gold_data, top_n=20):
             sim = len(a & b) / len(union)
             shared = sorted(a & b)
             bridges.append({
-                'concept_a': c1, 'domain_a': domain_map[c1],
-                'concept_b': c2, 'domain_b': domain_map[c2],
+                'concept_a': c1, 'capa_a': group_map[c1],
+                'concept_b': c2, 'capa_b': group_map[c2],
                 'jaccard': round(sim, 4),
                 'shared_bits': shared,
                 'n_shared': len(shared),
@@ -249,7 +249,7 @@ def main():
     parser.add_argument('--device', default='cpu',
                         help='Device (cpu or cuda)')
     parser.add_argument('--top-bridges', type=int, default=30,
-                        help='Number of cross-domain bridges to show')
+                        help='Number of cross-capa bridges to show')
     args = parser.parse_args()
 
     print()
@@ -261,13 +261,13 @@ def main():
     if args.checkpoint:
         ckpt_path = args.checkpoint
     else:
-        # Find best.pt in v2 checkpoints
-        ckpt_path = os.path.join(SCRIPT_DIR, 'checkpoints', 'gpt2_triadic_65_v2', 'best.pt')
+        # Find best.pt in v3 checkpoints
+        ckpt_path = os.path.join(SCRIPT_DIR, 'checkpoints', 'gpt2_triadic_65_v3', 'best.pt')
         if not os.path.exists(ckpt_path):
             # Fallback to latest step_*.pt
             import glob
             steps = sorted(glob.glob(os.path.join(
-                SCRIPT_DIR, 'checkpoints', 'gpt2_triadic_65_v2', 'step_*.pt')))
+                SCRIPT_DIR, 'checkpoints', 'gpt2_triadic_65_v3', 'step_*.pt')))
             if steps:
                 ckpt_path = steps[-1]
             else:
@@ -280,7 +280,7 @@ def main():
     # --- Concepts ---
     gold_data = load_gold_concepts()
     concepts = list(gold_data.keys())
-    print(f'  Gold anchors: {len(concepts)} (8 domains)')
+    print(f'  Gold primitivos: {len(concepts)} (6 capas)')
 
     if args.concepts:
         with open(args.concepts, 'r', encoding='utf-8') as f:
@@ -325,32 +325,32 @@ def main():
     print(f'  Active bits: {active}/65 (dead: {dead})')
     print(f'  Mean activation rate: {mean_rate:.3f} (ideal: 0.50)')
 
-    # --- Domain separation ---
+    # --- Capa separation ---
     print()
-    print('[3/5] Domain separation analysis...')
-    dom_sep = domain_separation(snap, gold_data)
+    print('[3/5] Capa separation analysis...')
+    capa_sep = capa_separation(snap, gold_data)
 
-    # Cross-domain matrix
+    # Cross-capa matrix
     print()
-    print('  Cross-domain similarity matrix:')
-    matrix, dom_names = cross_domain_matrix(snap, gold_data)
+    print('  Cross-capa similarity matrix:')
+    matrix, grp_names = cross_capa_matrix(snap, gold_data)
     # Header
-    header = '              ' + ''.join(f'{d[:6]:>7}' for d in dom_names)
+    header = '              ' + ''.join(f'{g[:6]:>7}' for g in grp_names)
     print(f'  {header}')
-    for d1 in dom_names:
-        row = f'  {d1[:12]:<14}'
-        for d2 in dom_names:
-            val = matrix[d1][d2]
+    for g1 in grp_names:
+        row = f'  {g1[:12]:<14}'
+        for g2 in grp_names:
+            val = matrix[g1][g2]
             row += f'{val:>7.3f}'
         print(row)
 
-    # --- Cross-domain bridges ---
+    # --- Cross-capa bridges ---
     print()
-    print(f'[4/5] Cross-domain bridges (top {args.top_bridges})...')
-    bridges = find_cross_domain_bridges(snap, gold_data, top_n=args.top_bridges)
+    print(f'[4/5] Cross-capa bridges (top {args.top_bridges})...')
+    bridges = find_cross_capa_bridges(snap, gold_data, top_n=args.top_bridges)
     for b in bridges:
-        print(f'    {b["concept_a"]:<20} ({b["domain_a"][:4]}) <-> '
-              f'{b["concept_b"]:<20} ({b["domain_b"][:4]}) '
+        print(f'    {b["concept_a"]:<20} ({b["capa_a"]}) <-> '
+              f'{b["concept_b"]:<20} ({b["capa_b"]}) '
               f'J={b["jaccard"]:.3f} ({b["n_shared"]} shared bits)')
 
     # --- BitDiscovery ---
@@ -421,9 +421,9 @@ def main():
         'bit_activation_rates': bit_rates,
         'active_bits': active,
         'dead_bits': dead,
-        'domain_separation': dom_sep,
-        'cross_domain_matrix': matrix,
-        'cross_domain_bridges': bridges[:args.top_bridges],
+        'capa_separation': capa_sep,
+        'cross_capa_matrix': matrix,
+        'cross_capa_bridges': bridges[:args.top_bridges],
         'discovery': {
             'n_duals': len(report.discovered_duals),
             'n_deps': len(report.discovered_deps),
@@ -459,7 +459,7 @@ def main():
             'bits': code,
             'active_indices': [i for i, v in enumerate(code) if v == 1],
             'n_active': sum(code),
-            'domain': gold_data.get(concept, {}).get('domain', 'unknown'),
+            'capa': gold_data.get(concept, {}).get('capa', 0),
         }
         for concept, code in snap.codes.items()
     }
@@ -473,8 +473,8 @@ def main():
     print(f'  Results saved to: {out_path}')
     print(f'  Signatures: {len(snap.codes)} concepts x {snap.code_dim} bits')
     print(f'  Unique: {uniq["unique_pct"]}%  Active bits: {active}/65')
-    sep_mean = sum(d['separation_ratio'] for d in dom_sep.values()) / len(dom_sep) if dom_sep else 0
-    print(f'  Mean domain separation: {sep_mean:.3f}')
+    sep_mean = sum(d['separation_ratio'] for d in capa_sep.values()) / len(capa_sep) if capa_sep else 0
+    print(f'  Mean capa separation: {sep_mean:.3f}')
     print(f'  Duals: {len(report.discovered_duals)}  '
           f'Deps: {len(report.discovered_deps)}  '
           f'Triadic: {len(report.discovered_triadic_deps)}')

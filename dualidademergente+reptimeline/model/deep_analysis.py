@@ -1,12 +1,12 @@
 """
-Deep Analysis: Full concept-level map of all 262 anchors.
+Deep Analysis: Full concept-level map of all 65 primitivos.
 
 Shows:
-  1. For each anchor: top-5 connections (Jaccard on 65-bit signatures)
+  1. For each primitivo: top-5 connections (Jaccard on 65-bit signatures)
   2. Full triadic dependencies (bit-level, translated to concept semantics)
   3. Full dependency list (bit-level)
   4. Concept clusters by signature similarity
-  5. Per-domain concept maps
+  5. Per-capa concept maps
 
 Usage:
     python deep_analysis.py                # from exploration.json
@@ -67,19 +67,19 @@ def compute_all_connections(sigs):
             c2 = concepts[j]
             b_bits = sigs[c2]['active_indices']
             j_sim = jaccard(a_bits, b_bits)
-            sims.append((c2, sigs[c2]['domain'], j_sim, hamming_dist(a_bits, b_bits)))
+            sims.append((c2, sigs[c2].get('capa', 0), j_sim, hamming_dist(a_bits, b_bits)))
         sims.sort(key=lambda x: -x[2])
         connections[c1] = {
-            'domain': sigs[c1]['domain'],
+            'capa': sigs[c1].get('capa', 0),
             'n_active': sigs[c1]['n_active'],
             'top_same': [],
             'top_cross': [],
         }
-        dom = sigs[c1]['domain']
+        capa = sigs[c1].get('capa', 0)
         for c2, d2, sim, hdist in sims:
-            if d2 == dom and len(connections[c1]['top_same']) < 5:
+            if d2 == capa and len(connections[c1]['top_same']) < 5:
                 connections[c1]['top_same'].append((c2, sim, hdist))
-            elif d2 != dom and len(connections[c1]['top_cross']) < 5:
+            elif d2 != capa and len(connections[c1]['top_cross']) < 5:
                 connections[c1]['top_cross'].append((c2, d2, sim, hdist))
 
     return connections
@@ -159,27 +159,27 @@ def main():
     # ---- PART 1: All concept connections ----
     print()
     print('=' * 70)
-    print('  PART 1: CONCEPT CONNECTIONS (262 anchors)')
+    print('  PART 1: CONCEPT CONNECTIONS (65 primitivos)')
     print('=' * 70)
 
     connections = compute_all_connections(sigs)
 
-    domains = {}
+    capas = {}
     for c, info in connections.items():
-        d = info['domain']
-        if d not in domains:
-            domains[d] = []
-        domains[d].append(c)
+        d = info['capa']
+        if d not in capas:
+            capas[d] = []
+        capas[d].append(c)
 
-    for dom in sorted(domains.keys()):
+    for capa in sorted(capas.keys()):
         print()
-        print('  --- %s (%d concepts) ---' % (dom, len(domains[dom])))
-        for concept in sorted(domains[dom]):
+        print('  --- capa %s (%d concepts) ---' % (capa, len(capas[capa])))
+        for concept in sorted(capas[capa]):
             info = connections[concept]
             cross = info['top_cross']
             if cross:
                 top_str = ', '.join(
-                    '%s(%s %.3f)' % (c2, d2[:4], sim)
+                    '%s(capa%s %.3f)' % (c2, d2, sim)
                     for c2, d2, sim, _ in cross[:3]
                 )
             else:
@@ -204,9 +204,9 @@ def main():
     clusters = find_clusters(sigs, threshold=0.90)
     print('  Found %d clusters:' % len(clusters))
     for i, cluster in enumerate(clusters):
-        doms = [sigs[c]['domain'] for c in cluster]
-        dom_set = set(doms)
-        cross = 'CROSS-DOMAIN' if len(dom_set) > 1 else doms[0]
+        capas_list = [sigs[c].get('capa', 0) for c in cluster]
+        capa_set = set(capas_list)
+        cross = 'CROSS-CAPA' if len(capa_set) > 1 else ('capa %s' % capas_list[0])
         print('    Cluster %d (%s): %s' % (i + 1, cross, cluster))
 
     # ---- PART 3: BitDiscovery full ----
@@ -320,14 +320,14 @@ def main():
 
     for concept, info in connections.items():
         output['connections'][concept] = {
-            'domain': info['domain'],
+            'capa': info['capa'],
             'n_active_bits': info['n_active'],
-            'top_same_domain': [
+            'top_same_capa': [
                 {'concept': c2, 'jaccard': round(sim, 4), 'hamming': hdist}
                 for c2, sim, hdist in info['top_same']
             ],
-            'top_cross_domain': [
-                {'concept': c2, 'domain': d2, 'jaccard': round(sim, 4), 'hamming': hdist}
+            'top_cross_capa': [
+                {'concept': c2, 'capa': d2, 'jaccard': round(sim, 4), 'hamming': hdist}
                 for c2, d2, sim, hdist in info['top_cross']
             ],
         }
