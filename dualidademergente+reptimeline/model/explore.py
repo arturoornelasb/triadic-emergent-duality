@@ -249,8 +249,9 @@ def bit_usage_stats(snap):
 def extract_timeline(ckpt_dir, concepts, extractor, device='cpu',
                      max_checkpoints=20):
     """Extract snapshots from multiple checkpoints for timeline analysis."""
-    # Find all step_*.pt files
-    step_files = sorted(globmod.glob(os.path.join(ckpt_dir, 'step_*.pt')))
+    # Find all step_*.pt files, sort numerically by step number
+    step_files = globmod.glob(os.path.join(ckpt_dir, 'step_*.pt'))
+    step_files.sort(key=lambda f: int(os.path.basename(f).split('_')[1].split('.')[0]))
     best_file = os.path.join(ckpt_dir, 'best.pt')
 
     if not step_files:
@@ -389,8 +390,9 @@ def main():
         ckpt_path = os.path.join(SCRIPT_DIR, 'checkpoints', run_name, 'best.pt')
         if not os.path.exists(ckpt_path):
             import glob
-            steps = sorted(glob.glob(os.path.join(
-                SCRIPT_DIR, 'checkpoints', run_name, 'step_*.pt')))
+            steps = glob.glob(os.path.join(
+                SCRIPT_DIR, 'checkpoints', run_name, 'step_*.pt'))
+            steps.sort(key=lambda f: int(os.path.basename(f).split('_')[1].split('.')[0]))
             if steps:
                 ckpt_path = steps[-1]
             else:
