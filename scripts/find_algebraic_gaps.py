@@ -1,7 +1,7 @@
 """Find Algebraic Gaps: missing operators and candidate primitivos.
 
 Analyzes all 15 possible inter-capa connections, identifies which have
-direct coverage vs. gaps, searches C:\research\first_principles for
+direct coverage vs. gaps, searches data/first_principles/ for
 candidate concepts, and proposes a capa 6 internal operator.
 
 Usage:
@@ -21,7 +21,7 @@ RESULTS_DIR = os.path.normpath(os.path.join(
     SCRIPT_DIR, '..', 'dualidademergente+reptimeline', 'internal', 'results'))
 GOLD_PATH = os.path.normpath(os.path.join(
     SCRIPT_DIR, '..', 'dualidademergente+reptimeline', 'model', 'gold_primitivos_72.json'))
-FIRST_PRINCIPLES_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'docs', 'teoria'))
+FIRST_PRINCIPLES_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'data', 'first_principles'))
 
 
 # ######################################################################
