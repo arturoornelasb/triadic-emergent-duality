@@ -361,6 +361,18 @@ The Emergent Duality framework makes two testable claims:
     \item \textbf{Scale--algebra tradeoff}: Larger models (355M) show lower subsumption rates (76.9\%) than smaller ones (40M, 98.3\%).
 \end{enumerate}
 
+\subsection{Future Directions}
+
+This work opens several lines of investigation:
+
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Independent rater validation}: The most critical next step. Blind inter-rater studies across all 9 domains would transform self-evaluated D-A-N classifications into externally validated ones. Preliminary data for Mathematics (1 rater) shows agreement; 8 domains remain.
+    \item \textbf{Scale--algebra tradeoff}: Understanding why 355M-parameter models show lower subsumption (76.9\%) than 40M models (98.3\%) may reveal fundamental constraints on discrete algebraic learning at scale.
+    \item \textbf{Cross-lingual validation}: All primitives are currently named and evaluated in a Spanish-language conceptual frame. Testing whether the same DAG structure holds when primitives are derived independently from other linguistic traditions would strengthen universality claims.
+    \item \textbf{Relational prime chains}: Extending the triadic head with compositional prime chain verification for O(1) anti-hallucination---a natural application of the algebraic structure to production AI systems.
+    \item \textbf{Expanded corpus training}: V5 was trained on WikiText-103. Training on multilingual or domain-specific corpora could reveal whether the 72-primitive structure generalizes beyond English-language distributional semantics.
+\end{enumerate}
+
 % ============================================================
 \section{Related Work}
 
