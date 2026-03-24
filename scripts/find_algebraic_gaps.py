@@ -21,7 +21,7 @@ RESULTS_DIR = os.path.normpath(os.path.join(
     SCRIPT_DIR, '..', 'dualidademergente+reptimeline', 'internal', 'results'))
 GOLD_PATH = os.path.normpath(os.path.join(
     SCRIPT_DIR, '..', 'dualidademergente+reptimeline', 'model', 'gold_primitivos_72.json'))
-FIRST_PRINCIPLES_DIR = os.path.normpath('C:/research/first_principles')
+FIRST_PRINCIPLES_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'docs', 'teoria'))
 
 
 # ######################################################################

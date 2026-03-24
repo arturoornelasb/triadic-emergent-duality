@@ -19,12 +19,14 @@ Threshold: DVS >= 0.50 → valid domain.
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 import json
+import os
 from collections import Counter
 
 # ======================================================================
 #  SECTION 0: DATA LOADING
 # ======================================================================
-DATA_DIR = r'C:\Github\triadic-microgpt\playground\danza_data'
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(SCRIPT_DIR, '..', 'data')
 
 with open(f'{DATA_DIR}/primitivos.json', 'r', encoding='utf-8') as f:
     prim_data = json.load(f)
