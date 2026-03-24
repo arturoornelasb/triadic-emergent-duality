@@ -2,7 +2,7 @@
 
 Research framework proposing that conceptual complexity emerges from 14 fundamental dualities organized in 6 algebraic layers. Combines philosophical formalization (poset theory, category theory, modal logic) with empirical validation across 9 disciplines and a neurosymbolic language model (GPT-2 Medium + 72-bit triadic head).
 
-**Author:** J. Arturo Ornelas Brand
+**Author:** J. Arturo Ornelas Brand — Independent Researcher — arturoornelas62@gmail.com
 
 ## Core thesis
 
@@ -146,14 +146,22 @@ python compare_runs.py v5_frozen <version>
 
 ## Key results
 
-- **20/21** necessity proofs for the 7-duality sequence rated NECESSARY or STRONG
-- **5/8** domains exceed the p95 null threshold (chemistry, biology, music, linguistics, psychology)
-- **8/8** permutation tests survive Holm-Bonferroni correction
-- Bayesian ordering: BF = 121.4 (decisive) vs reversed order
+### Ontological validation
+- **8/8** positive domains at IDVS = 1.000 (all pass I2 null baseline, p95 = 0.896)
+- **8/8** permutation tests survive Holm-Bonferroni correction (p = 0.0001 each)
+- Negative control (Astrology) correctly rejected: IDVS = 0.479
+- Bayesian ordering: BF = **121.4** (decisive) vs reversed order
 - Algebraic layer mapping: **86% match** across 6 algebras (12/14 dualities)
-- V5 frozen: **PPL 31.95** (identical to GPT-2 baseline — forgetting solved)
-- Regla de tres: **cosine 0.996** (near-perfect relational structure)
-- 100% unique learned signatures across 72 primitivos
+- Sensitivity: topology most robust, classification logic most fragile
+
+### Neural validation (v5_frozen)
+- GPT-2 Medium (355M) + 72-bit triadic head (73K trainable params)
+- **PPL 31.95** — identical to GPT-2 baseline (catastrophic forgetting solved)
+- **90.8% bit accuracy**, 100% unique learned signatures
+- Regla de tres: **cosine 0.996** (near-perfect relational structure preservation)
+- 5/13 dual axes show significant anti-correlation (BH-FDR corrected)
+- Phase transition at step 6000 (p = 0.0004)
+- DAG recovery: F1 above random (p = 0.001), precision limited by dead bits
 
 ## Documents
 
@@ -168,4 +176,6 @@ python compare_runs.py v5_frozen <version>
 
 ## License
 
-All rights reserved. Contact the author for permissions.
+Business Source License 1.1 (BUSL-1.1). See [LICENSE](LICENSE), [TERMS.md](TERMS.md), and [COMMERCIAL.md](COMMERCIAL.md) for details.
+
+Contact: arturoornelas62@gmail.com
