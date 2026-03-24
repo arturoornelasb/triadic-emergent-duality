@@ -1,0 +1,450 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\geometry{margin=1in}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\title{\Large Emergent Duality: 14 Fundamental Dualities Across 6 Algebraic Layers,\\
+Validated by Domain Analysis and Neurosymbolic Learning}
+
+\author{
+    J. Arturo Ornelas Brand \\
+    \textit{Independent Researcher} \\
+    \texttt{arturoornelas62@gmail.com}
+}
+
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a formal ontological framework in which conceptual complexity emerges from 14 fundamental dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). The framework is grounded in 72 semantic primitives connected by a directed acyclic graph (DAG) of 133+ dependency edges. We validate the framework through three independent methodologies: (1)~domain analysis across 9 disciplines using the Information Domain Validity Score (IDVS), achieving IDVS~=~1.000 for all 8 positive domains against a null baseline ($p_{95}$~=~0.896, permutation $p$~=~0.0001); (2)~Bayesian model comparison yielding a Bayes factor of 121.4 (decisive) for the proposed ordering over reversed alternatives; and (3)~neurosymbolic learning via a GPT-2 Medium model augmented with a 72-bit triadic head, which learns the primitive structure at 90.8\% bit accuracy while preserving general language ability (PPL~=~31.95, identical to baseline). The learned representations exhibit near-perfect relational structure (Regla de Tres cosine~=~0.996) and show a significant phase transition during training ($p$~=~0.0004). We report both confirmatory and null results transparently: layer ordering in neural representations is not significant ($p$~=~0.71), and only 5 of 13 dual axes show significant learned anti-correlation after FDR correction.
+\end{abstract}
+
+\noindent\textbf{Keywords:} ontology, semantic primitives, emergence, duality, neurosymbolic AI, algebraic structure, domain validation
+
+% ============================================================
+\section{Introduction}
+
+The search for universal semantic primitives---irreducible conceptual atoms from which all meaning is composed---spans philosophy (Leibniz's \emph{characteristica universalis}), linguistics (Wierzbicka's Natural Semantic Metalanguage), and computational semantics (ConceptNet, FrameNet). Existing approaches either lack formal algebraic structure or fail to demonstrate empirical universality across domains.
+
+We propose that conceptual complexity emerges through a specific sequence of \textbf{dualities}---paired oppositions that each require all previous dualities as prerequisites. This emergence follows an algebraic chain:
+
+$$\text{Boolean} \to \text{Fuzzy} \to \text{Ordinal} \to \text{Modal} \to \text{Trivalent} \to \text{Probabilistic}$$
+
+Each algebra introduces operators that the previous one cannot express: degree from existence, comparison from degree, possibility from order, valuation from possibility, observation from valuation.
+
+The contribution of this work is threefold:
+
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Formalization}: 72 semantic primitives organized in a DAG across 6 algebraic layers, with 14 dual axes and formal dependency rules.
+    \item \textbf{Empirical validation}: cross-domain analysis (8 disciplines + 1 negative control) using a novel metric (IDVS) with statistical hardening (permutation tests, FDR correction, Bayesian model comparison, null baselines).
+    \item \textbf{Neural validation}: a neurosymbolic model (GPT-2 Medium + triadic head) that learns the proposed structure from natural language, demonstrating that the algebraic relationships are recoverable from distributional semantics.
+\end{enumerate}
+
+% ============================================================
+\section{The Framework}
+
+\subsection{Semantic Primitives}
+
+We define 72 semantic primitives distributed across 6 layers:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llrl}
+\toprule
+\textbf{Layer} & \textbf{Algebra} & \textbf{Prims} & \textbf{Examples} \\
+\midrule
+1. Point (0D)    & Boolean $\{0,1\}$     & 3  & vac\'{i}o, informaci\'{o}n, uno \\
+2. Line (1D)     & Fuzzy $\{0,+\}$       & 8  & fuerza, contenci\'{o}n, uni\'{o}n, separaci\'{o}n \\
+3. Time (1D+t)   & Ordinal $\{<,=,>\}$   & 13 & mover, orden, caos, creaci\'{o}n \\
+4. Plane (2D)    & Modal $\{\Diamond,\Box\}$ & 21 & bien, mal, verdad, mentira \\
+5. Volume (3D)   & Trivalent $\{-,0,+\}$ & 23 & vida, muerte, placer, dolor \\
+6. Observer (3D+) & Probabilistic $\{0,?\}$ & 4 & temporal\_obs, eterno\_obs \\
+\bottomrule
+\end{tabular}
+\caption{72 semantic primitives across 6 algebraic layers.}
+\label{tab:primitives}
+\end{table}
+
+Each primitive is assigned a unique prime number, a bit position, a layer, a set of dependencies (parents in the DAG), and a natural-language definition.
+
+\subsection{The Dependency DAG}
+
+Primitives are connected by a DAG with 133+ directed edges encoding the relation ``X requires Y to exist.'' Key structural properties:
+
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Layer monotonicity}: all dependencies of a layer-$n$ primitive lie in layers $\leq n$.
+    \item \textbf{3 roots}: vac\'{i}o (bit 0), informaci\'{o}n (bit 1), uno (bit 44)---all layer~1.
+    \item \textbf{Transitive closure}: the maximum ancestor set size is 22 (for creador\_obs, layer~6).
+\end{itemize}
+
+\subsection{The 14 Dualities}
+
+The 14 dualities emerge in a specific order, each anchored by 2--4 primitives:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{clll}
+\toprule
+\textbf{\#} & \textbf{Duality} & \textbf{Anchors} & \textbf{Layer} \\
+\midrule
+D1  & Existir / No-existir     & vac\'{i}o, informaci\'{o}n, uno           & 1 \\
+D2  & Aqu\'{i} / No-aqu\'{i}  & eje\_profundidad, eje\_vertical            & 2--4 \\
+D3  & Antes / Despu\'{e}s     & posici\'{o}n\_temporal, flujo\_temporal    & 3 \\
+D4  & Posible / Imposible      & puede, debe, tal\_vez                     & 4 \\
+D5  & Identidad / Diferencia   & muchos, tipo\_de, todo, algunos           & 2--4 \\
+D6  & Movimiento / Quietud     & mover, hacer, quietud                     & 3 \\
+D7  & Orden / Caos             & orden, caos, bien, mal, verdad, mentira   & 3--4 \\
+D8  & Uno / Muchos             & uno, muchos                               & 1--2 \\
+D9  & Dentro / Fuera           & contenci\'{o}n, uni\'{o}n, separaci\'{o}n & 2 \\
+D10 & Parte / Todo             & parte\_de, todo, algunos                  & 2--4 \\
+D11 & Vida / Muerte            & vida, muerte, placer, dolor               & 5 \\
+D12 & Causa / Efecto           & porque, si\_entonces                      & 3 \\
+D13 & Semejante / Diferente    & tipo\_de                                  & 4 \\
+D14 & Sujeto / Objeto          & consciente, ausente, temporal\_obs         & 5--6 \\
+\bottomrule
+\end{tabular}
+\caption{The 14 fundamental dualities with anchor primitives and layer assignments.}
+\label{tab:dualities}
+\end{table}
+
+\subsection{Algebraic Layer Chain}
+
+Each layer operates with a distinct algebra. The key insight is that each transition is \textbf{irreversible}: you cannot define the operators of layer~$n$ without having the operators of layer~$n{-}1$. This is verified computationally at 86\% match (12/14 dualities correctly predicted by their algebra assignment).
+
+% ============================================================
+\section{Domain Validation}
+
+\subsection{The IDVS Metric}
+
+We define the \textbf{Information Domain Validity Score} for a domain~$d$ as:
+
+$$\text{IDVS}(d) = \text{coverage}(d) \times \text{monotonicity}(d)$$
+
+\noindent where:
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Coverage} = $1 - \frac{\text{nulls in layers 1--4}}{\text{total primitives in layers 1--4}}$. A domain that classifies foundational primitives as N (``does not apply'') is penalized.
+    \item \textbf{Monotonicity} = $1 - \frac{\text{violations}}{\text{total edges}}$. A violation occurs when a child primitive has a higher state than its parent ($D > A > N$).
+\end{itemize}
+
+\subsection{Classification Protocol}
+
+Each of 72 primitives is classified in each domain as:
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{D} (Direct): the primitive operates directly in this domain.
+    \item \textbf{A} (Analogical): the primitive applies by metaphor or analogy.
+    \item \textbf{N} (Null): the primitive does not apply.
+\end{itemize}
+
+\subsection{Results}
+
+All 8 positive domains achieve IDVS~=~1.000 after D-A-N reclassification:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Domain} & \textbf{Type} & \textbf{IDVS} & \textbf{Cov.} & \textbf{Mono.} & \textbf{Perm.~$p$} \\
+\midrule
+Music       & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Chemistry   & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Biology     & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Mathematics & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Philosophy  & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Physics     & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Linguistics & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+Psychology  & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
+\textbf{Astrology} & \textbf{Negative} & \textbf{0.479} & 0.650 & 0.737 & 0.0001 \\
+\bottomrule
+\end{tabular}
+\caption{IDVS results across 9 domains. The negative control (Astrology) correctly fails.}
+\label{tab:idvs}
+\end{table}
+
+\subsection{Null Baseline}
+
+To calibrate the IDVS threshold, we computed 10,000 random D-A-N assignments preserving the marginal distribution of each domain. The null distribution yields: mean max IDVS~=~0.861, $p_{95}$~=~0.896 (threshold set at 0.90), $p_{99}$~=~0.955. All 8 positive domains exceed $p_{99}$.
+
+\subsection{Sensitivity Analysis}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llrl}
+\toprule
+\textbf{Perturbation} & \textbf{Target} & \textbf{Mean $\Delta$IDVS} & \textbf{Large disruptions} \\
+\midrule
+Remove edge  & DAG topology        & $-0.003$ & 3.4\% \\
+Move layer   & Layer assignment    & $0.000$  & 0.0\% \\
+Flip D-A-N   & Classification logic & $-0.060$ & 71.4\% \\
+\bottomrule
+\end{tabular}
+\caption{Sensitivity analysis. Robustness gradient: Topology $>$ Layering $>$ Logic.}
+\label{tab:sensitivity}
+\end{table}
+
+\subsection{Bayesian Model Comparison}
+
+We compared 4 orderings of the 14 dualities using triangularity of the dependency matrix as the test statistic:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Model} & \textbf{Triangularity} & \textbf{BF vs.\ Reversed} \\
+\midrule
+\textbf{Proposed} & \textbf{0.539} & \textbf{121.4} (decisive) \\
+Hegel    & 0.528 & --- \\
+Peirce   & 0.484 & --- \\
+Reversed & 0.143 & 1.0 \\
+\bottomrule
+\end{tabular}
+\caption{Bayesian model comparison of duality orderings.}
+\label{tab:bayesian}
+\end{table}
+
+Against 1,000 random orderings ($\mu = 0.338$), the proposed ordering is significant ($p = 0.005$).
+
+% ============================================================
+\section{Neural Validation}
+
+\subsection{Architecture}
+
+We augment GPT-2 Medium (355M parameters) with a \textbf{triadic head}: a single linear projection from the 1024-dimensional hidden state to a 72-bit semantic vector. The activation function is iFSQ ($2\sigma(1.6x) - 1$), which distributes activations uniformly across $[-1, +1]$.
+
+\noindent\textbf{Total trainable parameters (v5\_frozen)}: 73,728 (0.02\% of model). The GPT-2 backbone is frozen.
+
+\subsection{Training}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Configuration} \\
+\midrule
+Loss       & $\mathcal{L}_\text{lang} + 0.05 \cdot (\mathcal{L}_\text{tri} + 2\mathcal{L}_\text{sup} + 5\mathcal{L}_\text{sub})$ \\
+$\mathcal{L}_\text{tri}$  & diversity + InfoNCE + entropy + alignment \\
+$\mathcal{L}_\text{sup}$  & MSE(projection, gold\_target) \\
+$\mathcal{L}_\text{sub}$  & $\text{relu}(\text{hypernym}_{01} - \text{hyponym}_{01}).\text{mean}()$ \\
+Optimizer  & AdamW ($3 \times 10^{-4}$, $\beta = 0.9/0.95$) \\
+Schedule   & Cosine decay, 50\% triadic warmup \\
+Data       & WikiText-103 ($\sim$100M tokens) \\
+Steps      & 50,000 \\
+Hardware   & NVIDIA RTX 4060 Ti 16GB \\
+\bottomrule
+\end{tabular}
+\caption{Training configuration for v5\_frozen.}
+\label{tab:training}
+\end{table}
+
+\subsection{Training Run Summary}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lcrrcrl}
+\toprule
+\textbf{Run} & \textbf{Bits} & \textbf{Acc.} & \textbf{Unique} & \textbf{Coh.} & \textbf{PPL} & \textbf{Key Change} \\
+\midrule
+v1 & 65 & $\sim$90\% & ? & ? & 2,777 & Baseline \\
+v2 & 65 & 95.8\% & 3.8\% & ? & 6,735 & Bad targets \\
+v3 & 65 & 90.9\% & 89.2\% & 0.653 & 5,388 & Fixed: 65 prims \\
+v4 & 72 & 92.5\% & 100\% & 0.876 & 5,608 & +7 primitives \\
+\textbf{v5} & \textbf{72} & \textbf{90.8\%} & \textbf{100\%} & \textbf{0.818} & \textbf{31.95} & \textbf{Frozen base} \\
+\bottomrule
+\end{tabular}
+\caption{Training run progression. V5 solves catastrophic forgetting via frozen backbone.}
+\label{tab:runs}
+\end{table}
+
+\subsection{Key Finding: Field Density $>$ Individual Targets}
+
+V4 added 7 new primitives to differentiate collapsed dual pairs (Jaccard $> 0.80$). The result was surprising: collapsed pairs resolved even though their individual gold targets did not change. The mechanism is \textbf{field density}---more diverse training examples teach the model what good differentiation looks like.
+
+\subsection{Key Finding: Catastrophic Forgetting Solved}
+
+All runs v1--v4 showed catastrophic language degradation (PPL $> 2{,}700$ vs.\ baseline 31.95). V5 froze the GPT-2 backbone, training only the 73K-parameter triadic head. Result: PPL~=~31.95 (identical to baseline) at a cost of only $-1.7\%$ accuracy.
+
+\subsection{Relational Structure (Regla de Tres)}
+
+The model preserves proportional relationships between dual pairs:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Analogy} & \textbf{Cosine} & \textbf{Bit Acc.} \\
+\midrule
+good:evil = truth:lie                    & 0.998 & 1.000 \\
+creation:destruction = life:death        & 0.998 & 1.000 \\
+freedom:control = individual:collective  & 0.995 & 0.986 \\
+pleasure:pain = conscious:absent         & 0.996 & 1.000 \\
+union:separation = order:chaos           & 0.997 & 1.000 \\
+creation:destruction = union:separation  & 0.997 & 1.000 \\
+\bottomrule
+\end{tabular}
+\caption{Regla de Tres: relational structure preservation. Mean cosine: 0.996.}
+\label{tab:r3}
+\end{table}
+
+\subsection{Neural Probes}
+
+8 falsifiable questions were tested using reptimeline checkpoint analysis:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{clll}
+\toprule
+\textbf{Probe} & \textbf{Question} & \textbf{Result} & \textbf{$p$-value} \\
+\midrule
+Q1 & Layer order in representations?   & \textbf{Null}              & 0.713 \\
+Q2 & Dual anti-correlation?            & \textbf{5/13 significant}  & $<0.018$ (BH) \\
+Q3 & DAG recovery?                     & \textbf{Above random}      & 0.001 \\
+Q5 & Phase transition?                 & \textbf{Yes, step 6000}    & 0.0004 \\
+Q4 & Triadic dependencies?             & Null                       & 1.000 \\
+Q6 & Unsupervised discovery?           & Null                       & 1.000 \\
+Q7 & Causal verification?              & Null                       & 1.000 \\
+\bottomrule
+\end{tabular}
+\caption{Neural probe results. The model learns relational but not ordinal structure.}
+\label{tab:probes}
+\end{table}
+
+\noindent\textbf{Interpretation}: The model learns \emph{relational} structure (analogies, some dual axes, DAG edges) but does not recover \emph{ordinal} structure (layer ordering, ternary dependencies). This is consistent with the frozen-base design: the head projects semantics into bit space without restructuring the backbone's internal representations.
+
+% ============================================================
+\section{Discussion}
+
+\subsection{What the Framework Claims}
+
+The Emergent Duality framework makes two testable claims:
+
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Structural claim}: 72 primitives connected by a specific DAG can classify concepts across any knowledge domain using a ternary (D/A/N) code.
+    \item \textbf{Ordering claim}: the 14 dualities emerge in a specific sequence dictated by algebraic dependency.
+\end{enumerate}
+
+\subsection{Evidence For}
+
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Structural claim}: supported. 8/8 positive domains achieve IDVS~=~1.000, all exceeding the $p_{99}$ null threshold (0.955). The negative control correctly fails.
+    \item \textbf{Ordering claim}: partially supported. Bayesian comparison yields BF~=~121.4 (decisive) against reversed ordering, but only weak evidence against Hegel (BF~=~1.14) and Peirce (BF~=~1.95). The neural model does not recover layer ordering (Q1, $p$~=~0.71).
+\end{itemize}
+
+\subsection{Honest Limitations}
+
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Self-evaluated classifications}: All D-A-N assignments were made by the framework author. Inter-rater data exists for only 1/9 domains (Mathematics). The permutation tests validate internal consistency but not external agreement.
+    \item \textbf{Underpowered rank correlations}: With $n = 7$ (circle) or $n = 14$ (combined), Spearman correlations cannot achieve significance at $\alpha = 0.05$ even for moderate effects.
+    \item \textbf{IDVS~=~1.000 for all positives}: After reclassification (v1.1), all positive domains achieve perfect scores. This may reflect overfitting to the metric rather than genuine universality.
+    \item \textbf{Neural probes}: 5/8 probes returned null results. The model learns surface relational structure but not deep algebraic properties.
+    \item \textbf{Scale--algebra tradeoff}: Larger models (355M) show lower subsumption rates (76.9\%) than smaller ones (40M, 98.3\%).
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Wierzbicka (1996)}: Natural Semantic Metalanguage proposes $\sim$65 universal primitives but lacks formal algebraic structure or computational validation.
+    \item \textbf{ConceptNet} \citep{speer2017conceptnet}: Large-scale knowledge graph with 34 relation types but no emergence hierarchy.
+    \item \textbf{FrameNet} \citep{baker1998framenet}: Frame-based semantics covering $\sim$1,200 frames but domain-specific rather than universal.
+    \item \textbf{Category theory approaches} \citep{coecke2010mathematical}: DisCoCat and related formalisms provide compositional semantics but do not address emergence ordering.
+\end{itemize}
+
+Our framework differs in proposing (a)~a specific algebraic chain governing emergence, (b)~empirical validation across 9 domains, and (c)~neurosymbolic learnability from natural language.
+
+% ============================================================
+\section{Conclusion}
+
+We have presented a formal ontological framework of 14 fundamental dualities emerging across 6 algebraic layers, grounded in 72 semantic primitives. The framework achieves perfect IDVS scores across 8 disciplines while correctly rejecting a negative control, with statistical hardening via permutation tests, null baselines, and Bayesian model comparison. A neurosymbolic model (GPT-2 + triadic head) learns the proposed structure at 90.8\% accuracy without degrading language ability, exhibiting near-perfect relational preservation (cosine 0.996).
+
+The main open question is external validation: independent human evaluators must confirm the D-A-N classifications before universality claims can be considered robust. We release all data, scripts, and model code to enable replication.
+
+% ============================================================
+\appendix
+\section{Notation}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} \\
+\midrule
+D, A, N & Direct, Analogical, Null classification states \\
+IDVS    & Information Domain Validity Score \\
+BF      & Bayes Factor \\
+PPL     & Perplexity \\
+iFSQ    & Improved Finite Scalar Quantization \\
+BH-FDR  & Benjamini--Hochberg False Discovery Rate \\
+SHD     & Structural Hamming Distance \\
+DAG     & Directed Acyclic Graph \\
+\bottomrule
+\end{tabular}
+\caption{Notation reference.}
+\label{tab:notation}
+\end{table}
+
+% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{7}
+
+\bibitem[Wierzbicka(1996)]{wierzbicka1996}
+A.~Wierzbicka.
+\newblock \emph{Semantics: Primes and Universals}.
+\newblock Oxford University Press, 1996.
+
+\bibitem[Speer et~al.(2017)]{speer2017conceptnet}
+R.~Speer, J.~Chin, and C.~Havasi.
+\newblock ConceptNet 5.5: An open multilingual graph of general knowledge.
+\newblock In \emph{AAAI}, 2017.
+
+\bibitem[Baker et~al.(1998)]{baker1998framenet}
+C.~F. Baker, C.~J. Fillmore, and J.~B. Lowe.
+\newblock The Berkeley FrameNet project.
+\newblock In \emph{COLING-ACL}, 1998.
+
+\bibitem[Coecke et~al.(2010)]{coecke2010mathematical}
+B.~Coecke, M.~Sadrzadeh, and S.~Clark.
+\newblock Mathematical foundations for a compositional distributional model of meaning.
+\newblock \emph{Linguistic Analysis}, 2010.
+
+\bibitem[Radford et~al.(2019)]{radford2019language}
+A.~Radford, J.~Wu, R.~Child, et~al.
+\newblock Language models are unsupervised multitask learners.
+\newblock \emph{OpenAI Technical Report}, 2019.
+
+\bibitem[Benjamini and Hochberg(1995)]{benjamini1995controlling}
+Y.~Benjamini and Y.~Hochberg.
+\newblock Controlling the false discovery rate: A practical and powerful approach to multiple testing.
+\newblock \emph{Journal of the Royal Statistical Society: Series B}, 57(1):289--300, 1995.
+
+\bibitem[Mentzer et~al.(2025)]{mentzer2025fsq}
+F.~Mentzer et~al.
+\newblock Finite scalar quantization: {VQ-VAE} made simple.
+\newblock In \emph{ICLR}, 2024.
+
+\end{thebibliography}
+
+\end{document}
