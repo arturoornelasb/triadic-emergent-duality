@@ -1,0 +1,43 @@
+{
+    "title": "Triadic Emergent Duality: 14 Fundamental Dualities Across 6 Algebraic Layers",
+    "version": "0.1.0",
+    "description": "A formal ontological framework in which conceptual complexity emerges from 14 fundamental dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). Grounded in 72 semantic primitives connected by a DAG of 133+ dependency edges. Validated through domain analysis (9 disciplines, IDVS metric), Bayesian model comparison (BF=121.4), and neurosymbolic learning (GPT-2 Medium + 72-bit triadic head, 90.8% accuracy, PPL 31.95).",
+    "creators": [
+        {
+            "name": "Ornelas Brand, J. Arturo",
+            "affiliation": "Independent Researcher",
+            "email": "arturoornelas62@gmail.com"
+        }
+    ],
+    "upload_type": "software",
+    "access_right": "open",
+    "license": "BUSL-1.1",
+    "keywords": [
+        "ontology",
+        "semantic primitives",
+        "emergence",
+        "duality",
+        "neurosymbolic AI",
+        "algebraic structure",
+        "domain validation",
+        "Bayesian model comparison"
+    ],
+    "related_identifiers": [
+        {
+            "identifier": "https://github.com/arturoornelasb/triadic-emergent-duality",
+            "relation": "isSupplementTo",
+            "resource_type": "software"
+        },
+        {
+            "identifier": "https://github.com/arturoornelasb/Triadic-Neurosymbolic-Engine",
+            "relation": "references",
+            "resource_type": "software"
+        },
+        {
+            "identifier": "https://github.com/arturoornelasb/triadic-microgpt",
+            "relation": "references",
+            "resource_type": "software"
+        }
+    ],
+    "language": "eng"
+}
