@@ -1,4 +1,4 @@
-# Dualidad Emergente
+# Triadic Emergent Duality
 
 Research framework proposing that conceptual complexity emerges from 14 fundamental dualities organized in 6 algebraic layers. Combines philosophical formalization (poset theory, category theory, modal logic) with empirical validation across 9 disciplines and a neurosymbolic language model (GPT-2 Medium + 72-bit triadic head).
 
