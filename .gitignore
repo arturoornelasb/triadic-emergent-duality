@@ -28,6 +28,14 @@ Thumbs.db
 # Logs
 *.log
 
+# LaTeX build artifacts
+*.aux
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
 # Model checkpoints (too large for git — use LFS or store externally)
 dualidademergente+reptimeline/model/checkpoints/
 

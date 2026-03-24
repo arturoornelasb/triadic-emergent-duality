@@ -1,92 +1,72 @@
-# Roadmap: Production-Ready & Comercializable
+# Roadmap: Triadic Emergent Duality
 
-Estado actual: framework de investigacion con 37 documentos, 32 scripts de validacion,
-modelo neural funcional y resultados parciales. Falta empaquetado, reproducibilidad y producto.
-
----
-
-## Tecnico
-
-### Empaquetado y reproducibilidad
-
-- [ ] Crear `pyproject.toml` o `requirements.txt` con versiones pinneadas (torch, numpy, transformers, reptimeline)
-- [ ] Agregar `LICENSE` file (definir modelo: MIT, Apache-2.0, o licencia comercial dual)
-- [ ] Publicar model weights pre-entrenados (HuggingFace Hub o GitHub Releases) — sin ellos nadie puede reproducir resultados
-- [ ] Dockerizar el entorno de entrenamiento (GPU + dependencias exactas)
-- [ ] Agregar versionado semantico y tags de release (`v0.1.0-beta` existe solo en commit message)
-
-### Testing y CI/CD
-
-- [ ] Agregar test suite con pytest: unit tests para `stats/`, `triadic.py`, `anchors.py`
-- [ ] Los 32 scripts de `scripts/` no tienen asserts — convertirlos en tests ejecutables con exit codes
-- [ ] GitHub Actions: lint (ruff/flake8), tests, validacion de JSONs en `data/`
-- [ ] Pre-commit hooks (formatting, type checking)
-
-### Datos y validacion
-
-- [ ] Completar interrater data — solo existe `Mathematics_rater2.csv`, faltan los otros 8 dominios
-- [ ] 3/8 dominios dentro de la distribucion null (Philosophy, Physics, Mathematics) — necesitan reclasificacion D-A-N o justificacion formal
-- [ ] Correlaciones de rango sin poder estadistico (n=7/14) — necesitan corpus mas grande o test alternativo
-- [ ] Sensibilidad D-A-N fragil (28.4% de perturbaciones causan >5% cambio IDVS) — estabilizar clasificaciones
-- [ ] Directorio `figures/` vacio — generar visualizaciones del DAG, spiral, resultados por dominio
-
-### Modelo neural
-
-- [ ] Resolver tradeoff escala-algebra: GPT-2 355M logra 76.9% subsumption vs 98.3% en 40M — investigar causa
-- [ ] Integrar bits 63-64 (proporcion, quietud) formalmente o eliminarlos del pipeline
-- [ ] Principio holografico solo parcial (3.13x vs random, no determinista) — formalizar o descartar claim
-- [ ] Script `download_corpus.py` existe pero el corpus no se distribuye — documentar fuente o incluir script funcional
-
-### API y accesibilidad
-
-- [ ] API REST o CLI para consultar primitivos de un concepto dado (input: texto, output: vector 65-bit)
-- [ ] SDK/libreria Python instalable via pip: `pip install dualidad-emergente`
-- [ ] Documentacion tecnica (Sphinx o MkDocs) — actualmente solo existen los 37 .md de teoria
+Status snapshot as of 2026-03-24. Items reflect actual repository state.
 
 ---
 
-## Comercial
+## Technical
 
-### Propiedad intelectual
+### Done (no work required)
 
-- [ ] Definir estrategia de licenciamiento: open-core (stdlib gratis, modelo/API de pago) o SaaS
-- [ ] Registrar propiedad intelectual del framework (patente de metodo o copyright formal)
-- [ ] Los 37 documentos teoricos son el asset principal — protegerlos antes de publicar
+- [x] 37 theory documents (~44,000 words) covering formal definitions, philosophical precedents, and empirical tests
+- [x] 32 validation scripts across 9 domains
+- [x] GPT-2 Medium + 72-bit triadic head trained (v5_frozen: PPL 31.95, 90.8% accuracy, 100% unique)
+- [x] `requirements.txt` with pinned dependencies
+- [x] `LICENSE` file (BUSL-1.1 with consortium model)
+- [x] TERMS.md and COMMERCIAL.md for contribution obligations
+- [x] reptimeline integration for training dynamics analysis
+- [x] Paper compiled (LaTeX, 7 pages)
+- [x] 5 training runs documented (v1-v5) with full experiment log
+- [x] Inter-rater reliability data (Mathematics domain)
+- [x] Algebraic layer verification (86% match across 6 algebras)
 
-### Publicacion academica
+### Pending — High Priority
 
-- [ ] Ejecutar plan de 4 articulos definido en Doc 10 (prioridad: empirico → filosofico → breadth → formal)
-- [ ] Target journals: Synthese, Foundations of Science, Minds and Machines, Artificial Intelligence
-- [ ] Peer review externo antes de submit — actualmente todo es auto-evaluado
-- [ ] Las refutaciones honestas (abstraction-zeros, holographic parcial) son fortaleza editorial — mantenerlas
+- [ ] **Publish paper on Zenodo** — PDF compiled, needs DOI. Independent researcher without institutional affiliation (no arXiv access).
+- [ ] **CI/CD** — No GitHub Actions. Minimum: lint + validation script runner on push.
+- [ ] **Complete inter-rater data** — Only Mathematics_rater2.csv exists. Need remaining 8 domains for full external verification.
+- [ ] **Publish model weights** — v5_frozen checkpoint not publicly available. Options: GitHub Releases or HuggingFace Hub.
 
-### Producto
+### Pending — Medium Priority
 
-- [ ] Definir que se vende: framework teorico (consultoria), API de clasificacion semantica, o herramienta de investigacion
-- [ ] Landing page / sitio web con demo interactiva (input concepto → output vector + dualidades activas)
-- [ ] Caso de uso concreto demostrable: NLP, ontology engineering, knowledge graphs, curriculum design
-- [ ] Benchmarks contra alternativas existentes (ConceptNet, FrameNet, WordNet) — sin comparativa no hay pitch
+- [ ] **Scale-algebra tradeoff** — GPT-2 355M achieves 76.9% subsumption vs 98.3% at 40M. Cause under investigation.
+- [ ] **Docker environment** — For reproducible GPU training.
+- [ ] **Translate theory docs to English** — 37 documents currently in Spanish. At minimum, translate abstracts/summaries.
+- [ ] **Generate figures** — `figures/` directory empty. Need DAG, spiral, and per-domain result visualizations.
 
-### Comunidad
+### Pending — Low Priority
 
-- [ ] README bilingue (espanol/ingles) o traduccion completa a ingles para audiencia internacional
-- [ ] Los documentos 01-37 estan en espanol — traducir al menos el abstract/resumen de cada uno
-- [ ] Contributing guide si se abre el codigo
-- [ ] Canal de discusion (GitHub Discussions o Discord)
+- [ ] **REST API / CLI** — For querying primitives of a given concept.
+- [ ] **pip-installable package** — `pip install triadic-emergent-duality`.
+- [ ] **Technical documentation site** — Sphinx or MkDocs. Currently only the 37 theory .md files.
 
 ---
 
-## Bloqueos
+## Commercial
 
-| Bloqueo | Severidad | Impacto |
-|---------|-----------|---------|
-| Sin LICENSE file | **Critica** | Nadie puede usar, modificar ni contribuir legalmente |
-| Sin model weights publicados | **Critica** | Resultados no reproducibles por terceros |
-| Sin requirements.txt/pyproject.toml | **Alta** | Instalacion no reproducible |
-| Interrater data incompleta (1/9 dominios) | **Alta** | IDVS metric no verificable externamente para 8 dominios |
-| Estadisticas underpowered (n=7/14) | **Alta** | Peer reviewers rechazaran claims de orden sin mas evidencia |
-| 3 dominios dentro de null | **Media** | Debilita el claim de validacion universal |
-| Sin peer review externo | **Media** | Todo resultado es auto-reportado |
-| Codebase monolingue (espanol) | **Media** | Limita audiencia y contribuciones internacionales |
-| Sin CI/CD | **Baja** | No bloquea uso pero impide desarrollo colaborativo |
-| Sin API/CLI | **Baja** | No bloquea investigacion pero impide comercializacion |
+### Assets Ready
+
+- **Paper** — 7-page LaTeX, compiled PDF, ready for Zenodo.
+- **Framework** — 72 semantic primitives, 6 algebraic layers, 14 dualities. Validated across 9 disciplines.
+- **Model** — GPT-2 Medium + 72-bit triadic head (v5_frozen). Catastrophic forgetting solved.
+- **License** — BUSL-1.1 with consortium model. Free for individuals/academia/nonprofits. Companies must participate.
+
+### Pending — Monetization
+
+- [ ] **Zenodo DOI** — Required before any other publication step.
+- [ ] **Benchmarks vs alternatives** — Compare against ConceptNet, FrameNet, WordNet for positioning.
+- [ ] **Concrete use case demo** — NLP, ontology engineering, knowledge graphs, or curriculum design.
+- [ ] **Landing page** — Interactive demo (input concept, output vector + active dualities).
+
+---
+
+## Blockers
+
+| Blocker | Severity | Impact |
+|---------|----------|--------|
+| No published model weights | High | Results not reproducible by third parties |
+| Inter-rater data incomplete (1/9 domains) | High | IDVS metric not externally verifiable for 8 domains |
+| Underpowered statistics (n=7/14) | High | Peer reviewers may reject ordering claims without more evidence |
+| 3 domains within null distribution | Medium | Weakens universal validation claim |
+| No peer review | Medium | All results are self-reported |
+| Theory docs in Spanish only | Medium | Limits international audience |

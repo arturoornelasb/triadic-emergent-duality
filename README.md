@@ -10,12 +10,12 @@ Research framework proposing that conceptual complexity emerges from 14 fundamen
 
 | Layer | Algebra | Dualities |
 |-------|---------|-----------|
-| 1. Punto | Boolean {0,1} | D1 Existir/No-existir |
-| 2. Linea | Fuzzy {0,+} | D2 Aqui/No-aqui, D3 Antes/Despues |
-| 3. Plano | Ordinal {<,=,>} | D5 Movimiento/Quietud, D6 Orden/Caos, D7 Creacion/Destruccion |
-| 4. Volumen | Modal {diamond,box} | D4 Posible/Imposible, D8 Verdad/Mentira, D9 Bien/Mal |
-| 5. Vida | Trivalent {-,0,+} | D10 Vida/Muerte, D11 Placer/Dolor, D12 Libertad/Control |
-| 6. Observador | Probabilistic {0,?} | D13 Temporal/Eterno, D14 Receptivo/Creador |
+| 1. Point | Boolean {0,1} | D1 Exist/Not-exist |
+| 2. Line | Fuzzy {0,+} | D2 Here/Not-here, D3 Before/After |
+| 3. Plane | Ordinal {<,=,>} | D5 Movement/Stillness, D6 Order/Chaos, D7 Creation/Destruction |
+| 4. Volume | Modal {diamond,box} | D4 Possible/Impossible, D8 Truth/Falsehood, D9 Good/Evil |
+| 5. Life | Trivalent {-,0,+} | D10 Life/Death, D11 Pleasure/Pain, D12 Freedom/Control |
+| 6. Observer | Probabilistic {0,?} | D13 Temporal/Eternal, D14 Receptive/Creator |
 
 72 semantic primitives span these 6 layers. See `data/ALGEBRAIC_LAYERS.md` for full algebraic formalization.
 
@@ -101,8 +101,8 @@ See `dualidademergente+reptimeline/EXPERIMENT_LOG.md` for detailed run log and k
 ## Installation
 
 ```bash
-git clone https://github.com/arturoornelasb/dualidad-emergente.git
-cd dualidad-emergente
+git clone https://github.com/arturoornelasb/triadic-emergent-duality.git
+cd triadic-emergent-duality
 pip install -r requirements.txt
 ```
 
