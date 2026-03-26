@@ -55,198 +55,39 @@ print(f'Total primitives in layers 1-4: {total_L1_4}')
 print()
 
 # ======================================================================
-#  SECTION 1: 8+1 DOMAIN CLASS DICTS
+#  SECTION 1: 8+1 DOMAIN CLASS DICTS (loaded from reference_domains.json)
 # ======================================================================
 
-music_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'D', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'D', 'porque': 'A', 'si_entonces': 'A',
-    'eje_vertical': 'A', 'eje_lateral': 'A', 'equilibrio': 'D',
-    'vista': 'A', 'bien': 'A', 'mal': 'A',
-    'verdad': 'A', 'mentira': 'A', 'libertad': 'A', 'control': 'A',
-    'tipo_de': 'A', 'algunos': 'A', 'muchos': 'A',
-    'todo': 'A', 'puede': 'A', 'debe': 'A', 'tal_vez': 'A',
-    'tierra': 'A', 'agua': 'A', 'aire': 'A', 'fuego': 'A',
-    'tacto': 'D', 'oído': 'D', 'gusto': 'N', 'olfato': 'N', 'interocepción': 'A',
-    'vida': 'A', 'muerte': 'A', 'placer': 'D', 'dolor': 'D',
-    'consciente': 'A', 'ausente': 'A',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'A', 'saber': 'A', 'pensar': 'A', 'decir': 'A',
-    'temporal_obs': 'A', 'eterno_obs': 'A', 'receptivo': 'A', 'creador_obs': 'A',
-}
+with open(f'{DATA_DIR}/reference_domains.json', 'r', encoding='utf-8') as f:
+    ref_domains = json.load(f)
 
-chem_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'D', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'D', 'porque': 'A', 'si_entonces': 'A',
-    'eje_vertical': 'D', 'eje_lateral': 'A', 'equilibrio': 'D',
-    'vista': 'A', 'bien': 'A', 'mal': 'A',
-    'verdad': 'A', 'mentira': 'A', 'libertad': 'D', 'control': 'D',
-    'tipo_de': 'D', 'algunos': 'A', 'muchos': 'A',
-    'todo': 'A', 'puede': 'A', 'debe': 'A', 'tal_vez': 'A',
-    'tierra': 'D', 'agua': 'D', 'aire': 'D', 'fuego': 'D',
-    'tacto': 'A', 'oído': 'A', 'gusto': 'D', 'olfato': 'D', 'interocepción': 'A',
-    'vida': 'D', 'muerte': 'D', 'placer': 'A', 'dolor': 'A',
-    'consciente': 'A', 'ausente': 'A',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'A', 'saber': 'A', 'pensar': 'A', 'decir': 'A',
-    'temporal_obs': 'A', 'eterno_obs': 'A', 'receptivo': 'A', 'creador_obs': 'A',
+# Map domain keys to display names (preserving legacy test IDs)
+_DOMAIN_KEY_TO_DISPLAY = {
+    'Music': 'Music (T8)', 'Chemistry': 'Chemistry (T9)',
+    'Biology': 'Biology (T10)', 'Mathematics': 'Mathematics (T11)',
+    'Philosophy': 'Philosophy (T12)', 'Physics': 'Physics (T13)',
+    'Linguistics': 'Linguistics (T15)', 'Psychology': 'Psychology (T16)',
+    'Astrology': 'Astrology (T14)',
 }
+_DOMAIN_ORDER = ['Music', 'Chemistry', 'Biology', 'Mathematics',
+                 'Philosophy', 'Physics', 'Linguistics', 'Psychology',
+                 'Astrology']
 
-bio_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'D', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'D', 'porque': 'A', 'si_entonces': 'A',
-    'eje_vertical': 'A', 'eje_lateral': 'A', 'equilibrio': 'D',
-    'vista': 'D', 'bien': 'A', 'mal': 'A',
-    'verdad': 'A', 'mentira': 'A', 'libertad': 'A', 'control': 'D',
-    'tipo_de': 'D', 'algunos': 'A', 'muchos': 'A',
-    'todo': 'A', 'puede': 'A', 'debe': 'A', 'tal_vez': 'A',
-    'tierra': 'D', 'agua': 'D', 'aire': 'D', 'fuego': 'A',
-    'tacto': 'D', 'oído': 'D', 'gusto': 'D', 'olfato': 'D', 'interocepción': 'D',
-    'vida': 'D', 'muerte': 'D', 'placer': 'D', 'dolor': 'D',
-    'consciente': 'D', 'ausente': 'D',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'A', 'saber': 'A', 'pensar': 'A', 'decir': 'A',
-    'temporal_obs': 'A', 'eterno_obs': 'A', 'receptivo': 'A', 'creador_obs': 'A',
-}
+# Build class dicts dynamically from reference_domains.json
+_loaded_class_dicts = {}
+for dkey in _DOMAIN_ORDER:
+    _loaded_class_dicts[dkey] = ref_domains['domains'][dkey]['classes']
 
-math_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'A', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'A', 'creación': 'D', 'destrucción': 'A',
-    'orden': 'D', 'caos': 'D', 'porque': 'D', 'si_entonces': 'A',
-    'eje_vertical': 'D', 'eje_lateral': 'D', 'equilibrio': 'D',
-    'vista': 'A', 'bien': 'A', 'mal': 'A',
-    'verdad': 'D', 'mentira': 'D', 'libertad': 'A', 'control': 'A',
-    'tipo_de': 'D', 'algunos': 'D', 'muchos': 'A',
-    'todo': 'D', 'puede': 'A', 'debe': 'A', 'tal_vez': 'A',
-    'tierra': 'N', 'agua': 'N', 'aire': 'N', 'fuego': 'N',
-    'tacto': 'N', 'oído': 'N', 'gusto': 'N', 'olfato': 'N', 'interocepción': 'N',
-    'vida': 'N', 'muerte': 'N', 'placer': 'A', 'dolor': 'N',
-    'consciente': 'N', 'ausente': 'N',
-    'individual': 'A', 'colectivo': 'A',
-    'querer': 'N', 'saber': 'A', 'pensar': 'A', 'decir': 'N',
-    'temporal_obs': 'N', 'eterno_obs': 'N', 'receptivo': 'N', 'creador_obs': 'N',
-}
+music_classes = _loaded_class_dicts['Music']
 
-phil_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'A',
-    'más': 'A', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'D',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'D', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'D', 'porque': 'D', 'si_entonces': 'A',
-    'eje_vertical': 'A', 'eje_lateral': 'A', 'equilibrio': 'D',
-    'vista': 'A', 'bien': 'D', 'mal': 'D',
-    'verdad': 'D', 'mentira': 'D', 'libertad': 'D', 'control': 'D',
-    'tipo_de': 'D', 'algunos': 'A', 'muchos': 'A',
-    'todo': 'D', 'puede': 'D', 'debe': 'D', 'tal_vez': 'D',
-    'tierra': 'N', 'agua': 'N', 'aire': 'N', 'fuego': 'N',
-    'tacto': 'A', 'oído': 'A', 'gusto': 'A', 'olfato': 'N', 'interocepción': 'A',
-    'vida': 'D', 'muerte': 'D', 'placer': 'D', 'dolor': 'D',
-    'consciente': 'D', 'ausente': 'A',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'D', 'saber': 'D', 'pensar': 'D', 'decir': 'D',
-    'temporal_obs': 'A', 'eterno_obs': 'A', 'receptivo': 'A', 'creador_obs': 'A',
-}
-
-phys_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'A', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'D', 'porque': 'D', 'si_entonces': 'A',
-    'eje_vertical': 'D', 'eje_lateral': 'D', 'equilibrio': 'D',
-    'vista': 'A', 'bien': 'A', 'mal': 'A',
-    'verdad': 'A', 'mentira': 'A', 'libertad': 'D', 'control': 'D',
-    'tipo_de': 'D', 'algunos': 'A', 'muchos': 'A',
-    'todo': 'D', 'puede': 'D', 'debe': 'D', 'tal_vez': 'D',
-    'tierra': 'D', 'agua': 'D', 'aire': 'D', 'fuego': 'D',
-    'tacto': 'D', 'oído': 'D', 'gusto': 'N', 'olfato': 'N', 'interocepción': 'A',
-    'vida': 'D', 'muerte': 'D', 'placer': 'N', 'dolor': 'N',
-    'consciente': 'N', 'ausente': 'A',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'N', 'saber': 'A', 'pensar': 'A', 'decir': 'N',
-    'temporal_obs': 'N', 'eterno_obs': 'N', 'receptivo': 'A', 'creador_obs': 'A',
-}
-
-ling_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'D', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'A', 'porque': 'D', 'si_entonces': 'A',
-    'eje_vertical': 'A', 'eje_lateral': 'A', 'equilibrio': 'A',
-    'vista': 'D', 'bien': 'A', 'mal': 'A',
-    'verdad': 'D', 'mentira': 'D', 'libertad': 'D', 'control': 'D',
-    'tipo_de': 'D', 'algunos': 'D', 'muchos': 'D',
-    'todo': 'D', 'puede': 'D', 'debe': 'D', 'tal_vez': 'D',
-    'tierra': 'A', 'agua': 'A', 'aire': 'D', 'fuego': 'A',
-    'tacto': 'A', 'oído': 'D', 'gusto': 'N', 'olfato': 'N', 'interocepción': 'A',
-    'vida': 'D', 'muerte': 'D', 'placer': 'A', 'dolor': 'A',
-    'consciente': 'D', 'ausente': 'D',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'D', 'saber': 'D', 'pensar': 'D', 'decir': 'D',
-    'temporal_obs': 'D', 'eterno_obs': 'A', 'receptivo': 'D', 'creador_obs': 'D',
-}
-
-psych_classes = {
-    'vacío': 'D', 'información': 'D', 'uno': 'D',
-    'fuerza': 'D', 'eje_profundidad': 'A', 'contención': 'D',
-    'más': 'D', 'menos': 'D', 'unión': 'D', 'separación': 'D', 'parte_de': 'A',
-    'mover': 'D', 'posición_temporal': 'D', 'flujo_temporal': 'D',
-    'hacer': 'D', 'creación': 'D', 'destrucción': 'D',
-    'orden': 'D', 'caos': 'D', 'porque': 'A', 'si_entonces': 'A',
-    'eje_vertical': 'D', 'eje_lateral': 'D', 'equilibrio': 'D',
-    'vista': 'D', 'bien': 'A', 'mal': 'A',
-    'verdad': 'A', 'mentira': 'A', 'libertad': 'D', 'control': 'D',
-    'tipo_de': 'D', 'algunos': 'A', 'muchos': 'A',
-    'todo': 'D', 'puede': 'A', 'debe': 'D', 'tal_vez': 'D',
-    'tierra': 'D', 'agua': 'D', 'aire': 'D', 'fuego': 'D',
-    'tacto': 'D', 'oído': 'D', 'gusto': 'N', 'olfato': 'N', 'interocepción': 'D',
-    'vida': 'D', 'muerte': 'D', 'placer': 'D', 'dolor': 'D',
-    'consciente': 'D', 'ausente': 'D',
-    'individual': 'D', 'colectivo': 'D',
-    'querer': 'A', 'saber': 'A', 'pensar': 'A', 'decir': 'A',
-    'temporal_obs': 'D', 'eterno_obs': 'A', 'receptivo': 'D', 'creador_obs': 'A',
-}
-
-# Astrology control (from test14)
-astro_classes = {
-    'vacío': 'A', 'información': 'A', 'uno': 'A',
-    'fuerza': 'A', 'eje_profundidad': 'N', 'contención': 'A',
-    'más': 'N', 'menos': 'N', 'unión': 'A', 'separación': 'A', 'parte_de': 'A',
-    'mover': 'A', 'posición_temporal': 'A', 'flujo_temporal': 'A',
-    'hacer': 'N', 'creación': 'A', 'destrucción': 'A',
-    'orden': 'A', 'caos': 'N', 'porque': 'N', 'si_entonces': 'N',
-    'eje_vertical': 'A', 'eje_lateral': 'A', 'equilibrio': 'A',
-    'vista': 'A', 'bien': 'A', 'mal': 'A',
-    'verdad': 'N', 'mentira': 'N', 'libertad': 'A', 'control': 'A',
-    'tipo_de': 'A', 'algunos': 'N', 'muchos': 'N',
-    'todo': 'A', 'puede': 'N', 'debe': 'N', 'tal_vez': 'N',
-    'tierra': 'D', 'agua': 'D', 'aire': 'D', 'fuego': 'D',
-    'tacto': 'N', 'oído': 'N', 'gusto': 'N', 'olfato': 'N', 'interocepción': 'N',
-    'vida': 'A', 'muerte': 'A', 'placer': 'A', 'dolor': 'A',
-    'consciente': 'N', 'ausente': 'N',
-    'individual': 'A', 'colectivo': 'A',
-    'querer': 'A', 'saber': 'N', 'pensar': 'A', 'decir': 'A',
-    'temporal_obs': 'A', 'eterno_obs': 'A', 'receptivo': 'A', 'creador_obs': 'A',
-}
+chem_classes = _loaded_class_dicts['Chemistry']
+bio_classes = _loaded_class_dicts['Biology']
+math_classes = _loaded_class_dicts['Mathematics']
+phil_classes = _loaded_class_dicts['Philosophy']
+phys_classes = _loaded_class_dicts['Physics']
+ling_classes = _loaded_class_dicts['Linguistics']
+psych_classes = _loaded_class_dicts['Psychology']
+astro_classes = _loaded_class_dicts['Astrology']
 
 # ======================================================================
 #  SECTION 2: STRENGTH DICTS (12 dual axes per domain)

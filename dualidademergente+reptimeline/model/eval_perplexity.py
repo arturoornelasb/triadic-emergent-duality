@@ -34,6 +34,7 @@ KNOWN_RUNS = [
     ('v3', 'gpt2_triadic_65_v3', 65),
     ('v4', 'gpt2_triadic_72_v4', 72),
     ('v5_frozen', 'gpt2_triadic_72_v5_frozen', 72),
+    ('v6', 'gpt2_triadic_72_v6', 72),
 ]
 
 

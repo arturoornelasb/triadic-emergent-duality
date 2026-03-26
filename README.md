@@ -10,14 +10,14 @@ Research framework proposing that conceptual complexity emerges from 14 fundamen
 
 | Layer | Algebra | Dualities |
 |-------|---------|-----------|
-| 1. Point | Boolean {0,1} | D1 Exist/Not-exist |
-| 2. Line | Fuzzy {0,+} | D2 Here/Not-here, D3 Before/After |
-| 3. Plane | Ordinal {<,=,>} | D5 Movement/Stillness, D6 Order/Chaos, D7 Creation/Destruction |
-| 4. Volume | Modal {diamond,box} | D4 Possible/Impossible, D8 Truth/Falsehood, D9 Good/Evil |
-| 5. Life | Trivalent {-,0,+} | D10 Life/Death, D11 Pleasure/Pain, D12 Freedom/Control |
-| 6. Observer | Probabilistic {0,?} | D13 Temporal/Eternal, D14 Receptive/Creator |
+| 1. Point (0D) | Boolean {0,1} | D1 Exist/Not-exist, D8 One/Many |
+| 2. Line (1D) | Fuzzy {0,+} | D6 Movement/Stillness, D9 Inside/Outside, D10 Part/Whole |
+| 3. Time (1D+t) | Ordinal {<,=,>} | D3 Before/After, D7 Order/Chaos, D12 Cause/Effect |
+| 4. Plane (2D) | Modal {diamond,box} | D2 Here/Not-here, D4 Possible/Impossible, D5 Identity/Difference, D13 Similar/Different |
+| 5. Volume (3D) | Trivalent {-,0,+} | D11 Life/Death, D14 Subject/Object |
+| 6. Observer (3D+) | Probabilistic {0,?} | D14 Subject/Object (observer recursion) |
 
-72 semantic primitives span these 6 layers. See `data/ALGEBRAIC_LAYERS.md` for full algebraic formalization.
+72 semantic primitives span these 6 layers. See `data/ALGEBRAIC_LAYERS.md` for full algebraic formalization and `data/dualidad_primitivo_map.json` for canonical duality definitions.
 
 ## Repository structure
 
@@ -27,7 +27,7 @@ ROADMAP.md                          # Research roadmap
 requirements.txt                    # Python dependencies
 
 docs/
-  teoria/                           # 24 theory documents (~44,000 words)
+  teoria/                           # 23 theory documents (~44,000 words)
     01_definiciones.md - 13_tests_empiricos_completos.md
     29_metrica_universal_bits.md - 37_analisis_debilidades.md
     circulo_emergencia_dualidades_20mar2026.md
@@ -87,6 +87,7 @@ dualidademergente+reptimeline/      # Neural training & analysis
 | v3 | 65 | 90.9% | 89.2% | 0.653 | 5,388 | 65 primitivos directos |
 | v4 | 72 | 92.5% | 100% | 0.876 | 5,608 | Circle expanded +7 primitivos |
 | **v5_frozen** | **72** | **90.8%** | **100%** | **0.818** | **31.95** | **freeze_base (forgetting FIXED)** |
+| **v6** | **72** | **80.9%** | **21.4%** | **0.643** | **31.95** | **2,166 concepts (extended corpus), 48 active bits** |
 
 See `dualidademergente+reptimeline/EXPERIMENT_LOG.md` for detailed run log and key discoveries.
 
@@ -147,7 +148,7 @@ python compare_runs.py v5_frozen <version>
 ## Key results
 
 ### Ontological validation
-- **8/8** positive domains at IDVS = 1.000 (all pass I2 null baseline, p95 = 0.896)
+- **8/8** positive domains at IDVS = 1.000 (all pass I2 null baseline, p95 = 0.931)
 - **8/8** permutation tests survive Holm-Bonferroni correction (p = 0.0001 each)
 - Negative control (Astrology) correctly rejected: IDVS = 0.479
 - Bayesian ordering: BF = **121.4** (decisive) vs reversed order
@@ -158,10 +159,19 @@ python compare_runs.py v5_frozen <version>
 - GPT-2 Medium (355M) + 72-bit triadic head (73K trainable params)
 - **PPL 31.95** — identical to GPT-2 baseline (catastrophic forgetting solved)
 - **90.8% bit accuracy**, 100% unique learned signatures
-- Regla de tres: **cosine 0.996** (near-perfect relational structure preservation)
+- Regla de tres: **cosine 0.997** (near-perfect relational structure preservation, 8 quadruples)
 - 5/13 dual axes show significant anti-correlation (BH-FDR corrected)
 - Phase transition at step 6000 (p = 0.0004)
 - DAG recovery: F1 above random (p = 0.001), precision limited by dead bits
+
+### Neural validation (v6 — extended corpus)
+- Same architecture, **2,166 concepts** (72 primitives + 2,094 from first-principles corpus across 14 sciences)
+- **PPL 31.95** — backbone still intact after 100K steps
+- **80.9% bit accuracy** on 2,166 concepts, **95.2% subsumption accuracy**
+- **48/72 active bits** (vs 4 in v5) — field density forces bit utilization
+- Regla de tres: **cosine 0.998** (relational structure improves with more data)
+- Phase transition at step 55,000 (warmup boundary), **inverted layer emergence** (L6 before L1)
+- 501 discovered dependencies, 1,714 triadic dependencies
 
 ## Documents
 
@@ -173,6 +183,25 @@ python compare_runs.py v5_frozen <version>
 | `docs/validaciones/36` | Inter-rater reliability |
 | `data/ALGEBRAIC_LAYERS.md` | Algebraic layer formalization |
 | `EXPERIMENT_LOG.md` | Neural training experiment registry |
+
+## Companion Papers
+
+This project is part of a family of four papers. Each companion has its own paper and repository on Zenodo:
+
+### Triadic Neurosymbolic Engine
+
+- **Paper:** Ornelas Brand, J. A. (2026). *Triadic Neurosymbolic Engine: Prime Factorization as a Neurosymbolic Bridge: Projecting Continuous Embeddings into Discrete Algebraic Space for Deterministic Verification.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19205805.svg)](https://doi.org/10.5281/zenodo.19205805)
+- **Repository:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18748671.svg)](https://doi.org/10.5281/zenodo.18748671)
+
+### reptimeline
+
+- **Paper:** Ornelas Brand, J. A. (2026). *reptimeline: Tracking Discrete Representation Evolution During Neural Network Training.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19208672.svg)](https://doi.org/10.5281/zenodo.19208672)
+- **Repository:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19208628.svg)](https://doi.org/10.5281/zenodo.19208628)
+
+### triadic-microgpt
+
+- **Paper:** Ornelas Brand, J. A. (2026). *End-to-End Prime Factorization in a Generative Language Model: Emergent Algebraic Semantics from Joint Training.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19206545.svg)](https://doi.org/10.5281/zenodo.19206545)
+- **Repository:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19207845.svg)](https://doi.org/10.5281/zenodo.19207845)
 
 ## License
 

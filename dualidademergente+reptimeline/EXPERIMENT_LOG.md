@@ -13,6 +13,7 @@ Central registry of all training runs, decisions, and findings.
 | v3 | 2026-03-22 | 65 | 65 | 90.9% | 89.2% | 0.653 | 5,388 | 47 | 5.8h | 65 primitivos directos (fixed targets) |
 | v4 | 2026-03-23 | 72 | 72 | 92.5% | 100% | 0.876 | 5,608 | 52 | 5.8h | Circle expanded: 7 new primitivos |
 | **v5_frozen** | **2026-03-23** | **72** | **72** | **90.8%** | **100%** | **0.818** | **31.95** | **68** | **4.3h** | **freeze_base=True (forgetting FIXED)** |
+| **v6** | **2026-03-25** | **72** | **2,166** | **80.9%** | **21.4%** | **0.643** | **31.95** | **37** | **12.3h** | **Extended corpus (first-principles, 14 sciences), 100K steps** |
 
 ### Key Metrics Explained
 - **Accuracy**: Best test bit accuracy (how many bits the model gets right)

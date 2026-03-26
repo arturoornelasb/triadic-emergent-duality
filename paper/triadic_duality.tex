@@ -30,7 +30,7 @@ Validated by Domain Analysis and Neurosymbolic Learning}
 \maketitle
 
 \begin{abstract}
-We present a formal ontological framework in which conceptual complexity emerges from 14+ fundamental dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). The framework is grounded in 72 semantic primitives connected by a directed acyclic graph (DAG) of 133+ dependency edges. We validate the framework through three independent methodologies: (1)~domain analysis across 9 disciplines using the Information Domain Validity Score (IDVS), achieving IDVS~=~1.000 for all 8 positive domains against a null baseline ($p_{95}$~=~0.896, permutation $p$~=~0.0001); (2)~Bayesian model comparison yielding a Bayes factor of 121.4 (decisive) for the proposed ordering over reversed alternatives; and (3)~neurosymbolic learning via a GPT-2 Medium model augmented with a 72-bit triadic head, which learns the primitive structure at 90.8\% bit accuracy while preserving general language ability (PPL~=~31.95, identical to baseline). The learned representations exhibit near-perfect relational structure (Regla de Tres cosine~=~0.996) and show a significant phase transition during training ($p$~=~0.0004). We report both confirmatory and null results transparently: layer ordering in neural representations is not significant ($p$~=~0.71), and only 5 of 13 dual axes show significant learned anti-correlation after FDR correction.
+We present a formal ontological framework in which conceptual complexity emerges from 14+ fundamental dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). The framework is grounded in 72 semantic primitives connected by a directed acyclic graph (DAG) of 133+ dependency edges. We validate the framework through three independent methodologies: (1)~domain analysis across 9 disciplines using the Information Domain Validity Score (IDVS), achieving IDVS~=~1.000 for all 8 positive domains against a null baseline ($p_{95}$~=~0.931, permutation $p$~=~0.0001); (2)~Bayesian model comparison yielding a Bayes factor of 121.4 (decisive) for the proposed ordering over reversed alternatives; and (3)~neurosymbolic learning via a GPT-2 Medium model augmented with a 72-bit triadic head, which learns the primitive structure at 90.8\% bit accuracy while preserving general language ability (PPL~=~31.95, identical to baseline). The learned representations exhibit near-perfect relational structure (Regla de Tres cosine~=~0.996) and show a significant phase transition during training ($p$~=~0.0004). We report both confirmatory and null results transparently: layer ordering in neural representations is not significant ($p$~=~0.71), and only 5 of 13 dual axes show significant learned anti-correlation after FDR correction.
 \end{abstract}
 
 \noindent\textbf{Keywords:} ontology, semantic primitives, emergence, duality, neurosymbolic AI, algebraic structure, domain validation
@@ -179,7 +179,7 @@ Psychology  & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
 
 \subsection{Null Baseline}
 
-To calibrate the IDVS threshold, we computed 10,000 random D-A-N assignments preserving the marginal distribution of each domain. The null distribution yields: mean max IDVS~=~0.861, $p_{95}$~=~0.896 (threshold set at 0.90), $p_{99}$~=~0.955. All 8 positive domains exceed $p_{99}$.
+To calibrate the IDVS threshold, we computed 10,000 random D-A-N assignments preserving the marginal distribution of each domain. The null distribution yields: mean max IDVS~=~0.861, $p_{95}$~=~0.931, $p_{99}$~=~0.955. All 8 positive domains (IDVS~=~1.000) exceed the $p_{99}$ threshold. All 8 positive domains exceed $p_{99}$.
 
 \subsection{Sensitivity Analysis}
 
@@ -269,9 +269,10 @@ v2 & 65 & 95.8\% & 3.8\% & ? & 6,735 & Bad targets \\
 v3 & 65 & 90.9\% & 89.2\% & 0.653 & 5,388 & Fixed: 65 prims \\
 v4 & 72 & 92.5\% & 100\% & 0.876 & 5,608 & +7 primitives \\
 \textbf{v5} & \textbf{72} & \textbf{90.8\%} & \textbf{100\%} & \textbf{0.818} & \textbf{31.95} & \textbf{Frozen base} \\
+\textbf{v6} & \textbf{72} & \textbf{80.9\%} & \textbf{21.4\%} & \textbf{0.643} & \textbf{31.95} & \textbf{2{,}166 concepts} \\
 \bottomrule
 \end{tabular}
-\caption{Training run progression. V5 solves catastrophic forgetting via frozen backbone.}
+\caption{Training run progression. V5 solves catastrophic forgetting. V6 scales to 2{,}166 concepts.}
 \label{tab:runs}
 \end{table}
 
@@ -300,9 +301,11 @@ freedom:control = individual:collective  & 0.995 & 0.986 \\
 pleasure:pain = conscious:absent         & 0.996 & 1.000 \\
 union:separation = order:chaos           & 0.997 & 1.000 \\
 creation:destruction = union:separation  & 0.997 & 1.000 \\
+receptive:creator\_obs = truth:lie       & 0.996 & 0.986 \\
+move:stillness = mortal\_obs:eternal\_obs & 0.989 & 0.931 \\
 \bottomrule
 \end{tabular}
-\caption{Regla de Tres: relational structure preservation. Mean cosine: 0.996.}
+\caption{Regla de Tres: relational structure preservation (v5\_frozen). Mean cosine: 0.997 across 8 quadruples.}
 \label{tab:r3}
 \end{table}
 
@@ -331,6 +334,44 @@ Q7 & Causal verification?              & Null                       & 1.000 \\
 \end{table}
 
 \noindent\textbf{Interpretation}: The model learns \emph{relational} structure (analogies, some dual axes, DAG edges) but does not recover \emph{ordinal} structure (layer ordering, ternary dependencies). This is consistent with the frozen-base design: the head projects semantics into bit space without restructuring the backbone's internal representations.
+
+\subsection{V6: Extended Corpus (2{,}166 Concepts)}
+
+V5 trained on the 72 core primitives. V6 extends the gold file to 2{,}166 concepts (72 primitives + 2{,}094 derived from a first-principles corpus spanning 14 scientific domains), testing whether the algebraic structure scales beyond the primitive vocabulary.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{v5\_frozen (72)} & \textbf{v6 (2{,}166)} \\
+\midrule
+Bit accuracy (test)    & 90.8\%  & 80.9\% \\
+Subsumption accuracy   & 94.2\%  & 95.2\% \\
+PPL                    & 31.95   & 31.95 \\
+Active bits            & 4/72    & 48/72 \\
+Dead bits              & 68      & 37 \\
+Entropy (bits)         & 0.039   & 0.370 \\
+Unique signatures      & 100\%   & 21.4\% \\
+Regla de Tres (cosine) & 0.997   & 0.998 \\
+Discovered deps        & 174     & 501 \\
+Triadic deps           & 918     & 1{,}714 \\
+Training time          & 4.3h    & 12.3h \\
+\bottomrule
+\end{tabular}
+\caption{V5 vs V6 comparison. V6 trades individual accuracy for richer structural discovery.}
+\label{tab:v6}
+\end{table}
+
+\noindent\textbf{Key findings}:
+
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Backbone intact}: PPL~=~31.95 after 100K steps---freeze-base eliminates catastrophic forgetting even at 2$\times$ training duration.
+    \item \textbf{Field density effect}: 30$\times$ more concepts force the model to activate 48 bits (vs.\ 4 in v5), increasing per-bit entropy by 9.5$\times$. The bit space is utilized, not wasted.
+    \item \textbf{Semantic clustering}: Extended concepts collapse into 463 unique signatures. Collapses are semantically coherent (e.g., algebra axioms share a single code). The model functions as a \emph{family classifier} rather than an individual discriminator at this scale.
+    \item \textbf{Inverted layer emergence}: reptimeline analysis across 20 checkpoints reveals that Layer~6 (Observer) primitives activate first (step 5{,}000), while Layers~1--3 activate last (step 55{,}000). The theoretical emergence order (L1$\to$L6) is inverted during learning---abstract concepts are more statistically discriminative in GPT-2's embedding space.
+    \item \textbf{Phase transition}: A sharp transition occurs at step 55{,}000 (the warmup boundary), with entropy jumping from $\sim$0 to 0.37, code churn spiking, and bit utilization tripling.
+\end{enumerate}
 
 % ============================================================
 \section{Discussion}
@@ -403,6 +444,16 @@ All code and data are available under BUSL-1.1 at:
     \item Triadic projection head (standalone): \texttt{triadic-head} (also available on PyPI).
 \end{itemize}
 The repository also includes a structured compilation of first principles across 14 scientific domains (92 files organized hierarchically from mathematics to interdisciplinary fields), used by the algebraic gap analysis to search for candidate operators in uncovered inter-layer connections.
+
+\subsection*{Companion Papers}
+
+This work is part of a family of four papers. Each companion component has its own publication and repository:
+
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Triadic Neurosymbolic Engine}: Ornelas Brand, J.~A. (2026). \emph{Prime Factorization as a Neurosymbolic Bridge: Projecting Continuous Embeddings into Discrete Algebraic Space for Deterministic Verification.} Paper: \href{https://doi.org/10.5281/zenodo.19205805}{10.5281/zenodo.19205805}. Repository: \href{https://doi.org/10.5281/zenodo.18748671}{10.5281/zenodo.18748671}.
+    \item \textbf{reptimeline}: Ornelas Brand, J.~A. (2026). \emph{Tracking Discrete Representation Evolution During Neural Network Training.} Paper: \href{https://doi.org/10.5281/zenodo.19208672}{10.5281/zenodo.19208672}. Repository: \href{https://doi.org/10.5281/zenodo.19208628}{10.5281/zenodo.19208628}.
+    \item \textbf{triadic-microgpt}: Ornelas Brand, J.~A. (2026). \emph{End-to-End Prime Factorization in a Generative Language Model: Emergent Algebraic Semantics from Joint Training.} Paper: \href{https://doi.org/10.5281/zenodo.19206545}{10.5281/zenodo.19206545}. Repository: \href{https://doi.org/10.5281/zenodo.19207845}{10.5281/zenodo.19207845}.
+\end{itemize}
 
 % ============================================================
 \appendix

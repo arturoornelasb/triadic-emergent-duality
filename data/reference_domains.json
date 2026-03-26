@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "description": "9 reference domains for the 7×7 System IDVS validator. 8 validated + 1 negative control. D-A-N classifications revised based on domain-specific fundamental principles; validation status calibrated by I2 null baseline (p95=0.896, threshold=0.90).",
+  "description": "9 reference domains for the 7×7 System IDVS validator. 8 validated + 1 negative control. D-A-N classifications revised based on domain-specific fundamental principles; validation status calibrated by I2 null baseline (p95=0.931, p99=0.955). See i2_null_idvs.json for full null distribution.",
   "domains": {
     "Music": {
       "type": "positive",

@@ -55,7 +55,7 @@ sys.path.insert(0, SCRIPT_DIR)
 from gpt2_triadic import GPT2Triadic
 
 # V3: word + definition needs more tokens than single-word anchors
-MAX_CONCEPT_TOKENS = 20
+MAX_CONCEPT_TOKENS = 32
 
 
 # ######################################################################
@@ -138,10 +138,14 @@ def load_corpus(args, tokenizer):
 #  SECTION 2: ANCHOR & SUBSUMPTION LOADING
 # ######################################################################
 
-def load_anchors(tokenizer, n_bits, device, gold_file='gold_primitivos_65.json', test_pct=0.2):
+def load_anchors(tokenizer, n_bits, device, gold_file='gold_primitivos_65.json',
+                  test_pct=0.2, anchor_weight=1.0):
     """Load gold anchors, split train/test for evaluation.
 
-    Returns: (train_t, train_tgt, train_words, test_t, test_tgt, test_words)
+    Returns: (train_t, train_tgt, train_words, train_weights,
+              test_t, test_tgt, test_words, gold_data)
+
+    anchor_weight: sampling weight multiplier for is_primitivo entries.
     """
     gold_path = os.path.join(SCRIPT_DIR, gold_file)
     if not os.path.exists(gold_path):
@@ -162,7 +166,8 @@ def load_anchors(tokenizer, n_bits, device, gold_file='gold_primitivos_65.json',
         ids = tokenizer.encode(' ' + text)[:max_tok]
         while len(ids) < max_tok:
             ids.append(tokenizer.eos_token_id)
-        all_items.append((concept, ids, target))
+        is_prim = data.get('is_primitivo', True)  # default True for old gold files
+        all_items.append((concept, ids, target, is_prim))
 
     random.seed(42)
     random.shuffle(all_items)
@@ -175,25 +180,49 @@ def load_anchors(tokenizer, n_bits, device, gold_file='gold_primitivos_65.json',
         words = [it[0] for it in items]
         ids_t = torch.tensor([it[1] for it in items], dtype=torch.long, device=device)
         tgt_t = torch.tensor([it[2] for it in items], dtype=torch.float32, device=device)
-        return ids_t, tgt_t, words
+        weights = torch.tensor(
+            [anchor_weight if it[3] else 1.0 for it in items],
+            dtype=torch.float32, device=device)
+        return ids_t, tgt_t, words, weights
 
-    train_t, train_tgt, train_words = to_tensors(train_items)
-    test_t, test_tgt, test_words = to_tensors(test_items)
+    train_t, train_tgt, train_words, train_weights = to_tensors(train_items)
+    test_t, test_tgt, test_words, _ = to_tensors(test_items)
 
-    print(f'  Primitivos: {len(train_items)} train, {len(test_items)} test, {n_bits} bits, {max_tok} max tokens')
-    return (train_t, train_tgt, train_words, test_t, test_tgt, test_words, gold_data)
+    n_prim_train = sum(1 for it in train_items if it[3])
+    n_fp_train = len(train_items) - n_prim_train
+    print(f'  Anchors: {len(train_items)} train ({n_prim_train} primitivos x{anchor_weight:.0f}, '
+          f'{n_fp_train} first_principles), {len(test_items)} test, {n_bits} bits, {max_tok} max tokens')
+    return (train_t, train_tgt, train_words, train_weights,
+            test_t, test_tgt, test_words, gold_data)
 
 
-def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2):
-    """Build hypernym-hyponym pairs, split train/test."""
+def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2,
+                             max_pairs=10000):
+    """Build hypernym-hyponym pairs, split train/test.
+
+    For large gold files, only builds pairs where at least one member is
+    a primitivo (is_primitivo=True), then caps at max_pairs to avoid
+    O(N^2) explosion.
+    """
     items = list(gold_data.items())
     max_tok = MAX_CONCEPT_TOKENS
+    n_total = len(items)
+
+    # For large gold files, restrict to pairs involving primitivos
+    if n_total > 200:
+        prim_items = [(w, d) for w, d in items if d.get('is_primitivo', True)]
+        print(f'  Subsumption: restricting to pairs involving {len(prim_items)} primitivos '
+              f'(of {n_total} total concepts)')
+        search_items = items  # all concepts as potential partners
+    else:
+        prim_items = items
+        search_items = items
 
     pairs = []
-    for i, (w_a, d_a) in enumerate(items):
+    for i, (w_a, d_a) in enumerate(prim_items):
         bits_a = set(j for j, v in enumerate(d_a['binary_signature']) if v == 1)
-        for j, (w_b, d_b) in enumerate(items):
-            if i == j:
+        for j, (w_b, d_b) in enumerate(search_items):
+            if w_a == w_b:
                 continue
             bits_b = set(k for k, v in enumerate(d_b['binary_signature']) if v == 1)
             if bits_a and bits_a < bits_b:
@@ -205,6 +234,12 @@ def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2):
 
     random.seed(42)
     random.shuffle(pairs)
+
+    # Cap total pairs
+    if len(pairs) > max_pairs:
+        print(f'  Subsumption: capping {len(pairs)} -> {max_pairs} pairs')
+        pairs = pairs[:max_pairs]
+
     n_test = max(1, int(len(pairs) * test_pct))
 
     def to_tensors(pair_list):
@@ -234,13 +269,21 @@ def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2):
 #  SECTION 3: LOSS FUNCTIONS
 # ######################################################################
 
-def supervised_anchor_loss(model, word_tensors, target_vectors, n_sample=32):
-    """L_sup: MSE between model projections and gold anchor targets."""
+def supervised_anchor_loss(model, word_tensors, target_vectors, n_sample=32,
+                            sampling_weights=None):
+    """L_sup: MSE between model projections and gold anchor targets.
+
+    If sampling_weights is provided, uses weighted sampling (multinomial)
+    so primitivos are sampled more frequently than first_principles.
+    """
     N = word_tensors.shape[0]
     if N == 0:
         return torch.tensor(0.0, device=word_tensors.device)
     if N > n_sample:
-        idx = torch.randperm(N, device=word_tensors.device)[:n_sample]
+        if sampling_weights is not None:
+            idx = torch.multinomial(sampling_weights, n_sample, replacement=False)
+        else:
+            idx = torch.randperm(N, device=word_tensors.device)[:n_sample]
         w_batch, t_batch = word_tensors[idx], target_vectors[idx]
     else:
         w_batch, t_batch = word_tensors, target_vectors
@@ -273,7 +316,7 @@ def subsumption_loss(model, hyper_t, hypo_t, n_sample=32):
 # ######################################################################
 
 @torch.no_grad()
-def evaluate_anchors(model, word_tensors, target_vectors, valid_words):
+def evaluate_anchors(model, word_tensors, target_vectors, valid_words, batch_size=64):
     """Per-anchor bit accuracy, dead bits, entropy."""
     model.eval()
     N = word_tensors.shape[0]
@@ -281,8 +324,12 @@ def evaluate_anchors(model, word_tensors, target_vectors, valid_words):
         model.train()
         return {}
 
-    _, proj = model(word_tensors)
-    pred = proj.mean(dim=1)
+    # Batch inference to avoid OOM with large gold files
+    preds = []
+    for i in range(0, N, batch_size):
+        _, proj = model(word_tensors[i:i+batch_size])
+        preds.append(proj.mean(dim=1))
+    pred = torch.cat(preds, dim=0)
 
     pred_bits = (pred > 0).float()
     target_bits = (target_vectors > 0).float()
@@ -316,7 +363,7 @@ def evaluate_anchors(model, word_tensors, target_vectors, valid_words):
 
 
 @torch.no_grad()
-def evaluate_subsumption(model, hyper_t, hypo_t):
+def evaluate_subsumption(model, hyper_t, hypo_t, batch_size=64):
     """Binary subsumption satisfaction rate."""
     model.eval()
     N = hyper_t.shape[0]
@@ -324,10 +371,15 @@ def evaluate_subsumption(model, hyper_t, hypo_t):
         model.train()
         return 0.0
 
-    _, h_proj = model(hyper_t)
-    _, y_proj = model(hypo_t)
-    h_bits = (h_proj.mean(dim=1) > 0).float()
-    y_bits = (y_proj.mean(dim=1) > 0).float()
+    # Batch inference to avoid OOM with large pair sets
+    h_bits_list, y_bits_list = [], []
+    for i in range(0, N, batch_size):
+        _, h_proj = model(hyper_t[i:i+batch_size])
+        _, y_proj = model(hypo_t[i:i+batch_size])
+        h_bits_list.append((h_proj.mean(dim=1) > 0).float())
+        y_bits_list.append((y_proj.mean(dim=1) > 0).float())
+    h_bits = torch.cat(h_bits_list, dim=0)
+    y_bits = torch.cat(y_bits_list, dim=0)
 
     violations = (h_bits * (1 - y_bits)).sum(dim=1)
     satisfied = (violations == 0).float().sum().item()
@@ -465,10 +517,12 @@ def train(args):
     sub_data = None
     gold_data = None
 
+    train_weights = None
     if not args.no_supervision:
-        anchor_data = load_anchors(tokenizer, args.bits, device, gold_file=args.gold_file)
+        anchor_data = load_anchors(tokenizer, args.bits, device, gold_file=args.gold_file,
+                                    anchor_weight=args.anchor_weight)
         if anchor_data:
-            train_t, train_tgt, train_words, test_t, test_tgt, test_words, gold_data = anchor_data
+            train_t, train_tgt, train_words, train_weights, test_t, test_tgt, test_words, gold_data = anchor_data
             sub_data = build_subsumption_pairs(gold_data, tokenizer, device)
     else:
         print('  Supervision OFF (--no-supervision)')
@@ -615,12 +669,15 @@ def train(args):
 
                 l_sup = torch.tensor(0.0, device=device)
                 if has_sup:
-                    l_sup = supervised_anchor_loss(model, train_t, train_tgt, n_sample=32)
+                    l_sup = supervised_anchor_loss(model, train_t, train_tgt,
+                                                   n_sample=args.n_sample,
+                                                   sampling_weights=train_weights)
                     sup_loss_val = l_sup.item()
 
                 l_sub = torch.tensor(0.0, device=device)
                 if has_sub:
-                    l_sub = subsumption_loss(model, sub_data[0], sub_data[1], n_sample=32)
+                    l_sub = subsumption_loss(model, sub_data[0], sub_data[1],
+                                              n_sample=args.n_sample)
                     sub_loss_val = l_sub.item()
 
                 total_loss = lang_loss + current_alpha * (
@@ -628,6 +685,12 @@ def train(args):
 
             # Scale loss for gradient accumulation
             total_loss = total_loss / args.accum_steps
+
+        # NaN protection: skip step if loss is NaN/Inf
+        if torch.isnan(total_loss) or torch.isinf(total_loss):
+            optimizer.zero_grad(set_to_none=True)
+            step += 1
+            continue
 
         # Backward (accumulate gradients)
         scaler.scale(total_loss).backward()
@@ -849,6 +912,10 @@ if __name__ == '__main__':
     parser.add_argument('--sub-weight', type=float, default=5.0)
     parser.add_argument('--triadic-warmup-pct', type=float, default=0.50)
     parser.add_argument('--no-supervision', action='store_true')
+    parser.add_argument('--anchor-weight', type=float, default=1.0,
+                        help='Sampling weight for primitivos vs first_principles (V6: 50)')
+    parser.add_argument('--n-sample', type=int, default=32,
+                        help='Concepts sampled per step for anchor/subsumption loss (V6: 128)')
     parser.add_argument('--resume', type=str, default=None,
                         help='Resume from checkpoint path')
 

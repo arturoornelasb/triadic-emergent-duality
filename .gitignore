@@ -45,5 +45,11 @@ dualidademergente+reptimeline/model/corpus/
 # Temporary/experimental scripts
 dualidademergente+reptimeline/model/_*.py
 
+# Local convenience scripts (hardcoded paths, not reproducible)
+*.bat
+
+# reptimeline timeline output (regenerable, >1GB)
+dualidademergente+reptimeline/neural/results/timeline.json
+
 # External explorations
 vslibro/

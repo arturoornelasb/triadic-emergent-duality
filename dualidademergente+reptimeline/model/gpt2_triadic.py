@@ -209,11 +209,11 @@ class GPT2Triadic(nn.Module):
                                 anchor_idx.unsqueeze(-1).expand(-1, -1, n_bits))
         pool_p = torch.gather(triadic_proj, 1,
                               pool_idx.unsqueeze(-1).expand(-1, -1, n_bits))
-        anchor_p_norm = F.normalize(anchor_p, dim=-1)
-        pool_p_norm = F.normalize(pool_p, dim=-1)
+        anchor_p_norm = F.normalize(anchor_p.float(), dim=-1)
+        pool_p_norm = F.normalize(pool_p.float(), dim=-1)
         triadic_sim_matrix = torch.bmm(anchor_p_norm, pool_p_norm.transpose(1, 2))
 
-        logits = triadic_sim_matrix / temperature
+        logits = (triadic_sim_matrix / temperature).clamp(-50, 50)
         return F.cross_entropy(logits.reshape(-1, n_anchors), pos_labels.reshape(-1))
 
     @torch.no_grad()

@@ -1,4 +1,10 @@
 {
+  "baseline": {
+    "model": "gpt2-medium",
+    "perplexity": 31.95,
+    "avg_loss": 3.4641,
+    "total_tokens": 631
+  },
   "v5_frozen": {
     "checkpoint": "gpt2_triadic_72_v5_frozen",
     "n_bits": 72,
@@ -6,8 +12,19 @@
     "bit_accuracy": 0.907738208770752,
     "alpha": 0.05,
     "perplexity": 31.95,
-    "avg_loss": 3.464,
+    "avg_loss": 3.4641,
     "total_tokens": 631,
-    "delta_vs_baseline_pct": null
+    "delta_vs_baseline_pct": 0.0
+  },
+  "v6": {
+    "checkpoint": "gpt2_triadic_72_v6",
+    "n_bits": 72,
+    "step": 99001,
+    "bit_accuracy": 0.8090839385986328,
+    "alpha": 0.05,
+    "perplexity": 31.95,
+    "avg_loss": 3.4641,
+    "total_tokens": 631,
+    "delta_vs_baseline_pct": 0.0
   }
 }
