@@ -1,0 +1,9 @@
+{
+  "n_observed": 2556,
+  "n_expected": 2556.0,
+  "oe_ratio": 1.0,
+  "null_std": 0.0,
+  "null_p_value": 1.0,
+  "n_permutations": 1000,
+  "kill_k3": true
+}
