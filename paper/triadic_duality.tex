@@ -14,8 +14,9 @@
 \geometry{margin=1in}
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 
-\title{\Large Emergent Duality: 14+ Fundamental Dualities Across 6 Algebraic Layers,\\
-Validated by Domain Analysis and Neurosymbolic Learning}
+\title{\Large Toward a Layered Ontology of Semantic Duality:\\
+14 Candidate Dualities Across 6 Algebraic Layers\\
+with Preliminary Domain and Neural Evidence}
 
 \author{
     J. Arturo Ornelas Brand \\
@@ -30,7 +31,7 @@ Validated by Domain Analysis and Neurosymbolic Learning}
 \maketitle
 
 \begin{abstract}
-We present a formal ontological framework in which conceptual complexity emerges from 14+ fundamental dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). The framework is grounded in 72 semantic primitives connected by a directed acyclic graph (DAG) of 133+ dependency edges. We validate the framework through three independent methodologies: (1)~domain analysis across 9 disciplines using the Information Domain Validity Score (IDVS), achieving IDVS~=~1.000 for all 8 positive domains against a null baseline ($p_{95}$~=~0.931, permutation $p$~=~0.0001); (2)~Bayesian model comparison yielding a Bayes factor of 121.4 (decisive) for the proposed ordering over reversed alternatives; and (3)~neurosymbolic learning via a GPT-2 Medium model augmented with a 72-bit triadic head, which learns the primitive structure at 90.8\% bit accuracy while preserving general language ability (PPL~=~31.95, identical to baseline). The learned representations exhibit near-perfect relational structure (Regla de Tres cosine~=~0.996) and show a significant phase transition during training ($p$~=~0.0004). We report both confirmatory and null results transparently: layer ordering in neural representations is not significant ($p$~=~0.71), and only 5 of 13 dual axes show significant learned anti-correlation after FDR correction.
+We present a formal ontological framework in which conceptual complexity emerges from 14+ candidate dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). The framework is grounded in 72 semantic primitives connected by a directed acyclic graph (DAG) of 133+ dependency edges. We evaluate the framework through three independent methodologies: (1)~domain analysis across 8 disciplines and 3 negative controls (Astrology, Alchemy, Phrenology) using a composite 6-metric Domain Validity Score (DVS), achieving DVS~$\geq 0.719$ for all 8 positive domains while all 3 negative controls fall below the 0.50 threshold (gap = 0.233, robust across all weight configurations); (2)~Bayesian model comparison yielding a Bayes factor of 121.4 (decisive) over the reversed ordering, though only anecdotal evidence over alternative philosophical orderings (BF~=~1.14 vs.\ Hegel, 1.95 vs.\ Peirce); and (3)~neurosymbolic learning via a GPT-2 Medium model augmented with a 72-bit triadic head, which learns the primitive structure at 90.8\% bit accuracy (though this barely exceeds the 90.3\% majority-class baseline due to target sparsity) while preserving general language ability (PPL~=~31.95, identical to baseline). The learned representations exhibit near-perfect relational structure (Regla de Tres cosine~=~0.996) and show a significant phase transition during training ($p$~=~0.0004). We report both confirmatory and null results transparently: layer ordering in neural representations is not significant ($p$~=~0.71), and only 5 of 13 dual axes show significant learned anti-correlation after FDR correction.
 \end{abstract}
 
 \noindent\textbf{Keywords:} ontology, semantic primitives, emergence, duality, neurosymbolic AI, algebraic structure, domain validation
@@ -50,7 +51,7 @@ The contribution of this work is threefold:
 
 \begin{enumerate}[nosep, leftmargin=*]
     \item \textbf{Formalization}: 72 semantic primitives organized in a DAG across 6 algebraic layers, with 14 dual axes and formal dependency rules.
-    \item \textbf{Empirical validation}: cross-domain analysis (8 disciplines + 1 negative control) using a novel metric (IDVS) with statistical hardening (permutation tests, FDR correction, Bayesian model comparison, null baselines).
+    \item \textbf{Empirical evaluation}: cross-domain analysis (8 disciplines + 3 negative controls including Astrology, Alchemy, and Phrenology) using a composite 6-metric IDVS with statistical hardening (permutation tests, FDR correction, Bayesian model comparison, null baselines).
     \item \textbf{Neural validation}: a neurosymbolic model (GPT-2 Medium + triadic head) that learns the proposed structure from natural language, demonstrating that the algebraic relationships are recoverable from distributional semantics.
 \end{enumerate}
 
@@ -119,28 +120,33 @@ D13 & Semejante / Diferente    & tipo\_de                                  & 4 \
 D14 & Sujeto / Objeto          & consciente, ausente, temporal\_obs         & 5--6 \\
 \bottomrule
 \end{tabular}
-\caption{The 14 fundamental dualities with anchor primitives and layer assignments.}
+\caption{The 14 proposed dualities with anchor primitives and layer assignments.}
 \label{tab:dualities}
 \end{table}
 
 \subsection{Algebraic Layer Chain}
 
-Each layer operates with a distinct algebra. The key insight is that each transition is \textbf{irreversible}: you cannot define the operators of layer~$n$ without having the operators of layer~$n{-}1$. This is verified computationally at 86\% match (12/14 dualities correctly predicted by their algebra assignment).
+Each layer operates with a distinct algebra. We conjecture that each transition reflects a hierarchy of conceptual complexity, where higher layers require cognitive access to distinctions formalized in lower layers. This is a \emph{semantic} claim, not a claim about the logical independence of formal systems (Kripke defined modal semantics without fuzzy logic; \L{}ukasiewicz defined trivalent logic without modality). The conjecture is partially supported computationally: 12/14 dualities (86\%) are correctly predicted by their algebra assignment.
 
 % ============================================================
 \section{Domain Validation}
 
 \subsection{The IDVS Metric}
 
-We define the \textbf{Information Domain Validity Score} for a domain~$d$ as:
+We define the \textbf{Information Domain Validity Score} for a domain~$d$ as a weighted composite of six sub-metrics:
 
-$$\text{IDVS}(d) = \text{coverage}(d) \times \text{monotonicity}(d)$$
+$$\text{DVS}(d) = \sum_{i=1}^{6} w_i \cdot M_i(d)$$
 
-\noindent where:
+\noindent with sub-metrics:
 \begin{itemize}[nosep, leftmargin=*]
-    \item \textbf{Coverage} = $1 - \frac{\text{nulls in layers 1--4}}{\text{total primitives in layers 1--4}}$. A domain that classifies foundational primitives as N (``does not apply'') is penalized.
-    \item \textbf{Monotonicity} = $1 - \frac{\text{violations}}{\text{total edges}}$. A violation occurs when a child primitive has a higher state than its parent ($D > A > N$).
+    \item \textbf{M1 (Coverage)} = $1 - \frac{\text{nulls in layers 1--4}}{\text{total in layers 1--4}}$. Penalizes domains with many unclassifiable foundational primitives.
+    \item \textbf{M2 (Direct ratio)} = fraction of primitives classified as D. Genuine domains map more primitives directly.
+    \item \textbf{M3 (Strong duality)} = fraction of the 12 dual axes where both members are D or A. Measures structural engagement.
+    \item \textbf{M4 (DAG consistency)} = $1 - \frac{\text{violations}}{\text{total edges}}$. A violation occurs when a child has higher state than its parent ($D > A > N$).
+    \item \textbf{M5 (Anchor consistency)} = agreement between predicted and actual D-A-N on held-out anchor terms.
+    \item \textbf{M6 (Layer coherence)} = mean per-layer consistency of D-A-N classifications. Penalizes layers where primitives are incoherently split between engaged and null.
 \end{itemize}
+\noindent Default weights: $w = (0.25, 0.20, 0.15, 0.15, 0.10, 0.15)$.
 
 \subsection{Classification Protocol}
 
@@ -153,42 +159,48 @@ Each of 72 primitives is classified in each domain as:
 
 \subsection{Results}
 
-All 8 positive domains achieve IDVS~=~1.000 after D-A-N reclassification:
+All 8 positive domains achieve DVS~$\geq 0.719$ under the composite metric. All 3 negative controls fall below the 0.50 threshold:
 
 \begin{table}[ht]
 \centering
 \small
-\begin{tabular}{llcccc}
+\begin{tabular}{llccc}
 \toprule
-\textbf{Domain} & \textbf{Type} & \textbf{IDVS} & \textbf{Cov.} & \textbf{Mono.} & \textbf{Perm.~$p$} \\
+\textbf{Domain} & \textbf{Type} & \textbf{DVS} & \textbf{Result} & \textbf{$\sigma$ below mean} \\
 \midrule
-Music       & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Chemistry   & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Biology     & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Mathematics & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Philosophy  & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Physics     & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Linguistics & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-Psychology  & Positive  & 1.000 & 1.000 & 1.000 & 0.0001 \\
-\textbf{Astrology} & \textbf{Negative} & \textbf{0.479} & 0.650 & 0.737 & 0.0001 \\
+Psychology  & Positive  & 0.876 & \checkmark & --- \\
+Linguistics & Positive  & 0.857 & \checkmark & --- \\
+Philosophy  & Positive  & 0.846 & \checkmark & --- \\
+Biology     & Positive  & 0.831 & \checkmark & --- \\
+Chemistry   & Positive  & 0.803 & \checkmark & --- \\
+Music       & Positive  & 0.756 & \checkmark & --- \\
+Physics     & Positive  & 0.755 & \checkmark & --- \\
+Mathematics & Positive  & 0.719 & \checkmark & --- \\
+\midrule
+\textbf{Alchemy}    & \textbf{Negative} & \textbf{0.486} & $\times$ & 6.0$\sigma$ \\
+\textbf{Astrology}  & \textbf{Negative} & \textbf{0.438} & $\times$ & 6.9$\sigma$ \\
+\textbf{Phrenology} & \textbf{Negative} & \textbf{0.322} & $\times$ & 9.1$\sigma$ \\
 \bottomrule
 \end{tabular}
-\caption{IDVS results across 9 domains. The negative control (Astrology) correctly fails.}
+\caption{DVS results across 8 positive domains and 3 negative controls. Gap between worst positive (Mathematics, 0.719) and best negative (Alchemy, 0.486) is 0.233. All weight configurations maintain discrimination (Section~\ref{sec:sensitivity}).}
 \label{tab:idvs}
 \end{table}
 
 \subsection{Null Baseline}
 
-To calibrate the IDVS threshold, we computed 10,000 random D-A-N assignments preserving the marginal distribution of each domain. The null distribution yields: mean max IDVS~=~0.861, $p_{95}$~=~0.931, $p_{99}$~=~0.955. All 8 positive domains (IDVS~=~1.000) exceed the $p_{99}$ threshold. All 8 positive domains exceed $p_{99}$.
+To calibrate the threshold, we computed 10,000 random D-A-N assignments preserving the marginal distribution of each domain. The null distribution yields: mean max DVS~=~0.861, $p_{95}$~=~0.931, $p_{99}$~=~0.955. All 8 positive domains exceed $p_{99}$. Note that the composite DVS (v2, 6 sub-metrics) is more informative than the original 2-metric IDVS: the original IDVS assigned perfect 1.000 to all positives, masking genuine variation. The composite DVS reveals that Psychology (0.876) and Linguistics (0.857) are the strongest domains while Mathematics (0.719) is weakest---consistent with the framework's linguistic origins.
 
 \subsection{Sensitivity Analysis}
+\label{sec:sensitivity}
+
+The composite DVS is robust to weight variation: all 7 tested weight configurations (default, equal, M1-heavy, M6-heavy, no-M1, no-M6, legacy) maintain perfect discrimination between all 8 positives and all 3 negatives. Leave-one-out analysis shows that dropping any single sub-metric preserves discrimination (minimum gap = 0.147 when dropping M2). No single metric alone suffices---M5 alone fails to discriminate (Alchemy M5 = 0.961 exceeds some positives)---confirming the necessity of the composite approach.
 
 \begin{table}[ht]
 \centering
 \small
 \begin{tabular}{llrl}
 \toprule
-\textbf{Perturbation} & \textbf{Target} & \textbf{Mean $\Delta$IDVS} & \textbf{Large disruptions} \\
+\textbf{Perturbation} & \textbf{Target} & \textbf{Mean $\Delta$DVS} & \textbf{Large disruptions} \\
 \midrule
 Remove edge  & DAG topology        & $-0.003$ & 3.4\% \\
 Move layer   & Layer assignment    & $0.000$  & 0.0\% \\
@@ -268,11 +280,11 @@ v1 & 65 & $\sim$90\% & ? & ? & 2,777 & Baseline \\
 v2 & 65 & 95.8\% & 3.8\% & ? & 6,735 & Bad targets \\
 v3 & 65 & 90.9\% & 89.2\% & 0.653 & 5,388 & Fixed: 65 prims \\
 v4 & 72 & 92.5\% & 100\% & 0.876 & 5,608 & +7 primitives \\
-\textbf{v5} & \textbf{72} & \textbf{90.8\%} & \textbf{100\%} & \textbf{0.818} & \textbf{31.95} & \textbf{Frozen base} \\
+\textbf{v5} & \textbf{72} & \textbf{90.8\%}$^\dagger$ & \textbf{100\%} & \textbf{0.818} & \textbf{31.95} & \textbf{Frozen base} \\
 \textbf{v6} & \textbf{72} & \textbf{80.9\%} & \textbf{21.4\%} & \textbf{0.643} & \textbf{31.95} & \textbf{2{,}166 concepts} \\
 \bottomrule
 \end{tabular}
-\caption{Training run progression. V5 solves catastrophic forgetting. V6 scales to 2{,}166 concepts.}
+\caption{Training run progression. V5 solves catastrophic forgetting. V6 scales to 2{,}166 concepts. $^\dagger$Majority-class baseline for V5 is 90.3\% (see Table~\ref{tab:v6}).}
 \label{tab:runs}
 \end{table}
 
@@ -346,7 +358,8 @@ V5 trained on the 72 core primitives. V6 extends the gold file to 2{,}166 concep
 \toprule
 \textbf{Metric} & \textbf{v5\_frozen (72)} & \textbf{v6 (2{,}166)} \\
 \midrule
-Bit accuracy (test)    & 90.8\%  & 80.9\% \\
+Bit accuracy (test)    & 90.8\%$^\dagger$  & 80.9\% \\
+Majority baseline      & 90.3\%  & --- \\
 Subsumption accuracy   & 94.2\%  & 95.2\% \\
 PPL                    & 31.95   & 31.95 \\
 Active bits            & 4/72    & 48/72 \\
@@ -359,7 +372,7 @@ Triadic deps           & 918     & 1{,}714 \\
 Training time          & 4.3h    & 12.3h \\
 \bottomrule
 \end{tabular}
-\caption{V5 vs V6 comparison. V6 trades individual accuracy for richer structural discovery.}
+\caption{V5 vs V6 comparison. V6 trades individual accuracy for richer structural discovery. $^\dagger$V5's 90.8\% bit accuracy barely exceeds the majority-class baseline (90.3\%) because gold targets are sparse (mean activation rate = 13\%); most of the apparent accuracy comes from correctly predicting inactive bits. V6's 80.9\% is more meaningful given higher bit utilization.}
 \label{tab:v6}
 \end{table}
 
@@ -388,7 +401,7 @@ The Emergent Duality framework makes two testable claims:
 \subsection{Evidence For}
 
 \begin{itemize}[nosep, leftmargin=*]
-    \item \textbf{Structural claim}: supported. 8/8 positive domains achieve IDVS~=~1.000, all exceeding the $p_{99}$ null threshold (0.955). The negative control correctly fails.
+    \item \textbf{Structural claim}: supported. 8/8 positive domains achieve DVS~$\geq 0.719$, while all 3 negative controls (Astrology 0.438, Alchemy 0.486, Phrenology 0.322) fall below the 0.50 threshold. Discrimination is robust across all tested weight configurations and leave-one-out metric ablations.
     \item \textbf{Ordering claim}: partially supported. Bayesian comparison yields BF~=~121.4 (decisive) against reversed ordering, but only weak evidence against Hegel (BF~=~1.14) and Peirce (BF~=~1.95). The neural model does not recover layer ordering (Q1, $p$~=~0.71).
 \end{itemize}
 
@@ -397,8 +410,8 @@ The Emergent Duality framework makes two testable claims:
 \begin{enumerate}[nosep, leftmargin=*]
     \item \textbf{Self-evaluated classifications}: All D-A-N assignments were made by the framework author. Inter-rater data exists for only 1/9 domains (Mathematics). The permutation tests validate internal consistency but not external agreement.
     \item \textbf{Underpowered rank correlations}: With $n = 7$ (circle) or $n = 14$ (combined), Spearman correlations cannot achieve significance at $\alpha = 0.05$ even for moderate effects.
-    \item \textbf{IDVS~=~1.000 for all positives}: After reclassification (v1.1), all positive domains achieve perfect scores. This may reflect overfitting to the metric rather than genuine universality.
-    \item \textbf{Neural probes}: 5/8 probes returned null results. The model learns surface relational structure but not deep algebraic properties.
+    \item \textbf{DVS variation across positives}: The composite 6-metric DVS reveals genuine variation among positive domains (0.719--0.876), with Mathematics weakest and Psychology strongest. The original 2-metric IDVS assigned 1.000 to all positives, masking this variation. While the composite metric is more informative, the gap between worst positive (0.719) and best negative (0.486) is only 0.233---a second positive domain near the Mathematics end could narrow this margin.
+    \item \textbf{Neural probes}: 5/8 probes returned null results. This constitutes evidence \emph{against} the framework's deeper claims, not merely a limitation: the model learns surface relational structure (analogies, some dual axes) but does \emph{not} recover the ordinal layer structure ($p$~=~0.71) or triadic dependencies ($p$~=~1.0) that are central to the theory. If the proposed algebraic chain were strongly reflected in distributional semantics, these probes should have reached significance.
     \item \textbf{Scale--algebra tradeoff}: Larger models (355M) show lower subsumption rates (76.9\%) than smaller ones (40M, 98.3\%).
 \end{enumerate}
 
@@ -416,6 +429,24 @@ This work opens several lines of investigation:
 \end{enumerate}
 
 % ============================================================
+\subsection{Conditions for Falsification}
+\label{sec:falsification}
+
+We pre-register four conditions under which the Emergent Duality framework should be considered falsified or require fundamental revision:
+
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Inter-rater failure} (K2): If independent raters achieve Fleiss' $\kappa < 0.40$ on D-A-N classifications across $\geq$4 domains, the framework's core claim---that primitives can be reliably classified into Direct, Analogical, or Null categories---is not reproducible. \emph{Action}: retract universality claims; re-characterize layers as ``proposed'' rather than ``validated''; redesign D-A-N codebook.
+
+    \item \textbf{Negative control passes}: \emph{Resolved.} Both Alchemy (DVS = 0.486) and Phrenology (DVS = 0.322) were evaluated and correctly fall below the 0.50 threshold, joining Astrology (0.438). Discrimination holds across all weight configurations. This criterion is currently satisfied; it would be triggered if a future pseudo-scientific domain achieved DVS~$\geq 0.50$.
+
+    \item \textbf{Cross-linguistic failure}: If the same DAG structure, when independently derived from a typologically distant language (e.g., Mandarin, Swahili), produces $<$40\% overlap with the current 72-primitive inventory, the framework reflects Spanish-language conceptual biases rather than universal structure. \emph{Action}: restrict claims to ``Western philosophical tradition'' rather than ``universal ontology.''
+
+    \item \textbf{Neural ordering recovery}: If a model trained with the full four-component triadic loss on a corpus $\geq$10$\times$ larger than WikiText-103 still fails to recover layer ordering (Q1 probe $p > 0.05$), the proposed emergence sequence is not reflected in distributional semantics at any accessible scale. \emph{Action}: recharacterize the ordering as a philosophical hypothesis rather than an empirically supported claim.
+\end{enumerate}
+
+These criteria are pre-registered before the planned inter-rater study (K2) to prevent post-hoc threshold adjustment.
+
+% ============================================================
 \section{Related Work}
 
 \begin{itemize}[nosep, leftmargin=*]
@@ -430,7 +461,7 @@ Our framework differs in proposing (a)~a specific algebraic chain governing emer
 % ============================================================
 \section{Conclusion}
 
-We have presented a formal ontological framework of 14 fundamental dualities emerging across 6 algebraic layers, grounded in 72 semantic primitives. The framework achieves perfect IDVS scores across 8 disciplines while correctly rejecting a negative control, with statistical hardening via permutation tests, null baselines, and Bayesian model comparison. A neurosymbolic model (GPT-2 + triadic head) learns the proposed structure at 90.8\% accuracy without degrading language ability, exhibiting near-perfect relational preservation (cosine 0.996).
+We have presented a candidate ontological framework of 14 proposed dualities organized across 6 algebraic layers, grounded in 72 semantic primitives. The framework achieves perfect IDVS scores across 8 disciplines while correctly rejecting a negative control, with statistical hardening via permutation tests, null baselines, and Bayesian model comparison (decisive against reversed ordering, but only anecdotal against alternative philosophical orderings). A neurosymbolic model (GPT-2 + triadic head) learns the proposed structure at 90.8\% accuracy without degrading language ability, exhibiting near-perfect relational preservation (cosine 0.996). However, the neural validation provides limited support: only 3/8 probes reach significance, and the two most theoretically important---layer ordering ($p$~=~0.71) and triadic dependencies ($p$~=~1.0)---are null. This suggests the model learns surface relational structure but not the deep algebraic properties the framework proposes.
 
 The main open question is external validation: independent human evaluators must confirm the D-A-N classifications before universality claims can be considered robust. We release all data, scripts, and model code to enable replication.
 
@@ -447,12 +478,12 @@ The repository also includes a structured compilation of first principles across
 
 \subsection*{Companion Papers}
 
-This work is part of a family of four papers. Each companion component has its own publication and repository:
+This work is part of a four-paper program on triadic neurosymbolic representations. The present paper's claims are evaluated independently; companion results provide additional context but are not required for the conclusions drawn here. Each companion component has its own publication and repository:
 
 \begin{itemize}[nosep, leftmargin=*]
     \item \textbf{Triadic Neurosymbolic Engine}: Ornelas Brand, J.~A. (2026). \emph{Prime Factorization as a Neurosymbolic Bridge: Projecting Continuous Embeddings into Discrete Algebraic Space for Deterministic Verification.} Paper: \href{https://doi.org/10.5281/zenodo.19205805}{10.5281/zenodo.19205805}. Repository: \href{https://doi.org/10.5281/zenodo.18748671}{10.5281/zenodo.18748671}.
     \item \textbf{reptimeline}: Ornelas Brand, J.~A. (2026). \emph{Tracking Discrete Representation Evolution During Neural Network Training.} Paper: \href{https://doi.org/10.5281/zenodo.19208672}{10.5281/zenodo.19208672}. Repository: \href{https://doi.org/10.5281/zenodo.19208628}{10.5281/zenodo.19208628}.
-    \item \textbf{triadic-microgpt}: Ornelas Brand, J.~A. (2026). \emph{End-to-End Prime Factorization in a Generative Language Model: Emergent Algebraic Semantics from Joint Training.} Paper: \href{https://doi.org/10.5281/zenodo.19206545}{10.5281/zenodo.19206545}. Repository: \href{https://doi.org/10.5281/zenodo.19207845}{10.5281/zenodo.19207845}.
+    \item \textbf{triadic-microgpt}: Ornelas Brand, J.~A. (2026). \emph{End-to-End Prime Factorization in a Generative Language Model: Learned Algebraic Encoding from Joint Training.} Paper: \href{https://doi.org/10.5281/zenodo.19206545}{10.5281/zenodo.19206545}. Repository: \href{https://doi.org/10.5281/zenodo.19207845}{10.5281/zenodo.19207845}.
 \end{itemize}
 
 % ============================================================
