@@ -50,6 +50,7 @@ dualidademergente+reptimeline/model/_*.py
 
 # reptimeline timeline output (regenerable, >1GB)
 dualidademergente+reptimeline/neural/results/timeline.json
+dualidademergente+reptimeline/neural/results/timeline_v7.json
 
 # External explorations
 vslibro/

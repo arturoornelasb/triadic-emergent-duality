@@ -311,6 +311,51 @@ def subsumption_loss(model, hyper_t, hypo_t, n_sample=32):
     return F.relu(h_01 - y_01).mean()
 
 
+def concept_contrastive_loss(model, word_tensors, target_vectors, n_sample=64,
+                              margin=0.3):
+    """L_contrast: Push different concepts to have different learned signatures.
+
+    Samples pairs of concepts. For each pair, computes:
+      - Gold similarity (Jaccard of target bit patterns)
+      - Learned similarity (cosine of projections)
+    Penalizes when learned similarity exceeds gold similarity + margin.
+
+    This prevents the model from collapsing different concepts into
+    identical learned representations (the V6 collision problem).
+    """
+    N = word_tensors.shape[0]
+    if N < 4:
+        return torch.tensor(0.0, device=word_tensors.device)
+
+    n = min(n_sample, N)
+    idx = torch.randperm(N, device=word_tensors.device)[:n]
+    w_batch = word_tensors[idx]
+    t_batch = target_vectors[idx]
+
+    _, proj = model(w_batch)
+    pred = proj.mean(dim=1)  # (n, n_bits)
+
+    # Learned pairwise cosine similarity
+    pred_norm = F.normalize(pred.float(), dim=-1)
+    learned_sim = pred_norm @ pred_norm.T  # (n, n)
+
+    # Gold pairwise Jaccard similarity
+    t_01 = (t_batch > 0).float()
+    intersection = t_01 @ t_01.T
+    row_sums = t_01.sum(dim=1)
+    union = row_sums.unsqueeze(1) + row_sums.unsqueeze(0) - intersection
+    gold_sim = intersection / (union + 1e-7)
+
+    # Only penalize upper triangle (avoid double counting + diagonal)
+    mask = torch.triu(torch.ones(n, n, device=pred.device, dtype=torch.bool), diagonal=1)
+
+    # Hinge loss: penalize when learned_sim > gold_sim + margin
+    excess = learned_sim[mask] - gold_sim[mask] - margin
+    loss = F.relu(excess).mean()
+
+    return loss
+
+
 # ######################################################################
 #  SECTION 4: EVALUATION
 # ######################################################################
@@ -639,7 +684,7 @@ def train(args):
             lr_t = args.lr * (step + 1) / warmup_steps
         else:
             progress = (step - warmup_steps) / max(args.steps - warmup_steps, 1)
-            lr_t = args.lr * max(0.1, 0.5 * (1.0 + math.cos(math.pi * progress)))
+            lr_t = args.lr * max(args.lr_min_ratio, 0.5 * (1.0 + math.cos(math.pi * progress)))
         for pg in optimizer.param_groups:
             pg['lr'] = lr_t
 
@@ -680,8 +725,15 @@ def train(args):
                                               n_sample=args.n_sample)
                     sub_loss_val = l_sub.item()
 
+                l_contrast = torch.tensor(0.0, device=device)
+                if has_sup and args.contrast_weight > 0:
+                    l_contrast = concept_contrastive_loss(
+                        model, train_t, train_tgt,
+                        n_sample=min(args.n_sample, 64))
+
                 total_loss = lang_loss + current_alpha * (
-                    tri_loss + args.sup_weight * l_sup + args.sub_weight * l_sub)
+                    tri_loss + args.sup_weight * l_sup + args.sub_weight * l_sub
+                    + args.contrast_weight * l_contrast)
 
             # Scale loss for gradient accumulation
             total_loss = total_loss / args.accum_steps
@@ -718,6 +770,8 @@ def train(args):
             msg = f'  [{bar}] {pct:5.1f}% | step {step+1}/{args.steps} | loss {lang_loss.item():.4f}'
             if step >= triadic_warmup:
                 msg += f' | tri {tri_loss_val:.3f} sup {sup_loss_val:.3f} sub {sub_loss_val:.3f}'
+                if args.contrast_weight > 0:
+                    msg += f' ctr {l_contrast.item():.3f}'
             msg += f' | {sps:.1f} stp/s | ETA {eta_str}'
             print(msg)
 
@@ -903,6 +957,8 @@ if __name__ == '__main__':
     parser.add_argument('--accum-steps', type=int, default=2,
                         help='Gradient accumulation steps (effective batch = batch_size * accum)')
     parser.add_argument('--lr', type=float, default=3e-4)
+    parser.add_argument('--lr-min-ratio', type=float, default=0.1,
+                        help='Minimum LR as fraction of --lr (cosine decay floor). V7: 0.1, V8: 0.03')
     parser.add_argument('--alpha', type=float, default=0.05,
                         help='Triadic loss weight (>0.05 causes collapse)')
     parser.add_argument('--entropy-weight', type=float, default=1.0)
@@ -916,6 +972,8 @@ if __name__ == '__main__':
                         help='Sampling weight for primitivos vs first_principles (V6: 50)')
     parser.add_argument('--n-sample', type=int, default=32,
                         help='Concepts sampled per step for anchor/subsumption loss (V6: 128)')
+    parser.add_argument('--contrast-weight', type=float, default=0.0,
+                        help='Anti-collision contrastive loss weight (V7: 1.0)')
     parser.add_argument('--resume', type=str, default=None,
                         help='Resume from checkpoint path')
 
