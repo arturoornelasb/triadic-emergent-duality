@@ -226,6 +226,56 @@
         "temporal_obs": "A", "eterno_obs": "A", "receptivo": "A", "creador_obs": "A",
         "proporción": "A", "quietud": "A"
       }
+    },
+    "Alchemy": {
+      "type": "negative_control",
+      "validation_status": "negative_control",
+      "classes": {
+        "vacío": "A", "información": "A", "uno": "A",
+        "fuerza": "A", "eje_profundidad": "N", "contención": "A",
+        "más": "A", "menos": "A", "unión": "D", "separación": "D", "parte_de": "A",
+        "mover": "A", "posición_temporal": "A", "flujo_temporal": "A",
+        "hacer": "A", "creación": "D", "destrucción": "D",
+        "orden": "A", "caos": "A", "porque": "N", "si_entonces": "N",
+        "eje_vertical": "N", "eje_lateral": "N", "equilibrio": "A",
+        "vista": "N", "bien": "A", "mal": "A",
+        "verdad": "A", "mentira": "N", "libertad": "N", "control": "N",
+        "tipo_de": "N", "algunos": "N", "muchos": "N",
+        "todo": "A", "puede": "N", "debe": "N", "tal_vez": "N",
+        "tierra": "D", "agua": "D", "aire": "D", "fuego": "D",
+        "tacto": "N", "oído": "N", "gusto": "A", "olfato": "A", "interocepción": "N",
+        "vida": "A", "muerte": "A", "placer": "N", "dolor": "N",
+        "consciente": "N", "ausente": "N",
+        "individual": "N", "colectivo": "N",
+        "querer": "A", "saber": "A", "pensar": "N", "decir": "N",
+        "temporal_obs": "A", "eterno_obs": "A", "receptivo": "N", "creador_obs": "A",
+        "proporción": "A", "quietud": "N"
+      }
+    },
+    "Phrenology": {
+      "type": "negative_control",
+      "validation_status": "negative_control",
+      "classes": {
+        "vacío": "N", "información": "A", "uno": "A",
+        "fuerza": "A", "eje_profundidad": "N", "contención": "A",
+        "más": "A", "menos": "A", "unión": "N", "separación": "N", "parte_de": "D",
+        "mover": "N", "posición_temporal": "N", "flujo_temporal": "N",
+        "hacer": "N", "creación": "N", "destrucción": "N",
+        "orden": "A", "caos": "N", "porque": "A", "si_entonces": "A",
+        "eje_vertical": "N", "eje_lateral": "N", "equilibrio": "N",
+        "vista": "D", "bien": "A", "mal": "A",
+        "verdad": "N", "mentira": "N", "libertad": "A", "control": "A",
+        "tipo_de": "D", "algunos": "N", "muchos": "N",
+        "todo": "N", "puede": "A", "debe": "A", "tal_vez": "N",
+        "tierra": "N", "agua": "N", "aire": "N", "fuego": "N",
+        "tacto": "D", "oído": "N", "gusto": "N", "olfato": "N", "interocepción": "A",
+        "vida": "N", "muerte": "N", "placer": "A", "dolor": "A",
+        "consciente": "D", "ausente": "D",
+        "individual": "D", "colectivo": "N",
+        "querer": "A", "saber": "A", "pensar": "D", "decir": "N",
+        "temporal_obs": "N", "eterno_obs": "N", "receptivo": "A", "creador_obs": "N",
+        "proporción": "D", "quietud": "N"
+      }
     }
   },
   "reference_idvs": {

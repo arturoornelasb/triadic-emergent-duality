@@ -12,8 +12,10 @@ Sub-metrics:
   M3 — Duality Authenticity: STRONG axes / 12
   M4 — Dependency Engagement: 1 - (NEUTRAL / total_deps)
   M5 — Anchor Quality: observed_consistency / max_observed (normalized)
+  M6 — Layer Coherence: mean per-layer consistency of D-A-N classifications
+       (addresses M1's blind spot on layers 5-6)
 
-DVS = weighted average of M1..M5.
+DVS = weighted average of M1..M6.
 Threshold: DVS >= 0.50 → valid domain.
 """
 import sys
@@ -21,6 +23,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 import json
 import os
 from collections import Counter
+import numpy as np
 
 # ======================================================================
 #  SECTION 0: DATA LOADING
@@ -68,10 +71,12 @@ _DOMAIN_KEY_TO_DISPLAY = {
     'Philosophy': 'Philosophy (T12)', 'Physics': 'Physics (T13)',
     'Linguistics': 'Linguistics (T15)', 'Psychology': 'Psychology (T16)',
     'Astrology': 'Astrology (T14)',
+    'Alchemy': 'Alchemy (NC2)',
+    'Phrenology': 'Phrenology (NC3)',
 }
 _DOMAIN_ORDER = ['Music', 'Chemistry', 'Biology', 'Mathematics',
                  'Philosophy', 'Physics', 'Linguistics', 'Psychology',
-                 'Astrology']
+                 'Astrology', 'Alchemy', 'Phrenology']
 
 # Build class dicts dynamically from reference_domains.json
 _loaded_class_dicts = {}
@@ -164,6 +169,24 @@ astro_strengths = {
     'bien/mal': 'M', 'placer/dolor': 'W',
     'individual/colectivo': 'W', 'vida/muerte': 'W',
     'consciente/ausente': '\u2014', 'receptivo/creador_obs': 'M',
+}
+# --- Alchemy: pseudo-scientific transmutation practice ---
+alchemy_strengths = {
+    'unión/separación': 'S', 'orden/caos': 'W',
+    'creación/destrucción': 'S', 'libertad/control': '\u2014',
+    'verdad/mentira': 'W', 'temporal_obs/eterno_obs': 'M',
+    'bien/mal': 'W', 'placer/dolor': '\u2014',
+    'individual/colectivo': '\u2014', 'vida/muerte': 'M',
+    'consciente/ausente': '\u2014', 'receptivo/creador_obs': 'W',
+}
+# --- Phrenology: pseudo-scientific skull-reading ---
+phrenology_strengths = {
+    'unión/separación': '\u2014', 'orden/caos': '\u2014',
+    'creación/destrucción': '\u2014', 'libertad/control': 'W',
+    'verdad/mentira': '\u2014', 'temporal_obs/eterno_obs': '\u2014',
+    'bien/mal': 'W', 'placer/dolor': 'W',
+    'individual/colectivo': 'M', 'vida/muerte': '\u2014',
+    'consciente/ausente': 'M', 'receptivo/creador_obs': '\u2014',
 }
 
 # ======================================================================
@@ -409,32 +432,69 @@ ASTRO_ANCHORS = {
     'decanato':            ['tipo_de', 'más', 'orden', 'parte_de'],
 }
 
+ALCHEMY_ANCHORS = {
+    'piedra_filosofal':      ['creación', 'tierra', 'fuego', 'orden'],
+    'transmutacion':         ['creación', 'destrucción', 'hacer', 'fuerza'],
+    'nigredo':               ['destrucción', 'caos', 'vacío', 'muerte'],
+    'albedo':                ['separación', 'orden', 'agua', 'aire'],
+    'rubedo':                ['unión', 'creación', 'fuego', 'vida'],
+    'prima_materia':         ['vacío', 'uno', 'caos', 'información'],
+    'solve':                 ['separación', 'destrucción', 'agua', 'fuerza'],
+    'coagula':               ['unión', 'creación', 'tierra', 'orden'],
+    'quintaesencia':         ['todo', 'eterno_obs', 'contención', 'uno'],
+    'calcinacion':           ['fuego', 'destrucción', 'fuerza', 'hacer'],
+    'destilacion':           ['separación', 'agua', 'aire', 'mover'],
+    'elixir':                ['vida', 'creación', 'contención', 'agua'],
+    'azufre':                ['fuego', 'fuerza', 'creador_obs'],
+    'mercurio_alquimico':    ['mover', 'flujo_temporal', 'agua', 'aire'],
+    'sal_alquimica':         ['tierra', 'contención', 'equilibrio', 'orden'],
+}
+PHRENOLOGY_ANCHORS = {
+    'organo_cerebral':       ['parte_de', 'contención', 'tipo_de'],
+    'protuberancia':         ['tacto', 'más', 'vista', 'proporción'],
+    'facultad_mental':       ['pensar', 'tipo_de', 'individual'],
+    'combatividad':          ['fuerza', 'individual', 'control'],
+    'benevolencia':          ['bien', 'colectivo', 'querer'],
+    'veneracion':            ['orden', 'debe', 'receptivo'],
+    'cautela':               ['control', 'tal_vez', 'saber'],
+    'firmeza':               ['fuerza', 'contención', 'individual'],
+    'sublimidad':            ['más', 'eje_vertical', 'consciente'],
+    'alimentividad':         ['placer', 'interocepción', 'más'],
+    'amativeness':           ['unión', 'placer', 'querer'],
+    'idealidad':             ['pensar', 'creador_obs', 'bien'],
+    'causalidad':            ['porque', 'si_entonces', 'pensar'],
+    'localidad':             ['vista', 'contención', 'posición_temporal'],
+    'secretividad':          ['ausente', 'control', 'individual'],
+}
+
 ALL_DOMAIN_NAMES = [
     'Music (T8)', 'Chemistry (T9)', 'Biology (T10)', 'Mathematics (T11)',
     'Philosophy (T12)', 'Physics (T13)', 'Linguistics (T15)', 'Psychology (T16)',
-    'Astrology (T14)',
+    'Astrology (T14)', 'Alchemy (NC2)', 'Phrenology (NC3)',
 ]
 ALL_CLASS_DICTS = [
     music_classes, chem_classes, bio_classes, math_classes,
     phil_classes, phys_classes, ling_classes, psych_classes,
     astro_classes,
+    _loaded_class_dicts.get('Alchemy', {}),
+    _loaded_class_dicts.get('Phrenology', {}),
 ]
 ALL_STRENGTH_DICTS = [
     music_strengths, chem_strengths, bio_strengths, math_strengths,
     phil_strengths, phys_strengths, ling_strengths, psych_strengths,
-    astro_strengths,
+    astro_strengths, alchemy_strengths, phrenology_strengths,
 ]
 ALL_ANCHOR_DICTS = [
     MUS_ANCHORS, CHEM_ANCHORS, BIO_ANCHORS, MATH_ANCHORS,
     PHIL_ANCHORS, PHYS_ANCHORS, LING_ANCHORS, PSYCH_ANCHORS,
-    ASTRO_ANCHORS,
+    ASTRO_ANCHORS, ALCHEMY_ANCHORS, PHRENOLOGY_ANCHORS,
 ]
 
 # ======================================================================
 #  SECTION 4: COMPUTE 5 SUB-METRICS
 # ======================================================================
 print('=' * 78)
-print('  SECTION 1: COMPUTING 5 SUB-METRICS FOR 8+1 DOMAINS')
+print('  SECTION 1: COMPUTING 6 SUB-METRICS FOR 8+3 DOMAINS')
 print('=' * 78)
 print()
 
@@ -483,8 +543,24 @@ for i, domain_name in enumerate(ALL_DOMAIN_NAMES):
     # M5: Anchor Quality = observed_consistency (raw, will normalize later)
     m5_raw = anchor_consistency(anchors, deps_map)
 
+    # M6: Layer Coherence = mean per-layer consistency of D-A-N assignments
+    # Penalizes layers where some primitives are engaged (D/A) and others NULL,
+    # which suggests inconsistent mapping. Covers ALL 6 layers (fixing the
+    # M1 blind spot that only checks layers 1-4).
+    layer_coherences = []
+    for layer in range(1, 8):  # layers 1-7
+        layer_prims = [p['nombre'] for p in prims if p['capa'] == layer]
+        if not layer_prims:
+            continue
+        n_engaged = sum(1 for pn in layer_prims if cd.get(pn, 'N') in ('D', 'A'))
+        n_total = len(layer_prims)
+        # Coherence = max(engaged_frac, null_frac): 1.0 if all same, 0.5 if split
+        engaged_frac = n_engaged / n_total
+        layer_coherences.append(max(engaged_frac, 1.0 - engaged_frac))
+    m6 = float(np.mean(layer_coherences)) if layer_coherences else 0.0
+
     metrics[domain_name] = {
-        'M1': m1, 'M2': m2, 'M3': m3, 'M4': m4, 'M5_raw': m5_raw,
+        'M1': m1, 'M2': m2, 'M3': m3, 'M4': m4, 'M5_raw': m5_raw, 'M6': m6,
         'nulls_l14': nulls_l14, 'n_direct': n_direct, 'n_strong': n_strong,
         'n_neutral': n_neutral, 'n_null': n_null, 'n_analog': n_analog,
     }
@@ -495,12 +571,12 @@ for m in metrics.values():
     m['M5'] = m['M5_raw'] / max_m5 if max_m5 > 0 else 0.0
 
 # Print raw sub-metrics
-print(f'  {"Domain":<22} {"M1":<8} {"M2":<8} {"M3":<8} {"M4":<8} {"M5":<8}')
+print(f'  {"Domain":<22} {"M1":<8} {"M2":<8} {"M3":<8} {"M4":<8} {"M5":<8} {"M6":<8}')
 print(f'  {"-"*62}')
 for domain_name in ALL_DOMAIN_NAMES:
     m = metrics[domain_name]
     print(f'  {domain_name:<22} {m["M1"]:.3f}   {m["M2"]:.3f}   '
-          f'{m["M3"]:.3f}   {m["M4"]:.3f}   {m["M5"]:.3f}')
+          f'{m["M3"]:.3f}   {m["M4"]:.3f}   {m["M5"]:.3f}   {m["M6"]:.3f}')
 print()
 
 # Print detail table
@@ -521,12 +597,13 @@ print('  SECTION 2: DOMAIN VALIDITY SCORE (DVS)')
 print('=' * 78)
 print()
 
-# Weights: M1=0.30, M2=0.25, M3=0.20, M4=0.15, M5=0.10
-WEIGHTS = {'M1': 0.30, 'M2': 0.25, 'M3': 0.20, 'M4': 0.15, 'M5': 0.10}
+# Weights: M1=0.25, M2=0.20, M3=0.15, M4=0.15, M5=0.10, M6=0.15
+# M6 (layer coherence) addresses M1's blind spot on layers 5-6
+WEIGHTS = {'M1': 0.25, 'M2': 0.20, 'M3': 0.15, 'M4': 0.15, 'M5': 0.10, 'M6': 0.15}
 THRESHOLD = 0.50
 
 print(f'Weights: M1={WEIGHTS["M1"]}, M2={WEIGHTS["M2"]}, M3={WEIGHTS["M3"]}, '
-      f'M4={WEIGHTS["M4"]}, M5={WEIGHTS["M5"]}')
+      f'M4={WEIGHTS["M4"]}, M5={WEIGHTS["M5"]}, M6={WEIGHTS["M6"]}')
 print(f'Threshold: DVS >= {THRESHOLD}')
 print()
 
@@ -537,31 +614,39 @@ for domain_name in ALL_DOMAIN_NAMES:
     m['PASS'] = dvs >= THRESHOLD
 
 # Main results table
-print(f'  {"Domain":<22} {"M1":<7} {"M2":<7} {"M3":<7} {"M4":<7} {"M5":<7} '
+print(f'  {"Domain":<22} {"M1":<7} {"M2":<7} {"M3":<7} {"M4":<7} {"M5":<7} {"M6":<7} '
       f'{"DVS":<8} {"Result"}')
-print(f'  {"-"*72}')
+print(f'  {"-"*80}')
 for domain_name in ALL_DOMAIN_NAMES:
     m = metrics[domain_name]
     result = 'PASS' if m['PASS'] else 'FAIL'
     marker = '\u2714' if m['PASS'] else '\u2718'
     print(f'  {domain_name:<22} {m["M1"]:.2f}  {m["M2"]:.2f}  '
-          f'{m["M3"]:.2f}  {m["M4"]:.2f}  {m["M5"]:.2f}  '
+          f'{m["M3"]:.2f}  {m["M4"]:.2f}  {m["M5"]:.2f}  {m["M6"]:.2f}  '
           f'{m["DVS"]:.3f}   {marker} {result}')
 print()
 
-# Separation analysis
-positive_dvs = [metrics[d]['DVS'] for d in ALL_DOMAIN_NAMES if d != 'Astrology (T14)']
-astro_dvs = metrics['Astrology (T14)']['DVS']
+# Separation analysis — identify positive vs negative controls
+_NEGATIVE_CONTROLS = {'Astrology (T14)', 'Alchemy (NC2)', 'Phrenology (NC3)'}
+positive_dvs = [metrics[d]['DVS'] for d in ALL_DOMAIN_NAMES if d not in _NEGATIVE_CONTROLS]
+negative_dvs = [metrics[d]['DVS'] for d in ALL_DOMAIN_NAMES if d in _NEGATIVE_CONTROLS]
 min_positive = min(positive_dvs)
-gap = min_positive - astro_dvs
+max_negative = max(negative_dvs)
+gap = min_positive - max_negative
 
 print(f'Separation analysis:')
-print(f'  Minimum positive DVS:  {min_positive:.3f} '
-      f'({[d for d in ALL_DOMAIN_NAMES if metrics[d]["DVS"] == min_positive][0]})')
-print(f'  Astrology DVS:         {astro_dvs:.3f}')
+min_pos_name = [d for d in ALL_DOMAIN_NAMES if d not in _NEGATIVE_CONTROLS and metrics[d]['DVS'] == min_positive][0]
+max_neg_name = [d for d in ALL_DOMAIN_NAMES if d in _NEGATIVE_CONTROLS and metrics[d]['DVS'] == max_negative][0]
+print(f'  Minimum positive DVS:  {min_positive:.3f} ({min_pos_name})')
+print(f'  Maximum negative DVS:  {max_negative:.3f} ({max_neg_name})')
 print(f'  Gap:                   {gap:.3f}')
-print(f'  Discrimination:        {"PERFECT" if gap > 0 else "FAILED"} '
-      f'\u2014 all positives above threshold, control below')
+all_pos_pass = all(metrics[d]['PASS'] for d in ALL_DOMAIN_NAMES if d not in _NEGATIVE_CONTROLS)
+all_neg_fail = all(not metrics[d]['PASS'] for d in ALL_DOMAIN_NAMES if d in _NEGATIVE_CONTROLS)
+discriminates = all_pos_pass and all_neg_fail
+print(f'  Discrimination:        {"PERFECT" if discriminates else "FAILED"} '
+      f'\u2014 {"all 8 positives PASS, all 3 negatives FAIL" if discriminates else "check results"}')
+for d in sorted(_NEGATIVE_CONTROLS):
+    print(f'    {d}: DVS={metrics[d]["DVS"]:.3f} \u2718')
 print()
 
 # ======================================================================
@@ -574,19 +659,17 @@ print()
 
 # Generate weight variations: shift each weight ±0.10, renormalize
 weight_configs = [
-    ('Default',         {'M1': 0.30, 'M2': 0.25, 'M3': 0.20, 'M4': 0.15, 'M5': 0.10}),
-    ('Equal',           {'M1': 0.20, 'M2': 0.20, 'M3': 0.20, 'M4': 0.20, 'M5': 0.20}),
-    ('M1-heavy (0.50)', {'M1': 0.50, 'M2': 0.15, 'M3': 0.15, 'M4': 0.10, 'M5': 0.10}),
-    ('M2-heavy (0.40)', {'M1': 0.20, 'M2': 0.40, 'M3': 0.15, 'M4': 0.15, 'M5': 0.10}),
-    ('M3-heavy (0.40)', {'M1': 0.15, 'M2': 0.15, 'M3': 0.40, 'M4': 0.15, 'M5': 0.15}),
-    ('M4-heavy (0.40)', {'M1': 0.15, 'M2': 0.15, 'M3': 0.15, 'M4': 0.40, 'M5': 0.15}),
-    ('M5-heavy (0.40)', {'M1': 0.15, 'M2': 0.15, 'M3': 0.15, 'M4': 0.15, 'M5': 0.40}),
-    ('No M1',           {'M1': 0.00, 'M2': 0.30, 'M3': 0.30, 'M4': 0.20, 'M5': 0.20}),
-    ('No M3',           {'M1': 0.35, 'M2': 0.30, 'M3': 0.00, 'M4': 0.20, 'M5': 0.15}),
+    ('Default',         {'M1': 0.25, 'M2': 0.20, 'M3': 0.15, 'M4': 0.15, 'M5': 0.10, 'M6': 0.15}),
+    ('Equal',           {'M1': 1/6, 'M2': 1/6, 'M3': 1/6, 'M4': 1/6, 'M5': 1/6, 'M6': 1/6}),
+    ('M1-heavy (0.40)', {'M1': 0.40, 'M2': 0.15, 'M3': 0.10, 'M4': 0.10, 'M5': 0.10, 'M6': 0.15}),
+    ('M6-heavy (0.40)', {'M1': 0.15, 'M2': 0.15, 'M3': 0.10, 'M4': 0.10, 'M5': 0.10, 'M6': 0.40}),
+    ('No M1',           {'M1': 0.00, 'M2': 0.25, 'M3': 0.20, 'M4': 0.15, 'M5': 0.15, 'M6': 0.25}),
+    ('No M6',           {'M1': 0.30, 'M2': 0.25, 'M3': 0.20, 'M4': 0.15, 'M5': 0.10, 'M6': 0.00}),
+    ('Legacy (no M6)',  {'M1': 0.30, 'M2': 0.25, 'M3': 0.20, 'M4': 0.15, 'M5': 0.10, 'M6': 0.00}),
 ]
 
-print(f'  {"Config":<22} {"Astro DVS":<12} {"Min Pos DVS":<14} {"Gap":<8} {"Discrim."}')
-print(f'  {"-"*62}')
+print(f'  {"Config":<22} {"Max Neg DVS":<14} {"Min Pos DVS":<14} {"Gap":<8} {"Discrim."}')
+print(f'  {"-"*66}')
 
 all_discriminate = True
 for config_name, w in weight_configs:
@@ -596,18 +679,20 @@ for config_name, w in weight_configs:
         dvs = sum(w[k] * m[k] for k in w)
         config_dvs[domain_name] = dvs
 
-    pos_dvs = [config_dvs[d] for d in ALL_DOMAIN_NAMES if d != 'Astrology (T14)']
-    astro_d = config_dvs['Astrology (T14)']
+    pos_dvs = [config_dvs[d] for d in ALL_DOMAIN_NAMES if d not in _NEGATIVE_CONTROLS]
+    neg_dvs = [config_dvs[d] for d in ALL_DOMAIN_NAMES if d in _NEGATIVE_CONTROLS]
     min_pos = min(pos_dvs)
-    g = min_pos - astro_d
+    max_neg = max(neg_dvs)
+    g = min_pos - max_neg
     disc = 'YES' if g > 0 else 'NO'
     if g <= 0:
         all_discriminate = False
-    print(f'  {config_name:<22} {astro_d:.3f}       {min_pos:.3f}        '
+    print(f'  {config_name:<22} {max_neg:.3f}        {min_pos:.3f}        '
           f'{g:+.3f}   {disc}')
 
 print()
-print(f'  Robustness: {"ALL configs discriminate \u2014 ROBUST" if all_discriminate else "Some configs FAIL to discriminate"}')
+robustness_msg = "ALL configs discriminate — ROBUST" if all_discriminate else "Some configs FAIL to discriminate"
+print(f'  Robustness: {robustness_msg}')
 print()
 
 # ======================================================================
@@ -621,7 +706,7 @@ print()
 print(f'  Removing each sub-metric and testing if discrimination holds:')
 print()
 
-metric_keys = ['M1', 'M2', 'M3', 'M4', 'M5']
+metric_keys = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6']
 loo_results = []
 
 for drop_key in metric_keys:
@@ -636,14 +721,15 @@ for drop_key in metric_keys:
         dvs = sum(w[k] * m[k] for k in metric_keys)
         loo_dvs[domain_name] = dvs
 
-    pos_dvs = [loo_dvs[d] for d in ALL_DOMAIN_NAMES if d != 'Astrology (T14)']
-    astro_d = loo_dvs['Astrology (T14)']
+    pos_dvs = [loo_dvs[d] for d in ALL_DOMAIN_NAMES if d not in _NEGATIVE_CONTROLS]
+    neg_dvs = [loo_dvs[d] for d in ALL_DOMAIN_NAMES if d in _NEGATIVE_CONTROLS]
     min_pos = min(pos_dvs)
-    g = min_pos - astro_d
+    max_neg = max(neg_dvs)
+    g = min_pos - max_neg
     disc = g > 0
-    loo_results.append((drop_key, astro_d, min_pos, g, disc))
+    loo_results.append((drop_key, max_neg, min_pos, g, disc))
 
-    print(f'  Drop {drop_key}: Astro={astro_d:.3f}, Min positive={min_pos:.3f}, '
+    print(f'  Drop {drop_key}: MaxNeg={max_neg:.3f}, MinPos={min_pos:.3f}, '
           f'Gap={g:+.3f} \u2014 {"Discriminates" if disc else "FAILS"}')
 
 print()
@@ -651,8 +737,9 @@ print()
 # Check if any single metric suffices
 print(f'  Single-metric sufficiency test:')
 for key in metric_keys:
-    pos_vals = [metrics[d][key] for d in ALL_DOMAIN_NAMES if d != 'Astrology (T14)']
-    astro_val = metrics['Astrology (T14)'][key]
+    pos_vals = [metrics[d][key] for d in ALL_DOMAIN_NAMES if d not in _NEGATIVE_CONTROLS]
+    neg_vals = [metrics[d][key] for d in ALL_DOMAIN_NAMES if d in _NEGATIVE_CONTROLS]
+    astro_val = max(neg_vals)  # hardest negative
     min_pos = min(pos_vals)
     g = min_pos - astro_val
     disc = g > 0
@@ -694,10 +781,11 @@ print(f'  Mean DVS:  {avg_positive:.3f}')
 print(f'  Std DVS:   {std_positive:.3f}')
 print(f'  Range:     [{min(positive_dvs):.3f}, {max(positive_dvs):.3f}]')
 print()
-print(f'Control negative:')
-print(f'  Astrology DVS: {astro_dvs:.3f}')
-print(f'  Distance from mean: {(avg_positive - astro_dvs) / std_positive:.1f} sigma '
-      f'(if sigma > 0)')
+print(f'Negative controls ({len(negative_dvs)}):')
+for d in sorted(_NEGATIVE_CONTROLS):
+    sigma_dist = (avg_positive - metrics[d]['DVS']) / std_positive if std_positive > 0 else 0
+    print(f'  {d}: DVS={metrics[d]["DVS"]:.3f}  ({sigma_dist:.1f} sigma below mean)')
+print(f'  Max negative DVS: {max_negative:.3f} ({max_neg_name})')
 print()
 
 # ======================================================================
@@ -722,8 +810,9 @@ print(f'    M3: 0 STRONG axes (real domains: 4-11)')
 print(f'    M4: {metrics["Astrology (T14)"]["n_neutral"]} NEUTRAL dependencies '
       f'(high NULLs cascade)')
 print(f'    M5: Moderate anchor consistency (coherent but shallow)')
+print(f'    M6: Low layer coherence (inconsistent D-A-N within layers)')
 print()
-print(f'  The permutation test only captures M5. DVS adds the 4 structural')
+print(f'  The permutation test only captures M5. DVS adds the 5 structural')
 print(f'  dimensions that pseudo-science cannot fake.')
 print()
 
