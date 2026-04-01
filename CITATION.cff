@@ -10,6 +10,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.19374914
     description: Software archive (Zenodo)
+  - type: doi
+    value: 10.5281/zenodo.19375167
+    description: Research paper (Zenodo)
 repository-code: "https://github.com/arturoornelasb/triadic-emergent-duality"
 keywords:
   - ontology
