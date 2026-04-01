@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "Triadic Emergent Duality: 14+ Candidate Dualities Across 6 Algebraic Layers"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - family-names: Ornelas Brand
+    given-names: J. Arturo
+    email: arturoornelas62@gmail.com
+repository-code: "https://github.com/arturoornelasb/triadic-emergent-duality"
+keywords:
+  - ontology
+  - semantic primitives
+  - emergence
+  - duality
+  - neurosymbolic AI
+  - algebraic structure
+  - domain validation
+  - Bayesian model comparison
+license: BUSL-1.1
+version: 0.1.0
+date-released: "2026-04-01"

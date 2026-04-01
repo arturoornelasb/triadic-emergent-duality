@@ -1,7 +1,7 @@
 {
-    "title": "Triadic Emergent Duality: 14+ Fundamental Dualities Across 6 Algebraic Layers",
+    "title": "Triadic Emergent Duality: 14+ Candidate Dualities Across 6 Algebraic Layers",
     "version": "0.1.0",
-    "description": "A formal ontological framework in which conceptual complexity emerges from 14 fundamental dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). Grounded in 72 semantic primitives connected by a DAG of 133+ dependency edges. Validated through domain analysis (9 disciplines, IDVS metric), Bayesian model comparison (BF=121.4), and neurosymbolic learning (GPT-2 Medium + 72-bit triadic head, 90.8% accuracy, PPL 31.95).",
+    "description": "A formal ontological framework in which conceptual complexity emerges from 14+ candidate dualities organized across 6 algebraic layers (Boolean, Fuzzy, Ordinal, Modal, Trivalent, Probabilistic). Grounded in 72 semantic primitives connected by a DAG of 133+ dependency edges. Evaluated through domain analysis (8 disciplines + 3 negative controls, DVS metric), Bayesian model comparison (BF=121.4), and neurosymbolic learning (GPT-2 Medium + 72-bit triadic head, 90.8% accuracy).",
     "creators": [
         {
             "name": "Ornelas Brand, J. Arturo",
@@ -29,14 +29,22 @@
             "resource_type": "software"
         },
         {
-            "identifier": "https://github.com/arturoornelasb/Triadic-Neurosymbolic-Engine",
+            "identifier": "10.5281/zenodo.19205805",
             "relation": "references",
-            "resource_type": "software"
+            "resource_type": "publication-preprint",
+            "scheme": "doi"
         },
         {
-            "identifier": "https://github.com/arturoornelasb/triadic-microgpt",
+            "identifier": "10.5281/zenodo.19206545",
             "relation": "references",
-            "resource_type": "software"
+            "resource_type": "publication-preprint",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "10.5281/zenodo.19208672",
+            "relation": "references",
+            "resource_type": "publication-preprint",
+            "scheme": "doi"
         }
     ],
     "language": "eng"
