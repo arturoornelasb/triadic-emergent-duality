@@ -6,6 +6,10 @@ authors:
   - family-names: Ornelas Brand
     given-names: J. Arturo
     email: arturoornelas62@gmail.com
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19374914
+    description: Software archive (Zenodo)
 repository-code: "https://github.com/arturoornelasb/triadic-emergent-duality"
 keywords:
   - ontology

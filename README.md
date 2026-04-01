@@ -1,6 +1,8 @@
 # Triadic Emergent Duality
 
-Research framework proposing that conceptual complexity emerges from 14 fundamental dualities organized in 6 algebraic layers. Combines philosophical formalization (poset theory, category theory, modal logic) with empirical validation across 9 disciplines and a neurosymbolic language model (GPT-2 Medium + 72-bit triadic head).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19374914.svg)](https://doi.org/10.5281/zenodo.19374914)
+
+Research framework proposing that conceptual complexity emerges from 14+ candidate dualities organized in 6 algebraic layers. Combines philosophical formalization (poset theory, category theory, modal logic) with empirical evaluation across 8 disciplines + 3 negative controls and a neurosymbolic language model (GPT-2 Medium + 72-bit triadic head).
 
 **Author:** J. Arturo Ornelas Brand — Independent Researcher — arturoornelas62@gmail.com
 
