@@ -71,6 +71,8 @@ class TriadicExtractor(RepresentationExtractor):
             model_name=cfg['model_name'],
             n_triadic_bits=cfg['n_triadic_bits'],
             freeze_base=cfg.get('freeze_base', False),
+            head_mode=cfg.get('head_mode', 'simple'),
+            activation=cfg.get('activation', 'ifsq'),
         )
         model.load_state_dict(ckpt['model_state_dict'])
         model.to(device)

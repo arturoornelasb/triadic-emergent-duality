@@ -267,20 +267,79 @@ Fases detectadas:
 4. **Contrast_weight reducido** deja que supervision domine
 5. **Mas entropy weight** ataca los dead bits directamente
 
-### Kill criteria V8
+### Resultados V8 (2026-04-05) — COMPLETADO
 
-Si despues de 250K steps:
-- `bit_acc_test < 80%` → abandonar deep head, reducir a 500 conceptos
-- `churn > 50%` al final → LR decay aun insuficiente
-- `dead_bits > 25` → entropy_weight insuficiente, considerar bits=96
+**Duracion:** ~100h (250K steps en RTX 5060 Ti 16GB)
 
-### Archivos V8
+#### Metricas finales V8 vs V7
+
+| Metrica | V7 (200K) | V8 (250K) | Resultado |
+|---------|-----------|-----------|-----------|
+| Bit accuracy (test) | 79.3% | **85.3%** | **+6.0pp** |
+| Subsumption (test) | 91.0% | **95.7%** | **+4.7pp** |
+| Dead bits | 32 | **25** | **-7 bits** |
+| Entropy | ~0.48 | **0.554** | **+15%** |
+| Sup loss | 0.384 | **0.311** | **-19%** |
+
+#### Kill criteria V8
+
+| Criterio | Umbral | Resultado | Estado |
+|----------|--------|-----------|--------|
+| bit_acc_test | > 80% | 85.3% | **PASS** |
+| churn final | < 50% | 48.9% | **PASS (barely)** |
+| dead_bits | < 25 | 25 | **BORDERLINE** |
+
+#### reptimeline — Diagnostico temporal V8 (25 checkpoints)
+
+```
+Fases detectadas:
+  [1] Steps 5K-25K:   WARMUP (triadic loss = 0)
+      entropy=0.058, churn=0.0, utilization=0.027
+
+  [2] Step 35K:        PHASE TRANSITION (triadic loss arranca)
+      entropy 0.058→0.500, churn 0→1.0, utilization 0.03→0.33
+
+  [3] Steps 35K-250K:  REFINAMIENTO (convergencia parcial)
+      entropy 0.500→0.554, churn 1.0→0.489, utilization 0.33→0.341
+```
+
+**Comparacion de fases V7 vs V8:**
+- Phase transition: **35K** (V8) vs 75K (V7) — 2× mas temprano gracias a warmup 10%
+- Churn final: **48.9%** (V8) vs 71% (V7) — LR decay 0.03 funciono parcialmente
+- Entropy final: **0.554** (V8) vs ~0.48 (V7) — entropy_weight 3.0 activo mas bits
+- Births: 133K, Deaths: 75K — crecimiento neto positivo (mas estructura)
+
+**Bits mas estables:** 1, 55, 22, 70, 39
+**Bits menos estables:** 6, 12, 51, 14, 26
+
+**Conexiones null model:** O/E = 1.000 (consistente con V7, MNIST, Pythia)
+
+### Que funciono en V8
+
+1. **Deep head (+6pp bit accuracy)** — la capacidad extra fue el cambio mas impactante
+2. **Warmup 10% (phase transition 2× antes)** — 225K effective triadic steps vs 130K
+3. **Entropy weight 3.0 (-7 dead bits)** — de 32 a 25
+4. **LR decay 0.03 (-22pp churn)** — de 71% a 48.9%
+
+### Que NO se resolvio
+
+- Churn 48.9% — aun alto, conceptos extendidos no convergieron del todo
+- Dead bits 25 — borderline en el kill criterion
+- Extended concepts siguen siendo el reto principal (primitivos a 90.7%+, extended lag)
+
+### Archivos generados V8
 
 | Archivo | Que es |
 |---------|--------|
-| `model/train.py` | +`--lr-min-ratio` arg (nuevo) |
-| `model/run_v8.bat` | Launch script V8 |
-| `model/checkpoints/v8_deep/` | Checkpoints y logs |
+| `neural/results/timeline_v8.json` | Timeline completo (25 snapshots × 2166 conceptos) |
+| `neural/results/v8_curves.csv` | Entropy, churn, utilization por step |
+| `neural/results/v8_phase_transitions.json` | 3 transiciones detectadas (step 35K) |
+| `neural/results/v8_bit_stability.json` | Estabilidad por bit (72 scores) |
+| `neural/results/v8_connections_null.json` | Null model O/E = 1.000 |
+| `runs/v8_deep/plots/phase_dashboard.png` | Dashboard de fases |
+| `runs/v8_deep/plots/churn_heatmap.png` | Heatmap de churn por bit |
+| `runs/v8_deep/plots/swimlane_primitivos.png` | Swimlane (7 primitivos) |
+| `runs/v8_deep/plots/layer_emergence.png` | Orden de emergencia por capa |
 
 ---
 
