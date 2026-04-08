@@ -1,0 +1,212 @@
+{
+  "description": "Inter-rater reliability: human vs model-based D/A/N classification",
+  "method": "Model activation ratio (domain_rate / global_rate) with thresholds",
+  "thresholds": {
+    "D": ">= 1.5",
+    "N": "<= 0.5",
+    "A": "otherwise"
+  },
+  "checkpoint": "best.pt",
+  "results": {
+    "Music": {
+      "kappa": 0.0152,
+      "interpretation": "slight",
+      "agreement": 0.4308,
+      "n_concepts": 144,
+      "n_disagreements": 37,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 0,
+          "A": 29,
+          "N": 3
+        },
+        "A": {
+          "D": 0,
+          "A": 27,
+          "N": 4
+        },
+        "N": {
+          "D": 0,
+          "A": 1,
+          "N": 1
+        }
+      }
+    },
+    "Chemistry": {
+      "kappa": -0.0821,
+      "interpretation": "poor",
+      "agreement": 0.1077,
+      "n_concepts": 114,
+      "n_disagreements": 58,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 6,
+          "A": 18,
+          "N": 14
+        },
+        "A": {
+          "D": 0,
+          "A": 1,
+          "N": 26
+        },
+        "N": {
+          "D": 0,
+          "A": 0,
+          "N": 0
+        }
+      }
+    },
+    "Biology": {
+      "kappa": -0.0252,
+      "interpretation": "poor",
+      "agreement": 0.2769,
+      "n_concepts": 210,
+      "n_disagreements": 47,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 11,
+          "A": 26,
+          "N": 8
+        },
+        "A": {
+          "D": 2,
+          "A": 7,
+          "N": 11
+        },
+        "N": {
+          "D": 0,
+          "A": 0,
+          "N": 0
+        }
+      }
+    },
+    "Mathematics": {
+      "kappa": 0.0201,
+      "interpretation": "slight",
+      "agreement": 0.3077,
+      "n_concepts": 366,
+      "n_disagreements": 45,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 5,
+          "A": 16,
+          "N": 9
+        },
+        "A": {
+          "D": 2,
+          "A": 4,
+          "N": 11
+        },
+        "N": {
+          "D": 1,
+          "A": 6,
+          "N": 11
+        }
+      }
+    },
+    "Philosophy": {
+      "kappa": 0.1115,
+      "interpretation": "slight",
+      "agreement": 0.4154,
+      "n_concepts": 137,
+      "n_disagreements": 38,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 22,
+          "A": 17,
+          "N": 10
+        },
+        "A": {
+          "D": 0,
+          "A": 1,
+          "N": 10
+        },
+        "N": {
+          "D": 1,
+          "A": 0,
+          "N": 4
+        }
+      }
+    },
+    "Physics": {
+      "kappa": 0.0468,
+      "interpretation": "slight",
+      "agreement": 0.2769,
+      "n_concepts": 280,
+      "n_disagreements": 47,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 10,
+          "A": 23,
+          "N": 10
+        },
+        "A": {
+          "D": 0,
+          "A": 1,
+          "N": 13
+        },
+        "N": {
+          "D": 0,
+          "A": 1,
+          "N": 7
+        }
+      }
+    },
+    "Linguistics": {
+      "kappa": 0.062,
+      "interpretation": "slight",
+      "agreement": 0.3231,
+      "n_concepts": 141,
+      "n_disagreements": 44,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 11,
+          "A": 26,
+          "N": 13
+        },
+        "A": {
+          "D": 3,
+          "A": 8,
+          "N": 2
+        },
+        "N": {
+          "D": 0,
+          "A": 0,
+          "N": 2
+        }
+      }
+    },
+    "Psychology": {
+      "kappa": 0.0027,
+      "interpretation": "slight",
+      "agreement": 0.2923,
+      "n_concepts": 382,
+      "n_disagreements": 46,
+      "status": "validated",
+      "confusion": {
+        "D": {
+          "D": 10,
+          "A": 34,
+          "N": 6
+        },
+        "A": {
+          "D": 3,
+          "A": 8,
+          "N": 2
+        },
+        "N": {
+          "D": 0,
+          "A": 1,
+          "N": 1
+        }
+      }
+    }
+  }
+}

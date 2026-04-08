@@ -1,66 +1,73 @@
-primitivo,capa,definicion,clasificacion_DAN
-libertad,4,Autodeterminación,
-fuerza,2,"Capacidad de cambio, empuje, potencial",
-destrucción,3,"Eliminar, deshacer",
-decir,5,Comunicación verbal,
-muerte,5,"Cese vital, disolución",
-menos,2,"Disminución, reducción",
-creador_obs,6,"Que crea, produce activamente",
-vida,5,"Animación, crecimiento",
-saber,5,"Conocimiento, comprensión",
-todo,4,"Totalidad, completitud",
-posición_temporal,3,"Pasado, presente, futuro",
-equilibrio,4,"Balance, orientación espacial",
-tacto,5,"Presión, temperatura, textura",
-orden,3,"Estructura, regularidad",
-uno,1,"Singularidad, unidad",
-hacer,3,"Acción, ejecución, producción",
-eje_vertical,4,Dimensión arriba-abajo,
-porque,3,"Causalidad, razón",
-control,4,"Restricción, regulación",
-mal,4,Polo moral negativo,
-fuego,5,"Transformación, calor, radiancia",
-información,1,"Patrón, código, estructura abstracta",
-separación,2,"Dividir, aislar, desconectar",
-ausente,5,Ausencia de conciencia,
-algunos,4,"Parte, porción",
-receptivo,6,"Que recibe, absorbe, escucha",
-gusto,5,Percepción gustativa,
-placer,5,Experiencia hedónica positiva,
-aire,5,"Expansión, respiración, ubicuidad",
-vacío,1,"Ausencia como sustancia, espacio potencial",
-tal_vez,4,"Incertidumbre, apertura",
-mover,3,"Desplazamiento, cambio de posición",
-eje_profundidad,2,Dimensión adelante-atrás,
-unión,2,"Juntar, conectar, vincular",
-dolor,5,Experiencia hedónica negativa,
-colectivo,5,"Grupo, comunidad",
-eje_lateral,4,Dimensión izquierda-derecha,
-parte_de,2,"Inclusión, pertenencia",
-creación,3,Generar algo nuevo,
-flujo_temporal,3,"Cómo pasa el tiempo, duración",
-debe,4,"Obligación, necesidad",
-si_entonces,3,"Condicionalidad, implicación",
-olfato,5,Percepción olfativa,
-proporción,3,"Relación cuantitativa entre magnitudes, ratio",
-temporal_obs,6,"Observador mortal, atado al tiempo",
-consciente,5,"Awareness, presencia de conciencia",
-agua,5,"Fluidez, adaptación, profundidad",
-interocepción,5,Estado interno del cuerpo,
-individual,5,"Uno solo, particular",
-mentira,4,Distorsión de realidad,
-oído,5,"Sonido, música, lenguaje hablado",
-bien,4,Polo moral positivo,
-contención,2,"Dentro/fuera, límites y fronteras",
-tierra,5,"Solidez, fundamento, lo tangible",
-quietud,3,"Ausencia de desplazamiento, permanencia en posición",
-querer,5,"Deseo, voluntad, intención",
-puede,4,"Posibilidad, capacidad",
-eterno_obs,6,Observador fuera del tiempo,
-muchos,4,Pluralidad,
-tipo_de,4,"Clasificación, categoría",
-verdad,4,Correspondencia con realidad,
-vista,4,Percepción visual,
-pensar,5,"Razonamiento, reflexión",
-más,2,"Aumento, incremento",
-caos,3,"Desorden, turbulencia",
+primitivo,capa,definicion,clasificacion_DAN,domain_rate,global_rate,ratio
+vacío,1,"Ausencia como sustancia, espacio potencial",N,0.0000,0.0531,0.1585
+información,1,"Patrón, código, estructura abstracta",A,1.0000,0.9649,1.0360
+uno,1,"Singularidad, unidad",N,0.0792,0.3269,0.2649
+fuerza,2,"Capacidad de cambio, empuje, potencial",A,0.4262,0.8259,0.5218
+eje_profundidad,2,Dimensión adelante-atrás,A,0.9044,0.9677,0.9352
+contención,2,"Dentro/fuera, límites y fronteras",A,1.0000,0.9409,1.0621
+más,2,"Aumento, incremento",A,1.0000,0.9127,1.0946
+menos,2,"Disminución, reducción",N,0.0000,0.0337,0.2288
+unión,2,"Juntar, conectar, vincular",N,0.1694,0.5245,0.3357
+separación,2,"Dividir, aislar, desconectar",N,0.0000,0.0785,0.1130
+parte_de,2,"Inclusión, pertenencia",D,0.4945,0.1477,3.1986
+mover,3,"Desplazamiento, cambio de posición",A,0.9836,0.9423,1.0434
+posición_temporal,3,"Pasado, presente, futuro",A,1.0000,0.9206,1.0853
+flujo_temporal,3,"Cómo pasa el tiempo, duración",N,0.0437,0.2553,0.2025
+hacer,3,"Acción, ejecución, producción",A,0.9945,0.9871,1.0075
+creación,3,Generar algo nuevo,N,0.3251,0.7613,0.4345
+destrucción,3,"Eliminar, deshacer",N,0.0984,0.6593,0.1619
+orden,3,"Estructura, regularidad",A,1.0000,0.9801,1.0200
+caos,3,"Desorden, turbulencia",A,1.0000,0.7964,1.2525
+porque,3,"Causalidad, razón",A,1.0000,0.8606,1.1602
+si_entonces,3,"Condicionalidad, implicación",D,0.2787,0.0605,4.0960
+eje_vertical,4,Dimensión arriba-abajo,N,0.0000,0.0406,0.1975
+eje_lateral,4,Dimensión izquierda-derecha,A,0.0000,0.0092,0.5199
+equilibrio,4,"Balance, orientación espacial",A,0.0000,0.0097,0.5077
+vista,4,Percepción visual,N,0.0000,0.2161,0.0442
+bien,4,Polo moral positivo,N,0.0000,0.1066,0.0857
+mal,4,Polo moral negativo,N,0.0000,0.1339,0.0695
+verdad,4,Correspondencia con realidad,D,0.9508,0.3287,2.8366
+mentira,4,Distorsión de realidad,D,0.5956,0.1787,3.2100
+libertad,4,Autodeterminación,N,0.0929,0.5771,0.1753
+control,4,"Restricción, regulación",N,0.0000,0.4178,0.0234
+tipo_de,4,"Clasificación, categoría",A,0.0000,0.0023,0.8125
+algunos,4,"Parte, porción",D,1.0000,0.3670,2.6788
+muchos,4,Pluralidad,A,1.0000,0.8887,1.1238
+todo,4,"Totalidad, completitud",A,0.6803,0.4765,1.4191
+puede,4,"Posibilidad, capacidad",N,0.0000,0.3523,0.0276
+debe,4,"Obligación, necesidad",N,0.0000,0.3952,0.0247
+tal_vez,4,"Incertidumbre, apertura",A,0.4836,0.7345,0.6630
+tierra,5,"Solidez, fundamento, lo tangible",N,0.1503,0.7521,0.2103
+agua,5,"Fluidez, adaptación, profundidad",A,0.4754,0.8223,0.5832
+aire,5,"Expansión, respiración, ubicuidad",A,0.4781,0.6283,0.7647
+fuego,5,"Transformación, calor, radiancia",A,0.3661,0.7364,0.5039
+tacto,5,"Presión, temperatura, textura",N,0.0000,0.5028,0.0195
+oído,5,"Sonido, música, lenguaje hablado",N,0.0710,0.2678,0.2917
+gusto,5,Percepción gustativa,N,0.0000,0.0245,0.2901
+olfato,5,Percepción olfativa,N,0.0000,0.3306,0.0294
+interocepción,5,Estado interno del cuerpo,N,0.0000,0.0799,0.1113
+vida,5,"Animación, crecimiento",A,0.3060,0.4409,0.7008
+muerte,5,"Cese vital, disolución",N,0.0000,0.0203,0.3299
+placer,5,Experiencia hedónica positiva,N,0.0000,0.2202,0.0434
+dolor,5,Experiencia hedónica negativa,A,0.2978,0.4543,0.6630
+consciente,5,"Awareness, presencia de conciencia",D,0.6230,0.3920,1.5746
+ausente,5,Ausencia de conciencia,N,0.0000,0.2322,0.0413
+individual,5,"Uno solo, particular",A,0.0000,0.0060,0.6249
+colectivo,5,"Grupo, comunidad",N,0.0000,0.0776,0.1142
+querer,5,"Deseo, voluntad, intención",N,0.0000,0.0332,0.2313
+saber,5,"Conocimiento, comprensión",N,0.0710,0.2641,0.2957
+pensar,5,"Razonamiento, reflexión",A,1.0000,0.8661,1.1528
+decir,5,Comunicación verbal,N,0.0000,0.1708,0.0553
+temporal_obs,6,"Observador mortal, atado al tiempo",D,0.0792,0.0346,1.9996
+eterno_obs,6,Observador fuera del tiempo,A,0.0000,0.0009,0.9155
+receptivo,6,"Que recibe, absorbe, escucha",A,0.2978,0.2216,1.3290
+creador_obs,6,"Que crea, produce activamente",N,0.0000,0.0332,0.2313
+atracción,3,"Tendencia de aproximación, valencia positiva",N,0.0000,0.0702,0.1247
+decaimiento,4,"Deterioro progresivo, disolución de estructura organizada",A,0.0000,0.0092,0.5199
+aversión,4,"Tendencia de evitación, valencia negativa",N,0.1311,0.4529,0.3049
+cooperación,4,Acción conjunta hacia objetivo compartido,N,0.0000,0.0762,0.1160
+pérdida,4,"Ausencia tras haber tenido, vacío dejado por destrucción",N,0.0000,0.0208,0.3249
+atención,5,"Foco selectivo de la conciencia, filtro perceptual",N,0.0000,0.0102,0.4961
+intención,5,"Propósito dirigido, voluntad de actuar hacia un fin",A,0.0000,0.0014,0.8783
+proporción,3,"Relación cuantitativa entre magnitudes, ratio",D,0.3306,0.1427,2.2311
+quietud,3,"Ausencia de desplazamiento, permanencia en posición",N,0.0383,0.1274,0.3511

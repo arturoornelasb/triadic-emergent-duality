@@ -1,0 +1,2761 @@
+{
+  "description": "Quaternionic coordinates (r,i,j,k) for 72 primitives — Conjecture C5",
+  "method": {
+    "r": "Mean positive activation across concepts (semantic presence)",
+    "i": "Dual anti-correlation or variance proxy (opposition strength)",
+    "j": "Normalized DAG depth (structural ordering)",
+    "k": "Recursive meta-dependency score (observation level)"
+  },
+  "constraints": {
+    "L1-L2": "i=j=k=0",
+    "L3-L4": "k=0",
+    "L5": "k>=0 (based on meta-dependencies)",
+    "L6": "k>0 (always)"
+  },
+  "checkpoints": {
+    "v8": "best.pt",
+    "v9": "best.pt"
+  },
+  "coordinates": {
+    "v8": {
+      "vacío": {
+        "bit": 0,
+        "prime": 2,
+        "layer": 1,
+        "r": 0.0094,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0094,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 0,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "información": {
+        "bit": 1,
+        "prime": 3,
+        "layer": 1,
+        "r": 0.6318,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.6318,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 0,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "fuerza": {
+        "bit": 2,
+        "prime": 5,
+        "layer": 2,
+        "r": 0.3838,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.3838,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "fuego": {
+        "bit": 3,
+        "prime": 7,
+        "layer": 5,
+        "r": 0.3965,
+        "i": 0.8475,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 1.0881,
+        "unit_quaternion": [
+          0.3643,
+          0.7788,
+          0.5106,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tierra": {
+        "bit": 4,
+        "prime": 11,
+        "layer": 5,
+        "r": 0.5556,
+        "i": 0.9702,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 1.2485,
+        "unit_quaternion": [
+          0.445,
+          0.7771,
+          0.445,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "agua": {
+        "bit": 5,
+        "prime": 13,
+        "layer": 5,
+        "r": 0.7408,
+        "i": 0.9419,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.2438,
+        "unit_quaternion": [
+          0.5956,
+          0.7573,
+          0.268,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "aire": {
+        "bit": 6,
+        "prime": 17,
+        "layer": 5,
+        "r": 0.2128,
+        "i": 0.6144,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.7876,
+        "unit_quaternion": [
+          0.2702,
+          0.7801,
+          0.5643,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "eje_vertical": {
+        "bit": 7,
+        "prime": 19,
+        "layer": 4,
+        "r": 0.0215,
+        "i": 0.6771,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.713,
+        "unit_quaternion": [
+          0.0302,
+          0.9497,
+          0.3117,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "eje_profundidad": {
+        "bit": 8,
+        "prime": 23,
+        "layer": 2,
+        "r": 0.9432,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.9432,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "eje_lateral": {
+        "bit": 9,
+        "prime": 29,
+        "layer": 4,
+        "r": 0.005,
+        "i": 0.3888,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.5122,
+        "unit_quaternion": [
+          0.0097,
+          0.7592,
+          0.6508,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "contención": {
+        "bit": 10,
+        "prime": 31,
+        "layer": 2,
+        "r": 0.6916,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.6916,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "posición_temporal": {
+        "bit": 11,
+        "prime": 37,
+        "layer": 3,
+        "r": 0.7631,
+        "i": 0.6653,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0659,
+        "unit_quaternion": [
+          0.7159,
+          0.6242,
+          0.3127,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "flujo_temporal": {
+        "bit": 12,
+        "prime": 41,
+        "layer": 3,
+        "r": 0.0717,
+        "i": 0.6179,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.7645,
+        "unit_quaternion": [
+          0.0938,
+          0.8082,
+          0.5814,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "vista": {
+        "bit": 13,
+        "prime": 43,
+        "layer": 4,
+        "r": 0.0649,
+        "i": 0.7487,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.8221,
+        "unit_quaternion": [
+          0.079,
+          0.9107,
+          0.4055,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "oído": {
+        "bit": 14,
+        "prime": 47,
+        "layer": 5,
+        "r": 0.0988,
+        "i": 0.6432,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.8556,
+        "unit_quaternion": [
+          0.1154,
+          0.7517,
+          0.6493,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tacto": {
+        "bit": 15,
+        "prime": 53,
+        "layer": 5,
+        "r": 0.2019,
+        "i": 0.9774,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0522,
+        "unit_quaternion": [
+          0.1919,
+          0.9289,
+          0.3168,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "gusto": {
+        "bit": 16,
+        "prime": 59,
+        "layer": 5,
+        "r": 0.0079,
+        "i": 0.5647,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.6558,
+        "unit_quaternion": [
+          0.0121,
+          0.8611,
+          0.5083,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "olfato": {
+        "bit": 17,
+        "prime": 61,
+        "layer": 5,
+        "r": 0.2325,
+        "i": 0.8928,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.9809,
+        "unit_quaternion": [
+          0.237,
+          0.9101,
+          0.3398,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "equilibrio": {
+        "bit": 18,
+        "prime": 67,
+        "layer": 4,
+        "r": 0.0029,
+        "i": 0.4157,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.6086,
+        "unit_quaternion": [
+          0.0048,
+          0.6831,
+          0.7303,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "interocepción": {
+        "bit": 19,
+        "prime": 71,
+        "layer": 5,
+        "r": 0.0318,
+        "i": 0.7875,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 1.0323,
+        "unit_quaternion": [
+          0.0308,
+          0.7629,
+          0.6458,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "bien": {
+        "bit": 20,
+        "prime": 73,
+        "layer": 4,
+        "r": 0.0479,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5576,
+        "unit_quaternion": [
+          0.0858,
+          0.0,
+          0.9963,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "mal": {
+        "bit": 21,
+        "prime": 79,
+        "layer": 4,
+        "r": 0.0435,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5573,
+        "unit_quaternion": [
+          0.0781,
+          0.0,
+          0.9969,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "orden": {
+        "bit": 22,
+        "prime": 83,
+        "layer": 3,
+        "r": 1.0,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.0943,
+        "unit_quaternion": [
+          0.9138,
+          0.0,
+          0.4061,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "caos": {
+        "bit": 23,
+        "prime": 89,
+        "layer": 3,
+        "r": 0.394,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.5939,
+        "unit_quaternion": [
+          0.6634,
+          0.0,
+          0.7483,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "creación": {
+        "bit": 24,
+        "prime": 97,
+        "layer": 3,
+        "r": 0.4782,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.6528,
+        "unit_quaternion": [
+          0.7325,
+          0.0,
+          0.6808,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "destrucción": {
+        "bit": 25,
+        "prime": 101,
+        "layer": 3,
+        "r": 0.4585,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.6386,
+        "unit_quaternion": [
+          0.718,
+          0.0,
+          0.696,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "unión": {
+        "bit": 26,
+        "prime": 103,
+        "layer": 2,
+        "r": 0.213,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.213,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "separación": {
+        "bit": 27,
+        "prime": 107,
+        "layer": 2,
+        "r": 0.0192,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0192,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "verdad": {
+        "bit": 28,
+        "prime": 109,
+        "layer": 4,
+        "r": 0.1474,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5748,
+        "unit_quaternion": [
+          0.2564,
+          0.0,
+          0.9666,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "mentira": {
+        "bit": 29,
+        "prime": 113,
+        "layer": 4,
+        "r": 0.1126,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5668,
+        "unit_quaternion": [
+          0.1986,
+          0.0,
+          0.9801,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "libertad": {
+        "bit": 30,
+        "prime": 127,
+        "layer": 4,
+        "r": 0.3051,
+        "i": 0.0,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.4519,
+        "unit_quaternion": [
+          0.6752,
+          0.0,
+          0.7376,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "control": {
+        "bit": 31,
+        "prime": 131,
+        "layer": 4,
+        "r": 0.2222,
+        "i": 0.0,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.4006,
+        "unit_quaternion": [
+          0.5547,
+          0.0,
+          0.8321,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "vida": {
+        "bit": 32,
+        "prime": 137,
+        "layer": 5,
+        "r": 0.165,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5795,
+        "unit_quaternion": [
+          0.2846,
+          0.0,
+          0.9586,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "muerte": {
+        "bit": 33,
+        "prime": 139,
+        "layer": 5,
+        "r": 0.0079,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6667,
+        "unit_quaternion": [
+          0.0119,
+          0.0,
+          0.9999,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "placer": {
+        "bit": 34,
+        "prime": 149,
+        "layer": 5,
+        "r": 0.0718,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6705,
+        "unit_quaternion": [
+          0.1071,
+          0.0,
+          0.9943,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "dolor": {
+        "bit": 35,
+        "prime": 151,
+        "layer": 5,
+        "r": 0.2046,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6973,
+        "unit_quaternion": [
+          0.2934,
+          0.0,
+          0.956,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "consciente": {
+        "bit": 36,
+        "prime": 157,
+        "layer": 5,
+        "r": 0.1115,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.5,
+        "norm": 0.8408,
+        "unit_quaternion": [
+          0.1326,
+          0.0,
+          0.7929,
+          0.5947
+        ],
+        "dag_depth": 6,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "ausente": {
+        "bit": 37,
+        "prime": 163,
+        "layer": 5,
+        "r": 0.0804,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 0.9281,
+        "unit_quaternion": [
+          0.0866,
+          0.0,
+          0.838,
+          0.5387
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "temporal_obs": {
+        "bit": 38,
+        "prime": 167,
+        "layer": 6,
+        "r": 0.0071,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 0.9247,
+        "unit_quaternion": [
+          0.0077,
+          0.0,
+          0.8412,
+          0.5407
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "eterno_obs": {
+        "bit": 39,
+        "prime": 173,
+        "layer": 6,
+        "r": 0.0009,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 0.9246,
+        "unit_quaternion": [
+          0.001,
+          0.0,
+          0.8412,
+          0.5408
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "individual": {
+        "bit": 40,
+        "prime": 179,
+        "layer": 5,
+        "r": 0.0041,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6667,
+        "unit_quaternion": [
+          0.0062,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "colectivo": {
+        "bit": 41,
+        "prime": 181,
+        "layer": 5,
+        "r": 0.0177,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.0,
+        "norm": 0.778,
+        "unit_quaternion": [
+          0.0227,
+          0.0,
+          0.9997,
+          0.0
+        ],
+        "dag_depth": 7,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "receptivo": {
+        "bit": 42,
+        "prime": 191,
+        "layer": 6,
+        "r": 0.0391,
+        "i": 0.0,
+        "j": 0.8889,
+        "k": 0.5,
+        "norm": 1.0206,
+        "unit_quaternion": [
+          0.0383,
+          0.0,
+          0.8709,
+          0.4899
+        ],
+        "dag_depth": 8,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "creador_obs": {
+        "bit": 43,
+        "prime": 193,
+        "layer": 6,
+        "r": 0.0066,
+        "i": 0.0,
+        "j": 1.0,
+        "k": 1.0,
+        "norm": 1.4142,
+        "unit_quaternion": [
+          0.0047,
+          0.0,
+          0.7071,
+          0.7071
+        ],
+        "dag_depth": 9,
+        "meta_score": 2,
+        "has_dual": true
+      },
+      "uno": {
+        "bit": 44,
+        "prime": 197,
+        "layer": 1,
+        "r": 0.1852,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.1852,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 0,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "muchos": {
+        "bit": 45,
+        "prime": 199,
+        "layer": 4,
+        "r": 0.6819,
+        "i": 0.7837,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 1.0624,
+        "unit_quaternion": [
+          0.6419,
+          0.7377,
+          0.2092,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "todo": {
+        "bit": 46,
+        "prime": 211,
+        "layer": 4,
+        "r": 0.1507,
+        "i": 0.842,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.9181,
+        "unit_quaternion": [
+          0.1641,
+          0.9172,
+          0.3631,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "algunos": {
+        "bit": 47,
+        "prime": 223,
+        "layer": 4,
+        "r": 0.1709,
+        "i": 0.7751,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.9097,
+        "unit_quaternion": [
+          0.1879,
+          0.8521,
+          0.4886,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "hacer": {
+        "bit": 48,
+        "prime": 227,
+        "layer": 3,
+        "r": 0.8127,
+        "i": 0.5287,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0252,
+        "unit_quaternion": [
+          0.7927,
+          0.5157,
+          0.3251,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "querer": {
+        "bit": 49,
+        "prime": 229,
+        "layer": 5,
+        "r": 0.0155,
+        "i": 0.5851,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.3956,
+        "unit_quaternion": [
+          0.0111,
+          0.4193,
+          0.5573,
+          0.7166
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "mover": {
+        "bit": 50,
+        "prime": 233,
+        "layer": 3,
+        "r": 0.609,
+        "i": 0.7475,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.9895,
+        "unit_quaternion": [
+          0.6155,
+          0.7555,
+          0.2246,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "saber": {
+        "bit": 51,
+        "prime": 239,
+        "layer": 5,
+        "r": 0.0745,
+        "i": 0.6576,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.4293,
+        "unit_quaternion": [
+          0.0521,
+          0.4601,
+          0.5442,
+          0.6996
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "pensar": {
+        "bit": 52,
+        "prime": 241,
+        "layer": 5,
+        "r": 0.5185,
+        "i": 0.6609,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.5201,
+        "unit_quaternion": [
+          0.3411,
+          0.4348,
+          0.5117,
+          0.6579
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "decir": {
+        "bit": 53,
+        "prime": 251,
+        "layer": 5,
+        "r": 0.0709,
+        "i": 0.6899,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.4443,
+        "unit_quaternion": [
+          0.0491,
+          0.4777,
+          0.5385,
+          0.6924
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "porque": {
+        "bit": 54,
+        "prime": 257,
+        "layer": 3,
+        "r": 0.7277,
+        "i": 0.8618,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.2123,
+        "unit_quaternion": [
+          0.6003,
+          0.7108,
+          0.3666,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "si_entonces": {
+        "bit": 55,
+        "prime": 263,
+        "layer": 3,
+        "r": 0.0112,
+        "i": 0.5615,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.79,
+        "unit_quaternion": [
+          0.0142,
+          0.7108,
+          0.7033,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "puede": {
+        "bit": 56,
+        "prime": 269,
+        "layer": 4,
+        "r": 0.1311,
+        "i": 0.8747,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.9898,
+        "unit_quaternion": [
+          0.1325,
+          0.8836,
+          0.449,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "debe": {
+        "bit": 57,
+        "prime": 271,
+        "layer": 4,
+        "r": 0.1982,
+        "i": 1.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.1121,
+        "unit_quaternion": [
+          0.1782,
+          0.8992,
+          0.3996,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tal_vez": {
+        "bit": 58,
+        "prime": 277,
+        "layer": 4,
+        "r": 0.5672,
+        "i": 0.9457,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 1.2348,
+        "unit_quaternion": [
+          0.4593,
+          0.7659,
+          0.4499,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "parte_de": {
+        "bit": 59,
+        "prime": 281,
+        "layer": 2,
+        "r": 0.0584,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0584,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tipo_de": {
+        "bit": 60,
+        "prime": 283,
+        "layer": 4,
+        "r": 0.0007,
+        "i": 0.3962,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.6824,
+        "unit_quaternion": [
+          0.0011,
+          0.5806,
+          0.8142,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "más": {
+        "bit": 61,
+        "prime": 293,
+        "layer": 2,
+        "r": 0.6628,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.6628,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "menos": {
+        "bit": 62,
+        "prime": 307,
+        "layer": 2,
+        "r": 0.0144,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0144,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "proporción": {
+        "bit": 63,
+        "prime": 311,
+        "layer": 3,
+        "r": 0.0231,
+        "i": 0.513,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.7565,
+        "unit_quaternion": [
+          0.0305,
+          0.6781,
+          0.7343,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "quietud": {
+        "bit": 64,
+        "prime": 313,
+        "layer": 3,
+        "r": 0.0339,
+        "i": 0.7475,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.7806,
+        "unit_quaternion": [
+          0.0434,
+          0.9576,
+          0.2847,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "decaimiento": {
+        "bit": 65,
+        "prime": 317,
+        "layer": 4,
+        "r": 0.0079,
+        "i": 0.478,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.7329,
+        "unit_quaternion": [
+          0.0108,
+          0.6521,
+          0.758,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "atracción": {
+        "bit": 66,
+        "prime": 331,
+        "layer": 3,
+        "r": 0.0184,
+        "i": 0.0,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.223,
+        "unit_quaternion": [
+          0.0826,
+          0.0,
+          0.9966,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "aversión": {
+        "bit": 67,
+        "prime": 337,
+        "layer": 4,
+        "r": 0.2263,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5999,
+        "unit_quaternion": [
+          0.3772,
+          0.0,
+          0.9261,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "cooperación": {
+        "bit": 68,
+        "prime": 347,
+        "layer": 4,
+        "r": 0.0223,
+        "i": 0.671,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.8052,
+        "unit_quaternion": [
+          0.0276,
+          0.8334,
+          0.552,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "pérdida": {
+        "bit": 69,
+        "prime": 349,
+        "layer": 4,
+        "r": 0.012,
+        "i": 0.595,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.8141,
+        "unit_quaternion": [
+          0.0148,
+          0.7308,
+          0.6824,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "atención": {
+        "bit": 70,
+        "prime": 353,
+        "layer": 5,
+        "r": 0.008,
+        "i": 0.4318,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 1.0205,
+        "unit_quaternion": [
+          0.0078,
+          0.4231,
+          0.7622,
+          0.49
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": false
+      },
+      "intención": {
+        "bit": 71,
+        "prime": 359,
+        "layer": 5,
+        "r": 0.0005,
+        "i": 0.3937,
+        "j": 0.8889,
+        "k": 1.0,
+        "norm": 1.3947,
+        "unit_quaternion": [
+          0.0004,
+          0.2823,
+          0.6373,
+          0.717
+        ],
+        "dag_depth": 8,
+        "meta_score": 2,
+        "has_dual": false
+      }
+    },
+    "v9": {
+      "vacío": {
+        "bit": 0,
+        "prime": 2,
+        "layer": 1,
+        "r": 0.0034,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0034,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 0,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "información": {
+        "bit": 1,
+        "prime": 3,
+        "layer": 1,
+        "r": 0.8376,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.8376,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 0,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "fuerza": {
+        "bit": 2,
+        "prime": 5,
+        "layer": 2,
+        "r": 0.6698,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.6698,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "fuego": {
+        "bit": 3,
+        "prime": 7,
+        "layer": 5,
+        "r": 0.2716,
+        "i": 0.9685,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 1.1491,
+        "unit_quaternion": [
+          0.2364,
+          0.8428,
+          0.4835,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tierra": {
+        "bit": 4,
+        "prime": 11,
+        "layer": 5,
+        "r": 0.5683,
+        "i": 0.8267,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 1.1468,
+        "unit_quaternion": [
+          0.4956,
+          0.7209,
+          0.4845,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "agua": {
+        "bit": 5,
+        "prime": 13,
+        "layer": 5,
+        "r": 0.5693,
+        "i": 0.8519,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0775,
+        "unit_quaternion": [
+          0.5284,
+          0.7906,
+          0.3094,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "aire": {
+        "bit": 6,
+        "prime": 17,
+        "layer": 5,
+        "r": 0.0005,
+        "i": 0.4405,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.6258,
+        "unit_quaternion": [
+          0.0007,
+          0.7039,
+          0.7103,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "eje_vertical": {
+        "bit": 7,
+        "prime": 19,
+        "layer": 4,
+        "r": 0.0813,
+        "i": 0.8181,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.8516,
+        "unit_quaternion": [
+          0.0954,
+          0.9606,
+          0.2609,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "eje_profundidad": {
+        "bit": 8,
+        "prime": 23,
+        "layer": 2,
+        "r": 0.388,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.388,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "eje_lateral": {
+        "bit": 9,
+        "prime": 29,
+        "layer": 4,
+        "r": 0.0114,
+        "i": 0.5588,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.6508,
+        "unit_quaternion": [
+          0.0174,
+          0.8587,
+          0.5122,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "contención": {
+        "bit": 10,
+        "prime": 31,
+        "layer": 2,
+        "r": 1.0,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 1.0,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "posición_temporal": {
+        "bit": 11,
+        "prime": 37,
+        "layer": 3,
+        "r": 0.7721,
+        "i": 0.5536,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0068,
+        "unit_quaternion": [
+          0.7669,
+          0.5498,
+          0.3311,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "flujo_temporal": {
+        "bit": 12,
+        "prime": 41,
+        "layer": 3,
+        "r": 0.1537,
+        "i": 0.6253,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.7824,
+        "unit_quaternion": [
+          0.1964,
+          0.7992,
+          0.5681,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "vista": {
+        "bit": 13,
+        "prime": 43,
+        "layer": 4,
+        "r": 0.2186,
+        "i": 1.0,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0765,
+        "unit_quaternion": [
+          0.2031,
+          0.9289,
+          0.3096,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "oído": {
+        "bit": 14,
+        "prime": 47,
+        "layer": 5,
+        "r": 0.035,
+        "i": 0.6788,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.8778,
+        "unit_quaternion": [
+          0.0398,
+          0.7732,
+          0.6329,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tacto": {
+        "bit": 15,
+        "prime": 53,
+        "layer": 5,
+        "r": 0.3285,
+        "i": 0.9186,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0309,
+        "unit_quaternion": [
+          0.3186,
+          0.891,
+          0.3233,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "gusto": {
+        "bit": 16,
+        "prime": 59,
+        "layer": 5,
+        "r": 0.0441,
+        "i": 0.7875,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.8563,
+        "unit_quaternion": [
+          0.0515,
+          0.9197,
+          0.3893,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "olfato": {
+        "bit": 17,
+        "prime": 61,
+        "layer": 5,
+        "r": 0.1001,
+        "i": 0.8356,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.9052,
+        "unit_quaternion": [
+          0.1106,
+          0.9231,
+          0.3682,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "equilibrio": {
+        "bit": 18,
+        "prime": 67,
+        "layer": 4,
+        "r": 0.0028,
+        "i": 0.5542,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.7104,
+        "unit_quaternion": [
+          0.0039,
+          0.7801,
+          0.6256,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "interocepción": {
+        "bit": 19,
+        "prime": 71,
+        "layer": 5,
+        "r": 0.0072,
+        "i": 0.6322,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.9188,
+        "unit_quaternion": [
+          0.0078,
+          0.6881,
+          0.7256,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "bien": {
+        "bit": 20,
+        "prime": 73,
+        "layer": 4,
+        "r": 0.0291,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5563,
+        "unit_quaternion": [
+          0.0524,
+          0.0,
+          0.9986,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "mal": {
+        "bit": 21,
+        "prime": 79,
+        "layer": 4,
+        "r": 0.1439,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5739,
+        "unit_quaternion": [
+          0.2507,
+          0.0,
+          0.9681,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "orden": {
+        "bit": 22,
+        "prime": 83,
+        "layer": 3,
+        "r": 0.8173,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.9303,
+        "unit_quaternion": [
+          0.8785,
+          0.0,
+          0.4777,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "caos": {
+        "bit": 23,
+        "prime": 89,
+        "layer": 3,
+        "r": 0.1161,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.4593,
+        "unit_quaternion": [
+          0.2527,
+          0.0,
+          0.9676,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "creación": {
+        "bit": 24,
+        "prime": 97,
+        "layer": 3,
+        "r": 0.6458,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.784,
+        "unit_quaternion": [
+          0.8238,
+          0.0,
+          0.5669,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "destrucción": {
+        "bit": 25,
+        "prime": 101,
+        "layer": 3,
+        "r": 0.4081,
+        "i": 0.0,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.6034,
+        "unit_quaternion": [
+          0.6764,
+          0.0,
+          0.7365,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "unión": {
+        "bit": 26,
+        "prime": 103,
+        "layer": 2,
+        "r": 0.0482,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0482,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "separación": {
+        "bit": 27,
+        "prime": 107,
+        "layer": 2,
+        "r": 0.1282,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.1282,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "verdad": {
+        "bit": 28,
+        "prime": 109,
+        "layer": 4,
+        "r": 0.1729,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5818,
+        "unit_quaternion": [
+          0.2972,
+          0.0,
+          0.9548,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "mentira": {
+        "bit": 29,
+        "prime": 113,
+        "layer": 4,
+        "r": 0.1144,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5672,
+        "unit_quaternion": [
+          0.2017,
+          0.0,
+          0.9794,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "libertad": {
+        "bit": 30,
+        "prime": 127,
+        "layer": 4,
+        "r": 0.3678,
+        "i": 0.0,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.4964,
+        "unit_quaternion": [
+          0.741,
+          0.0,
+          0.6715,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "control": {
+        "bit": 31,
+        "prime": 131,
+        "layer": 4,
+        "r": 0.2754,
+        "i": 0.0,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 0.4324,
+        "unit_quaternion": [
+          0.6369,
+          0.0,
+          0.7709,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "vida": {
+        "bit": 32,
+        "prime": 137,
+        "layer": 5,
+        "r": 0.1316,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5709,
+        "unit_quaternion": [
+          0.2304,
+          0.0,
+          0.9731,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "muerte": {
+        "bit": 33,
+        "prime": 139,
+        "layer": 5,
+        "r": 0.0004,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6667,
+        "unit_quaternion": [
+          0.0006,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "placer": {
+        "bit": 34,
+        "prime": 149,
+        "layer": 5,
+        "r": 0.1454,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6823,
+        "unit_quaternion": [
+          0.213,
+          0.0,
+          0.977,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "dolor": {
+        "bit": 35,
+        "prime": 151,
+        "layer": 5,
+        "r": 0.1476,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6828,
+        "unit_quaternion": [
+          0.2162,
+          0.0,
+          0.9764,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "consciente": {
+        "bit": 36,
+        "prime": 157,
+        "layer": 5,
+        "r": 0.1679,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.5,
+        "norm": 0.8501,
+        "unit_quaternion": [
+          0.1975,
+          0.0,
+          0.7842,
+          0.5882
+        ],
+        "dag_depth": 6,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "ausente": {
+        "bit": 37,
+        "prime": 163,
+        "layer": 5,
+        "r": 0.0124,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 0.9247,
+        "unit_quaternion": [
+          0.0134,
+          0.0,
+          0.8411,
+          0.5407
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "temporal_obs": {
+        "bit": 38,
+        "prime": 167,
+        "layer": 6,
+        "r": 0.0008,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 0.9246,
+        "unit_quaternion": [
+          0.0008,
+          0.0,
+          0.8412,
+          0.5408
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "eterno_obs": {
+        "bit": 39,
+        "prime": 173,
+        "layer": 6,
+        "r": 0.005,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 0.9246,
+        "unit_quaternion": [
+          0.0054,
+          0.0,
+          0.8412,
+          0.5407
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "individual": {
+        "bit": 40,
+        "prime": 179,
+        "layer": 5,
+        "r": 0.0069,
+        "i": 0.0,
+        "j": 0.6667,
+        "k": 0.0,
+        "norm": 0.6667,
+        "unit_quaternion": [
+          0.0104,
+          0.0,
+          0.9999,
+          0.0
+        ],
+        "dag_depth": 6,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "colectivo": {
+        "bit": 41,
+        "prime": 181,
+        "layer": 5,
+        "r": 0.0052,
+        "i": 0.0,
+        "j": 0.7778,
+        "k": 0.0,
+        "norm": 0.7778,
+        "unit_quaternion": [
+          0.0067,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dag_depth": 7,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "receptivo": {
+        "bit": 42,
+        "prime": 191,
+        "layer": 6,
+        "r": 0.0003,
+        "i": 0.0,
+        "j": 0.8889,
+        "k": 0.5,
+        "norm": 1.0199,
+        "unit_quaternion": [
+          0.0003,
+          0.0,
+          0.8716,
+          0.4903
+        ],
+        "dag_depth": 8,
+        "meta_score": 1,
+        "has_dual": true
+      },
+      "creador_obs": {
+        "bit": 43,
+        "prime": 193,
+        "layer": 6,
+        "r": 0.0006,
+        "i": 0.0,
+        "j": 1.0,
+        "k": 1.0,
+        "norm": 1.4142,
+        "unit_quaternion": [
+          0.0004,
+          0.0,
+          0.7071,
+          0.7071
+        ],
+        "dag_depth": 9,
+        "meta_score": 2,
+        "has_dual": true
+      },
+      "uno": {
+        "bit": 44,
+        "prime": 197,
+        "layer": 1,
+        "r": 0.6927,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.6927,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 0,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "muchos": {
+        "bit": 45,
+        "prime": 199,
+        "layer": 4,
+        "r": 0.794,
+        "i": 0.7859,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 1.139,
+        "unit_quaternion": [
+          0.6971,
+          0.6899,
+          0.1951,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "todo": {
+        "bit": 46,
+        "prime": 211,
+        "layer": 4,
+        "r": 0.5771,
+        "i": 0.8512,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0811,
+        "unit_quaternion": [
+          0.5338,
+          0.7874,
+          0.3083,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "algunos": {
+        "bit": 47,
+        "prime": 223,
+        "layer": 4,
+        "r": 0.2214,
+        "i": 0.8987,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.0267,
+        "unit_quaternion": [
+          0.2156,
+          0.8753,
+          0.4329,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "hacer": {
+        "bit": 48,
+        "prime": 227,
+        "layer": 3,
+        "r": 0.8339,
+        "i": 0.5071,
+        "j": 0.3333,
+        "k": 0.0,
+        "norm": 1.0313,
+        "unit_quaternion": [
+          0.8086,
+          0.4917,
+          0.3232,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "querer": {
+        "bit": 49,
+        "prime": 229,
+        "layer": 5,
+        "r": 0.1919,
+        "i": 0.7474,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.4834,
+        "unit_quaternion": [
+          0.1294,
+          0.5039,
+          0.5243,
+          0.6741
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "mover": {
+        "bit": 50,
+        "prime": 233,
+        "layer": 3,
+        "r": 0.5668,
+        "i": 0.6477,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.8889,
+        "unit_quaternion": [
+          0.6376,
+          0.7287,
+          0.25,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "saber": {
+        "bit": 51,
+        "prime": 239,
+        "layer": 5,
+        "r": 0.0427,
+        "i": 0.6176,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.41,
+        "unit_quaternion": [
+          0.0303,
+          0.438,
+          0.5516,
+          0.7092
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "pensar": {
+        "bit": 52,
+        "prime": 241,
+        "layer": 5,
+        "r": 0.0816,
+        "i": 0.7481,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.4735,
+        "unit_quaternion": [
+          0.0554,
+          0.5077,
+          0.5278,
+          0.6787
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "decir": {
+        "bit": 53,
+        "prime": 251,
+        "layer": 5,
+        "r": 0.0482,
+        "i": 0.6041,
+        "j": 0.7778,
+        "k": 1.0,
+        "norm": 1.4043,
+        "unit_quaternion": [
+          0.0343,
+          0.4302,
+          0.5538,
+          0.7121
+        ],
+        "dag_depth": 7,
+        "meta_score": 2,
+        "has_dual": false
+      },
+      "porque": {
+        "bit": 54,
+        "prime": 257,
+        "layer": 3,
+        "r": 0.4927,
+        "i": 0.8197,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.0546,
+        "unit_quaternion": [
+          0.4672,
+          0.7773,
+          0.4214,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "si_entonces": {
+        "bit": 55,
+        "prime": 263,
+        "layer": 3,
+        "r": 0.0002,
+        "i": 0.3727,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.669,
+        "unit_quaternion": [
+          0.0003,
+          0.5571,
+          0.8305,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "puede": {
+        "bit": 56,
+        "prime": 269,
+        "layer": 4,
+        "r": 0.5008,
+        "i": 0.862,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.0915,
+        "unit_quaternion": [
+          0.4588,
+          0.7897,
+          0.4072,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "debe": {
+        "bit": 57,
+        "prime": 271,
+        "layer": 4,
+        "r": 0.3757,
+        "i": 0.9162,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 1.0854,
+        "unit_quaternion": [
+          0.3462,
+          0.8441,
+          0.4095,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tal_vez": {
+        "bit": 58,
+        "prime": 277,
+        "layer": 4,
+        "r": 0.2601,
+        "i": 0.8981,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 1.0876,
+        "unit_quaternion": [
+          0.2391,
+          0.8258,
+          0.5108,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "parte_de": {
+        "bit": 59,
+        "prime": 281,
+        "layer": 2,
+        "r": 0.0738,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0738,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 3,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "tipo_de": {
+        "bit": 60,
+        "prime": 283,
+        "layer": 4,
+        "r": 0.0911,
+        "i": 0.5187,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.7655,
+        "unit_quaternion": [
+          0.119,
+          0.6776,
+          0.7257,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "más": {
+        "bit": 61,
+        "prime": 293,
+        "layer": 2,
+        "r": 0.6263,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.6263,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "menos": {
+        "bit": 62,
+        "prime": 307,
+        "layer": 2,
+        "r": 0.0181,
+        "i": 0.0,
+        "j": 0.0,
+        "k": 0.0,
+        "norm": 0.0181,
+        "unit_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dag_depth": 1,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "proporción": {
+        "bit": 63,
+        "prime": 311,
+        "layer": 3,
+        "r": 0.1062,
+        "i": 0.5914,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.8184,
+        "unit_quaternion": [
+          0.1298,
+          0.7227,
+          0.6789,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "quietud": {
+        "bit": 64,
+        "prime": 313,
+        "layer": 3,
+        "r": 0.0005,
+        "i": 0.6477,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.6848,
+        "unit_quaternion": [
+          0.0007,
+          0.9459,
+          0.3245,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "decaimiento": {
+        "bit": 65,
+        "prime": 317,
+        "layer": 4,
+        "r": 0.0033,
+        "i": 0.4799,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.7342,
+        "unit_quaternion": [
+          0.0045,
+          0.6537,
+          0.7567,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "atracción": {
+        "bit": 66,
+        "prime": 331,
+        "layer": 3,
+        "r": 0.2078,
+        "i": 0.0,
+        "j": 0.2222,
+        "k": 0.0,
+        "norm": 0.3042,
+        "unit_quaternion": [
+          0.683,
+          0.0,
+          0.7304,
+          0.0
+        ],
+        "dag_depth": 2,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "aversión": {
+        "bit": 67,
+        "prime": 337,
+        "layer": 4,
+        "r": 0.1613,
+        "i": 0.0,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.5785,
+        "unit_quaternion": [
+          0.2788,
+          0.0,
+          0.9603,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": true
+      },
+      "cooperación": {
+        "bit": 68,
+        "prime": 347,
+        "layer": 4,
+        "r": 0.0006,
+        "i": 0.4434,
+        "j": 0.4444,
+        "k": 0.0,
+        "norm": 0.6278,
+        "unit_quaternion": [
+          0.0009,
+          0.7063,
+          0.7079,
+          0.0
+        ],
+        "dag_depth": 4,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "pérdida": {
+        "bit": 69,
+        "prime": 349,
+        "layer": 4,
+        "r": 0.0364,
+        "i": 0.7712,
+        "j": 0.5556,
+        "k": 0.0,
+        "norm": 0.9511,
+        "unit_quaternion": [
+          0.0382,
+          0.8108,
+          0.5841,
+          0.0
+        ],
+        "dag_depth": 5,
+        "meta_score": 0,
+        "has_dual": false
+      },
+      "atención": {
+        "bit": 70,
+        "prime": 353,
+        "layer": 5,
+        "r": 0.0042,
+        "i": 0.5248,
+        "j": 0.7778,
+        "k": 0.5,
+        "norm": 1.0632,
+        "unit_quaternion": [
+          0.004,
+          0.4936,
+          0.7316,
+          0.4703
+        ],
+        "dag_depth": 7,
+        "meta_score": 1,
+        "has_dual": false
+      },
+      "intención": {
+        "bit": 71,
+        "prime": 359,
+        "layer": 5,
+        "r": 0.0022,
+        "i": 0.457,
+        "j": 0.8889,
+        "k": 1.0,
+        "norm": 1.4138,
+        "unit_quaternion": [
+          0.0015,
+          0.3232,
+          0.6287,
+          0.7073
+        ],
+        "dag_depth": 8,
+        "meta_score": 2,
+        "has_dual": false
+      }
+    }
+  }
+}

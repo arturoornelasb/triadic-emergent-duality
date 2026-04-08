@@ -1,0 +1,73 @@
+primitivo,capa,definicion,clasificacion_DAN,domain_rate,global_rate,ratio
+vacío,1,"Ausencia como sustancia, espacio potencial",N,0.0000,0.0531,0.1585
+información,1,"Patrón, código, estructura abstracta",A,1.0000,0.9649,1.0360
+uno,1,"Singularidad, unidad",D,1.0000,0.3269,2.9982
+fuerza,2,"Capacidad de cambio, empuje, potencial",A,1.0000,0.8259,1.2082
+eje_profundidad,2,Dimensión adelante-atrás,A,1.0000,0.9677,1.0331
+contención,2,"Dentro/fuera, límites y fronteras",A,1.0000,0.9409,1.0621
+más,2,"Aumento, incremento",A,1.0000,0.9127,1.0946
+menos,2,"Disminución, reducción",N,0.0000,0.0337,0.2288
+unión,2,"Juntar, conectar, vincular",D,1.0000,0.5245,1.8897
+separación,2,"Dividir, aislar, desconectar",D,1.0000,0.0785,11.4143
+parte_de,2,"Inclusión, pertenencia",N,0.0000,0.1477,0.0634
+mover,3,"Desplazamiento, cambio de posición",A,1.0000,0.9423,1.0606
+posición_temporal,3,"Pasado, presente, futuro",N,0.0000,0.9206,0.0107
+flujo_temporal,3,"Cómo pasa el tiempo, duración",N,0.0000,0.2553,0.0377
+hacer,3,"Acción, ejecución, producción",A,1.0000,0.9871,1.0130
+creación,3,Generar algo nuevo,A,1.0000,0.7613,1.3095
+destrucción,3,"Eliminar, deshacer",D,1.0000,0.6593,1.5091
+orden,3,"Estructura, regularidad",A,1.0000,0.9801,1.0200
+caos,3,"Desorden, turbulencia",N,0.0000,0.7964,0.0124
+porque,3,"Causalidad, razón",N,0.0000,0.8606,0.0115
+si_entonces,3,"Condicionalidad, implicación",N,0.0000,0.0605,0.1419
+eje_vertical,4,Dimensión arriba-abajo,N,0.0000,0.0406,0.1975
+eje_lateral,4,Dimensión izquierda-derecha,A,0.0000,0.0092,0.5199
+equilibrio,4,"Balance, orientación espacial",A,0.0000,0.0097,0.5077
+vista,4,Percepción visual,N,0.0000,0.2161,0.0442
+bien,4,Polo moral positivo,N,0.0000,0.1066,0.0857
+mal,4,Polo moral negativo,N,0.0000,0.1339,0.0695
+verdad,4,Correspondencia con realidad,N,0.0000,0.3287,0.0295
+mentira,4,Distorsión de realidad,N,0.0000,0.1787,0.0530
+libertad,4,Autodeterminación,N,0.0000,0.5771,0.0170
+control,4,"Restricción, regulación",N,0.0000,0.4178,0.0234
+tipo_de,4,"Clasificación, categoría",A,0.0000,0.0023,0.8125
+algunos,4,"Parte, porción",N,0.0000,0.3670,0.0265
+muchos,4,Pluralidad,N,0.0000,0.8887,0.0111
+todo,4,"Totalidad, completitud",N,0.0000,0.4765,0.0206
+puede,4,"Posibilidad, capacidad",N,0.0000,0.3523,0.0276
+debe,4,"Obligación, necesidad",N,0.0000,0.3952,0.0247
+tal_vez,4,"Incertidumbre, apertura",N,0.0000,0.7345,0.0134
+tierra,5,"Solidez, fundamento, lo tangible",A,1.0000,0.7521,1.3253
+agua,5,"Fluidez, adaptación, profundidad",A,1.0000,0.8223,1.2136
+aire,5,"Expansión, respiración, ubicuidad",N,0.0000,0.6283,0.0157
+fuego,5,"Transformación, calor, radiancia",A,1.0000,0.7364,1.3532
+tacto,5,"Presión, temperatura, textura",N,0.0000,0.5028,0.0195
+oído,5,"Sonido, música, lenguaje hablado",N,0.0000,0.2678,0.0360
+gusto,5,Percepción gustativa,D,1.0000,0.0245,29.3016
+olfato,5,Percepción olfativa,D,1.0000,0.3306,2.9657
+interocepción,5,Estado interno del cuerpo,N,0.0000,0.0799,0.1113
+vida,5,"Animación, crecimiento",N,0.0000,0.4409,0.0222
+muerte,5,"Cese vital, disolución",N,0.0000,0.0203,0.3299
+placer,5,Experiencia hedónica positiva,N,0.0000,0.2202,0.0434
+dolor,5,Experiencia hedónica negativa,N,0.0000,0.4543,0.0215
+consciente,5,"Awareness, presencia de conciencia",N,0.0000,0.3920,0.0249
+ausente,5,Ausencia de conciencia,N,0.0000,0.2322,0.0413
+individual,5,"Uno solo, particular",A,0.0000,0.0060,0.6249
+colectivo,5,"Grupo, comunidad",N,0.0000,0.0776,0.1142
+querer,5,"Deseo, voluntad, intención",N,0.0000,0.0332,0.2313
+saber,5,"Conocimiento, comprensión",N,0.0000,0.2641,0.0365
+pensar,5,"Razonamiento, reflexión",N,0.0000,0.8661,0.0114
+decir,5,Comunicación verbal,N,0.0000,0.1708,0.0553
+temporal_obs,6,"Observador mortal, atado al tiempo",N,0.0000,0.0346,0.2241
+eterno_obs,6,Observador fuera del tiempo,A,0.0000,0.0009,0.9155
+receptivo,6,"Que recibe, absorbe, escucha",N,0.0000,0.2216,0.0432
+creador_obs,6,"Que crea, produce activamente",N,0.0000,0.0332,0.2313
+atracción,3,"Tendencia de aproximación, valencia positiva",N,0.0000,0.0702,0.1247
+decaimiento,4,"Deterioro progresivo, disolución de estructura organizada",A,0.0000,0.0092,0.5199
+aversión,4,"Tendencia de evitación, valencia negativa",N,0.0000,0.4529,0.0216
+cooperación,4,Acción conjunta hacia objetivo compartido,N,0.0000,0.0762,0.1160
+pérdida,4,"Ausencia tras haber tenido, vacío dejado por destrucción",N,0.0000,0.0208,0.3249
+atención,5,"Foco selectivo de la conciencia, filtro perceptual",N,0.0000,0.0102,0.4961
+intención,5,"Propósito dirigido, voluntad de actuar hacia un fin",A,0.0000,0.0014,0.8783
+proporción,3,"Relación cuantitativa entre magnitudes, ratio",N,0.0000,0.1427,0.0655
+quietud,3,"Ausencia de desplazamiento, permanencia en posición",N,0.0000,0.1274,0.0728

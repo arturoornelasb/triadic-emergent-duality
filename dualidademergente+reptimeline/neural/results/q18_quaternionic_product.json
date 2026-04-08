@@ -1,0 +1,339 @@
+{
+  "description": "Quaternionic product verification — Conjecture C3",
+  "product_definition": "normalize(Hamilton(normalize(s1), normalize(s2)))",
+  "checkpoint": "v8",
+  "tests": {
+    "T4_basis_relations": true,
+    "T5_non_commutativity": true,
+    "T1_closure": true,
+    "T2_associativity": true,
+    "T3_inverses": true,
+    "T6_layer_recovery_L12": true,
+    "T7_dual_products": 14
+  },
+  "dual_products": [
+    {
+      "pair": [
+        "unión",
+        "separación"
+      ],
+      "product_s3": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        2,
+        2
+      ]
+    },
+    {
+      "pair": [
+        "mover",
+        "quietud"
+      ],
+      "product_s3": [
+        -0.7607,
+        0.6222,
+        0.185,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.8179,
+        0.2432,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        3,
+        3
+      ]
+    },
+    {
+      "pair": [
+        "creación",
+        "destrucción"
+      ],
+      "product_s3": [
+        0.0521,
+        0.0,
+        0.9986,
+        0.0
+      ],
+      "product_hypercube": [
+        0.0522,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "dominant_axis": "j",
+      "layers": [
+        3,
+        3
+      ]
+    },
+    {
+      "pair": [
+        "orden",
+        "caos"
+      ],
+      "product_s3": [
+        0.3023,
+        0.0,
+        0.9532,
+        0.0
+      ],
+      "product_hypercube": [
+        0.3172,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "dominant_axis": "j",
+      "layers": [
+        3,
+        3
+      ]
+    },
+    {
+      "pair": [
+        "bien",
+        "mal"
+      ],
+      "product_s3": [
+        -0.9866,
+        0.0,
+        0.1634,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.1656,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        4,
+        4
+      ]
+    },
+    {
+      "pair": [
+        "verdad",
+        "mentira"
+      ],
+      "product_s3": [
+        -0.8964,
+        0.0,
+        0.4432,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.4945,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        4,
+        4
+      ]
+    },
+    {
+      "pair": [
+        "libertad",
+        "control"
+      ],
+      "product_s3": [
+        -0.2392,
+        0.0,
+        0.971,
+        0.0
+      ],
+      "product_hypercube": [
+        0.2464,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "dominant_axis": "j",
+      "layers": [
+        4,
+        4
+      ]
+    },
+    {
+      "pair": [
+        "vida",
+        "muerte"
+      ],
+      "product_s3": [
+        -0.9552,
+        0.0,
+        0.296,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.3099,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        5,
+        5
+      ]
+    },
+    {
+      "pair": [
+        "placer",
+        "dolor"
+      ],
+      "product_s3": [
+        -0.9191,
+        0.0,
+        0.3941,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.4288,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        5,
+        5
+      ]
+    },
+    {
+      "pair": [
+        "consciente",
+        "ausente"
+      ],
+      "product_s3": [
+        -0.9734,
+        -0.0712,
+        0.1798,
+        0.1229
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0732,
+        0.1847,
+        0.1263
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        5,
+        5
+      ]
+    },
+    {
+      "pair": [
+        "individual",
+        "colectivo"
+      ],
+      "product_s3": [
+        -0.9996,
+        0.0,
+        0.0289,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.0289,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        5,
+        5
+      ]
+    },
+    {
+      "pair": [
+        "temporal_obs",
+        "eterno_obs"
+      ],
+      "product_s3": [
+        -1.0,
+        0.0001,
+        0.0073,
+        0.0047
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0001,
+        0.0073,
+        0.0047
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        6,
+        6
+      ]
+    },
+    {
+      "pair": [
+        "receptivo",
+        "creador_obs"
+      ],
+      "product_s3": [
+        -0.9621,
+        0.2694,
+        0.0312,
+        0.0294
+      ],
+      "product_hypercube": [
+        1.0,
+        0.28,
+        0.0324,
+        0.0305
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        6,
+        6
+      ]
+    },
+    {
+      "pair": [
+        "atracción",
+        "aversión"
+      ],
+      "product_s3": [
+        -0.8918,
+        0.0,
+        0.4524,
+        0.0
+      ],
+      "product_hypercube": [
+        1.0,
+        0.0,
+        0.5073,
+        0.0
+      ],
+      "dominant_axis": "r",
+      "layers": [
+        3,
+        4
+      ]
+    }
+  ],
+  "conjecture_status": "VERIFIED"
+}
