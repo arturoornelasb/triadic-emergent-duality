@@ -1,26 +1,27 @@
 {
   "n_transitions": 3,
   "transition_steps": [
-    6000
+    10000,
+    35000
   ],
   "duality_median_steps": {
-    "D1_existir": 2000,
-    "D2_espacio": 2000,
-    "D3_tiempo": 6000,
-    "D4_posibilidad": 2000,
-    "D5_identidad": 2000,
-    "D6_movimiento": 2000,
-    "D7_orden": 2000,
-    "D8_uno_muchos": 2000,
-    "D9_dentro_fuera": 6000,
-    "D10_parte_todo": 2000,
-    "D11_vida_muerte": 6000,
-    "D12_causa_efecto": 6000,
-    "D13_semejante_diferente": 2000,
-    "D14_sujeto_objeto": 6000
+    "D1_existir": 5000,
+    "D2_espacio": 5000,
+    "D3_tiempo": 5000,
+    "D4_posibilidad": 5000,
+    "D5_identidad": 5000,
+    "D6_movimiento": 5000,
+    "D7_orden": 5000,
+    "D8_uno_muchos": 5000,
+    "D9_dentro_fuera": 5000,
+    "D10_parte_todo": 10000,
+    "D11_vida_muerte": 5000,
+    "D12_causa_efecto": 10000,
+    "D13_semejante_diferente": 5000,
+    "D14_sujeto_objeto": 5000
   },
-  "mean_dist_to_transition": 2571.4,
-  "p_proximity": 0.0004,
+  "mean_dist_to_transition": 4285.7,
+  "p_proximity": 0.0182,
   "criticality": {},
   "verdict": "positive_with_caveats"
 }

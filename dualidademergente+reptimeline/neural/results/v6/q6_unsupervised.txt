@@ -1,0 +1,3 @@
+usage: q6_probe_unsupervised.py [-h] --checkpoints CHECKPOINTS
+                                [--embeddings EMBEDDINGS] [--device DEVICE]
+q6_probe_unsupervised.py: error: unrecognized arguments: --vocab ../model/gold_primitivos_72.json

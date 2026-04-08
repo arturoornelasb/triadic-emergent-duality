@@ -1,0 +1,3 @@
+usage: q7_probe_causal.py [-h] --checkpoints CHECKPOINTS [--model MODEL]
+                          [--device DEVICE]
+q7_probe_causal.py: error: unrecognized arguments: --vocab ../model/gold_primitivos_72.json

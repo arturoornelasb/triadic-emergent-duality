@@ -137,14 +137,15 @@ def run_probe(checkpoints_dir, vocab_path=None, device='cuda'):
         with open(vocab_path, 'r', encoding='utf-8') as f:
             concepts = json.load(f)
     else:
-        gold_path = os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json')
-        gold_path = os.path.normpath(gold_path)
-        if os.path.exists(gold_path):
-            with open(gold_path, 'r', encoding='utf-8') as f:
-                concepts = list(json.load(f).keys())
-            print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+        for gold_name in ['gold_primitivos_72.json', 'gold_primitivos_65.json']:
+            gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', gold_name))
+            if os.path.exists(gold_path):
+                with open(gold_path, 'r', encoding='utf-8') as f:
+                    concepts = list(json.load(f).keys())
+                print(f'  Concepts from {gold_name}: {len(concepts)}')
+                break
         else:
-            print('  ERROR: No concepts found. Provide --vocab or gold_primes_65.json')
+            print('  ERROR: No concepts found. Provide --vocab or gold_primitivos_*.json')
             return None
 
     # Build snapshots from all checkpoints

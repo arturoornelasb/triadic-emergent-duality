@@ -46,7 +46,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
-from transformers import GPT2Tokenizer
+from transformers import AutoTokenizer
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'data'))
@@ -103,6 +103,25 @@ def load_corpus(args, tokenizer):
                     texts.append(f.read())
                 print(f'    {fname}: {len(texts[-1]):,} chars')
 
+    elif args.hf_dataset:
+        print(f'  Source: {args.hf_dataset} (HuggingFace datasets)')
+        try:
+            from datasets import load_dataset
+            ds = load_dataset(args.hf_dataset, split='train', streaming=True)
+            texts = []
+            for i, example in enumerate(ds):
+                text = example.get('text', '')
+                if len(text.strip()) > 50:
+                    texts.append(text)
+                if len(texts) >= args.max_docs:
+                    break
+                if (i + 1) % 50000 == 0:
+                    print(f'    Scanned {i+1:,} examples, kept {len(texts):,}')
+            print(f'  Documents: {len(texts):,}')
+        except Exception as e:
+            print(f'  ERROR: Could not load {args.hf_dataset}. {e}')
+            sys.exit(1)
+
     else:
         print('  Source: wikitext-103 (HuggingFace datasets)')
         try:
@@ -110,7 +129,6 @@ def load_corpus(args, tokenizer):
             ds = load_dataset('wikitext', 'wikitext-103-raw-v1', split='train')
             texts = [t for t in ds['text'] if len(t.strip()) > 50]
             if args.max_docs and len(texts) > args.max_docs:
-                random.seed(42)
                 random.shuffle(texts)
                 texts = texts[:args.max_docs]
             print(f'  Documents: {len(texts):,}')
@@ -169,7 +187,6 @@ def load_anchors(tokenizer, n_bits, device, gold_file='gold_primitivos_65.json',
         is_prim = data.get('is_primitivo', True)  # default True for old gold files
         all_items.append((concept, ids, target, is_prim))
 
-    random.seed(42)
     random.shuffle(all_items)
     n_test = max(1, int(len(all_items) * test_pct))
 
@@ -232,7 +249,6 @@ def build_subsumption_pairs(gold_data, tokenizer, device, test_pct=0.2,
         print('  Subsumption: 0 pairs found')
         return None
 
-    random.seed(42)
     random.shuffle(pairs)
 
     # Cap total pairs
@@ -495,29 +511,38 @@ def train(args):
     """Main training function."""
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+    # Reproducibility
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+
     # GPU optimizations
     if device.type == 'cuda':
         torch.set_float32_matmul_precision('high')
-        torch.backends.cudnn.benchmark = True
 
     print()
     print('=' * 70)
-    print('  GPT-2 TRIADIC v3 — Training with 65 primitivos directly')
+    print(f'  TRIADIC TRAINING — {args.model} + {args.bits}-bit {args.head_mode} head')
     print('=' * 70)
     print(f'  Device: {device}')
     if device.type == 'cuda':
         print(f'  GPU: {torch.cuda.get_device_name(0)}')
         mem_gb = torch.cuda.get_device_properties(0).total_memory / 1e9
         print(f'  VRAM: {mem_gb:.1f} GB')
-        print(f'  TF32 matmul: ON | cuDNN benchmark: ON')
+        print(f'  TF32 matmul: ON | cuDNN deterministic: ON | Seed: {args.seed}')
     print(f'  Model: {args.model}')
     print(f'  Head: {args.head_mode} | Activation: {args.activation}')
     print()
 
     # --- Tokenizer ---
     print('[0/6] Loading tokenizer...')
-    tokenizer = GPT2Tokenizer.from_pretrained(args.model)
-    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
     # --- Corpus ---
     all_tokens = load_corpus(args, tokenizer)
@@ -579,8 +604,11 @@ def train(args):
     print()
     print('[4/6] Preparing data...')
     dataset = TextDataset(all_tokens, args.block)
+    dl_generator = torch.Generator()
+    dl_generator.manual_seed(args.seed)
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True,
-                            drop_last=True, num_workers=0)
+                            drop_last=True, num_workers=0,
+                            generator=dl_generator)
     print(f'  Dataset: {len(dataset):,} chunks of {args.block} tokens')
 
     # --- Optimizer ---
@@ -598,6 +626,15 @@ def train(args):
         if 'optimizer_state_dict' in ckpt:
             optimizer.load_state_dict(ckpt['optimizer_state_dict'])
         start_step = ckpt.get('step', 0)
+        # Restore RNG states for reproducibility
+        if 'rng_state' in ckpt:
+            rng = ckpt['rng_state']
+            random.setstate(rng['python'])
+            np.random.set_state(rng['numpy'])
+            torch.random.set_rng_state(rng['torch'].cpu() if hasattr(rng['torch'], 'cpu') else rng['torch'])
+            if rng.get('cuda') is not None and torch.cuda.is_available():
+                torch.cuda.set_rng_state_all([s.cpu() if hasattr(s, 'cpu') else s for s in rng['cuda']])
+            print(f'  RNG states restored')
         print(f'  Resumed at step {start_step}')
 
     # --- Mixed precision ---
@@ -699,7 +736,7 @@ def train(args):
             sub_loss_val = 0.0
 
             if step >= triadic_warmup:
-                alpha_warmup_steps = int(args.steps * 0.2)
+                alpha_warmup_steps = max(1, int(args.steps * 0.2))
                 alpha_factor = min(1.0, (step - triadic_warmup + 1) / alpha_warmup_steps)
                 current_alpha = args.alpha * alpha_factor
 
@@ -859,9 +896,16 @@ def train(args):
                     'activation': args.activation,
                     'lr': args.lr,
                     'alpha': args.alpha,
+                    'seed': args.seed,
                 },
                 'step': step + 1,
                 'loss': lang_loss.item(),
+                'rng_state': {
+                    'python': random.getstate(),
+                    'numpy': np.random.get_state(),
+                    'torch': torch.random.get_rng_state(),
+                    'cuda': torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None,
+                },
             }, ckpt_path)
             print(f'  >>> Saved: {ckpt_path}')
 
@@ -932,7 +976,7 @@ if __name__ == '__main__':
 
     # Model
     parser.add_argument('--model', default='gpt2-medium',
-                        choices=['gpt2', 'gpt2-medium', 'gpt2-large'])
+                        help='HuggingFace model name (e.g. gpt2-medium, EleutherAI/gpt-neo-125m)')
     parser.add_argument('--freeze-base', action='store_true')
     parser.add_argument('--bits', type=int, default=65)
     parser.add_argument('--dropout', type=float, default=0.1)
@@ -948,6 +992,8 @@ if __name__ == '__main__':
     # Data
     parser.add_argument('--corpus', type=str, default=None)
     parser.add_argument('--corpus-dir', type=str, default=None)
+    parser.add_argument('--hf-dataset', type=str, default=None,
+                        help='HuggingFace dataset name (e.g. Skylion007/openwebtext)')
     parser.add_argument('--max-docs', type=int, default=100000)
     parser.add_argument('--block', type=int, default=256)
 
@@ -981,6 +1027,8 @@ if __name__ == '__main__':
     parser.add_argument('--gold-file', default='gold_primitivos_65.json',
                         help='Gold targets JSON file (in model/ dir)')
     parser.add_argument('--run-name', default='gpt2_triadic_65_v3')
+    parser.add_argument('--seed', type=int, default=42,
+                        help='Random seed for reproducibility')
     parser.add_argument('--print-every', type=int, default=50)
     parser.add_argument('--eval-every', type=int, default=1000)
     parser.add_argument('--save-every', type=int, default=2500)

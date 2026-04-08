@@ -1,0 +1,6 @@
+
+# Large timeline files (>100MB, regenerable from checkpoints)
+neural/results/timeline_v9.json
+neural/results/timeline_v9_xray_zoom.json
+neural/results/timeline_v9_xray_zoom2.json
+neural/results/timeline_v8*.json

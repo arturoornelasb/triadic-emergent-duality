@@ -1,0 +1,5 @@
+usage: q8_probe_crossarch.py [-h] --checkpoints_triadic CHECKPOINTS_TRIADIC
+                             [--checkpoints_sae CHECKPOINTS_SAE]
+                             [--checkpoints_vqvae CHECKPOINTS_VQVAE]
+                             [--device DEVICE]
+q8_probe_crossarch.py: error: unrecognized arguments: --vocab ../model/gold_primitivos_72.json

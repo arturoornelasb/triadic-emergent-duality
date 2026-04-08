@@ -1,0 +1,14 @@
+{
+  "n_active_bits": 72,
+  "n_dead_bits": 0,
+  "discovered_duals": 9,
+  "discovered_deps": 82,
+  "discovered_triadic": 2491,
+  "agreement_score": 0.8056,
+  "n_mismatches": 220,
+  "n_critical_mismatches": 14,
+  "matched_duals": 0,
+  "layer_nmi": 0.0,
+  "matched_labels": 0,
+  "verdict": "mixed"
+}

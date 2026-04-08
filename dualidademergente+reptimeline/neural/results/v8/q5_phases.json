@@ -1,0 +1,26 @@
+{
+  "n_transitions": 3,
+  "transition_steps": [
+    30000
+  ],
+  "duality_median_steps": {
+    "D1_existir": 5000,
+    "D2_espacio": 5000,
+    "D3_tiempo": 5000,
+    "D4_posibilidad": 5000,
+    "D5_identidad": 5000,
+    "D6_movimiento": 5000,
+    "D7_orden": 5000,
+    "D8_uno_muchos": 5000,
+    "D9_dentro_fuera": 5000,
+    "D10_parte_todo": 30000,
+    "D11_vida_muerte": 30000,
+    "D12_causa_efecto": 30000,
+    "D13_semejante_diferente": 5000,
+    "D14_sujeto_objeto": 5000
+  },
+  "mean_dist_to_transition": 19642.9,
+  "p_proximity": 0.0002,
+  "criticality": {},
+  "verdict": "positive_with_caveats"
+}

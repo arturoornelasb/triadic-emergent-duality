@@ -1,35 +1,35 @@
 {
-  "n_primitives": 65,
-  "rho_capa_step": 0.0477,
-  "p_value": 0.7125,
+  "n_primitives": 72,
+  "rho_capa_step": -0.0725,
+  "p_value": 0.5455,
   "ci_95": [
-    -0.2378,
-    0.2364
+    -0.2284,
+    0.2378
   ],
   "per_layer": {
     "1": {
       "n": 3,
-      "mean_step": 3333.3
+      "mean_step": 6666.7
     },
     "2": {
       "n": 8,
-      "mean_step": 5250.0
+      "mean_step": 8750.0
     },
     "3": {
-      "n": 12,
-      "mean_step": 4833.3
+      "n": 13,
+      "mean_step": 6923.1
     },
     "4": {
-      "n": 17,
-      "mean_step": 3764.7
+      "n": 21,
+      "mean_step": 7142.9
     },
     "5": {
-      "n": 21,
-      "mean_step": 5523.8
+      "n": 23,
+      "mean_step": 7391.3
     },
     "6": {
       "n": 4,
-      "mean_step": 3500.0
+      "mean_step": 5000.0
     }
   },
   "verdict": "null"

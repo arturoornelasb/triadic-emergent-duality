@@ -343,6 +343,321 @@ Fases detectadas:
 
 ---
 
+## V9: GPT-Neo 125M / OpenWebText — Segundo modelo (N>1)
+
+### Motivacion
+
+Debilidad #5 (N=1): toda la evidencia neural venia de un solo modelo (GPT-2 Medium).
+V9 entrena un modelo completamente diferente (arquitectura, dataset, escala) para
+verificar replicabilidad de los hallazgos.
+
+### Cambios V8 → V9
+
+| Parametro | V8 | V9 | Razon |
+|-----------|----|----|-------|
+| Modelo base | GPT-2 Medium (345M) | **GPT-Neo 125M** | Arquitectura diferente (N>1) |
+| Dataset | TinyStories | **OpenWebText 100K docs** | Dataset diferente (N>1) |
+| Steps | 250,000 | **50,000** | Suficiente para convergencia |
+| save-every | 5,000 | **5,000** | Mismo |
+| head_mode | deep | deep | Mismo |
+| activation | ifsq | ifsq | Mismo |
+| bits | 72 | 72 | Mismo |
+
+### Resultados V9 (2026-04-07) — COMPLETADO
+
+**Duracion:** ~6h (50K steps en RTX 4060 Ti 16GB)
+
+#### Metricas finales
+
+| Metrica | V8 (250K) | V9 (50K) |
+|---------|-----------|----------|
+| Bit accuracy (test) | 85.3% | **83.2%** |
+| Subsumption (test) | 95.7% | **93.1%** |
+| Dead bits | 25 | **30** |
+| Entropy | 0.554 | **0.545** |
+
+#### Neural probes Q1-Q9
+
+| Probe | V8 resultado | V9 resultado | Replicado? |
+|-------|-------------|-------------|------------|
+| Q1 Layer order | NULL (p=0.71) | NULL (rho=-0.072, p=0.55) | Si (ambos NULL) |
+| Q2 Dual anti-corr | 5/13 sig | NULL (1/14) | No (diverge) |
+| Q3 DAG recovery | Above random | NULL (F1=0.152, p=0.001 vs random) | Parcial |
+| Q4 Triadic S/C/E/A | NULL | MIXED (66% C, 0.6% E) | — |
+| Q5 Phase transition | POSITIVE (p=0.0004) | **POSITIVE (p=0.018)** | **SI** |
+| Q6 Unsupervised | NULL | MIXED (77.8% agreement) | — |
+| Q7 Causal | NULL | NULL (40/72 sig, no layer effect) | Si (ambos NULL) |
+| Q8 Cross-arch identity | — | NULL (Jaccard=0, SHD=147) | N/A (nuevo) |
+| Q9 Structural conservation | — | MIXED (topologia >90% sim, S/C/E/A diverge) | N/A (nuevo) |
+
+#### reptimeline — Diagnostico temporal V9 (10 checkpoints)
+
+```
+Fases detectadas:
+  [1] Step 5K:         PRIMER SNAPSHOT
+      entropy=0.412, churn=0.0, utilization=0.323
+
+  [2] Step 10K:        PHASE TRANSITION
+      entropy 0.412→0.506, churn 0→1.0, utilization 0.323→0.296
+
+  [3] Steps 10K-50K:   CRISTALIZACION GRADUAL
+      entropy 0.506→0.545, churn 1.0→0.458
+```
+
+**Patron "pulpo" confirmado:** Misma dinamica que V8:
+- Explosion (churn=1.0) seguida de cristalizacion gradual
+- V8: explosion step 35K, V9: explosion step 10K
+- Ambos cristalizan a churn ~0.46-0.49
+- Layer emergence: L1 y L6 estabilizan rapido, L2-L5 graduales
+
+#### FEP wave fit
+
+| Parametro | V8 | V9 |
+|-----------|----|----|
+| R² wave | — | **0.734** |
+| f (frecuencia) | ~0 | **1.45** |
+| dAIC (wave vs exp) | ~-4 | **+44.5** (wave gana) |
+| Regimen | overdamped | **underdamped** (d/w=0.703) |
+| Bootstrap | — | **1000/1000 exitoso** |
+
+V9 muestra oscilacion genuina. V8 era compatible con exponencial puro.
+
+#### Hallazgo clave: Emergencia simultanea
+
+La transicion de fase es una EXPLOSION donde todas las capas se activan
+al mismo tiempo, no secuencialmente (L1→L6). Esto invalida Q1 como estaba
+formulado — no hay secuencia porque no hay orden, hay un evento unico.
+
+**Implicacion:** La estructura emerge como un todo coherente (transicion
+de fase / criticidad), no pieza por pieza. Consistente con FEP y Q5.
+
+### Archivos generados V9
+
+| Archivo | Que es |
+|---------|--------|
+| `model/train_v9_neo.bat` | Bat de entrenamiento V9 |
+| `model/save_v9_timeline.py` | Extraccion reptimeline V9 |
+| `model/fit_wave_fep_v9.py` | Fit onda amortiguada vs exponencial |
+| `model/update_excel_v9.py` | Actualizacion programatica del Excel |
+| `model/update_excel_q8.py` | Actualizacion Q8 en Excel |
+| `model/update_excel_q9.py` | Actualizacion Q9 en Excel |
+| `model/update_excel_octopus.py` | Actualizacion cristalizacion cross-model |
+| `model/checkpoints/v9_neo_openwebtext/` | 11 checkpoints (5K-50K) + best.pt |
+| `neural/q9_probe_structural_conservation.py` | Nuevo probe Q9 |
+| `neural/results/q*` | Resultados Q1-Q9 |
+| `neural/results/v9_*.json/.csv` | Timeline, fases, estabilidad V9 |
+| `runs/v9_neo/plots/` | 5 graficas (dashboard, churn, swimlane, layers, FEP) |
+
+---
+
+## V9_xray: Radiografia de la transicion de fase
+
+### Motivacion
+
+Con checkpoints cada 5K steps, la transicion de fase aparece como instantanea
+(churn 0→1.0 en un step). Necesitamos resolucion temporal fina para determinar
+si la explosion es realmente simultanea o si hay una micro-secuencia oculta.
+
+### Enfoque telescopico
+
+1. **Paso 1:** Reentrenar V9 desde step 5K hasta 15K con `--save-every 1000` (10 ckpts, ~5GB)
+2. **Paso 2:** Analizar reptimeline, identificar rango exacto de la explosion
+3. **Paso 3:** Reentrenar solo ese rango (ej. 8K→9K) con `--save-every 100` (10 ckpts, ~5GB)
+
+### Resultado parcial Paso 1 (2026-04-07)
+
+Training log revela que la explosion ocurre entre **step 5001 y 5501**:
+
+| Step | bit_acc_test | sub_test | dead_bits | Observacion |
+|------|-------------|----------|-----------|-------------|
+| 5001 | 52% | 0.7% | 29 | Pre-explosion |
+| 5501 | 78% | 96.7% | 32 | **POST-EXPLOSION** |
+| 6001 | 79% | 97.8% | 33 | Estabilizandose |
+| 7001 | 80% | 97.3% | 35 | Estable |
+| 8001 | 80% | 97.6% | 35 | Estable |
+
+La explosion NO es entre step 5K y 10K como se veia con resolucion 5K.
+Es entre **5001 y 5501** — un rango de solo 500 steps.
+
+### Paso 2: Zoom (v9_xray_zoom) — COMPLETADO 2026-04-07
+
+Basado en hallazgo del paso 1: reentrenar de step 5K a 6K con checkpoint
+cada 50 steps. 20 snapshots dentro del rango de la explosion.
+
+- Resume desde: `v9_neo_openwebtext/step_5000.pt` (mismo que paso 1)
+- --save-every 50, --eval-every 50
+- Checkpoints: `v9_xray_zoom/` (NO sobreescribe v9_xray/)
+
+#### Resultado Paso 2
+
+La explosion tiene una micro-secuencia clara:
+
+| Step | bit_acc_test | sub_test | churn | Fase |
+|------|-------------|----------|-------|------|
+| 5050 | — | — | 0.000 | Pre-explosion |
+| 5100 | 60.2% | 17.2% | **1.000** | Churn explosion (instantanea) |
+| 5150 | 63.6% | **71.8%** | 0.995 | Sub explosion (sigmoide) |
+| 5200 | 65.6% | 86.9% | 0.946 | Consolidando |
+| 5300 | 67.7% | 93.4% | 0.733 | Estabilizando |
+| 5500 | 69.6% | 96.9% | 0.524 | Plateau |
+| 6000 | 72.2% | 96.7% | 0.336 | Cristalizado |
+
+**Secuencia descubierta:**
+1. Steps 5050-5100: TODOS los codigos cambian (churn 0→1.0) — evento instantaneo
+2. Steps 5100-5200: Subsumption explota (1%→87%) — sigmoide de 100 steps
+3. Steps 5200-6000: Refinamiento gradual, churn desciende logaritmicamente
+
+**Churn heatmap** revela que NO todos los bits cambian al mismo ritmo:
+- Bits 0-8: cambian fuerte al inicio, estabilizan rapido
+- Bits 28-36, 40-56: los mas activos, churn alto hasta el final
+- Bits 56-68: relativamente estables
+
+**Hallazgo:** La explosion del churn es instantanea (50 steps), pero la
+organizacion relacional (subsumption) tarda ~150 steps mas. Primero los bits
+se "sueltan", despues se reorganizan en estructura.
+
+**Falta zoom:** El salto churn 0→1.0 ocurre en 50 steps (5050→5100).
+Necesitamos paso 3 para ver si es verdaderamente instantaneo.
+
+### Paso 3: Zoom2 (v9_xray_zoom2) — COMPLETADO 2026-04-07
+
+Basado en hallazgo del paso 2: el churn salta de 0.0 a 1.0 entre step
+5050 y 5100. Reentrenar ese rango con checkpoint cada 5 steps.
+
+- Resume desde: `v9_xray_zoom/step_5050.pt`
+- --save-every 5, --eval-every 5
+- Checkpoints: `v9_xray_zoom2/` (NO sobreescribe v9_xray_zoom/)
+
+#### Resultado Paso 3 — HALLAZGO CLAVE
+
+**El salto churn 0→1.0 era un artefacto de baja resolucion.** A resolucion
+de 5 steps, el churn sube gradualmente (~0.17-0.21) y NUNCA llega a 1.0
+dentro de esta ventana. La "explosion" es en realidad una **onda de activacion**
+que se propaga bit por bit en ~45 steps.
+
+Churn a 5-step resolution:
+
+| Step | Churn | dChurn |
+|------|-------|--------|
+| 5055 | 0.000 | — |
+| 5060 | 0.173 | +0.173 (onset) |
+| 5065 | 0.191 | +0.018 |
+| 5070 | 0.188 | -0.003 |
+| 5075 | 0.212 | +0.024 |
+| 5080 | 0.187 | -0.025 |
+| 5085 | 0.184 | -0.004 |
+| 5090 | 0.176 | -0.007 |
+| 5095 | 0.190 | +0.013 |
+| 5100 | 0.172 | -0.018 |
+
+**Cascada de activacion por bit:**
+
+| Step | N bits | Bits que cambian por primera vez |
+|------|--------|---------------------------------|
+| 5060 | 6 | 12, 41, 23, 47, 31, 35 |
+| 5065 | 8 | 11, 3, 33, 69, 58, 8, 7, 59 |
+| 5070 | 5 | 67, 30, 5, 28, 61 |
+| 5075 | 4 | 18, 17, 43, 14 |
+| 5080 | 1 | 4 |
+| 5085 | 4 | 52, 57, 42, 66 |
+| 5100 | 3 | 0, 44, 39 |
+
+Total: 31 bits cambian en oleadas de 1-8 bits a lo largo de ~45 steps.
+Los primeros 6 bits (step 5060) podrian ser los "semilla" que desencadenan
+la reorganizacion de los demas.
+
+**Implicacion para Q1:** No es una transicion de fase instantanea sino
+una cascada con orden temporal. Analizar si los bits semilla corresponden
+a capas especificas de la ontologia.
+
+**Bits mas estables (no cambian):** 60, 63, 68, 70, 71
+**Bits menos estables:** 39, 18, 44, 57, 32
+
+#### Mapeo de la cascada a la ontologia
+
+Los bits semilla y oleadas mapeados a primitivos y capas revelan un patron:
+**la cascada va del MEDIO hacia los EXTREMOS.**
+
+| Oleada | Step | N | Primitivos | Capas |
+|--------|------|---|------------|-------|
+| Semilla | 5060 | 6 | flujo_temporal, colectivo, caos, algunos, control, dolor | L3(2) L4(2) L5(2) |
+| Oleada 2 | 5065 | 8 | posicion_temporal, fuego, muerte, perdida, tal_vez, eje_profundidad, eje_vertical, parte_de | L2(2) L3(1) L4(3) L5(2) |
+| Oleada 3 | 5070 | 5 | aversion, libertad, agua, verdad, mas | L2(1) L4(3) L5(1) |
+| Oleada 4 | 5075 | 4 | equilibrio, olfato, creador_obs, oido | L4(1) L5(2) L6(1) |
+| Oleada 5 | 5080 | 1 | tierra | L5(1) |
+| Oleada 6 | 5085 | 4 | pensar, debe, receptivo, atraccion | L3(1) L4(1) L5(1) L6(1) |
+| Oleada 7 | 5100 | 3 | **vacio, uno**, eterno_obs | **L1(2)** L6(1) |
+| Estables | — | 5 | tipo_de, proporcion, cooperacion, atencion, intencion | L3(1) L4(2) L5(2) |
+
+**Interpretacion:**
+
+1. **Semilla (L3-L5):** Los conceptos de tiempo, moral y cuerpo inician la cascada.
+   Son los mas "estadisticamente discriminativos" en el espacio del LM.
+2. **Expansion (L2-L5):** Las oleadas 2-3 reclutan ejes espaciales y conceptos morales.
+3. **Observador (L6):** creador_obs y receptivo llegan en oleada 4-6.
+4. **Extremos al final (L1, L6):** vacio y uno (fundamentos ontologicos) son los
+   ULTIMOS en cambiar (step 5100). La base abstracta se adapta al final.
+5. **Andamios estables:** tipo_de, proporcion, cooperacion, atencion, intencion
+   nunca cambian — son relaciones estructurales que sirven de "esqueleto".
+
+**Esto contradice:**
+- Q1 (predecia L1 primero → NULL)
+- Paper linea 385 (reportaba L6 primero → era artefacto de baja resolucion)
+
+**La realidad:** Las capas medias (3-5) contienen los conceptos que el LM
+distingue primero, los extremos ontologicos (L1: existencia, L6: recursion)
+son los ultimos en cristalizar. Los "andamios" relacionales nunca se mueven.
+
+### Archivos
+
+| Archivo | Que es |
+|---------|--------|
+| `model/train_v9_xray.bat` | Paso 1: 5K→15K cada 1000 steps |
+| `model/train_v9_xray_zoom.bat` | Paso 2: 5K→6K cada 50 steps |
+| `model/save_v9_xray_timeline.py` | Extraccion reptimeline para paso 1 |
+| `model/save_v9_xray_zoom_timeline.py` | Extraccion reptimeline para paso 2 (incluye analisis per-layer) |
+| `model/checkpoints/v9_xray/` | Checkpoints paso 1 (cada 1000 steps) |
+| `model/checkpoints/v9_xray_zoom/` | Checkpoints paso 2 (cada 50 steps) |
+| `model/checkpoints/v9_xray_zoom2/` | Checkpoints paso 3 (cada 5 steps) |
+| `model/train_v9_xray_zoom2.bat` | Paso 3: 5050→5100 cada 5 steps |
+| `model/save_v9_xray_zoom2_timeline.py` | Extraccion reptimeline para paso 3 |
+| `runs/v9_xray/plots/` | Graficas paso 1 |
+| `runs/v9_xray_zoom/plots/` | Graficas paso 2 |
+| `runs/v9_xray_zoom2/plots/` | Graficas paso 3 |
+
+---
+
+## V8_xray: Radiografia de la transicion de fase en v8 (GPT-2 Medium)
+
+**Objetivo:** Replicar el X-ray telescopico de v9 en v8 para confirmar que el
+patron de cascada (centro→extremos) es independiente de la arquitectura/dataset.
+
+- **Modelo:** GPT-2 Medium (345M params)
+- **Dataset:** wikitext-103 (default)
+- **Explosion original:** step 35K (churn 0→1.0, reportado en timeline_v8.json)
+- **Estrategia:** mismo telescopio de 3 pasos que v9
+
+### Paso 1: Resolucion 1000 steps (30K→45K)
+
+- **Resume:** `checkpoints/v8_deep/step_30000.pt`
+- **Rango:** 30K → 45K
+- **Save-every:** 1000 (15 checkpoints)
+- **Directorio:** `checkpoints/v8_xray/`
+- **Script:** `model/train_v8_xray.bat`
+- **Timeline:** `model/save_v8_xray_timeline.py`
+- **Estado:** EN PROGRESO
+
+### Archivos V8_xray
+
+| Archivo | Que es |
+|---------|--------|
+| `model/train_v8_xray.bat` | Paso 1: 30K→45K cada 1000 steps |
+| `model/save_v8_xray_timeline.py` | Extraccion reptimeline para paso 1 |
+| `model/checkpoints/v8_xray/` | Checkpoints paso 1 |
+| `model/update_excel_cascade_layers.py` | Excel update: cascade-to-layer mapping (v9) |
+
+---
+
 ## Archivos clave (todo el programa)
 
 | Archivo | Que es |

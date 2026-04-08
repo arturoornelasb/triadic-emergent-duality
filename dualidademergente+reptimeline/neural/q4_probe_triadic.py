@@ -92,14 +92,16 @@ def run_probe(checkpoints_dir, device='cuda'):
     if not HAS_REPTIMELINE:
         return None
 
-    # Load concepts from gold primes
-    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
-    if os.path.exists(gold_path):
-        with open(gold_path, 'r', encoding='utf-8') as f:
-            concepts = list(json.load(f).keys())
-        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    # Load concepts from gold primitivos (try 72-bit first, fallback to 65-bit)
+    for gold_name in ['gold_primitivos_72.json', 'gold_primitivos_65.json']:
+        gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', gold_name))
+        if os.path.exists(gold_path):
+            with open(gold_path, 'r', encoding='utf-8') as f:
+                concepts = list(json.load(f).keys())
+            print(f'  Concepts from {gold_name}: {len(concepts)}')
+            break
     else:
-        print('  ERROR: gold_primes_65.json not found')
+        print('  ERROR: gold_primitivos_*.json not found')
         return None
 
     extractor = TriadicExtractor(checkpoints_dir)

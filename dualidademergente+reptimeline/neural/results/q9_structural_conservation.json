@@ -1,0 +1,112 @@
+{
+  "models": [
+    "v9_gptneo125m",
+    "v8_gpt2medium"
+  ],
+  "profiles": {
+    "v9_gptneo125m": {
+      "n_total": 72,
+      "n_active": 70,
+      "n_dead": 2,
+      "active_ratio": 0.9722,
+      "n_duals": 10,
+      "n_deps": 81,
+      "density": 0.01677,
+      "n_layers": 0,
+      "layer_counts": {},
+      "n_triadic": 838,
+      "scea_counts": {
+        "S": 281,
+        "C": 552,
+        "E": 5,
+        "A": 0
+      },
+      "scea_fracs": {
+        "S": 0.3353,
+        "C": 0.6587,
+        "E": 0.006,
+        "A": 0.0
+      }
+    },
+    "v8_gpt2medium": {
+      "n_total": 72,
+      "n_active": 72,
+      "n_dead": 0,
+      "active_ratio": 1.0,
+      "n_duals": 9,
+      "n_deps": 82,
+      "density": 0.016041,
+      "n_layers": 0,
+      "layer_counts": {},
+      "n_triadic": 2462,
+      "scea_counts": {
+        "S": 1044,
+        "C": 1415,
+        "E": 3,
+        "A": 0
+      },
+      "scea_fracs": {
+        "S": 0.424,
+        "C": 0.5747,
+        "E": 0.0012,
+        "A": 0.0
+      }
+    }
+  },
+  "scalar_comparison": [
+    {
+      "property": "Active bits",
+      "v9_gptneo125m": 70,
+      "v8_gpt2medium": 72,
+      "similarity": 0.9722
+    },
+    {
+      "property": "Dead bits",
+      "v9_gptneo125m": 2,
+      "v8_gpt2medium": 0,
+      "similarity": 0.0
+    },
+    {
+      "property": "Active ratio",
+      "v9_gptneo125m": 0.9722,
+      "v8_gpt2medium": 1.0,
+      "similarity": 0.9722
+    },
+    {
+      "property": "Duals",
+      "v9_gptneo125m": 10,
+      "v8_gpt2medium": 9,
+      "similarity": 0.9
+    },
+    {
+      "property": "Dependencies",
+      "v9_gptneo125m": 81,
+      "v8_gpt2medium": 82,
+      "similarity": 0.9878
+    },
+    {
+      "property": "Graph density",
+      "v9_gptneo125m": 0.01677,
+      "v8_gpt2medium": 0.016041,
+      "similarity": 0.9565
+    },
+    {
+      "property": "Hierarchy layers",
+      "v9_gptneo125m": 0,
+      "v8_gpt2medium": 0,
+      "similarity": 1.0
+    },
+    {
+      "property": "Triadic deps",
+      "v9_gptneo125m": 838,
+      "v8_gpt2medium": 2462,
+      "similarity": 0.3404
+    }
+  ],
+  "mean_scalar_similarity": 0.7661,
+  "scea_chi2": 25.4678,
+  "scea_p_value": 0.0,
+  "scea_verdict": "divergent",
+  "scalar_p_value": 0.0031,
+  "verdict": "null"
+}

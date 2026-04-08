@@ -1,0 +1,14 @@
+[
+  {
+    "step": 10000,
+    "metric": "entropy",
+    "delta": 0.09414339969173141,
+    "direction": "increase"
+  },
+  {
+    "step": 10000,
+    "metric": "churn_rate",
+    "delta": 1.0,
+    "direction": "increase"
+  }
+]

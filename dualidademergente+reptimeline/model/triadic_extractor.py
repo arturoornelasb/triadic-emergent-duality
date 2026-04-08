@@ -81,6 +81,12 @@ class TriadicExtractor(RepresentationExtractor):
         self._model = model
         self._device = device
 
+        # Sync n_bits and mapper from checkpoint config
+        actual_bits = cfg['n_triadic_bits']
+        if actual_bits != self.n_bits:
+            self.n_bits = actual_bits
+            self._mapper = PrimeMapper(actual_bits)
+
         # Tokenizer (cached)
         if self._tokenizer is None:
             from transformers import GPT2Tokenizer

@@ -1,15 +1,17 @@
 """
-GPT-2 + Triadic Projection Head for 65 primitivos.
+LM + Triadic Projection Head.
 
-Wraps a pre-trained GPT-2 model from HuggingFace and adds a triadic
-projection head that maps hidden states to 65-dimensional semantic space,
-one dimension per primitivo from the 7x7 System.
+Wraps a pre-trained causal LM from HuggingFace (GPT-2, GPT-Neo, etc.)
+and adds a triadic projection head that maps hidden states to
+n_bits-dimensional semantic space.
 
 Architecture:
-    Input tokens -> [GPT-2 Pre-trained] -> hidden states (768/1024D)
+    Input tokens -> [Pre-trained LM] -> hidden states (hidden_size D)
                                                |
                                                +-> LM Head (next-token prediction)
-                                               +-> Triadic Head (65 bits)
+                                               +-> Triadic Head (n_bits)
+
+Supported backbones: any AutoModelForCausalLM (GPT-2, GPT-Neo, Llama, etc.)
 
 Head modes:
     simple: Linear(hidden_size, n_bits) — blueprint default (1 layer)
@@ -20,7 +22,8 @@ Activation modes:
     ifsq:  2*sigmoid(1.6*x)-1 — distributes activations more uniformly
 
 Usage:
-    model = GPT2Triadic('gpt2-medium', n_bits=65, head_mode='simple', activation='ifsq')
+    model = GPT2Triadic('gpt2-medium', n_bits=72, head_mode='deep', activation='ifsq')
+    model = GPT2Triadic('EleutherAI/gpt-neo-125m', n_bits=72, head_mode='deep')
     outputs, triadic_proj = model(input_ids, attention_mask=mask, labels=labels)
 """
 
@@ -28,7 +31,7 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from transformers import GPT2LMHeadModel, GPT2Config
+from transformers import AutoModelForCausalLM, AutoConfig
 
 
 # ######################################################################
@@ -36,7 +39,7 @@ from transformers import GPT2LMHeadModel, GPT2Config
 # ######################################################################
 
 class GPT2Triadic(nn.Module):
-    """GPT-2 with Triadic Projection Head for 65 primitivos."""
+    """Pre-trained LM with Triadic Projection Head."""
 
     def __init__(self, model_name='gpt2-medium', n_triadic_bits=65,
                  freeze_base=False, dropout=0.1,
@@ -48,9 +51,11 @@ class GPT2Triadic(nn.Module):
         self.head_mode = head_mode
         self.activation = activation
 
-        # Load pre-trained GPT-2
-        self.gpt2 = GPT2LMHeadModel.from_pretrained(model_name)
-        hidden_size = self.gpt2.config.n_embd
+        # Load pre-trained LM (any AutoModelForCausalLM)
+        self.gpt2 = AutoModelForCausalLM.from_pretrained(model_name)
+        config = self.gpt2.config
+        # hidden_size: GPT-2 uses n_embd, others use hidden_size
+        hidden_size = getattr(config, 'n_embd', None) or config.hidden_size
 
         if freeze_base:
             for param in self.gpt2.parameters():
@@ -151,7 +156,7 @@ class GPT2Triadic(nn.Module):
         alignment_loss = torch.tensor(0.0, device=triadic_proj.device)
         if align_weight > 0 and input_ids is not None:
             with torch.no_grad():
-                embeds = self.gpt2.transformer.wte(input_ids).detach()
+                embeds = self._get_embeddings(input_ids).detach()
 
             if align_mode == 'mse':
                 alignment_loss = self._align_mse(triadic_proj, embeds, B, T, n_bits)
@@ -164,6 +169,19 @@ class GPT2Triadic(nn.Module):
         if align_weight > 0:
             loss = loss + align_weight * alignment_loss
         return loss
+
+    def _get_embeddings(self, input_ids):
+        """Get token embeddings from the backbone (architecture-agnostic)."""
+        # GPT-2: transformer.wte, GPT-Neo: transformer.wte, Llama: model.embed_tokens
+        if hasattr(self.gpt2, 'transformer') and hasattr(self.gpt2.transformer, 'wte'):
+            return self.gpt2.transformer.wte(input_ids)
+        elif hasattr(self.gpt2, 'model') and hasattr(self.gpt2.model, 'embed_tokens'):
+            return self.gpt2.model.embed_tokens(input_ids)
+        else:
+            # Fallback: run a forward pass and grab hidden states
+            with torch.no_grad():
+                out = self.gpt2(input_ids, output_hidden_states=True)
+                return out.hidden_states[0]
 
     def _align_mse(self, triadic_proj, embeds, B, T, n_bits):
         """MSE alignment: match absolute similarity values."""

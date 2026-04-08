@@ -222,156 +222,156 @@
   {
     "hypothesis": "neural_layer",
     "test": "q1_capa_vs_step",
-    "p_raw": 0.7124575084983004,
+    "p_raw": 0.5454909018196361,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "rho=0.048, n=65"
+    "notes": "rho=-0.072, n=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_bien-mal",
-    "p_raw": 0.2681,
+    "p_raw": 0.0008,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0894, n_concepts=262"
+    "notes": "r=0.4243, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_orden-caos",
-    "p_raw": 1.0,
+    "p_raw": 0.0942,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0, n_concepts=262"
+    "notes": "r=0.2113, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_creación-destrucción",
-    "p_raw": 1.0,
+    "p_raw": 0.0112,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0, n_concepts=262"
+    "notes": "r=0.3273, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_unión-separación",
-    "p_raw": 1.0,
+    "p_raw": 0.084,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0, n_concepts=262"
+    "notes": "r=-0.1865, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_verdad-mentira",
-    "p_raw": 0.0002,
+    "p_raw": 0.0404,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.8289, n_concepts=262"
+    "notes": "r=0.2503, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_libertad-control",
-    "p_raw": 0.0452,
+    "p_raw": 0.1722,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0985, n_concepts=262"
+    "notes": "r=0.1886, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_vida-muerte",
-    "p_raw": 0.0002,
+    "p_raw": 0.1768,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.4912, n_concepts=262"
+    "notes": "r=0.1797, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_placer-dolor",
-    "p_raw": 0.3253,
+    "p_raw": 0.6503,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0781, n_concepts=262"
+    "notes": "r=0.0839, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_consciente-ausente",
-    "p_raw": 0.0174,
+    "p_raw": 0.9546,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=-0.1586, n_concepts=262"
+    "notes": "r=0.1092, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_temporal_obs-eterno_obs",
-    "p_raw": 0.0002,
+    "p_raw": 0.6491,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=-0.31, n_concepts=262"
+    "notes": "r=0.0162, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_individual-colectivo",
-    "p_raw": 0.0002,
+    "p_raw": 0.0286,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=1.0, n_concepts=262"
+    "notes": "r=0.2932, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_receptivo-creador_obs",
-    "p_raw": 0.2963,
+    "p_raw": 0.0016,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0574, n_concepts=262"
+    "notes": "r=0.425, n_concepts=72"
   },
   {
     "hypothesis": "neural_duals",
     "test": "q2_mover-quietud",
-    "p_raw": 1.0,
+    "p_raw": 0.5931,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "r=0.0, n_concepts=262"
+    "notes": "r=0.0665, n_concepts=72"
   },
   {
     "hypothesis": "neural_dag",
@@ -382,7 +382,7 @@
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "best_f1=0.114, n_edges=133"
+    "notes": "best_f1=0.152, n_edges=154"
   },
   {
     "hypothesis": "neural_triadic",
@@ -393,18 +393,18 @@
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "E_frac=0.020, n=757"
+    "notes": "E_frac=0.006, n=838"
   },
   {
     "hypothesis": "neural_phases",
     "test": "q5_transition_proximity",
-    "p_raw": 0.0003999200159968006,
+    "p_raw": 0.018196360727854428,
     "p_bh_family": null,
     "p_holm_program": null,
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "mean_dist=2571.4285714285716, n_transitions=1"
+    "notes": "mean_dist=4285.714285714285, n_transitions=2"
   },
   {
     "hypothesis": "neural_unsup",
@@ -415,7 +415,7 @@
     "significant_family": null,
     "significant_program": null,
     "alpha": 0.05,
-    "notes": "agreement=0.815, nmi=0.000"
+    "notes": "agreement=0.778, nmi=0.000"
   },
   {
     "hypothesis": "neural_causal",
@@ -427,5 +427,49 @@
     "significant_program": null,
     "alpha": 0.05,
     "notes": "rho=0.000, n_layers=6"
+  },
+  {
+    "hypothesis": "neural_duals",
+    "test": "q2_atracción-aversión",
+    "p_raw": 0.0002,
+    "p_bh_family": null,
+    "p_holm_program": null,
+    "significant_family": null,
+    "significant_program": null,
+    "alpha": 0.05,
+    "notes": "r=0.4397, n_concepts=72"
+  },
+  {
+    "hypothesis": "neural_crossarch",
+    "test": "q8_mean_jaccard_deps",
+    "p_raw": 1.0,
+    "p_bh_family": null,
+    "p_holm_program": null,
+    "significant_family": null,
+    "significant_program": null,
+    "alpha": 0.05,
+    "notes": "mean_jaccard=0.052, n_arch=2"
+  },
+  {
+    "hypothesis": "neural_structural",
+    "test": "q9_scea_chi2",
+    "p_raw": 7.160753707272406e-06,
+    "p_bh_family": null,
+    "p_holm_program": null,
+    "significant_family": null,
+    "significant_program": null,
+    "alpha": 0.05,
+    "notes": "chi2=25.47, v9_gptneo125m vs v8_gpt2medium"
+  },
+  {
+    "hypothesis": "neural_structural",
+    "test": "q9_scalar_conservation",
+    "p_raw": 0.0031,
+    "p_bh_family": null,
+    "p_holm_program": null,
+    "significant_family": null,
+    "significant_program": null,
+    "alpha": 0.05,
+    "notes": "mean_sim=0.766, v9_gptneo125m vs v8_gpt2medium"
   }
 ]

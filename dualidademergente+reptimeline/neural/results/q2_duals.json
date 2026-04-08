@@ -1,7 +1,7 @@
 {
-  "n_concepts": 262,
-  "n_bits": 65,
-  "n_dual_axes": 13,
+  "n_concepts": 72,
+  "n_bits": 72,
+  "n_dual_axes": 14,
   "theoretical_duals": [
     {
       "axis": "bien-mal",
@@ -9,8 +9,8 @@
       "polo_b": "mal",
       "bit_a": 20,
       "bit_b": 21,
-      "correlation": 0.0894,
-      "p_value": 0.2681
+      "correlation": 0.4243,
+      "p_value": 0.0008
     },
     {
       "axis": "orden-caos",
@@ -18,8 +18,8 @@
       "polo_b": "caos",
       "bit_a": 22,
       "bit_b": 23,
-      "correlation": 0.0,
-      "p_value": 1.0
+      "correlation": 0.2113,
+      "p_value": 0.0942
     },
     {
       "axis": "creación-destrucción",
@@ -27,8 +27,8 @@
       "polo_b": "destrucción",
       "bit_a": 24,
       "bit_b": 25,
-      "correlation": 0.0,
-      "p_value": 1.0
+      "correlation": 0.3273,
+      "p_value": 0.0112
     },
     {
       "axis": "unión-separación",
@@ -36,8 +36,8 @@
       "polo_b": "separación",
       "bit_a": 26,
       "bit_b": 27,
-      "correlation": 0.0,
-      "p_value": 1.0
+      "correlation": -0.1865,
+      "p_value": 0.084
     },
     {
       "axis": "verdad-mentira",
@@ -45,8 +45,8 @@
       "polo_b": "mentira",
       "bit_a": 28,
       "bit_b": 29,
-      "correlation": 0.8289,
-      "p_value": 0.0002
+      "correlation": 0.2503,
+      "p_value": 0.0404
     },
     {
       "axis": "libertad-control",
@@ -54,8 +54,8 @@
       "polo_b": "control",
       "bit_a": 30,
       "bit_b": 31,
-      "correlation": 0.0985,
-      "p_value": 0.0452
+      "correlation": 0.1886,
+      "p_value": 0.1722
     },
     {
       "axis": "vida-muerte",
@@ -63,8 +63,8 @@
       "polo_b": "muerte",
       "bit_a": 32,
       "bit_b": 33,
-      "correlation": 0.4912,
-      "p_value": 0.0002
+      "correlation": 0.1797,
+      "p_value": 0.1768
     },
     {
       "axis": "placer-dolor",
@@ -72,8 +72,8 @@
       "polo_b": "dolor",
       "bit_a": 34,
       "bit_b": 35,
-      "correlation": 0.0781,
-      "p_value": 0.3253
+      "correlation": 0.0839,
+      "p_value": 0.6503
     },
     {
       "axis": "consciente-ausente",
@@ -81,8 +81,8 @@
       "polo_b": "ausente",
       "bit_a": 36,
       "bit_b": 37,
-      "correlation": -0.1586,
-      "p_value": 0.0174
+      "correlation": 0.1092,
+      "p_value": 0.9546
     },
     {
       "axis": "temporal_obs-eterno_obs",
@@ -90,8 +90,8 @@
       "polo_b": "eterno_obs",
       "bit_a": 38,
       "bit_b": 39,
-      "correlation": -0.31,
-      "p_value": 0.0002
+      "correlation": 0.0162,
+      "p_value": 0.6491
     },
     {
       "axis": "individual-colectivo",
@@ -99,8 +99,8 @@
       "polo_b": "colectivo",
       "bit_a": 40,
       "bit_b": 41,
-      "correlation": 1.0,
-      "p_value": 0.0002
+      "correlation": 0.2932,
+      "p_value": 0.0286
     },
     {
       "axis": "receptivo-creador_obs",
@@ -108,8 +108,8 @@
       "polo_b": "creador_obs",
       "bit_a": 42,
       "bit_b": 43,
-      "correlation": 0.0574,
-      "p_value": 0.2963
+      "correlation": 0.425,
+      "p_value": 0.0016
     },
     {
       "axis": "mover-quietud",
@@ -117,17 +117,26 @@
       "polo_b": "quietud",
       "bit_a": 50,
       "bit_b": 64,
-      "correlation": 0.0,
-      "p_value": 1.0
+      "correlation": 0.0665,
+      "p_value": 0.5931
+    },
+    {
+      "axis": "atracción-aversión",
+      "polo_a": "atracción",
+      "polo_b": "aversión",
+      "bit_a": 66,
+      "bit_b": 67,
+      "correlation": 0.4397,
+      "p_value": 0.0002
     }
   ],
-  "n_significant_bh": 5,
-  "n_anti_correlated": 2,
+  "n_significant_bh": 4,
+  "n_anti_correlated": 1,
   "random_baseline": {
-    "mean_correlation": 0.0166,
-    "pct_anti": 22.5
+    "mean_correlation": 0.1573,
+    "pct_anti": 10.1
   },
-  "discovered_matches": 1,
-  "discovered_total": 225,
+  "discovered_matches": 0,
+  "discovered_total": 10,
   "verdict": "null"
 }

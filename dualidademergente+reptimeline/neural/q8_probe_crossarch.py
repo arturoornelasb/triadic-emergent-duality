@@ -5,12 +5,17 @@ standard triadic) and compare the discovered structures. If duals, deps,
 and hierarchy are consistent across architectures, the structure is
 more likely intrinsic to the task than an artifact of one architecture.
 
-Caveat: All architectures share the same training data and loss, so
-convergence might reflect data structure, not ontological truth.
+Cross-model mode (--checkpoints_v8): Compare the same TriadicExtractor
+across two different base models (e.g. v8 GPT-2 Medium vs v9 GPT-Neo 125M).
+This tests whether triadic structure is intrinsic to the task/ontology
+rather than an artifact of one specific backbone.
 
 Requiere: pip install reptimeline
-Usage: python q8_probe_crossarch.py --checkpoints_triadic <dir>
-       --checkpoints_sae <dir> --checkpoints_vqvae <dir>
+Usage:
+  # Multi-extractor mode (original):
+  python q8_probe_crossarch.py --checkpoints_triadic <dir>
+  # Cross-model mode (v8 vs v9):
+  python q8_probe_crossarch.py --checkpoints <v9_dir> --checkpoints_v8 <v8_dir>
 """
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
@@ -155,23 +160,56 @@ def discover_from(extractor_cls, checkpoints_dir, name, concepts, device='cuda')
     }
 
 
-def run_probe(triadic_dir, sae_dir=None, vqvae_dir=None, device='cuda'):
-    """Run Q8 probe across architectures."""
+def run_probe(triadic_dir, sae_dir=None, vqvae_dir=None, v8_dir=None, device='cuda'):
+    """Run Q8 probe across architectures or across models."""
     if not HAS_REPTIMELINE:
         return None
 
-    # Load concepts from gold primes
-    gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', 'gold_primes_65.json'))
-    if os.path.exists(gold_path):
-        with open(gold_path, 'r', encoding='utf-8') as f:
-            concepts = list(json.load(f).keys())
-        print(f'  Concepts from gold_primes_65.json: {len(concepts)}')
+    # Load concepts from gold primitivos (try 72-bit first, fallback to 65-bit)
+    for gold_name in ['gold_primitivos_72.json', 'gold_primitivos_65.json']:
+        gold_path = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'model', gold_name))
+        if os.path.exists(gold_path):
+            with open(gold_path, 'r', encoding='utf-8') as f:
+                concepts = list(json.load(f).keys())
+            print(f'  Concepts from {gold_name}: {len(concepts)}')
+            break
     else:
-        print('  ERROR: gold_primes_65.json not found')
+        print('  ERROR: gold_primitivos_*.json not found')
         return None
 
     architectures = []
 
+    # ── Cross-model mode: v8 vs v9 using same TriadicExtractor ──
+    if v8_dir:
+        # Detect model names from checkpoint configs
+        v9_name = 'v9_gptneo125m'
+        v8_name = 'v8_gpt2medium'
+        for ckpt_dir, default_name in [(triadic_dir, v9_name), (v8_dir, v8_name)]:
+            # Try to read config from best.pt or last checkpoint
+            label = default_name
+            best_pt = os.path.join(ckpt_dir, 'best.pt')
+            if os.path.exists(best_pt):
+                try:
+                    import torch
+                    ckpt = torch.load(best_pt, map_location='cpu', weights_only=False)
+                    cfg = ckpt.get('config', {})
+                    model_name = cfg.get('model_name', '')
+                    if model_name:
+                        short = model_name.split('/')[-1]
+                        label = f"{'v9' if ckpt_dir == triadic_dir else 'v8'}_{short}"
+                except Exception:
+                    pass
+
+            arch = discover_from(TriadicExtractor, ckpt_dir, label, concepts, device)
+            if arch is not None:
+                architectures.append(arch)
+
+        if not architectures:
+            print("  ERROR: No architectures could be loaded.")
+            return None
+        return architectures
+
+    # ── Multi-extractor mode (original) ──
     # Triadic (required)
     arch_triadic = discover_from(TriadicExtractor, triadic_dir, 'triadic', concepts, device)
     if arch_triadic is not None:
@@ -311,7 +349,10 @@ def analyze(architectures):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Q8: Cross-architecture probe')
-    parser.add_argument('--checkpoints_triadic', '--checkpoints', required=True)
+    parser.add_argument('--checkpoints_triadic', '--checkpoints', required=True,
+                        help='Primary checkpoint dir (v9 in cross-model mode)')
+    parser.add_argument('--checkpoints_v8', default=None,
+                        help='v8 checkpoint dir for cross-model comparison')
     parser.add_argument('--checkpoints_sae', default=None)
     parser.add_argument('--checkpoints_vqvae', default=None)
     parser.add_argument('--device', default='cuda',
@@ -328,6 +369,7 @@ if __name__ == '__main__':
     architectures = run_probe(args.checkpoints_triadic,
                               args.checkpoints_sae,
                               args.checkpoints_vqvae,
+                              args.checkpoints_v8,
                               args.device)
     if architectures is None:
         sys.exit(1)

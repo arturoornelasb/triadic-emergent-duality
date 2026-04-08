@@ -1,0 +1,2 @@
+usage: q5_probe_phases.py [-h] --checkpoints CHECKPOINTS [--device DEVICE]
+q5_probe_phases.py: error: unrecognized arguments: --vocab ../model/gold_primitivos_72.json

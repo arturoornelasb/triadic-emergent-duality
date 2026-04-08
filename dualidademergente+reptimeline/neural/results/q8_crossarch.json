@@ -1,4 +1,34 @@
 {
-  "n_architectures": 1,
-  "verdict": "insufficient_data"
+  "n_architectures": 2,
+  "architectures": [
+    {
+      "name": "v9_gpt-neo-125m",
+      "n_active": 70,
+      "n_duals": 10,
+      "n_deps": 81
+    },
+    {
+      "name": "v8_gpt2-medium",
+      "n_active": 72,
+      "n_duals": 9,
+      "n_deps": 82
+    }
+  ],
+  "comparisons": [
+    {
+      "arch_a": "v9_gpt-neo-125m",
+      "arch_b": "v8_gpt2-medium",
+      "jaccard_duals": 0.0,
+      "jaccard_deps": 0.0516,
+      "shd": 147,
+      "hierarchy_nmi": 0.0,
+      "shared_bits": 0
+    }
+  ],
+  "summary": {
+    "mean_jaccard_duals": 0.0,
+    "mean_jaccard_deps": 0.0516,
+    "mean_hierarchy_nmi": 0.0
+  },
+  "verdict": "null"
 }
