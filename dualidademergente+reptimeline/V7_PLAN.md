@@ -634,10 +634,11 @@ patron de cascada (centro→extremos) es independiente de la arquitectura/datase
 
 - **Modelo:** GPT-2 Medium (345M params)
 - **Dataset:** wikitext-103 (default)
-- **Explosion original:** step 35K (churn 0→1.0, reportado en timeline_v8.json)
+- **Explosion original:** step 35K (churn 0→1.0 reportado a baja res en timeline_v8.json)
+- **Explosion real (paso 1):** step 31K-32K (churn 0→0.81)
 - **Estrategia:** mismo telescopio de 3 pasos que v9
 
-### Paso 1: Resolucion 1000 steps (30K→45K)
+### Paso 1: Resolucion 1000 steps (30K→45K) — COMPLETADO
 
 - **Resume:** `checkpoints/v8_deep/step_30000.pt`
 - **Rango:** 30K → 45K
@@ -645,16 +646,113 @@ patron de cascada (centro→extremos) es independiente de la arquitectura/datase
 - **Directorio:** `checkpoints/v8_xray/`
 - **Script:** `model/train_v8_xray.bat`
 - **Timeline:** `model/save_v8_xray_timeline.py`
-- **Estado:** EN PROGRESO
+- **Tiempo:** 695 min (~11.5h)
+- **Estado:** COMPLETADO (2026-04-07)
+
+**Resultado paso 1:**
+
+| Step | Churn | dChurn |
+|------|-------|--------|
+| 31000 | 0.000 | — |
+| 32000 | 0.814 | +0.814 (EXPLOSION) |
+| 33000 | 0.869 | +0.056 |
+| 34000 | 0.752 | -0.117 |
+| 35000 | 0.868 | +0.116 |
+| 36000 | 0.802 | -0.067 |
+| 37000 | 0.777 | -0.025 |
+| 38000 | 0.658 | -0.119 |
+| 39000 | 0.609 | -0.049 |
+| 40000 | 0.694 | +0.085 |
+| 41000 | 0.552 | -0.142 |
+| 42000 | 0.520 | -0.032 |
+| 43000 | 0.603 | +0.083 |
+| 44000 | 0.555 | -0.048 |
+| 45000 | 0.487 | -0.068 |
+
+Explosion entre step 31000 y 32000, NO en 35K como reportado a baja resolucion.
+Churn nunca llega a 1.0 (max 0.87). Despues oscila y baja gradualmente (cristalizacion).
+Patron identico al v9 pero a diferente escala temporal.
+
+### Paso 2: Resolucion 50 steps (30K→32K) — COMPLETADO
+
+- **Resume:** `checkpoints/v8_deep/step_30000.pt`
+- **Rango:** 30K → 32K
+- **Save-every:** 50 (40 checkpoints)
+- **Directorio:** `checkpoints/v8_xray_zoom/`
+- **Script:** `model/train_v8_xray_zoom.bat`
+- **Timeline:** `model/save_v8_xray_zoom_timeline.py`
+- **Tiempo:** 93 min
+- **Estado:** COMPLETADO (2026-04-07)
+
+**Resultado paso 2:**
+- Explosion entre step 30050 y 30100 (churn 0→0.53)
+- Despues oscila entre 0.25-0.45, nunca sube a 1.0
+- Patron: explosion abrupta seguida de oscilaciones que decaen
+
+### Paso 3: Resolucion 5 steps (30K→30150) — COMPLETADO
+
+- **Resume:** `checkpoints/v8_deep/step_30000.pt`
+- **Rango:** 30K → 30150
+- **Save-every:** 5 (30 checkpoints)
+- **Directorio:** `checkpoints/v8_xray_zoom2/`
+- **Script:** `model/train_v8_xray_zoom2.bat`
+- **Timeline:** `model/save_v8_xray_zoom2_timeline.py`
+- **Tiempo:** 25 min training + 22 min extraction
+- **Estado:** COMPLETADO (2026-04-08)
+
+**Resultado paso 3: CASCADA CONFIRMADA EN V8**
+
+65/72 bits cambian en oleadas de 1-7 bits a lo largo de ~145 steps.
+7 bits estables (scaffold): eje_profundidad, eje_lateral, gusto, creacion,
+creador_obs, hacer, si_entonces.
+
+| Step | N bits | Bits (primeros que cambian) | Capas |
+|------|--------|-----------------------------|-------|
+| 30010 | 5 | vacío, tal_vez, puede, muchos, interocepción | L1(1) L4(3) L5(1) |
+| 30015 | 2 | proporción, porque | L3(2) |
+| 30020 | 4 | intención, uno, tipo_de, agua | L1(1) L4(1) L5(2) |
+| 30025 | 2 | temporal_obs, vista | L4(1) L6(1) |
+| 30030 | 4 | aire, aversión, tierra, eterno_obs | L4(1) L5(2) L6(1) |
+| 30040 | 7 | verdad, libertad, individual, orden, ... | L3(2) L4(3) L5(1) L6(1) |
+| 30080 | 6 | algunos, atención, tacto, querer, control, ausente | L4(2) L5(4) |
+| 30140 | 5 | equilibrio, dolor, mover, fuego, mal | L3(1) L4(2) L5(2) |
+| 30150 | 1 | más | L2(1) |
+
+**Comparacion v8 vs v9:**
+
+| Metrica | v9 (GPT-Neo 125M) | v8 (GPT-2 Medium) |
+|---------|--------------------|--------------------|
+| Bits que cambian | 31/72 (43%) | 65/72 (90%) |
+| Bits estables | 5 | 7 |
+| Duracion cascada | ~45 steps | ~145 steps |
+| Churn max | 0.21 | 0.17 |
+| Primer bit | flujo_temporal(L3) | vacío(L1) |
+| Ultimo bit | vacío(L1), eterno_obs(L6) | más(L2) |
+
+**Interpretacion:**
+1. La cascada se confirma cross-arquitectura — NO es artefacto de un modelo.
+2. v8 (modelo mas grande) tiene cascada mas larga y distribuida (90% bits vs 43%).
+3. El churn real es ~0.17 en ambos modelos, nunca 1.0.
+4. Los bits "scaffold" son diferentes en cada modelo pero el patron es el mismo.
+5. v8 empieza con L1 (vacio) y v9 con L3-L5 — el orden de capas no es
+   universal, pero el patron de cascada si lo es.
 
 ### Archivos V8_xray
 
 | Archivo | Que es |
 |---------|--------|
 | `model/train_v8_xray.bat` | Paso 1: 30K→45K cada 1000 steps |
+| `model/train_v8_xray_zoom.bat` | Paso 2: 30K→32K cada 50 steps |
 | `model/save_v8_xray_timeline.py` | Extraccion reptimeline para paso 1 |
-| `model/checkpoints/v8_xray/` | Checkpoints paso 1 |
-| `model/update_excel_cascade_layers.py` | Excel update: cascade-to-layer mapping (v9) |
+| `model/save_v8_xray_zoom_timeline.py` | Extraccion reptimeline para paso 2 |
+| `model/train_v8_xray_zoom2.bat` | Paso 3: 30K→30150 cada 5 steps |
+| `model/save_v8_xray_zoom2_timeline.py` | Extraccion reptimeline para paso 3 |
+| `model/checkpoints/v8_xray/` | Checkpoints paso 1 (15 ckpts) |
+| `model/checkpoints/v8_xray_zoom/` | Checkpoints paso 2 (40 ckpts) |
+| `model/checkpoints/v8_xray_zoom2/` | Checkpoints paso 3 |
+| `model/update_excel_v8_xray.py` | Excel update: paso 1 results |
+| `runs/v8_xray/plots/` | Graficas paso 1 |
+| `runs/v8_xray_zoom/plots/` | Graficas paso 2 |
 
 ---
 

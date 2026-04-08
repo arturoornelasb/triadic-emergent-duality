@@ -1,0 +1,32 @@
+[
+  {
+    "step": 30100,
+    "metric": "entropy",
+    "delta": 0.0013805992959832758,
+    "direction": "increase"
+  },
+  {
+    "step": 30105,
+    "metric": "entropy",
+    "delta": 0.0014851777212523953,
+    "direction": "increase"
+  },
+  {
+    "step": 30020,
+    "metric": "churn_rate",
+    "delta": 0.08587257617728532,
+    "direction": "increase"
+  },
+  {
+    "step": 30055,
+    "metric": "churn_rate",
+    "delta": 0.08910433979686058,
+    "direction": "decrease"
+  },
+  {
+    "step": 30030,
+    "metric": "utilization",
+    "delta": 0.007848568790397081,
+    "direction": "decrease"
+  }
+]
