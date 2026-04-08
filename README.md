@@ -186,6 +186,15 @@ python compare_runs.py v5_frozen <version>
 | `data/ALGEBRAIC_LAYERS.md` | Algebraic layer formalization |
 | `EXPERIMENT_LOG.md` | Neural training experiment registry |
 
+## Pre-trained Weights
+
+| Model | HuggingFace | Files |
+|-------|-------------|-------|
+| V8 GPT-2 Medium (345M) | [arturoornelasb/triadic-gpt2-medium-v8](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v8) | best.pt, step_30000.pt (X-ray base), run_config.json, gold |
+| V9 GPT-Neo 125M | [arturoornelasb/triadic-gptneo-125m-v9](https://huggingface.co/arturoornelasb/triadic-gptneo-125m-v9) | best.pt, step_5000.pt (X-ray base), run_config.json, gold |
+
+Both repos include base checkpoints (`step_*`) for reproducing the telescopic X-ray analysis (cascade detection).
+
 ## Companion Papers
 
 This project is part of a family of four papers. Each companion has its own paper and repository on Zenodo:
