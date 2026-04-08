@@ -47,6 +47,12 @@ dualidademergente+reptimeline/model/_*.py
 
 # Local convenience scripts (hardcoded paths, not reproducible)
 *.bat
+# But keep training scripts (needed for reproducibility)
+!dualidademergente+reptimeline/model/run_v*.bat
+!dualidademergente+reptimeline/model/train_v*.bat
+!dualidademergente+reptimeline/model/eval_v*.bat
+!dualidademergente+reptimeline/model/monitor_v*.bat
+!dualidademergente+reptimeline/model/resume_v*.bat
 
 # reptimeline timeline output (regenerable, >1GB)
 dualidademergente+reptimeline/neural/results/timeline.json
