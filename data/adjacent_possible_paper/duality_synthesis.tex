@@ -1,0 +1,1082 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openquestion}{Open Question}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% -- Colors --
+\definecolor{rcolor}{HTML}{D85A30}
+\definecolor{icolor}{HTML}{534AB7}
+\definecolor{jcolor}{HTML}{1D9E75}
+\definecolor{kcolor}{HTML}{185FA5}
+
+\newcommand{\Op}{\mathcal{O}}
+\newcommand{\rey}[1]{{\color{rcolor}#1}}
+\newcommand{\imag}[1]{{\color{icolor}#1}}
+\newcommand{\exac}[1]{{\color{jcolor}#1}}
+\newcommand{\recu}[1]{{\color{kcolor}#1}}
+\newcommand{\Real}{\operatorname{Re}}
+\newcommand{\Imag}{\operatorname{Im}}
+\newcommand{\SU}{\mathrm{SU}(2)}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=kcolor,
+  citecolor=jcolor,
+  urlcolor=rcolor,
+  pdftitle={Duality Synthesis in Quaternionic Logic: How Opposites Generate Truth},
+  pdfauthor={J. Arturo Ornelas Brand},
+  pdfsubject={Duality synthesis, constructive complexity, constructor theory},
+  pdfkeywords={duality synthesis, prime algebra, Markov blanket, constructive complexity, superinformation, quaternionic logic, constructor theory}
+}
+
+\title{Duality Synthesis in Quaternionic Logic:\\
+How Opposites Generate Truth}
+
+\author{J.~Arturo Ornelas Brand\\
+  \small Independent Researcher\\
+  \small \texttt{arturoornelas62@gmail.com}}
+\date{April 13, 2026}
+
+\begin{document}
+\maketitle
+
+%======================================================================
+\begin{abstract}
+%======================================================================
+The quaternionic G-lattice defines logical connectives over
+$V=[0,1]\times[-1,1]^3$ with an $\SU$ group action that separates
+truth ($\Real$) from epistemic character ($\Imag$). The companion
+paper establishes that the imaginary dimensions are operationally
+distinguishable. This paper shows they are more: through the
+synthesis of opposites, they \emph{generate} truth.
+
+We define a synthesis operation on the prime algebra: given dual
+concepts $a$ and $\bar{a}$ with prime signatures $\Phi(a)$ and
+$\Phi(\bar{a})$, their synthesis
+$a\oplus\bar{a}=\mathrm{lcm}(\Phi(a),\Phi(\bar{a}))$ produces a
+compound concept whose constructive complexity strictly exceeds that
+of either pole. The shared structure $\gcd(\Phi(a),\Phi(\bar{a}))$
+forms an algebraic Markov blanket whose interiors are coprime by
+the Fundamental Theorem of Arithmetic, yielding a unique partition
+that resolves the observer-dependence critique of statistical blankets.
+
+We introduce five axioms (C1--C5) for \emph{constructive complexity
+measures} and show that both the prime factor count~$\omega$ and the
+assembly index~$MA$ are instances. The gap
+operation---extracting what one concept has that another lacks---is
+proven to be irreducibly second-order (superinformation). Three
+algebraic tasks (directional subsumption, guaranteed composition,
+asymmetric gap analysis) are shown to be possible in the prime
+medium and impossible under cosine similarity.
+
+The results establish that duality, operating through the imaginary
+dimensions of the G-lattice, is a generative mechanism: opposites
+do not cancel but produce new truth at higher algebraic layers.
+\end{abstract}
+
+%======================================================================
+\section{Introduction}
+\label{sec:intro}
+%======================================================================
+
+The prime-algebraic framework encodes semantic concepts as products
+of prime numbers~\citep{p1}, organises them into six algebraic
+layers~\citep{p4}, and identifies 14+ candidate dualities across
+those layers. The companion paper~\citep{p11} constructs a
+quaternionic operator
+$\Op=\{0,1,+,\imag{i},\exac{j},\recu{k}\}$ from which all six
+layers are recoverable as dimensional projections, and equips the
+resulting four-dimensional space with a G-lattice: a residuated
+lattice with an $\SU$ group action whose commutation theorem
+characterises Boolean logic as the context-free special case.
+
+That paper establishes that the imaginary dimensions
+$(\imag{i},\exac{j},\recu{k})$ are operationally distinguishable
+from truth ($\rey{r}$): agents at equal truth but different
+epistemic profiles make different decisions. Yet the G-lattice's
+tautologies depend only on $\Real$; the imaginary dimensions
+enrich the \emph{structure around} tautologies but do not alter
+which formulas are valid.
+
+This paper addresses the question: \emph{do the imaginary
+dimensions produce truth?} We show that they do, through the
+synthesis of opposites. When two dual concepts interact, their
+\emph{relationship}---encoded in the imaginary dimensions---generates
+a compound concept with new crystallised content ($\Real$) that
+neither pole possessed individually.
+
+\paragraph{Contributions.}
+\begin{enumerate}[nosep]
+\item A synthesis operation on the prime algebra
+  (Section~\ref{sec:synthesis}) with a proof that it strictly
+  increases constructive complexity
+  (Theorem~\ref{thm:complexity_increase}).
+\item An algebraic Markov blanket theorem: the shared structure
+  between any two concepts partitions uniquely into blanket and
+  coprime interiors, by FTA
+  (Section~\ref{sec:blankets}).
+\item Five axioms for constructive complexity measures, with
+  $\omega$ and $MA$ as instances
+  (Section~\ref{sec:ccm}).
+\item A proof that the gap operation constitutes
+  superinformation: irreducibly second-order
+  (Section~\ref{sec:ct}).
+\item Three constructor-theoretic impossibility results
+  distinguishing the prime medium from cosine similarity
+  (Section~\ref{sec:impossible}).
+\item Computational verification on all 14 duality pairs from
+  the prime-algebraic ontology, with precise bilateral
+  characterisation of which axes increase
+  (Section~\ref{sec:computation}).
+\item A proof that the prime algebra is irreducible for
+  synthesis: no function on quaternionic coordinates alone can
+  compute $\mathrm{lcm}$
+  (Proposition~\ref{prop:irreducible}).
+\item A complexity--constructor bridge theorem: for media with
+  unique decomposition, CCM axioms and constructor-theory
+  conditions I1--I4 are equivalent; superinformation (I5) is
+  the irreducible gap between the frameworks
+  (Theorem~\ref{thm:bridge}).
+\end{enumerate}
+
+%======================================================================
+\section{Preliminaries}
+\label{sec:prelim}
+%======================================================================
+
+\subsection{The prime algebra}
+
+Each semantic concept $C$ is encoded as a prime signature
+$\Phi(C)=\prod_{i}p_i^{s_i(C)}$, where $p_i$ is the $i$-th prime
+and $s_i(C)\in\{0,1\}$ indicates whether primitive $i$ is active
+for $C$~\citep{p1}. By the Fundamental Theorem of Arithmetic (FTA),
+this encoding is injective: distinct concepts have distinct
+signatures.
+
+Three operations are defined on signatures:
+\begin{itemize}[nosep]
+\item $\gcd(\Phi(A),\Phi(B))$: shared structure (what $A$ and $B$
+  have in common).
+\item $\mathrm{lcm}(\Phi(A),\Phi(B))$: combined structure (the
+  smallest concept containing both).
+\item $\Phi(A)\bmod\Phi(B)$: subsumption test ($=0$ iff $B$
+  divides~$A$).
+\end{itemize}
+
+\subsection{The G-lattice}
+
+The quaternionic G-lattice~\citep{p11} is a residuated lattice on
+$V=[0,1]\times[-1,1]^3$ equipped with an $\SU$ conjugation action.
+The real component $\rey{r}$ encodes crystallised truth; the
+imaginary triple $(\imag{i},\exac{j},\recu{k})$ encodes epistemic
+character (potentiality, verifiability, recursive selection). The
+commutation theorem states that lattice connectives commute with
+the group action if and only if they depend exclusively on
+$\rey{r}$; Boolean logic is the context-free special case.
+
+\subsection{Dualities}
+
+\begin{definition}[Non-degenerate pair]
+\label{def:nondegenerate}
+A pair of concepts $(A,B)$ is \emph{non-degenerate} if neither
+$\Phi(A)\mid\Phi(B)$ nor $\Phi(B)\mid\Phi(A)$---equivalently,
+if both interiors $\iota_A=\Phi(A)/\gcd(\Phi(A),\Phi(B))>1$
+and $\iota_B=\Phi(B)/\gcd(\Phi(A),\Phi(B))>1$.
+\end{definition}
+
+All theorems in this paper apply to arbitrary non-degenerate
+pairs: the synthesis, coprime-interiors, and complexity-increase
+results require only that both interiors be non-trivial. The 14
+candidate dualities identified in~\citet{p4} are a semantically
+motivated \emph{subset} of non-degenerate pairs: they are pairs
+whose opposition is grounded in the layer structure (e.g.,
+\emph{creaci\'on}/\emph{destrucci\'on},
+\emph{orden}/\emph{caos}). Eleven of the 14 are non-degenerate;
+three (\emph{vida}/\emph{muerte}, \emph{consciente}/\emph{ausente},
+\emph{individual}/\emph{colectivo}) turn out to be degenerate
+under dependency expansion---one pole's primitives are a subset
+of the other's---so synthesis reduces to the more complex pole
+with no strict increase on any axis.
+
+\begin{remark}[Degenerate pairs reflect ontological dependency]
+\label{rem:degenerate}
+The three degenerate pairs arise from intentional dependency-DAG
+design in~\citet{p4}: \emph{muerte} depends on \emph{vida}
+(adding destrucci\'on, caos, decaimiento, and muerte itself---19
+vs.\ 15~primitives); \emph{ausente} depends on \emph{consciente}
+(adding p\'erdida, vac\'io, destrucci\'on---22 vs.\ 18);
+\emph{colectivo} depends on \emph{individual} (adding muchos,
+cooperaci\'on, uni\'on---20 vs.\ 16). In each case the second pole
+\emph{presupposes} the first---death requires life, absence
+requires presence, collectivity requires individuality---so
+$\Phi(\text{first})\mid\Phi(\text{second})$ by construction. This
+is a feature of the ontological design: these dualities express
+\emph{existential dependency}, not algebraic opposition. The
+synthesis $\mathrm{lcm}$ reduces to the more complex pole because
+the ``opposition'' is already resolved within the dependency
+structure.
+\end{remark}
+
+%======================================================================
+\section{The Synthesis Operation}
+\label{sec:synthesis}
+%======================================================================
+
+\begin{definition}[Synthesis of duals]
+\label{def:synthesis}
+Given a duality $(a,\bar{a})$ with prime signatures $\Phi(a)$ and
+$\Phi(\bar{a})$, the \emph{synthesis} is:
+\begin{equation}
+a \oplus \bar{a} \;=\; \mathrm{lcm}(\Phi(a),\;\Phi(\bar{a}))
+\end{equation}
+The synthesis decomposes into three components:
+\begin{align}
+\text{Blanket:}\quad b &= \gcd(\Phi(a),\;\Phi(\bar{a}))
+  \label{eq:blanket}\\
+\text{Interior of } a:\quad \iota_a &= \Phi(a)\,/\,b
+  \label{eq:int_a}\\
+\text{Interior of } \bar{a}:\quad \iota_{\bar{a}} &=
+  \Phi(\bar{a})\,/\,b \label{eq:int_abar}\\
+\text{Synthesis:}\quad a \oplus \bar{a} &= b \cdot \iota_a \cdot
+  \iota_{\bar{a}} \label{eq:synth}
+\end{align}
+\end{definition}
+
+\begin{example}[Order from opposites]
+\label{ex:orden}
+In the 72-primitive ontology of~\citet{p4},
+\emph{orden} and \emph{caos} each depend on 7~primitives
+(including shared ones: \emph{uno}, \emph{fuerza},
+\emph{eje\_profundidad}, \emph{m\'as}, \emph{posici\'on\_temporal},
+\emph{mover}). The unique primitive of \emph{orden} is
+$p_{83}$; that of \emph{caos} is $p_{89}$. Then:
+\begin{align*}
+b &= \gcd(\Phi(\text{orden}),\,\Phi(\text{caos}))
+  &&\text{(6 shared primitives)}\\
+\iota_{\text{orden}} &= p_{83}
+  &&\text{(the ordering direction)}\\
+\iota_{\text{caos}} &= p_{89}
+  &&\text{(the disordering direction)}\\
+\text{orden}\oplus\text{caos} &= b\cdot p_{83}\cdot p_{89}
+  &&(\omega = 6+1+1=8>7)
+\end{align*}
+The synthesis is not \emph{orden} AND \emph{caos} (that would be
+$\gcd = b$, the 6~shared primitives). It is not \emph{orden}
+OR \emph{caos} in the lattice sense (component-wise max of
+quaternionic coordinates). It is the concept that \emph{contains
+both poles and their distinction}---a new entity at a higher level
+of constructive complexity. Since both unique primitives are in
+Layer~3 ($J$-axis), the bilateral support theorem predicts strict
+increase on $\exac{j}$ only, which is confirmed computationally.
+\end{example}
+
+\begin{theorem}[Synthesis increases complexity]
+\label{thm:complexity_increase}
+Let $(a,\bar{a})$ be a duality with $\Phi(a)\neq\Phi(\bar{a})$.
+If each pole has at least one prime not shared with the other
+(i.e., $\iota_a>1$ and $\iota_{\bar{a}}>1$), then:
+\begin{equation}
+\omega(a\oplus\bar{a}) > \max(\omega(a),\;\omega(\bar{a}))
+\end{equation}
+where $\omega(n)$ denotes the number of distinct prime factors of~$n$.
+\end{theorem}
+
+\begin{proof}
+By the inclusion-exclusion principle for prime factors:
+\[
+\omega(\mathrm{lcm}(A,B)) = \omega(A) + \omega(B) - \omega(\gcd(A,B))
+\]
+Let $s = \omega(\gcd)$, $\alpha = \omega(\iota_a) \geq 1$, and
+$\beta = \omega(\iota_{\bar{a}}) \geq 1$. Then $\omega(A) = s+\alpha$,
+$\omega(B) = s+\beta$, and:
+\[
+\omega(\mathrm{lcm}) = (s+\alpha)+(s+\beta)-s = s+\alpha+\beta
+\]
+Since $\alpha\geq1$ and $\beta\geq1$:
+\[
+s+\alpha+\beta \;\geq\; s+1+\beta \;>\; s+\beta = \omega(B)
+\]
+and symmetrically $s+\alpha+\beta > s+\alpha = \omega(A)$.
+Therefore $\omega(\mathrm{lcm}) > \max(\omega(A),\omega(B))$.
+\end{proof}
+
+\begin{remark}[Synthesis is not a lattice connective]
+\label{rem:not_connective}
+The synthesis $\oplus$ operates on prime signatures, not on
+quaternionic coordinates. It is algebraically distinct from the
+G-lattice connectives AND ($=\min$) and OR ($=\max$), which
+operate component-wise on $V$. The G-lattice connectives preserve
+or reduce complexity (min and max do not increase the number of
+active components); synthesis \emph{increases} it. This is the
+formal sense in which opposites \emph{generate} rather than
+\emph{select}.
+\end{remark}
+
+\begin{remark}[The synthesis in quaternionic coordinates]
+\label{rem:synth_coords}
+Theorem~\ref{thm:complexity_increase} operates on prime factor
+counts. The Synthesis Embedding Theorem of~\citet{p11} lifts this
+to quaternionic coordinates: a layer-based projection
+$e\colon\{0,1\}^{72}\to[0,1]^4$ sends each concept's exponent
+vector to $(r,i,j,k)$, and satisfies
+\[
+  e(\mathrm{lcm})_X > \max(e(A)_X,\,e(B)_X)
+  \;\;\Longleftrightarrow\;\;
+  \mathrm{Int}(A\!\mid\! B)\cap X\neq\emptyset
+  \;\text{and}\;
+  \mathrm{Int}(B\!\mid\! A)\cap X\neq\emptyset
+\]
+for each axis $X\in\{R,I,J,K\}$, where
+$\mathrm{Int}(A\!\mid\! B)$ is the set of primitives active in $A$
+but not in $B$. The strict increase on axis $X$ thus occurs
+precisely when both interiors have $X$-support: primitives in the
+layer sets that contribute to $X$. This makes the ``synthesis
+generates truth'' claim a theorem with an exact characterisation,
+not a qualitative observation.
+\end{remark}
+
+\begin{proposition}[Irreducibility of the prime algebra]
+\label{prop:irreducible}
+No function $f\colon[0,1]^4\times[0,1]^4\to[0,1]^4$ computes
+synthesis from quaternionic coordinates: there exist concepts
+$A,B,C$ with $e(A)=e(B)$ but
+$e(\mathrm{lcm}(A,C))\neq e(\mathrm{lcm}(B,C))$.
+\end{proposition}
+
+\begin{proof}
+The embedding $e$ counts activated primitives per axis without
+distinguishing \emph{which} primitives are active. Consider two
+concepts $A$ (activating \emph{eje\_vertical}~[Layer~4] and
+\emph{mover}~[Layer~3]) and $B$ (activating
+\emph{eje\_lateral}~[Layer~4] and
+\emph{posici\'on\_temporal}~[Layer~3]). Each has exactly one
+Layer-4 and one Layer-3 primitive, so
+\[
+  e(A) = e(B) = \bigl(\tfrac{1}{36},\;\tfrac{1}{25},\;
+  \tfrac{1}{40},\;0\bigr).
+\]
+Let $C$ activate only \emph{eje\_vertical}. Then
+$\Phi(C)\mid\Phi(A)$, so $\mathrm{lcm}(\Phi(A),\Phi(C))=\Phi(A)$
+and $e(\mathrm{lcm}(A,C))=e(A)$. But
+$\Phi(C)\nmid\Phi(B)$, so $\mathrm{lcm}(\Phi(B),\Phi(C))$ adds
+a Layer-4 primitive to~$B$, giving
+\[
+  e(\mathrm{lcm}(B,C)) = \bigl(\tfrac{2}{36},\;\tfrac{2}{25},\;
+  \tfrac{1}{40},\;0\bigr) \;\neq\; e(A).
+\]
+If $f$ existed, $e(A)=e(B)$ would force
+$f(e(A),e(C))=f(e(B),e(C))$, contradicting
+$e(\mathrm{lcm}(A,C))\neq e(\mathrm{lcm}(B,C))$.
+\end{proof}
+
+\begin{remark}
+The irreducibility is a feature of the architecture: the
+embedding captures the \emph{structural} aspect of synthesis
+(which axes increase, by Remark~\ref{rem:synth_coords}), while
+the prime algebra retains the \emph{identity} aspect (which
+specific primitives). The two representations are
+complementary---the prime algebra is irreducible for computing
+synthesis, and the G-lattice is irreducible for characterising
+its geometric structure.
+\end{remark}
+
+%======================================================================
+\section{Algebraic Markov Blankets}
+\label{sec:blankets}
+%======================================================================
+
+The blanket $b=\gcd(\Phi(a),\Phi(\bar{a}))$ from the synthesis
+decomposition has a structural property that resolves a standing
+critique of statistical Markov blankets.
+
+\begin{theorem}[Coprime interiors]
+\label{thm:mb}
+For any two concepts $C_1,C_2$ with prime signatures
+$\Phi(C_1),\Phi(C_2)$, define:
+\begin{itemize}[nosep]
+\item Blanket: $b = \gcd(\Phi(C_1),\Phi(C_2))$
+\item Interior of $C_1$: $\iota_1 = \Phi(C_1)/b$
+\item Interior of $C_2$: $\iota_2 = \Phi(C_2)/b$
+\end{itemize}
+Then $\gcd(\iota_1,\iota_2) = 1$.
+\end{theorem}
+
+\begin{proof}
+By FTA, write $\Phi(C_j) = \prod_i p_i^{a_i^{(j)}}$. Then:
+\begin{equation}
+b = \prod_i p_i^{\min(a_i^{(1)}, a_i^{(2)})}, \qquad
+\iota_j = \prod_i p_i^{a_i^{(j)} - \min(a_i^{(1)}, a_i^{(2)})}
+\end{equation}
+For each prime $p_i$, let
+$e_i = a_i^{(1)} - \min(a_i^{(1)}, a_i^{(2)})$ and
+$f_i = a_i^{(2)} - \min(a_i^{(1)}, a_i^{(2)})$.
+
+If $a_i^{(1)} \leq a_i^{(2)}$, then $e_i=0$, so $p_i\nmid\iota_1$.
+If $a_i^{(1)} > a_i^{(2)}$, then $f_i=0$, so $p_i\nmid\iota_2$.
+In both cases $\min(e_i,f_i)=0$. Therefore:
+\[
+\gcd(\iota_1,\iota_2) = \prod_i p_i^{\min(e_i,f_i)} = 1 \qedhere
+\]
+\end{proof}
+
+\begin{remark}[Algebraic Markov property]
+The condition $\gcd(\iota_1,\iota_2)=1$ is the algebraic analogue
+of conditional independence $\iota_1\perp\iota_2\mid b$: once the
+shared structure (blanket) is factored out, the remainders
+(interiors) share \emph{nothing}. No prime factor ``leaks'' from one
+interior to the other through the blanket.
+\end{remark}
+
+\begin{corollary}[Unique partition]
+\label{cor:unique}
+The partition $(\iota_1,b,\iota_2)$ is unique for any pair
+$(C_1,C_2)$.
+\end{corollary}
+
+\begin{proof}
+By FTA, $\Phi(C_1)$ and $\Phi(C_2)$ have unique prime
+factorisations. Hence $b=\gcd(\Phi(C_1),\Phi(C_2))$ and
+$\iota_j=\Phi(C_j)/b$ are each uniquely determined.
+\end{proof}
+
+\begin{remark}[Relation to statistical Markov blankets]
+The prime-algebraic blanket addresses the \emph{uniqueness} component
+of the observer-dependence critique~\citep{bruineberg2018}: FTA
+guarantees a single partition, discovered by factorisation rather
+than chosen by an observer. The conditional-independence analogy
+($\gcd(\iota_1,\iota_2)=1$ as ``no shared prime leaks through
+the blanket'') is structural, not probabilistic: the prime algebra
+has no probability measure, so conditional independence in the
+statistical sense does not apply. What is gained is an exact,
+observer-free partition; what is not claimed is a reduction to
+the probabilistic framework.
+\end{remark}
+
+\begin{proposition}[Nested blankets]
+\label{prop:nested}
+If $\Phi(A)\mid\Phi(B)\mid\Phi(C)$ (divisibility chain), then
+at each level the Markov property holds: the interior of $A$
+relative to $B$ and the interior of $B$ relative to $C$ are
+coprime.
+\end{proposition}
+
+\begin{proof}
+Apply Theorem~\ref{thm:mb} at each level of the chain. The FTA
+argument is identical at each scale.
+\end{proof}
+
+%======================================================================
+\section{Constructive Complexity Measures}
+\label{sec:ccm}
+%======================================================================
+
+The synthesis operation increases the prime factor count $\omega$.
+We now show that $\omega$ belongs to a general class of measures
+that detect constructive depth.
+
+\begin{definition}[Constructive complexity measure]
+\label{def:ccm}
+A \textbf{constructive complexity measure} over a domain $D$ with
+building blocks $B$ and composition $\oplus$ is a function
+$\mu:D\to\mathbb{Z}_{\geq0}$ satisfying:
+\begin{enumerate}[nosep]
+\item[(C1)] $\mu(b)=0$ for all $b\in B$ \hfill(grounding)
+\item[(C2)] $\mu(x)\geq0$ for all $x\in D$ \hfill(non-negativity)
+\item[(C3)] $\mu(a\oplus b)\leq\mu(a)+\mu(b)+c$ for constant
+  $c\geq0$ \hfill(subadditivity)
+\item[(C4)] $\mu$ is computable \hfill(computability)
+\item[(C5)] For all $a\in D$ and $b\in B$ with $b\nmid a$:
+  $\mu(a\oplus b)>\mu(a)$ \hfill(strict monotonicity)
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+C5 excludes degenerate measures (e.g., $\mu\equiv0$) and ensures
+that adding genuinely new building blocks always increases
+complexity.
+\end{remark}
+
+\subsection{Instance 1: Assembly index}
+
+Walker \& Cronin's assembly index $MA$~\citep{sharma2023} operates
+on molecular structures with chemical joining as composition and
+$c=1$. It counts the minimum number of joining operations needed
+to construct an object from basic fragments. High $MA$ combined
+with high copy number is proposed as a substrate-independent
+signature of selection.
+
+\subsection{Instance 2: Prime factor count}
+
+The join count $\mu(x)=\omega(x)-1$ (for $x>1$; $\mu(1)=0$)
+operates on semantic concepts with $\mathrm{lcm}$ as composition
+and $c=1$. Here $\omega$ is the number of distinct prime factors.
+C1--C5 are immediate: grounding ($\omega(p_i)=1$, so $\mu=0$),
+non-negativity, subadditivity (by inclusion-exclusion),
+computability (by trial division), and strict monotonicity (adding
+a new prime increases $\omega$ by~1).
+
+\subsection{Structural parallel}
+
+\begin{proposition}[Structural parallel]
+\label{prop:parallel}
+$MA$ and $\omega$ share three properties beyond C1--C5:
+\begin{enumerate}[nosep]
+\item \textbf{Overlap correction:}
+  $\omega(\mathrm{lcm}(A,B))=\omega(A)+\omega(B)-\omega(\gcd(A,B))$;
+  for $MA$, shared sub-assemblies reduce the combined index
+  analogously.
+\item \textbf{Finite irreducible basis:} primes (resp.\ basic
+  molecular fragments).
+\item \textbf{Discrimination of structured from random:} the Domain
+  Validity Score~\citep{p4} perfectly discriminates 8 real domains
+  from 3 pseudoscience controls (gap $0.233$, zero errors).
+\end{enumerate}
+They diverge on one key point: $\omega$ has \textbf{unique
+decomposition} (FTA), while $MA$ does not---multiple assembly
+pathways may yield the same index. This makes $\omega$ strictly
+stronger as an algebraic invariant.
+\end{proposition}
+
+\begin{proposition}[Rarity of high complexity under random assembly]
+\label{prop:rarity}
+In a prime product space with $k$ building blocks, under uniform
+random selection from all $2^k$ possible objects, the probability
+of obtaining an object with complexity $\mu\geq m$ is the upper
+tail of $\mathrm{Binomial}(k,1/2)$:
+\begin{equation}
+P(\mu\geq m) = \frac{1}{2^k}\sum_{j=m+1}^{k}\binom{k}{j}
+\end{equation}
+For $m\gg k/2$, this decays exponentially:
+$P(\mu\geq m)\leq\exp(-2(m-k/2)^2/k)$ by Hoeffding's inequality.
+\end{proposition}
+
+\begin{proof}
+The number of objects with exactly $j$ prime factors is
+$\binom{k}{j}$. Under uniform selection,
+$P(\omega=j)=\binom{k}{j}/2^k = \mathrm{Binomial}(k,1/2)$.
+Since $\mu=\omega-1$, $P(\mu\geq m)=P(\omega\geq m+1)$.
+The exponential bound follows from Hoeffding's inequality.
+\end{proof}
+
+\begin{conjecture}[Universal Selection Signature]
+\label{conj:uss}
+For any constructive complexity measure $\mu$ satisfying C1--C5
+over a domain $D$ with $k$ building blocks: the empirical
+distribution of $\mu$ values in a population produced by
+selection is stochastically dominated by the Binomial$(k,1/2)$
+null of Proposition~\ref{prop:rarity}, with separation detectable
+by a one-sided Kolmogorov--Smirnov test at sample sizes
+polynomial in~$k$.
+\end{conjecture}
+
+\begin{remark}[Testability]
+The USS is not straightforwardly testable on the prime-algebraic
+ontology: the 72~primitives \emph{are} the building blocks, so
+their $\omega$ values ($1$--$22$, mean~$9.4$) are low by
+construction, not by selection. The relevant null (uniform over
+$2^{72}$ products, mean~$\omega=36$) applies to \emph{compound
+concepts}, not to the basis. The closest existing empirical test
+is the Domain Validity Score discrimination of~\citet{p4} (gap
+$0.233$, zero misclassifications across 11~domains), which
+confirms that $\omega$-derived measures detect structure in real
+data. A direct USS test requires a corpus of naturally-occurring
+compound concepts with known prime signatures.
+\end{remark}
+
+%======================================================================
+\section{The Prime Algebra as Information Medium}
+\label{sec:ct}
+%======================================================================
+
+We verify that the prime algebra satisfies the five conditions for
+an information medium under Deutsch \& Marletto's Constructor
+Theory of Information~\citep{deutsch2015}.
+
+\begin{proposition}[Conditions I1--I4]
+\label{prop:ct}
+The prime algebra satisfies:
+\begin{enumerate}[nosep]
+\item[\textbf{I1}] \textbf{Distinguishability:} For distinct
+  $C_1\neq C_2$, $\Phi(C_1)\neq\Phi(C_2)$ by construction.
+  The factorisation algorithm recovers the unique decomposition.
+\item[\textbf{I2}] \textbf{Clonability:} Integer assignment copies
+  any signature exactly to a blank substrate (memory initialised
+  to $1$).
+\item[\textbf{I3}] \textbf{Non-triviality:} With $k$ primes,
+  $2^k\geq2$ distinguishable states.
+\item[\textbf{I4}] \textbf{Interoperability:} Measurement
+  (factorisation), copying (assignment), and computation
+  ($\bmod$, $\mathrm{lcm}$, $\gcd$) are all exact, deterministic,
+  and composable within the same integer medium.
+\end{enumerate}
+\end{proposition}
+
+\subsection{Superinformation (Condition I5)}
+
+\begin{proposition}[Condition I5 satisfied]
+\label{prop:super}
+The gap operation
+$\mathrm{gap}(A,B)=\Phi(A)/\gcd(\Phi(A),\Phi(B))$
+constitutes superinformation in the prime-algebraic medium.
+\end{proposition}
+
+\begin{proof}
+Three requirements.
+
+\textbf{(i) The gap is second-order.} A first-order information
+task maps a single variable to an output:
+$f:\Phi(A)\mapsto\Phi(A')$. The gap requires \emph{two} variables
+as input and outputs a \emph{relationship}---the structural
+difference between two concepts---not the content of either alone.
+
+\textbf{(ii) The gap is irreducible to first-order.} Suppose a
+function $g:\mathbb{Z}_{>0}\to\mathbb{Z}_{>0}$ exists with
+$\mathrm{gap}(A,B)=g(\Phi(A))$ for all $B$. Fix $A$ with
+$\Phi(A)=p_1 p_2 p_3$ and choose $B_1$ with $\Phi(B_1)=p_1$,
+$B_2$ with $\Phi(B_2)=p_1 p_2$. Then
+$\mathrm{gap}(A,B_1)=p_2 p_3 \neq p_3=\mathrm{gap}(A,B_2)$,
+but $g(\Phi(A))$ is a fixed value. Contradiction.
+
+\textbf{(iii) The output remains in the medium.} Since
+$\gcd(\Phi(A),\Phi(B))$ divides $\Phi(A)$, the quotient is a
+positive integer whose prime factors are a subset of those
+of~$\Phi(A)$.
+\end{proof}
+
+\begin{remark}[Asymmetry]
+In general $\mathrm{gap}(A,B)\neq\mathrm{gap}(B,A)$: the gap
+encodes an \emph{oriented} relationship. This directional structure
+is characteristic of superinformation.
+\end{remark}
+
+\begin{remark}[Gap as the engine of synthesis]
+The gap is exactly the interior from
+Definition~\ref{def:synthesis}: $\mathrm{gap}(a,\bar{a})=\iota_a$
+and $\mathrm{gap}(\bar{a},a)=\iota_{\bar{a}}$. The
+superinformation proof therefore shows that the
+\emph{distinguishing content} of each pole---the raw material of
+synthesis---is irreducibly second-order. Synthesis is not reducible
+to operations on either pole alone; it requires the relationship
+between them.
+\end{remark}
+
+%======================================================================
+\section{The Possible/Impossible Distinction}
+\label{sec:impossible}
+%======================================================================
+
+The prime algebra provides a concrete instance of Constructor
+Theory's core innovation: a distinction between possible and
+impossible tasks across information media.
+
+\begin{theorem}[Three impossibility results]
+\label{thm:impossible}
+The following three tasks are \textbf{possible} in the
+prime-algebraic medium and \textbf{impossible} under cosine
+similarity:
+\end{theorem}
+
+\begin{proof}
+\textbf{Task 1: Directional subsumption.}
+$A\supseteq B$ is directional: $A\supseteq B$ does not imply
+$B\supseteq A$.
+\begin{itemize}[nosep]
+\item \textbf{Prime:} $\Phi(A)\bmod\Phi(B)=0\iff A\supseteq B$.
+  Directional by construction. \textit{Possible.}
+\item \textbf{Cosine:} $\cos(\vec{A},\vec{B})=
+  \cos(\vec{B},\vec{A})$ (inner product is symmetric). No function
+  of cosine alone can distinguish ``$A$ contains $B$'' from
+  ``$B$ contains $A$.'' \textit{Impossible.}
+\end{itemize}
+
+\textbf{Task 2: Guaranteed composition.}
+Produce $C$ guaranteed to subsume both $A$ and $B$.
+\begin{itemize}[nosep]
+\item \textbf{Prime:} $C=\mathrm{lcm}(\Phi(A),\Phi(B))$.
+  Algebraically guaranteed. \textit{Possible.}
+\item \textbf{Cosine:} $\vec{C}=\vec{A}+\vec{B}$ does not
+  guarantee $\cos(\vec{C},\vec{A})\geq\tau$ for any threshold
+  (e.g., $\vec{A}=-\vec{B}$ gives $\vec{C}=\vec{0}$).
+  \textit{Impossible.}
+\end{itemize}
+
+\textbf{Task 3: Asymmetric gap analysis.}
+Extract what $A$ has that $B$ doesn't, and vice versa, as
+distinct objects.
+\begin{itemize}[nosep]
+\item \textbf{Prime:}
+  $\iota_A=\Phi(A)/\gcd(\Phi(A),\Phi(B))$,
+  $\iota_B=\Phi(B)/\gcd(\Phi(A),\Phi(B))$, with
+  $\gcd(\iota_A,\iota_B)=1$ by FTA. \textit{Possible.}
+\item \textbf{Cosine:} $\vec{A}-\vec{B}=-(\vec{B}-\vec{A})$ is
+  antisymmetric but does not decompose into separable components
+  unique to each side. \textit{Impossible.}
+\end{itemize}
+\end{proof}
+
+\begin{remark}
+Task~1 (directional subsumption) is impossible under \emph{any}
+symmetric similarity, not only cosine: the inner product
+$\langle\vec{A},\vec{B}\rangle=\langle\vec{B},\vec{A}\rangle$
+cannot distinguish ``$A$ contains $B$'' from ``$B$ contains $A$.''
+Tasks~2 and~3 are impossible under cosine specifically---the
+standard metric in modern NLP (word2vec, BERT, sentence
+transformers)---but could in principle be recovered by richer
+vector-space operations (e.g., element-wise max for Task~2,
+signed residuals for Task~3). The practical force of the
+impossibility is that cosine is what practitioners use.
+\end{remark}
+
+\begin{remark}
+The three tasks map directly to the synthesis decomposition:
+Task~1 tests subsumption ($\Phi(a)\mid\Phi(c)$), Task~2 computes
+synthesis ($\mathrm{lcm}$), and Task~3 extracts the interiors
+($\iota_a,\iota_{\bar{a}}$). The impossibility results therefore
+show that the \emph{synthesis of opposites} is impossible in flat
+vector spaces---it requires the Boolean lattice structure of the
+prime algebra.
+\end{remark}
+
+%======================================================================
+\section{The Rule of Three as Constructor}
+\label{sec:rule3}
+%======================================================================
+
+The synthesis $a\oplus\bar{a}=\mathrm{lcm}(\Phi(a),\Phi(\bar{a}))$
+combines two concepts. A related operation---analogical
+completion---requires three. The Rule of Three,
+$C_4=(\Phi(C_2)\times\Phi(C_3))/\Phi(C_1)$, introduced
+in~\citet{p1}, solves $A:B=C:?$ deterministically when
+$\Phi(C_1)\mid\Phi(C_2)\times\Phi(C_3)$.
+
+This satisfies Deutsch's definition of a
+\textbf{constructor}~\citep{deutsch2013}: an entity that causes a
+specific transformation and retains the capacity to repeat it. It
+also constitutes a fourth impossibility under cosine similarity:
+the proportional relationship $\Phi(C_4)/\Phi(C_3)=\Phi(C_2)/\Phi(C_1)$
+requires directed ratios, not symmetric dot products.
+
+\begin{remark}[Relation to synthesis]
+The Rule of Three and the synthesis operation are complementary
+constructors on the prime algebra. Synthesis combines
+\emph{opposites} ($\mathrm{lcm}$: what both have plus what
+distinguishes them). The Rule of Three completes
+\emph{proportions} (multiplication and division: the structural
+transfer from one pair to another). Both are possible in the
+prime medium and impossible under cosine similarity; both are
+deterministic constructors in Deutsch's sense.
+\end{remark}
+
+%======================================================================
+\section{Computational Verification}
+\label{sec:computation}
+%======================================================================
+
+All results were verified on the 72 primitives and 14 duality
+pairs of~\citet{p4}. The layer-based embedding of~\citet{p11}
+maps each concept's dependency-expanded signature to
+$(r,i,j,k)\in[0,1]^4$, with axis-contributing sets
+$|R|=36$, $|I|=25$, $|J|=40$, $|K|=4$.
+
+\begin{table}[H]
+\centering
+\caption{Verification of synthesis properties on the 14 duality
+pairs from~\citet{p4}.}
+\label{tab:verification}
+\begin{tabularx}{\textwidth}{@{}lrrl@{}}
+\toprule
+\textbf{Test} & \textbf{N} & \textbf{Violations} & \textbf{Result} \\
+\midrule
+$\omega(\mathrm{lcm})>\max(\omega(a),\omega(\bar{a}))$
+  for non-degenerate pairs & 11 & 0 & exact \\
+Coprime interiors ($\gcd(\iota_a,\iota_{\bar{a}})=1$)
+  & 14 & 0 & exact \\
+$e(\mathrm{lcm})\geq\max(e(a),e(\bar{a}))$ componentwise
+  & 14 & 0 & exact \\
+Bilateral support $\Leftrightarrow$ strict increase
+  & 11 & 0 & exact \\
+Degenerate pairs detected ($\Phi(a)\mid\Phi(\bar{a})$)
+  & 3 & 0 & exact \\
+\midrule
+Divisibility preserves order (random pairs) & 10\,000 & 0 & exact \\
+lcm $\geq$ max (random pairs) & 10\,000 & 0 & exact \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Of the 11 non-degenerate duality pairs, 9 show strict increase on
+$r$ (crystallised truth), and all~11 show strict increase on at
+least one axis. The two pairs without $r$-increase
+(\emph{orden}/\emph{caos}, \emph{creaci\'on}/\emph{destrucci\'on})
+have interiors only in Layer~3 ($J$-axis), correctly predicted by
+the bilateral support theorem. The two Layer~6 pairs
+(\emph{temporal\_obs}/\emph{eterno\_obs},
+\emph{receptivo}/\emph{creador\_obs}) show strict increase on all
+four axes, as their interiors span all contributing layer sets.
+
+\paragraph{What distinguishes dualities from arbitrary pairs.}
+Duality pairs have a mean Jaccard overlap of $0.614$ (they share
+most of their primitives), compared to $0.076$ for random pairs
+of the same sizes (Kolmogorov--Smirnov $p < 10^{-4}$). This high
+overlap is precisely what makes duality synthesis produce
+\emph{small, targeted} gains: the mean complexity increase is
+$1.43$ primes (vs.\ $5.97$ for random pairs, which share almost
+nothing). The synthesis of opposites generates less raw complexity
+than combining unrelated concepts, but the gain is
+\emph{semantically structured}: it fills the specific gap between
+the two poles, not arbitrary corners of the concept space.
+
+%======================================================================
+\section{Discussion}
+\label{sec:discussion}
+%======================================================================
+
+\subsection{Measuring vs.\ enabling}
+
+Constructive complexity (Section~\ref{sec:ccm}) and
+constructor-theoretic information (Section~\ref{sec:ct}) address
+complementary questions: \emph{how much was built?} (backward-looking)
+and \emph{what can be built?} (forward-looking). The prime algebra
+bridges both: it has a constructive complexity measure ($\omega$)
+and satisfies constructor-theoretic conditions (I1--I5), suggesting
+that these are two faces of the same coin.
+
+\begin{theorem}[Complexity--constructor bridge]
+\label{thm:bridge}
+Let $(D,B,\oplus)$ be a domain with finite basis
+$B=\{b_1,\ldots,b_k\}$, a join-composition $\oplus$ satisfying
+$S(a\oplus b)=S(a)\cup S(b)$ for a support function
+$S\colon D\to 2^B$, and unique decomposition (every element has a
+unique support).
+\begin{enumerate}[nosep]
+\item[\textup{(i)}] $\mu(x)=|S(x)|-1$ is a CCM satisfying C1--C5.
+\item[\textup{(ii)}] The medium satisfies I1--I4 of Constructor
+  Theory.
+\item[\textup{(iii)}] I5 (superinformation) is independent: it
+  holds iff the medium admits a second-order gap
+  $\mathrm{gap}(a,b)$ with $S(\mathrm{gap})=S(a)\setminus S(b)$.
+\end{enumerate}
+The prime algebra satisfies all three: FTA provides unique
+decomposition, $\mathrm{lcm}$ is the join, and integer division
+provides the gap.
+\end{theorem}
+
+\begin{proof}
+\textup{(i)}
+C1: $|S(b_i)|=1$, so $\mu(b_i)=0$.
+C2: $|S(x)|\geq1$ for all $x$, so $\mu\geq0$.
+C3: $|S(a)\cup S(b)|\leq|S(a)|+|S(b)|$, giving
+$\mu(a\oplus b)\leq\mu(a)+\mu(b)+1$ with $c=1$.
+C4: unique support over a finite basis is decidable (enumerate
+and check).
+C5: if $b\notin S(a)$, then $S(a\oplus b)=S(a)\cup\{b\}$,
+so $\mu(a\oplus b)=\mu(a)+1>\mu(a)$.
+
+\textup{(ii)}
+I1: distinct elements have distinct supports by uniqueness;
+the support serves as a distinguishing certificate.
+I2: copying the support to a blank substrate clones the element.
+I3: $|B|\geq2$ gives $\geq2$ distinguishable states.
+I4: $\oplus$, support extraction, and equality testing are
+computable over a finite basis.
+
+\textup{(iii)}
+C1--C5 constrain a function $\mu\colon D\to\mathbb{Z}_{\geq0}$
+on individual elements. The gap takes two inputs and outputs a
+relationship; by Proposition~\ref{prop:super}, it is irreducibly
+second-order (varying the second argument changes the output even
+when the first is fixed). Therefore I5 is not entailed by
+C1--C5. Conversely, C1--C5 do not prohibit I5: the prime algebra
+satisfies both.
+\end{proof}
+
+\subsection{Synthesis and the four axes}
+
+The layer-based embedding of~\citet{p11} distributes the 72
+primitives across four axis-contributing sets:
+$R$ (Layers 1,2,4,6), $I$ (Layers 4,6), $J$ (Layers 3,5,6),
+$K$ (Layer~6 only). This yields a precise connection between
+synthesis and the quaternionic axes.
+
+The Bilateral Synthesis Theorem
+(Remark~\ref{rem:synth_coords}) states that axis $X$ shows
+strict increase iff both interiors have $X$-support. Therefore:
+\begin{itemize}[nosep]
+\item A duality whose interiors differ only in Layer~3 or~5
+  primitives (e.g., \emph{orden}/\allowbreak\emph{caos},
+  \emph{creaci\'on}/\allowbreak\emph{destrucci\'on}) produces
+  strict increase on $\exac{j}$ but not on $\rey{r}$: the synthesis
+  generates new \emph{verifiable} structure.
+\item A duality whose interiors include Layer~4 primitives
+  (e.g., \emph{bien}/\emph{mal}, \emph{verdad}/\emph{mentira})
+  produces strict increase on $\rey{r}$ and $\imag{i}$: the
+  synthesis generates new crystallised truth \emph{and}
+  potentiality.
+\item Layer~6 dualities
+  (\emph{temporal\_obs}/\emph{eterno\_obs},
+  \emph{receptivo}/\emph{creador\_obs}) produce strict increase
+  on all four axes, including $\recu{k}$: recursive selection
+  is engaged only at the observer level.
+\end{itemize}
+
+This replaces the earlier informal mapping (blanket$\to r$,
+interiors$\to i$, etc.)\ with a precise, layer-determined
+characterisation: which axes increase depends on \emph{where} in
+the dependency structure the interiors diverge, not on a fixed
+assignment of synthesis components to axes.
+
+\subsection{Relation to Lawvere's categorical synthesis}
+
+The synthesis $a\oplus\bar{a}=\mathrm{lcm}(\Phi(a),\Phi(\bar{a}))$
+shares the pattern of Lawvere's formalisation of Hegelian
+\emph{Aufhebung}~\citep{lawvere1969,lawvere1996}: thesis and
+antithesis produce a synthesis that preserves both. The precise
+categorical status is as follows.
+
+The prime algebra, ordered by divisibility, is a distributive
+lattice and therefore a thin category. In this category,
+$\mathrm{lcm}$ is the \emph{coproduct} (categorical join) and
+$\gcd$ is the \emph{product} (categorical meet)---standard lattice
+theory. The coprime-interiors theorem (Theorem~\ref{thm:mb}) adds
+content beyond the coproduct: it guarantees that the join
+decomposes uniquely into a shared blanket and disjoint
+contributions from each pole.
+
+Lawvere's Aufhebung, however, operates on \emph{levels} of a
+cohesive topos via adjoint functors between connected-component
+functors at different scales~\citep{lawvere1996}. Our algebra has
+no topos structure, no connected-component functors, and no
+adjunction between levels. The parallel is therefore at the level
+of the \emph{dialectical pattern}---opposition $\to$ preservation
+$\to$ elevation---not at the level of the categorical
+formalism. We share Lawvere's conclusion (synthesis produces
+genuinely new structure) but reach it by a different route
+(unique factorisation in a distributive lattice, not adjoint
+functors in a topos).
+
+%======================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%======================================================================
+
+The imaginary dimensions of the quaternionic G-lattice are not
+decoration. Through the synthesis of opposites---formalised as
+$\mathrm{lcm}$ in the prime algebra---they generate compound
+concepts whose constructive complexity strictly exceeds that of
+either pole (Theorem~\ref{thm:complexity_increase}). The shared
+structure between any two concepts partitions uniquely into an
+algebraic Markov blanket and coprime interiors
+(Theorem~\ref{thm:mb}), resolving the observer-dependence critique.
+The gap operation---the raw material of synthesis---is irreducibly
+second-order (Proposition~\ref{prop:super}), and three algebraic
+tasks that synthesis enables are provably impossible under cosine
+similarity (Theorem~\ref{thm:impossible}).
+
+The Bilateral Synthesis Theorem of~\citet{p11} lifts these
+results from prime factor counts to quaternionic coordinates,
+characterising exactly which axes show strict increase for each
+duality pair (Section~\ref{sec:computation}). Of 14 tested
+dualities, the 11 non-degenerate pairs all confirm the theorem;
+the 3 degenerate pairs (one pole subsuming the other) correctly
+produce no increase. The prime algebra is shown to be irreducible
+for this purpose: no function on quaternionic coordinates alone
+can compute synthesis
+(Proposition~\ref{prop:irreducible})---the embedding captures
+geometric structure while the prime algebra retains combinatorial
+identity. The bridge between constructive complexity (C1--C5) and
+constructor-theoretic information (I1--I5) is made precise
+(Theorem~\ref{thm:bridge}): for media with unique decomposition
+the two frameworks are equivalent up to superinformation, which
+is the irreducible second-order condition.
+
+The companion paper~\citep{p11} showed that Boolean logic is what
+survives when all perspectives are averaged: the context-free
+special case. This paper shows what happens when perspectives
+\emph{interact}: opposites, operating through the imaginary
+dimensions, produce new truth. Boolean logic captures the panorama;
+duality synthesis captures the engine.
+
+%======================================================================
+% References
+%======================================================================
+\bibliographystyle{plainnat}
+\begin{thebibliography}{99}
+
+\bibitem[Bruineberg et~al.(2018)]{bruineberg2018}
+Bruineberg, J., Kiverstein, J. \& Rietveld, E. (2018).
+The anticipating brain is not a scientist: the free-energy principle
+from an ecological-enactive perspective.
+\textit{Synthese}, 195, 2417--2444.
+
+\bibitem[Deutsch(2013)]{deutsch2013}
+Deutsch, D. (2013).
+Constructor theory.
+\textit{Synthese}, 190, 4331--4359.
+
+\bibitem[Deutsch \& Marletto(2015)]{deutsch2015}
+Deutsch, D. \& Marletto, C. (2015).
+Constructor theory of information.
+\textit{Proceedings of the Royal Society A}, 471, 20140540.
+
+\bibitem[Lawvere(1969)]{lawvere1969}
+Lawvere, F.W. (1969).
+Adjointness in foundations.
+\textit{Dialectica}, 23(3--4), 281--296.
+
+\bibitem[Lawvere(1996)]{lawvere1996}
+Lawvere, F.W. (1996).
+Unity and identity of opposites in calculus and physics.
+\textit{Applied Categorical Structures}, 4, 167--174.
+
+\bibitem[Ornelas Brand(2026a)]{p1}
+Ornelas Brand, J.A. (2026).
+Triadic Neurosymbolic Engine: Prime Factorization as a Neurosymbolic
+Bridge: Projecting Continuous Embeddings into Discrete Algebraic Space
+for Deterministic Verification.
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19205804}{doi:10.5281/zenodo.19205804}
+
+\bibitem[Ornelas Brand(2026b)]{p4}
+Ornelas Brand, J.A. (2026).
+Toward a Layered Ontology of Semantic Duality: 14 Candidate Dualities
+Across 6 Algebraic Layers with Preliminary Domain and Neural Evidence
+(v1.0).
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19375166}{doi:10.5281/zenodo.19375166}
+
+\bibitem[Ornelas Brand(2026c)]{p11}
+Ornelas Brand, J.A. (2026).
+Quaternionic Logic: A G-Lattice Unifying Boolean and Fuzzy Frameworks (v0.1.0).
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19560986}{doi:10.5281/zenodo.19560986}
+
+\bibitem[Sharma et~al.(2023)]{sharma2023}
+Sharma, A. et~al. (2023).
+Assembly theory explains and quantifies selection and evolution.
+\textit{Nature}, 622, 321--328.
+
+\end{thebibliography}
+
+\end{document}

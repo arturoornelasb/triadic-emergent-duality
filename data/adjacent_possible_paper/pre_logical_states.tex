@@ -1,0 +1,1267 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{axiom}{Axiom}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newtcolorbox{domainbox}[1]{
+  colback=#1!5!white, colframe=#1!60!black,
+  fonttitle=\bfseries, title={},
+  enhanced
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!40!black,
+  urlcolor=blue!60!black,
+  pdftitle={Pre-Logical States and the Birth of Information: How Reasoning Operates Before Truth Exists},
+  pdfauthor={J. Arturo Ornelas Brand},
+  pdfsubject={Pre-logical states, adjacent possible, free energy principle},
+  pdfkeywords={pre-logical states, quaternionic logic, adjacent possible, free energy principle, information, collapse, Boolean lattice, substrate independence}
+}
+
+\title{Pre-Logical States and the Birth of Information:\\
+How Reasoning Operates Before Truth Exists}
+
+\author{J. Arturo Ornelas Brand\\
+\small Independent Researcher, Aguascalientes, M\'exico\\
+\small \texttt{arturoornelas62@gmail.com}}
+
+\date{April 13, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Classical logic---Boolean, fuzzy, modal---assumes that truth values exist
+before connectives operate on them. But many consequential decisions
+occur \emph{before truth exists}: a firefighter dispatched to an
+unidentified highway obstruction, a lawyer confronting a case with no
+precedent, a city planner choosing infrastructure whose consequences
+will unfold over decades. We formalize these situations as
+\textbf{pre-logical states} using the four axes of the quaternionic
+operator framework. A pre-logical state is a point in
+$V = [0,1] \times [-1,1]^3$ where the truth axis~$r$ is undefined---not
+indeterminate (a value exists but is unknown) but genuinely indefinite
+(no value has crystallized). We prove that the space of possibilities
+before collapse is a Boolean lattice with exact cardinality, expansion
+rate, and metric, satisfying all four defining properties of Kauffman's
+adjacent possible. We establish that the transition from pre-logical to
+logical states---\textbf{collapse}---is governed by a damped harmonic
+oscillator that is exactly the free energy minimization of Friston's
+active inference framework, with solenoidal coupling ($\sigma > 0$)
+necessary for oscillatory behavior. Two independent routes to
+oscillation---dynamical (solenoidal flow) and geometric (cross-coupled
+free energy)---are derived. We show that the duality pre-logical/\allowbreak logical
+generates \textbf{information} as its compound concept, connecting the
+quaternionic framework to Shannon entropy as a special case.
+Substrate independence is demonstrated across four domains: quantum
+measurement, legal reasoning, emergency response, and urban planning.
+\end{abstract}
+
+\noindent\textbf{Keywords:} pre-logical states; quaternionic logic;
+adjacent possible; free energy principle; information; collapse;
+Boolean lattice; substrate independence
+
+%======================================================================
+\section{Introduction}
+\label{sec:intro}
+%======================================================================
+
+Logic begins with truth values. Boolean logic assigns $\{0,1\}$; fuzzy
+logic assigns $[0,1]$; modal logic quantifies over possible worlds where
+truth is defined in each. Every formal system in the logical tradition
+takes truth as \emph{given} and asks what follows from it.
+
+But consider:
+\begin{itemize}[nosep]
+\item A firefighter receives a report: ``large object blocking Highway~45.''
+  The object could be a fallen tree, an overturned vehicle, a dead animal,
+  or a boulder. No truth value for ``the object is a tree'' exists---not
+  because the firefighter doesn't know, but because the situation has not
+  yet been observed. What equipment should the truck carry?
+\item A lawyer faces a case with no precedent in the jurisdiction.
+  The applicable legal rule is not merely unknown---it does not yet exist.
+  It will be \emph{created} by the judge's ruling. How should the lawyer
+  argue?
+\item A city planner must allocate budget between water infrastructure and
+  transit for the year 2040. The city's needs in 2040 are not uncertain in
+  the probabilistic sense---they depend on decisions not yet made, by people
+  not yet born, under conditions not yet imaginable.
+\end{itemize}
+
+In each case, the agent must reason \emph{before truth exists}. This is
+not probabilistic uncertainty (where a truth value exists but is hidden
+behind a distribution). It is a qualitatively different state: the truth
+axis is \textbf{indefinite}---no value has crystallized.
+
+The quaternionic operator framework \citep{p11} provides the formal
+apparatus to distinguish these states. The operator
+$O = \{0,1,+,i,j,k\}$ acts on a space $V = [0,1] \times [-1,1]^3$
+with four axes: truth~($r$), potentiality~($i$), verification~($j$),
+and selection~($k$). The G-lattice of connectives is defined on this
+space, with the commutation theorem establishing that connectives commute
+with the group action if and only if they depend solely on~$r$. The
+companion paper on duality synthesis \citep{p12} shows how opposing
+poles generate new truth through the synthesis operation
+$a \oplus \bar{a} = \mathrm{lcm}(\Phi(a), \Phi(\bar{a}))$.
+
+This paper addresses what happens \emph{before} the G-lattice can
+operate---in the regime where $r$ is not yet assigned. We formalize
+pre-logical states (\S\ref{sec:prelogical}), establish the Boolean
+lattice structure of the possibility space (\S\ref{sec:lattice}), define
+the operations valid before collapse (\S\ref{sec:operations}), derive
+collapse as an algebraic operation (\S\ref{sec:collapse}), prove the
+dynamical equivalence between collapse and free energy minimization
+(\S\ref{sec:wave-fep}), identify two independent routes to oscillatory
+collapse (\S\ref{sec:two-routes}), show that information emerges as
+the compound concept of the pre-logical/\allowbreak logical duality
+(\S\ref{sec:information}), and demonstrate substrate independence across
+four domains (\S\ref{sec:substrate}).
+
+\paragraph{Contributions.}
+\begin{enumerate}[nosep]
+\item Formal definition of pre-logical states (Definition~\ref{def:prelogical}).
+\item Proof that the possibility space is a Boolean lattice satisfying all
+  four properties of the adjacent possible
+  (Theorems~\ref{thm:lattice}--\ref{thm:nonprestate}).
+\item Four operations valid before truth exists
+  (Propositions~\ref{prop:expansion-op}--\ref{prop:selection-op}).
+\item Collapse as an algebraic map $\mathbf{j}: \mathrm{Im}(V) \to V$
+  (Definition~\ref{def:collapse}, Theorem~\ref{thm:collapse-properties}).
+\item Exact equivalence between the damped wave and FEP dynamics
+  (Theorem~\ref{thm:wave-fep-equiv}).
+\item Necessity of solenoidal coupling for oscillation
+  (Remark~\ref{rem:solenoidal}).
+\item Two independent routes to oscillation
+  (Proposition~\ref{prop:geometric}).
+\item Information as compound concept of the pre-logical/\allowbreak logical duality
+  (Proposition~\ref{thm:information}).
+\item Substrate independence across four domains (Section~\ref{sec:substrate}).
+\end{enumerate}
+
+%======================================================================
+\section{Preliminaries}
+\label{sec:prelim}
+%======================================================================
+
+We recall the necessary elements from the quaternionic operator
+framework \citep{p11} and the prime algebra \citep{p1}.
+
+\paragraph{The quaternionic operator.}
+The operator $O = \{0, 1, +, i, j, k\}$ acts on
+$V = [0,1] \times [-1,1]^3$, where each point
+$v = (r, i, j, k) \in V$ represents:
+\begin{itemize}[nosep]
+\item $r \in [0,1]$: truth (real axis),
+\item $i \in [-1,1]$: potentiality (imaginary axis),
+\item $j \in [-1,1]$: verification (empirical axis),
+\item $k \in [-1,1]$: recursive selection (decision axis).
+\end{itemize}
+The four axes satisfy the quaternionic relation $ij = k$:
+potentiality composed with verification yields selection.
+
+\paragraph{The G-lattice.}
+The connectives $\{\wedge, \vee, \neg, \to\}$ form a residuated lattice
+on~$V$ with the $\mathrm{SU}(2)$ group action
+$\alpha_q(v) = qvq^{-1}$ for unit quaternions $q \in S^3$. The
+\emph{commutation theorem} \citep{p11} states that a connective $c$
+satisfies $c \circ \alpha_q = \alpha_q \circ c$ for all $q$ if and only
+if $c$ depends only on~$r$. Connectives that touch the imaginary axes
+are context-sensitive.
+
+\paragraph{Prime algebra.}
+Each concept $C$ is encoded as a product of primes
+$\Phi(C) = \prod p_i^{a_i}$ drawn from a set of $k$ irreducible
+attributes \citep{p1}. The prime factor count
+$\omega(\Phi(C))$ measures constructive complexity. The operations
+$\gcd$ (shared structure), $\mathrm{lcm}$ (combined structure), and
+$\bmod$ (containment test) are the algebraic primitives.
+
+\paragraph{Synthesis.}
+The duality synthesis operation \citep{p12} combines opposing poles:
+$a \oplus \bar{a} = \mathrm{lcm}(\Phi(a), \Phi(\bar{a}))$, producing
+a compound concept whose complexity strictly exceeds that of either pole
+when both contribute at least one distinguishing prime.
+
+\paragraph{Free energy principle.}
+Under the Laplace approximation with generalized coordinates
+$\tilde{\mu} = (\mu, \mu')$, the Friston dynamics
+\citep{friston2010,buckley2017} take the form:
+\begin{equation}
+\label{eq:friston}
+\dot{\tilde{\mu}} = D\tilde{\mu}
+  - (\Gamma + Q)\,\nabla_{\tilde{\mu}} F
+\end{equation}
+where $D$ is the shift operator, $\Gamma$ the dissipation matrix, $Q$
+the solenoidal (antisymmetric) matrix, and $F$ the variational free
+energy.
+
+%======================================================================
+\section{The Pre-Logical State}
+\label{sec:prelogical}
+%======================================================================
+
+\begin{definition}[Pre-logical state]
+\label{def:prelogical}
+A \textbf{pre-logical state} is a point in the extended space
+$\hat{V} = \{?\} \cup [0,1] \times [-1,1]^3$ of the form:
+\begin{equation}
+v_{\mathrm{pre}} = (?, \; i, \; j, \; k)
+  \quad\text{with } i > 0 \text{ and } j < 1
+\end{equation}
+where $? \notin [0,1]$ denotes that the truth axis is \textbf{undefined}
+---not a missing value (as in incomplete information) but a genuinely
+non-existent value (nothing has crystallized to assign truth to).
+\end{definition}
+
+The conditions $i > 0$ and $j < 1$ are not arbitrary:
+\begin{itemize}[nosep]
+\item $i > 0$: at least some potentiality remains open. If $i = 0$,
+  there are no possibilities to explore---the state is already determined
+  (the dogma pathology of \citealt{p11}).
+\item $j < 1$: verification is incomplete. If $j = 1$, the state has
+  been fully verified and truth is assigned---we are already in the
+  logical regime.
+\end{itemize}
+
+\begin{remark}[Indefinite vs.\ indeterminate]
+\label{rem:indefinite}
+The distinction between \emph{indefinite} and \emph{indeterminate} is
+critical. An indeterminate truth value exists but is epistemically
+inaccessible (``the coin has landed but I haven't looked'').
+Probability theory handles indeterminacy. An indefinite truth value
+does not exist (``the coin is still spinning''). No probability
+distribution can be assigned because the sample space itself is open.
+The pre-logical state formalizes indefiniteness, not indeterminacy.
+\end{remark}
+
+\begin{remark}[Relation to the four pathologies]
+\label{rem:pathologies}
+The pathologies identified in \citet{p11}---dogma ($i = 0$), delirium
+($r = 0$), pseudoscience ($j = 0$), and stagnation ($k = 0$)---are
+collapses of individual axes within the logical regime. The pre-logical
+state is qualitatively different: it is not a collapse of $r$ to zero
+(that would be delirium, where truth is denied) but the
+\emph{absence} of $r$ altogether. The pre-logical state precedes the
+regime where pathologies are defined.
+\end{remark}
+
+%======================================================================
+\section{The Boolean Lattice of Possibilities}
+\label{sec:lattice}
+%======================================================================
+
+Before truth crystallizes, the agent navigates a space of
+\emph{possibilities}---potential truths that might emerge upon collapse.
+We show that this space has the structure of a Boolean lattice.
+
+\begin{definition}[Prime product space]
+\label{def:pps}
+Let $P = \{p_1, p_2, \ldots, p_k\}$ be a set of $k$ distinct primes
+representing irreducible attributes. The \textbf{prime product space} is:
+\begin{equation}
+\mathcal{L}(P) = \left\{ \prod_{i \in S} p_i
+  : S \subseteq \{1, 2, \ldots, k\} \right\}
+\end{equation}
+with partial order given by divisibility: $A \leq B \iff A \mid B$.
+\end{definition}
+
+\begin{theorem}[Boolean lattice]
+\label{thm:lattice}
+$(\mathcal{L}(P), \mid)$ is a Boolean lattice isomorphic to
+$(2^P, \subseteq)$:
+\begin{itemize}[nosep]
+\item \emph{Isomorphism}: $\varphi(S) = \prod_{i \in S} p_i$ is a
+  bijection (by the Fundamental Theorem of Arithmetic).
+\item \emph{Meet}: $\gcd(A, B) = \varphi(\varphi^{-1}(A) \cap \varphi^{-1}(B))$.
+\item \emph{Join}: $\mathrm{lcm}(A, B) = \varphi(\varphi^{-1}(A) \cup \varphi^{-1}(B))$.
+\item \emph{Complement}: $\overline{A} = (\prod P) / A$.
+\item \emph{Bottom}: $1$ (empty product). \emph{Top}: $\prod P$ (all primes).
+\item \emph{Atoms}: individual primes $p_1, \ldots, p_k$.
+\item \emph{Rank function}: $r(A) = \omega(A)$ (number of distinct prime
+  factors).
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+The map $\varphi: 2^P \to \mathcal{L}(P)$ defined by
+$\varphi(S) = \prod_{i \in S} p_i$ is a bijection by the Fundamental
+Theorem of Arithmetic. The lattice operations follow from
+$\min(a_i, c_i)$ and $\max(a_i, c_i)$ on exponents, which correspond to
+intersection and union of the index sets when exponents are binary.
+\end{proof}
+
+\begin{definition}[Adjacent possible in the lattice]
+\label{def:ap}
+Given a set of known concepts $K \subseteq \mathcal{L}(P)$, the
+\textbf{adjacent possible} is:
+\begin{equation}
+AP(K) = \{ x \in \mathcal{L}(P) \setminus K :
+  \exists\, y \in K \text{ s.t.\ } d_H(x, y) = 1 \}
+\end{equation}
+where $d_H$ is the Hamming distance between binary signatures (number of
+primes by which $x$ and $y$ differ).
+\end{definition}
+
+We prove that this lattice satisfies all four defining properties of
+Kauffman's adjacent possible \citep{kauffman2000,loreto2017}.
+
+\subsection{Property 1: Expansion}
+
+\begin{theorem}[Exact doubling]
+\label{thm:expansion}
+Adding one new prime $p_{k+1}$ to the repertoire exactly doubles the space:
+\begin{equation}
+|\mathcal{L}(P \cup \{p_{k+1}\})| = 2 \cdot |\mathcal{L}(P)|
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$|\mathcal{L}(P)| = |2^P| = 2^k$. Adding $p_{k+1}$ gives
+$|\mathcal{L}(P \cup \{p_{k+1}\})| = 2^{k+1} = 2 \cdot 2^k$. The new
+elements are exactly $\{A \cdot p_{k+1} : A \in \mathcal{L}(P)\}$---every
+existing concept paired with the new prime. The old elements remain.
+\end{proof}
+
+\begin{corollary}
+\label{cor:exponential}
+After discovering $n$ new primes sequentially, the space grows by factor
+$2^n$. Growth is exponential in the number of discoveries.
+\end{corollary}
+
+\subsection{Property 2: Path dependence}
+
+\begin{theorem}[Exploration depends on history]
+\label{thm:path}
+The set of explored concepts at time~$t$ depends on the order in which
+concepts are explored, not just on which primes are available.
+\end{theorem}
+
+\begin{proof}
+Let $P = \{2, 3, 5\}$ and suppose an agent explores one adjacent concept
+per step from $K_0 = \{1\}$.
+
+\emph{Path~$\alpha$}: choose $p = 2$ first. At $t = 1$:
+$K = \{1, 2\}$, $AP = \{3, 5, 6, 10\}$. Choose $6 = 2 \cdot 3$:
+$K_\alpha = \{1, 2, 6\}$.
+
+\emph{Path~$\beta$}: choose $p = 5$ first. At $t = 1$:
+$K = \{1, 5\}$, $AP = \{2, 3, 10, 15\}$. Choose $15 = 3 \cdot 5$:
+$K_\beta = \{1, 5, 15\}$.
+
+Both paths have the same $P$ and the same total space
+$\mathcal{L}(P) = \{1, 2, 3, 5, 6, 10, 15, 30\}$. But at $t = 2$,
+$K_\alpha \cap K_\beta = \{1\}$: the explored sets are disjoint except
+for the bottom element. Their adjacent possibles also differ.
+\end{proof}
+
+\subsection{Property 3: Faster-than-exploration}
+
+\begin{theorem}[Vanishing exploration ratio]
+\label{thm:faster}
+For any agent exploring at rate~$r$ (concepts per unit time) with primes
+discovered at rate~$q > 0$ (primes per unit time), the exploration ratio
+$\rho(t) \to 0$ as $t \to \infty$.
+\end{theorem}
+
+\begin{proof}
+At time~$t$:
+\begin{equation}
+\rho(t) = \frac{|K(t)|}{|\mathcal{L}(t)|}
+  \leq \frac{r \cdot t}{2^{k_0 + qt}}
+\end{equation}
+Since $rt$ grows linearly and $2^{k_0 + qt}$ grows exponentially,
+$\rho(t) \to 0$ by L'H\^opital's rule.
+\end{proof}
+
+\subsection{Property 4: Non-prestatability}
+
+\begin{theorem}[Future concepts are unknowable]
+\label{thm:nonprestate}
+Given known primes~$P$ and known concepts $K \subseteq \mathcal{L}(P)$,
+concepts involving an undiscovered prime $p_{k+2}$ cannot be enumerated
+at the time $p_{k+1}$ is discovered.
+\end{theorem}
+
+\begin{proof}
+The concept $p_{k+1} \cdot p_{k+2} \in \mathcal{L}(P \cup \{p_{k+1}, p_{k+2}\})$
+but $p_{k+1} \cdot p_{k+2} \notin \mathcal{L}(P \cup \{p_{k+1}\})$
+because $p_{k+2} \notin P \cup \{p_{k+1}\}$. The identity of $p_{k+2}$
+is unknown at $p_{k+1}$'s discovery. Therefore the full future space
+cannot be prestated from the current state.
+\end{proof}
+
+\begin{remark}[Conservative non-prestatability]
+\label{rem:conservative}
+In Kauffman's chemical setting, non-prestatability is stronger: even the
+\emph{types of reactions} possible with new molecules may be unknown.
+In the prime lattice, the operation is always multiplication---only the
+identity of future primes is unknown. This makes the prime version a
+conservative model: the weakest form that still satisfies the property.
+This is an advantage for formalization, as it isolates non-prestatability
+from operational novelty.
+\end{remark}
+
+\begin{remark}[Empirical support]
+\label{rem:zipf}
+Random walks on the Boolean lattice of the first 20 primes
+($2^{20}$ nodes), using additive reinforcement with novelty
+parameter~$\nu = 5.0$, produce a near-exact Zipf law:
+$\alpha_Z = 0.995$, $R^2 = 0.966$ (500 independent walks of 10,000
+steps each; data from the empirical validation of the prime
+algebra~\citep{p4}).
+\end{remark}
+
+%======================================================================
+\section{Operations Before Collapse}
+\label{sec:operations}
+%======================================================================
+
+In a pre-logical state, the standard connectives ($\wedge, \vee, \neg,
+\to$) are undefined because they require truth values. But four
+operations remain well-defined:
+
+\begin{proposition}[Expansion]
+\label{prop:expansion-op}
+The operation $\mathrm{expand}: \mathcal{L}(P) \to \mathcal{L}(P \cup \{p_{k+1}\})$
+that adds a new prime to the repertoire is well-defined in a pre-logical
+state. It increases $i$ (more possibilities open), does not require $r$,
+and doubles the cardinality of the possibility space
+(Theorem~\ref{thm:expansion}).
+\end{proposition}
+
+\begin{proof}
+The expansion operation acts on the lattice structure, not on truth
+values. It extends the prime set $P$ to $P' = P \cup \{p_{k+1}\}$,
+creating $|\mathcal{L}(P)|$ new elements. No truth assignment is
+consulted.
+\end{proof}
+
+\begin{proposition}[Partial evaluation]
+\label{prop:partial-eval}
+The operation $j_\epsilon: \hat{V} \to \hat{V}$ that increments the
+verification axis by $\epsilon > 0$ without resolving $r$ is
+well-defined. It represents gathering evidence that narrows the
+possibility space without collapsing it:
+\begin{equation}
+j_\epsilon(?, i, j, k) = (?, \; i - \delta, \; j + \epsilon, \; k)
+\end{equation}
+where $\delta \geq 0$ is the reduction in potentiality induced by the
+evidence (some possibilities are eliminated).
+\end{proposition}
+
+\begin{proof}
+The operation modifies only the $i$ and $j$ coordinates, which are
+defined in pre-logical states. The constraint $i > 0$ is maintained as
+long as $\delta < i$; the constraint $j < 1$ is maintained as long as
+$\epsilon < 1 - j$. Neither condition references~$r$.
+\end{proof}
+
+\begin{proposition}[Minimax preparation]
+\label{prop:minimax}
+Given candidate collapse outcomes
+$T = \{v_1, \ldots, v_m\} \subset V$, the \textbf{minimax preparation}
+is the point $v^* \in V$ that minimizes the maximum distance to all
+possible outcomes:
+\begin{equation}
+v^* = \arg\min_{v \in V} \max_{v_\ell \in T}
+  \, \|v - v_\ell\|
+\end{equation}
+where $\|\cdot\|$ is the Euclidean norm on
+$V = [0,1]\times[-1,1]^3 \subset \mathbb{R}^4$.
+This operation is well-defined in a pre-logical state because it
+operates on the geometry of~$V$, not on a specific truth value.
+\end{proposition}
+
+\begin{proof}
+The Euclidean distance is continuous on $V$, and $V$ is compact (closed
+and bounded in $\mathbb{R}^4$). The function
+$v \mapsto \max_\ell \|v - v_\ell\|$ is continuous as the maximum of
+finitely many continuous functions. Existence of $v^*$ follows from the
+extreme value theorem. The computation requires only the candidates $T$
+(which the agent can enumerate from the possibility lattice), not the
+actual truth value.
+\end{proof}
+
+\begin{proposition}[Selection]
+\label{prop:selection-op}
+The operation $k_\delta: \hat{V} \to \hat{V}$ that commits to a
+direction reduces the effective possibility space by pruning branches of
+the lattice:
+\begin{equation}
+k_\delta(?, i, j, k) = (?, \; i - \delta', \; j, \; k + \delta)
+\end{equation}
+where $\delta' \geq 0$ is the reduction in potentiality caused by the
+commitment. Selection differs from partial evaluation: it reduces
+possibilities by \emph{choice} (closing doors), not by \emph{evidence}
+(ruling out options).
+\end{proposition}
+
+\begin{proof}
+The quaternionic relation $ij = k$ ensures that selection is defined
+whenever both potentiality ($i > 0$) and some verification ($j > 0$ or
+$j = 0$ with prior evidence) are present. Axiom~K3 of the quaternionic
+framework \citep{p11} states that $i > 0 \wedge j > 0$ enables but does
+not determine $k$: selection requires an agent's commitment beyond what
+the evidence provides.
+\end{proof}
+
+\begin{remark}[Ordering of operations]
+The four operations have a natural partial order. Expansion ($i$ increases)
+typically precedes partial evaluation ($j$ increases, $i$ decreases), which
+typically precedes selection ($k$ increases, $i$ decreases). But this
+ordering is not strict: an agent may select ($k$) before fully evaluating
+($j$), accepting higher risk for faster action. The firefighter who brings
+all equipment is performing minimax; the one who sends a drone first is
+performing partial evaluation; the one who picks equipment based on
+experience is selecting.
+\end{remark}
+
+\begin{remark}[Operations as structural types]
+\label{rem:operations-types}
+The four operations specify what \emph{type} of action is available in a
+pre-logical state: expanding possibilities, gathering evidence, preparing
+for all outcomes, or committing. The parameters $\delta$ (potentiality
+reduction from evidence) and $\delta'$ (potentiality reduction from
+commitment) are domain-specific: how much one drone observation narrows
+the firefighter's possibility space is an empirical question, not an
+algebraic one. What is universal is the structure: that these four
+operations are well-defined before truth exists, that they preserve the
+pre-logical constraints ($i > 0$, $j < 1$), and that they move the
+state toward collapse.
+\end{remark}
+
+%======================================================================
+\section{Collapse as Algebraic Operation}
+\label{sec:collapse}
+%======================================================================
+
+\begin{definition}[Collapse]
+\label{def:collapse}
+The \textbf{collapse operator} $\mathbf{j}: \hat{V} \to V$ is the map
+that assigns a truth value to a pre-logical state:
+\begin{equation}
+\mathbf{j}(?, i, j, k) = (r, \; i', \; 1, \; k')
+\end{equation}
+where $r \in [0,1]$ is the crystallized truth, $i' \leq i$ (potentiality
+is reduced), $j = 1$ (verification is complete), and $k' \leq k$
+(selection narrows to the chosen path). We write $\hat{V}_{\mathrm{pre}}$
+for the subset of $\hat{V}$ with $r = {?}$.
+\end{definition}
+
+The collapse is not instantaneous in general. We distinguish three stages:
+
+\begin{definition}[Stages of collapse]
+\label{def:stages}
+\leavevmode
+\begin{enumerate}[nosep]
+\item \textbf{Pre-collapse}: $(?, \; i, \; j_0, \; k_0)$ with $j_0 \approx 0$.
+  Possibilities are open, no evidence gathered.
+\item \textbf{Partial collapse}: $(\tilde{r}, \; i', \; j', \; k')$ with
+  $0 < j' < 1$. Some evidence has been gathered; truth is partially
+  crystallized ($\tilde{r}$ is a provisional estimate). The state has
+  entered $V$ but verification is incomplete.
+\item \textbf{Total collapse}: $(r, \; 0, \; 1, \; 0)$. Truth is fully
+  crystallized, no potentiality remains, verification is complete,
+  selection is resolved. The state is fully logical.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Properties of collapse]
+\label{thm:collapse-properties}
+The collapse operator $\mathbf{j}$ satisfies:
+\begin{enumerate}[nosep]
+\item \textbf{Irreversibility}: Once $r$ is assigned, it cannot be
+  retracted to~$?$. The map $\mathbf{j}$ has no left inverse on its image.
+\item \textbf{Monotonicity of verification}: Along any collapse trajectory,
+  $j(t)$ is non-decreasing.
+\item \textbf{Reduction of potentiality}: Along any collapse trajectory,
+  $|i(t)|$ is non-increasing.
+\item \textbf{Idempotence on logical states}: If $v \in V$ (already
+  logical), then $\mathbf{j}(v) = v$. Collapse of a collapsed state is
+  the identity.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1)~By construction: $? \notin [0,1]$, so no element of $V$ maps back
+to~$\hat{V}_{\mathrm{pre}}$.
+(2)~Verification accumulates evidence; the constraint $j' \leq j''$ for
+$t' < t''$ follows from the fact that each partial evaluation adds
+$\epsilon > 0$ (Proposition~\ref{prop:partial-eval}).
+(3)~Each partial evaluation reduces potentiality by $\delta \geq 0$, and
+each selection reduces it by $\delta' \geq 0$; the total is non-increasing.
+(4)~If $r \in [0,1]$, the state is already in $V$, and the collapse
+operator acts as the identity on its codomain by definition.
+\end{proof}
+
+\begin{remark}[Collapse is parametrised, not predicted]
+\label{rem:collapse-param}
+The collapse operator $\mathbf{j}$ does not predict \emph{which}
+truth value $r$ crystallises: the attractor $\mu_0$ in
+Theorem~\ref{thm:wave-fep-equiv} is a parameter determined by the
+domain---what the highway object is, what the judge rules, what the
+city builds. The framework characterises the universal
+\emph{dynamics} of collapse (damped oscillation toward $\mu_0$)
+and the universal \emph{structure} of the pre-logical regime
+(Boolean lattice, four operations), while leaving the
+domain-specific \emph{content} (which particular $r$ emerges)
+to the domain. This separation is deliberate: the substrate
+independence of Section~\ref{sec:substrate} depends on the
+process being invariant while the outcome varies.
+\end{remark}
+
+%======================================================================
+\section{The Damped Wave as Free Energy Minimization}
+\label{sec:wave-fep}
+%======================================================================
+
+The transition from pre-logical to logical is not merely algebraic---it
+has dynamics. We prove that the collapse trajectory is governed by a
+damped harmonic oscillator that emerges exactly from the free energy
+principle.
+
+\begin{theorem}[DHO = FEP]
+\label{thm:wave-fep-equiv}
+Under the Laplace approximation with generalized coordinates
+$\tilde{\mu} = (\mu, \mu')$ and quadratic free energy
+\begin{equation}
+F(\mu, \mu') = \tfrac{1}{2}\kappa(\mu - \mu_0)^2
+  + \tfrac{1}{2}\rho(\mu')^2
+\end{equation}
+the Friston dynamics~\eqref{eq:friston} with dissipation
+$\Gamma = \operatorname{diag}(0, \gamma)$ and solenoidal coupling
+$Q = \bigl(\begin{smallmatrix} 0 & -\sigma \\ \sigma & \phantom{-}0
+\end{smallmatrix}\bigr)$ yield:
+\begin{equation}
+\label{eq:dho}
+\ddot{\mu} + \gamma\rho\,\dot{\mu}
+  + \sigma\kappa(1 + \sigma\rho)\,(\mu - \mu_0) = 0
+\end{equation}
+whose underdamped solution
+($\sigma\kappa(1+\sigma\rho) > (\gamma\rho)^2/4$) is:
+\begin{equation}
+\label{eq:solution}
+\mu(t) = A e^{-dt}\sin(\omega_d\, t + \phi) + \mu_0
+\end{equation}
+with $d = \gamma\rho/2$ and
+$\omega_d = \sqrt{\sigma\kappa(1+\sigma\rho) - (\gamma\rho)^2/4}$.
+\end{theorem}
+
+\begin{proof}
+The free energy gradient is
+$\nabla_{\tilde{\mu}} F = \bigl(\kappa(\mu-\mu_0),\;\rho\mu'\bigr)^\top$.
+The shift operator and flow matrices are:
+\[
+D = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \qquad
+\Gamma + Q = \begin{pmatrix} 0 & -\sigma \\ \sigma & \gamma \end{pmatrix}
+\]
+
+Applying Eq.~\eqref{eq:friston}:
+\begin{align}
+\dot{\mu}  &= \mu' - (-\sigma\rho\mu')
+            = (1 + \sigma\rho)\,\mu'
+            \label{eq:flow1} \\
+\dot{\mu'} &= -\sigma\kappa(\mu - \mu_0) - \gamma\rho\,\mu'
+            \label{eq:flow2}
+\end{align}
+
+From \eqref{eq:flow1}: $\mu' = \dot{\mu}/(1+\sigma\rho)$.
+Differentiating: $\dot{\mu'} = \ddot{\mu}/(1+\sigma\rho)$.
+Substituting into \eqref{eq:flow2} and multiplying by $(1+\sigma\rho)$:
+\begin{equation}
+\ddot{\mu} + \gamma\rho\,\dot{\mu}
+  + \sigma\kappa(1+\sigma\rho)\,(\mu - \mu_0) = 0
+\end{equation}
+
+This is a damped harmonic oscillator with effective damping
+$b_{\mathrm{eff}} = \gamma\rho$ and effective spring constant
+$k_{\mathrm{eff}} = \sigma\kappa(1+\sigma\rho)$. The characteristic
+equation $\lambda^2 + \gamma\rho\,\lambda + \sigma\kappa(1+\sigma\rho) = 0$
+has discriminant:
+\begin{equation}
+\Delta = (\gamma\rho)^2 - 4\sigma\kappa(1+\sigma\rho)
+\end{equation}
+When $\Delta < 0$, the roots are complex conjugates
+$\lambda = -d \pm i\omega_d$, yielding the underdamped
+solution~\eqref{eq:solution}.
+\end{proof}
+
+\begin{remark}[Necessity of solenoidal coupling]
+\label{rem:solenoidal}
+With $Q = 0$ (purely dissipative dynamics) and $\Gamma = I$, the same
+quadratic~$F$ yields
+$\ddot{\mu} + (\kappa + \rho)\dot{\mu} + \rho\kappa(\mu - \mu_0) = 0$,
+whose discriminant $(\kappa-\rho)^2 \geq 0$ is always non-negative.
+This system is \emph{always} overdamped---it can never oscillate.
+Solenoidal coupling ($\sigma > 0$) is therefore necessary for the
+underdamped regime within the FEP framework.
+Physically: the solenoidal component represents circulation in phase
+space---the system does not simply descend the free energy gradient, it
+\emph{spirals} around the attractor while descending.
+\end{remark}
+
+\begin{remark}[Interpretation for collapse dynamics]
+\label{rem:collapse-dynamics}
+In the pre-logical context, the FEP parameters receive a natural
+interpretation:
+\begin{itemize}[nosep]
+\item $\mu$: the agent's current estimate (partial collapse state).
+\item $\mu_0$: the attractor---the truth that will eventually crystallize.
+\item $A = D_{KL}(q_0 \| p)$: initial divergence between belief and reality.
+\item $d = \gamma\rho/2$: rate of surprise reduction.
+\item $\omega_d$: frequency of oscillation between over- and under-estimates.
+\item $\sigma$: strength of the solenoidal coupling that enables oscillation.
+\end{itemize}
+Collapse is not a sudden jump but a \emph{damped oscillation}:
+the agent overshoots, corrects, overshoots less, corrects again, spiraling
+toward the truth.
+\end{remark}
+
+\subsection{Parameter mapping}
+
+\begin{table}[H]
+\centering
+\caption{Parameter mapping between the wave model and the FEP.
+Each row is a definitional identification under the derivation, not a
+loose analogy.}
+\label{tab:params}
+\begin{tabularx}{\textwidth}{l Y Y}
+\toprule
+\textbf{Wave} & \textbf{FEP equivalent} & \textbf{Interpretation} \\
+\midrule
+$A$ (amplitude) & $D_{KL}(q_0 \| p)$ & Initial divergence between
+  belief and reality \\
+$d$ (damping) & $\gamma\rho/2$ & Dissipative precision on velocity;
+  rate of surprise reduction \\
+$f$ (frequency) & $\frac{1}{2\pi}\sqrt{\sigma\kappa(1{+}\sigma\rho)
+  - (\gamma\rho)^2/4}$ & Solenoidal--curvature interaction \\
+$\phi$ (phase) & Prior mean offset & Initial belief about the state \\
+$\mu_0$ (zero line) & Attractor & The state the system expects to
+  occupy \\
+$Ae^{-dt}$ (envelope) & $F(t) \to F_{\min}$ & Free energy approaching
+  its minimum \\
+$\sigma$ (new) & Solenoidal coupling & Circulation in phase space;
+  enables oscillation \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Conditions for oscillation}
+
+The system oscillates when:
+\begin{equation}
+\sigma\kappa(1 + \sigma\rho) > \frac{(\gamma\rho)^2}{4}
+\end{equation}
+
+\begin{corollary}[Three dynamical regimes]
+\label{cor:regimes}
+\leavevmode
+\begin{enumerate}[nosep]
+\item \textbf{Underdamped}
+  ($\sigma\kappa(1{+}\sigma\rho) > (\gamma\rho)^2/4$):
+  Oscillation. The system spirals around the attractor with decaying
+  amplitude.
+\item \textbf{Critically damped}
+  ($\sigma\kappa(1{+}\sigma\rho) = (\gamma\rho)^2/4$):
+  Fastest convergence without oscillation.
+\item \textbf{Overdamped}
+  ($\sigma\kappa(1{+}\sigma\rho) < (\gamma\rho)^2/4$):
+  Monotone exponential decay. No oscillation.
+\end{enumerate}
+\end{corollary}
+
+%======================================================================
+\section{Two Routes to Oscillation}
+\label{sec:two-routes}
+%======================================================================
+
+\begin{proposition}[Geometric route to oscillation]
+\label{prop:geometric}
+Under the standard Friston dynamics ($\Gamma = I$, $Q = 0$) with a
+\emph{non-diagonal} free energy that includes a cross-term~$\eta$:
+\begin{equation}
+\label{eq:F-eta}
+F_\eta(\mu, \mu') = \tfrac{1}{2}\kappa(\mu - \mu_0)^2
+  + \tfrac{1}{2}\rho(\mu')^2 + \eta(\mu - \mu_0)\mu'
+\end{equation}
+the dynamics yield:
+\begin{equation}
+\label{eq:dho-eta}
+\ddot{\mu} + (\kappa + \rho)\,\dot{\mu}
+  + [\rho\kappa + \eta(1-\eta)]\,(\mu - \mu_0) = 0
+\end{equation}
+with discriminant
+$\Delta = (\kappa - \rho)^2 - 4\eta(1-\eta)$.
+For $0 < \eta < 1$ and $(\kappa - \rho)^2 < 4\eta(1-\eta)$, the system
+is underdamped---oscillation arises \emph{without} solenoidal coupling.
+\end{proposition}
+
+\begin{proof}
+The gradient is
+$\nabla F_\eta = \bigl(\kappa(\mu{-}\mu_0) + \eta\mu',\;
+\rho\mu' + \eta(\mu{-}\mu_0)\bigr)^\top$.
+Standard Friston dynamics
+($\dot{\tilde{\mu}} = D\tilde{\mu} - \nabla F_\eta$):
+\begin{align}
+\dot{\mu}  &= (1-\eta)\,\mu' - \kappa(\mu - \mu_0) \\
+\dot{\mu'} &= -\rho\,\mu' - \eta(\mu - \mu_0)
+\end{align}
+From the first equation:
+$\mu' = \bigl(\dot{\mu} + \kappa(\mu{-}\mu_0)\bigr)/(1-\eta)$.
+Differentiating and substituting:
+\[
+\ddot{\mu} + (\kappa + \rho)\,\dot{\mu}
+  + [\rho\kappa + \eta(1{-}\eta)]\,(\mu - \mu_0) = 0
+\]
+The discriminant is
+$(\kappa{+}\rho)^2 - 4[\rho\kappa + \eta(1{-}\eta)]
+= (\kappa{-}\rho)^2 - 4\eta(1{-}\eta)$, which is negative when
+$(\kappa{-}\rho)^2 < 4\eta(1{-}\eta)$.
+\end{proof}
+
+\begin{remark}[Two independent routes]
+\label{rem:two-routes}
+Theorem~\ref{thm:wave-fep-equiv} and Proposition~\ref{prop:geometric}
+provide two independent routes to oscillation within the FEP:
+\begin{enumerate}[nosep]
+\item \textbf{Dynamical route}: diagonal~$F$ with solenoidal coupling
+  ($\sigma > 0$). The system spirals due to non-dissipative flow.
+\item \textbf{Geometric route}: non-diagonal~$F$ with standard dynamics
+  ($Q = 0$). The free energy landscape itself drives oscillation.
+\end{enumerate}
+The geometric route is physically suggestive: the cross-term~$\eta$
+represents coupling between a system's state and its rate of change
+within the free energy functional. In the pre-logical context, this
+means that \emph{what the agent currently believes} and \emph{how fast
+that belief is changing} are coupled within the free energy landscape
+---the shape of uncertainty itself can drive oscillatory collapse.
+\end{remark}
+
+%======================================================================
+\section{Information as Compound Concept}
+\label{sec:information}
+%======================================================================
+
+The duality synthesis framework \citep{p12} shows that opposing poles
+generate a compound concept through
+$a \oplus \bar{a} = \mathrm{lcm}(\Phi(a), \Phi(\bar{a}))$. We apply
+this to the fundamental duality of this paper.
+
+\begin{proposition}[Information as compound concept]
+\label{thm:information}
+The duality (pre-logical, logical) generates \textbf{information} as its
+compound concept. Specifically:
+\begin{enumerate}[nosep]
+\item The two poles are genuinely opposing: the pre-logical state
+  $(?, i, j_0, k_0)$ has maximal potentiality and no truth; the logical
+  state $(r, 0, 1, 0)$ has crystallised truth and no potentiality.
+  Neither is reducible to the other.
+\item Information requires \emph{both} poles: it is neither pure
+  possibility (that is ignorance) nor pure truth (that is fact), but
+  the \emph{reduction} of possibility \emph{toward} truth.
+\item The verification axis~$j$ measures the degree of collapse between
+  the poles. The selection axis~$k$ encodes the agent's commitment.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+This is a structural argument, not a computation in the prime algebra:
+the pre-logical/\allowbreak logical duality is a \emph{meta}-duality (a duality of
+the framework itself, not of concepts within the 72-primitive ontology),
+so the prime signatures $\Phi(\text{pre-logical})$ and
+$\Phi(\text{logical})$ are not defined. What we verify is the
+\emph{pattern} of synthesis from~\citet{p12}.
+
+\textbf{Opposition.}
+The pre-logical state has $r = {?}$ (undefined), $i > 0$ (open
+possibilities), $j < 1$ (incomplete verification). The logical state has
+$r \in [0,1]$ (crystallised), $i = 0$ (no remaining possibilities),
+$j = 1$ (complete verification). On every axis where one pole is maximal,
+the other is minimal. This is the strongest form of opposition in the
+quaternionic framework.
+
+\textbf{Irreducibility.}
+Pure possibility ($r$ absent) cannot derive truth; pure truth ($i = 0$)
+cannot recover the space of alternatives that was collapsed.
+The concept ``information'' requires reference to both: information
+is the measure of how much possibility was eliminated to reach truth.
+
+\textbf{Compatibility with Shannon.}
+Shannon entropy $H = -\sum p_i \log p_i$~\citep{shannon1948} measures
+information within the $r$~axis: probabilities are truth values, and
+$I = H_{\text{before}} - H_{\text{after}}$ is the reduction from
+uncertainty to certainty. This is the restriction of the pre-logical/\allowbreak logical
+transition to the regime where $r$ is defined (indeterminacy, not
+indefiniteness). The quaternionic framework does not derive Shannon
+entropy; it extends the concept to the regime where $r$ is not yet
+defined, with geodesic distance on~$S^3$ replacing entropy as the
+measure of separation between current state and attractor.
+\end{proof}
+
+\begin{remark}[The bit as elementary collapse]
+A single bit of information corresponds to one step of collapse: the
+resolution of one binary question (``is the object a tree? yes/no'').
+In the prime lattice, this is a Hamming-distance-1 move. In the FEP
+dynamics, it is one half-period of the damped oscillation (overshoot,
+then correction). The bit is the quantum of the pre-logical-to-logical
+transition.
+\end{remark}
+
+%======================================================================
+\section{Substrate Independence}
+\label{sec:substrate}
+%======================================================================
+
+The structure (pre-logical state $\to$ collapse $\to$ logical state)
+is substrate-independent: the same algebraic framework applies across
+domains that differ in their physical instantiation. We demonstrate this
+with four examples.
+
+\subsection{Quantum measurement}
+
+\begin{domainbox}{blue}
+\textbf{Domain: Quantum physics --- Schr\"odinger's cat.}
+
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Component} & \textbf{Instantiation} \\
+\midrule
+Pre-logical state & Closed box; Re undefined \\
+Potentiality ($i$) & Alive and dead as superposed possibilities \\
+Verification ($j$) & Opening the box / measuring \\
+Selection ($k$) & Design of the experiment \\
+Collapse & Measurement $\to$ eigenvalue \\
+Logical state & Alive or dead---crystallized by observation \\
+\bottomrule
+\end{tabularx}
+
+The quantum case is often presented as exotic. It is not. The firefighter
+facing an unidentified highway obstruction is in the same algebraic
+situation: a superposition of possibilities that collapses upon
+observation. The difference is substrate (quantum amplitudes vs.\
+macroscopic objects), not structure.
+\end{domainbox}
+
+\subsection{Legal reasoning}
+
+\begin{domainbox}{red}
+\textbf{Domain: Law --- Case without precedent.}
+
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Component} & \textbf{Instantiation} \\
+\midrule
+Pre-logical state & Novel case; no applicable jurisprudence \\
+Potentiality ($i$) & Possible legal arguments \\
+Verification ($j$) & Judicial ruling \\
+Selection ($k$) & Lawyer's litigation strategy \\
+Collapse & Ruling $\to$ new precedent \\
+Logical state & Jurisprudence created---crystallized by the court \\
+\bottomrule
+\end{tabularx}
+
+The legal method IRAC (Issue, Rule, Application, Conclusion) maps
+directly onto the pre-logical framework:
+\emph{Issue}~$=$ identify which Re does not yet exist (the pre-logical state);
+\emph{Rule}~$=$ existing Re (crystallized law);
+\emph{Application}~$=$ $j + k$ (verify applicability, select strategy);
+\emph{Conclusion}~$=$ collapse $\to$ new Re.
+
+Each law can be viewed as a quaternion: $r$ is the literal text, $i$ the
+possible interpretations, $j$ the case law that verifies it, $k$ the
+selection of which precedent applies. Changing jurisdiction (e.g.,
+from one state to another) is a rotation $q$ on $S^3$: the commutation
+theorem predicts that laws depending only on Re (constitutional
+provisions) are invariant under rotation, while laws depending on Im
+(local interpretation) vary.
+\end{domainbox}
+
+\subsection{Emergency response}
+
+\begin{domainbox}{orange}
+\textbf{Domain: Emergencies --- Unidentified highway obstruction.}
+
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Component} & \textbf{Instantiation} \\
+\midrule
+Pre-logical state & Vague report: ``large object on Highway~45'' \\
+Potentiality ($i$) & Tree, vehicle, animal, boulder \\
+Verification ($j$) & Arriving at the scene \\
+Selection ($k$) & Equipment choice \\
+Collapse & Visual identification $\to$ confirmed object \\
+Logical state & ``It is a fallen tree''---crystallized by observation \\
+\bottomrule
+\end{tabularx}
+
+The optimal decision under a pre-logical state is the minimax preparation
+(Proposition~\ref{prop:minimax}): carry equipment that minimizes the
+maximum distance to all possible outcomes. The firefighter brings crane,
+hammers, \emph{and} winch because, regardless of what the object is, the
+preparation should be close to the solution.
+
+Partial evaluation is available: send a drone first ($j$ partial, low
+cost) before committing the full crew ($j$ total, high cost). The
+sequence of partial collapses is an optimization over the lattice of
+possibilities.
+\end{domainbox}
+
+\subsection{Urban planning}
+
+\begin{domainbox}{green!50!black}
+\textbf{Domain: Urbanism --- City 2040.}
+
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Component} & \textbf{Instantiation} \\
+\midrule
+Pre-logical state & Uncertain future: water, transit, growth \\
+Potentiality ($i$) & Scenarios for population, climate, economy \\
+Verification ($j$) & Construction (irreversible) \\
+Selection ($k$) & Budget allocation \\
+Collapse & Building $\to$ physical infrastructure \\
+Logical state & City built---crystallized by construction \\
+\bottomrule
+\end{tabularx}
+
+Each urban decision collapses possibilities: building a highway
+\emph{here} eliminates a park \emph{there}. Each $j$ that is executed
+closes branches of the adjacent possible. The lattice formalism
+(Section~\ref{sec:lattice}) makes this precise: the known set
+$K$ grows, but the adjacent possible $AP(K)$ changes structure with
+each commitment.
+
+The irreversibility of construction makes urban planning a
+particularly pure example of collapse: unlike quantum measurement
+(which can be repeated) or legal rulings (which can be overturned on
+appeal), a building \emph{cannot be unbuilt} at reasonable cost.
+\end{domainbox}
+
+\subsection{Structural invariance}
+
+\begin{table}[H]
+\centering
+\caption{Substrate independence: the same structure across four domains.}
+\label{tab:substrate}
+\begin{tabularx}{\textwidth}{l Y Y Y Y}
+\toprule
+& \textbf{Quantum} & \textbf{Legal} & \textbf{Emergency} & \textbf{Urban} \\
+\midrule
+$r$ undefined & Superposition & No precedent & Unknown object & Unknown future \\
+$i > 0$ & Amplitudes & Arguments & Possibilities & Scenarios \\
+$j$ (collapse) & Measurement & Ruling & Observation & Construction \\
+$k$ (selection) & Experiment & Strategy & Equipment & Budget \\
+Lattice & Hilbert space & Case space & Object space & Scenario space \\
+Irreversibility & Wavefunction & Partial & Low & Total \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The structural invariance across these four domains---differing in
+substrate, time scale, reversibility, and social context---supports the
+claim that pre-logical states are not a special case but the
+\emph{generic} situation for reasoning agents. Logic (the assignment and
+manipulation of truth values) is the endpoint of a process that begins
+in the pre-logical regime.
+
+%======================================================================
+\section{Discussion}
+\label{sec:discussion}
+%======================================================================
+
+\subsection{Step zero}
+
+Classical epistemology describes a chain:
+(1)~opposites exist (hot/cold),
+(2)~a scale connects them,
+(3)~the zero point is arbitrary (Kelvin, Fahrenheit, Celsius are
+rotations on $S^3$),
+(4)~a compound concept emerges (temperature),
+(5)~perspective and context rotate the reading.
+
+The pre-logical state is \textbf{step zero}: before the agent knows
+\emph{which} opposites apply. The firefighter does not know whether the
+problem is heavy/light, organic/inorganic, mobile/fixed. The lawyer
+does not know whether the case is civil/criminal, state/federal. The
+urban planner does not know whether the problem is water, drainage, or
+transit.
+
+Verification ($j$) moves the agent from step zero to step one:
+collapsing not only truth but \emph{which framework of opposites
+applies}. The pre-logical state is the pre-structure of structure---navigating
+the adjacent possible of dualities, not of concepts.
+
+\subsection{Relation to probability theory}
+
+Pre-logical states are not probabilistic states. Probability theory
+assigns a distribution $P(r)$ over truth values; it handles
+\emph{indeterminacy} (the truth exists but is unknown). The pre-logical
+state handles \emph{indefiniteness} (no truth has crystallized). The
+distinction matters:
+\begin{itemize}[nosep]
+\item Under indeterminacy, Bayesian updating is optimal.
+\item Under indefiniteness, the optimal strategy is minimax
+  (Proposition~\ref{prop:minimax})---minimize worst-case distance, not
+  expected distance.
+\end{itemize}
+The two regimes connect through the FEP: Bayesian updating corresponds
+to the underdamped and overdamped regimes (convergence to an existing
+attractor), while transitions between attractors correspond to shifts
+in the pre-logical landscape---new primes entering the lattice.
+
+\subsection{Limitations}
+
+\begin{enumerate}[nosep]
+\item \textbf{Structural, not quantitative.} The substrate independence
+  demonstrations establish that the same algebraic framework applies
+  across four domains, but they do not derive numerical predictions for
+  any specific domain. The value is in the structural correspondence:
+  identifying which operations are available and which properties hold,
+  not in predicting particular outcomes.
+\item \textbf{Collapse endpoint is domain-specific.} The FEP dynamics
+  describe \emph{how} collapse occurs (damped oscillation toward the
+  attractor~$\mu_0$) but the attractor itself is a parameter determined
+  by the domain---what the object on the highway actually is, what the
+  judge actually rules. This is by design: the framework characterises
+  the universal \emph{process} of collapse while leaving the
+  domain-specific \emph{content} to the domain.
+\item \textbf{Four domains is few.} The substrate independence claim
+  would be strengthened by additional domains (medicine, AI/ML,
+  financial markets).
+\item \textbf{Conservative lattice.} The prime product lattice allows
+  all combinations; real domains have constraints. The lattice is the
+  ``ideal gas'' of the adjacent possible---exact and tractable, but
+  missing thermodynamic constraints.
+\end{enumerate}
+
+%======================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%======================================================================
+
+Logic is not the beginning of reasoning---it is the end.
+
+Before truth exists, there is navigation: possibilities that expand
+(Theorem~\ref{thm:expansion}), paths that depend on history
+(Theorem~\ref{thm:path}), exploration that falls exponentially behind
+the growth of the possible (Theorem~\ref{thm:faster}), and futures
+that cannot be prestated (Theorem~\ref{thm:nonprestate}). The agent
+gathers evidence (partial evaluation), prepares for all outcomes
+(minimax preparation), and commits (selection)---all without a truth value
+to operate on.
+
+The transition from this pre-logical regime to the logical one---collapse---is
+a damped oscillation governed by the free energy principle
+(Theorem~\ref{thm:wave-fep-equiv}), with solenoidal coupling necessary
+for the system to spiral rather than slide to its attractor
+(Remark~\ref{rem:solenoidal}). Two independent routes to oscillation
+exist: dynamical (solenoidal flow) and geometric (cross-coupled free
+energy) (Proposition~\ref{prop:geometric}).
+
+The duality between pre-logical and logical generates information as its
+compound concept (Proposition~\ref{thm:information}): not possibility
+alone (that is ignorance) and not truth alone (that is fact), but the
+\emph{reduction} of the one toward the other. Shannon entropy operates
+within the truth axis (where $r$ is defined); the quaternionic framework
+extends the concept to the regime where $r$ is not yet defined, with
+geodesic distance replacing entropy as the measure of separation.
+
+The structure is substrate-independent: quantum measurement, legal
+reasoning, emergency response, and urban planning all instantiate the
+same algebraic framework with different physical substrates. This
+suggests that the pre-logical state is not an edge case but the generic
+condition of reasoning agents---and that classical logic describes the
+world after the measurement, not before it.
+
+%======================================================================
+% BIBLIOGRAPHY
+%======================================================================
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{99}
+
+\bibitem[Buckley et al.(2017)]{buckley2017}
+Buckley, C.L., Kim, C.S., McGregor, S., \& Seth, A.K. (2017).
+The free energy principle for action and perception: A mathematical review.
+\textit{Journal of Mathematical Psychology}, 81, 55--79.
+
+\bibitem[Friston(2010)]{friston2010}
+Friston, K. (2010).
+The free-energy principle: a unified brain theory?
+\textit{Nature Reviews Neuroscience}, 11(2), 127--138.
+
+\bibitem[Kauffman(2000)]{kauffman2000}
+Kauffman, S.A. (2000).
+\textit{Investigations}.
+Oxford University Press.
+
+\bibitem[Loreto et al.(2017)]{loreto2017}
+Loreto, V., Servedio, V.D.P., Strogatz, S.H., \& Tria, F. (2017).
+Dynamics on expanding spaces: modeling the emergence of novelties.
+In M.\ Degli Esposti, E.G.\ Altmann, \& F.\ Pachet (Eds.),
+\textit{Creativity and Universality in Language}, pp.\ 59--83.
+Springer.
+
+\bibitem[Ornelas Brand(2026a)]{p1}
+Ornelas Brand, J.A. (2026).
+Triadic Neurosymbolic Engine: Prime Factorization as a Neurosymbolic
+Bridge: Projecting Continuous Embeddings into Discrete Algebraic Space
+for Deterministic Verification.
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19205804}{doi:10.5281/zenodo.19205804}
+
+\bibitem[Ornelas Brand(2026b)]{p4}
+Ornelas Brand, J.A. (2026).
+Toward a Layered Ontology of Semantic Duality: 14 Candidate Dualities
+Across 6 Algebraic Layers with Preliminary Domain and Neural Evidence
+(v1.0).
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19375166}{doi:10.5281/zenodo.19375166}
+
+\bibitem[Ornelas Brand(2026c)]{p11}
+Ornelas Brand, J.A. (2026).
+Quaternionic Logic: A G-Lattice Unifying Boolean and Fuzzy Frameworks (v0.1.0).
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19560986}{doi:10.5281/zenodo.19560986}
+
+\bibitem[Ornelas Brand(2026d)]{p12}
+Ornelas Brand, J.A. (2026).
+Duality Synthesis in Quaternionic Logic: How Opposites Generate Truth (v0.1.0).
+\textit{Zenodo}.
+\href{https://doi.org/10.5281/zenodo.19561633}{doi:10.5281/zenodo.19561633}
+
+\bibitem[Shannon(1948)]{shannon1948}
+Shannon, C.E. (1948).
+A mathematical theory of communication.
+\textit{Bell System Technical Journal}, 27(3), 379--423.
+
+\end{thebibliography}
+
+\end{document}

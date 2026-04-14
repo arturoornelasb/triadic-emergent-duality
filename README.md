@@ -48,6 +48,7 @@ data/
   reference_domains.json            # 9 domains, 585 D/A/N classifications
   evaluator_templates/              # 9 domain-specific evaluation rubrics (JSON)
   interrater/                       # Inter-rater reliability data (CSV)
+  adjacent_possible_paper/          # Supplementary data for companion paper (Zipf + MA~omega)
 
 scripts/                            # 35 validation & analysis scripts
   test1-7_*.py                      # Core structure tests
@@ -198,7 +199,7 @@ Both repos include base checkpoints (`step_*`) for reproducing the telescopic X-
 
 ## Companion Papers
 
-This project is part of a family of four papers. Each companion has its own paper and repository on Zenodo:
+This project is part of a family of papers. The first four have DOIs on Zenodo; additional companions are in preparation:
 
 ### Triadic Neurosymbolic Engine
 
@@ -214,6 +215,11 @@ This project is part of a family of four papers. Each companion has its own pape
 
 - **Paper:** Ornelas Brand, J. A. (2026). *End-to-End Prime Factorization in a Generative Language Model: Emergent Algebraic Semantics from Joint Training.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19206545.svg)](https://doi.org/10.5281/zenodo.19206545)
 - **Repository:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19207845.svg)](https://doi.org/10.5281/zenodo.19207845)
+
+### The Adjacent Possible Has a Lattice (in preparation)
+
+- **Paper:** Ornelas Brand, J. A. (2026). *The Adjacent Possible Has a Lattice: Formalizing Kauffman's Concept via Prime Product Spaces.* Manuscript in preparation.
+- **Supplementary data:** [`data/adjacent_possible_paper/`](data/adjacent_possible_paper/) -- Zipf simulation on the prime lattice and MA~omega numerical correlation analysis (12 files, see internal README).
 
 ## License
 
