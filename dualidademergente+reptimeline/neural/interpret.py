@@ -22,25 +22,37 @@ sys.path.insert(0, STATS_DIR)
 # ######################################################################
 
 PROBES = {
-    'Q1': {'file': 'q1_layer_order.json', 'question': 'Layer emergence order'},
-    'Q2': {'file': 'q2_duals.json', 'question': 'Dual anti-correlation'},
-    'Q3': {'file': 'q3_dag.json', 'question': 'DAG structure match'},
-    'Q4': {'file': 'q4_triadic.json', 'question': 'Triadic S/C/E/A enrichment'},
-    'Q5': {'file': 'q5_phases.json', 'question': 'Phase transition alignment'},
-    'Q6': {'file': 'q6_unsupervised.json', 'question': 'Unsupervised recovery'},
-    'Q7': {'file': 'q7_causal.json', 'question': 'Causal layer consistency'},
-    'Q8': {'file': 'q8_crossarch.json', 'question': 'Cross-architecture consistency'},
+    'Q1':  {'file': 'q1_layer_order.json',              'question': 'Layer emergence order'},
+    'Q2':  {'file': 'q2_duals.json',                    'question': 'Dual anti-correlation'},
+    'Q3':  {'file': 'q3_dag.json',                      'question': 'DAG structure match'},
+    'Q4':  {'file': 'q4_triadic.json',                  'question': 'Triadic S/C/E/A enrichment'},
+    'Q5':  {'file': 'q5_phases.json',                   'question': 'Phase transition alignment'},
+    'Q6':  {'file': 'q6_unsupervised.json',             'question': 'Unsupervised recovery'},
+    'Q7':  {'file': 'q7_causal.json',                   'question': 'Causal layer consistency'},
+    'Q8':  {'file': 'q8_crossarch.json',                'question': 'Cross-architecture consistency'},
+    'Q9':  {'file': 'q9_structural_conservation.json',  'question': 'Cross-arch structural conservation'},
+    'Q13_alg': {'file': 'q13_algebraic_v9.json',        'question': 'Algebraic Markov blanket (FTA-guaranteed)'},
+    'Q13_mi':  {'file': 'q13_markov_blanket_v9.json',   'question': 'MI between coprime interiors'},
+    'Q15': {'file': 'q15_quaternionic_coords.json',     'question': 'Quaternionic coordinates (r,i,j,k)'},
+    'Q18': {'file': 'q18_quaternionic_product.json',    'question': 'Quaternionic product axioms'},
+    'Q32': {'file': 'q32_interrater.json',              'question': 'Model vs human D/A/N inter-rater'},
 }
 
 CONFOUNDERS = {
-    'Q1': 'Token frequency bias (common words learned first)',
-    'Q2': 'Semantic exclusion in training data',
-    'Q3': 'Co-occurrence patterns in training corpus',
-    'Q4': 'Nonlinear activation artifacts',
-    'Q5': 'LR schedule / curriculum changes',
-    'Q6': 'Shared embedding / LLM bias in labeling',
-    'Q7': 'Architecture-dependent attention patterns',
-    'Q8': 'Shared training data and loss function',
+    'Q1':  'Token frequency bias (common words learned first)',
+    'Q2':  'Semantic exclusion in training data',
+    'Q3':  'Co-occurrence patterns in training corpus',
+    'Q4':  'Nonlinear activation artifacts',
+    'Q5':  'LR schedule / curriculum changes',
+    'Q6':  'Shared embedding / LLM bias in labeling',
+    'Q7':  'Architecture-dependent attention patterns',
+    'Q8':  'Shared training data and loss function',
+    'Q9':  'Both architectures share frozen-base + same gold targets',
+    'Q13_alg': 'Trivial by construction (unique prime assignment + FTA)',
+    'Q13_mi':  'Frozen-base limits statistical structure recovery',
+    'Q15': 'Coordinates derived from architectural signals (no verdict)',
+    'Q18': 'Quaternionic axioms hold by Hamilton product definition',
+    'Q32': 'Model-derived rater uses thresholded activation rates, not learned classification',
 }
 
 

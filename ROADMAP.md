@@ -24,11 +24,18 @@ Status snapshot as of 2026-03-25. Items reflect actual repository state.
 - [x] Companion papers published on Zenodo (Triadic Engine, reptimeline, triadic-microgpt)
 - [x] `domain_validity_score.py` synced with `reference_domains.json` (no more hardcoded D-A-N)
 - [x] Paper and README corrected: p95=0.931, all 8 Regla de Tres quadruples, duality table aligned
+- [x] **Q13 algebraic Markov blanket** — verified PASS 100% on v8 and v9 (500K pairs each, 0 violations) — confirms FTA-guaranteed gcd(μ₁,μ₂)=1 implementation
+- [x] **Q13 MI probe** — v8 NEGATIVE / v9 MIXED (T2 layer hierarchy passes, T4 partial-correlation fails)
+- [x] **Q15 quaternionic coordinates** — (r,i,j,k) assigned to 72 primitives for v8 and v9
+- [x] **Q18 quaternionic product** — VERIFIED (T1–T7: closure, associativity, inverses, ij=k, non-commutativity, layer recovery, 14 dual products)
+- [x] **Q32 inter-rater (model vs human)** — Cohen's κ computed for 8 domains; all in slight-to-poor range (κ ∈ [-0.082, 0.111]); does NOT substitute for K2 human-vs-human
+- [x] **D15 formal proposal** — `docs/teoria/37_operador_capa6_D15.md`: layer-6 internal operator (Collapse/Superposition) closing the symmetric pattern 1,1,2,2,1,1
+- [x] Two new companion papers published on Zenodo (Apr 13, 2026): *Duality Synthesis in Quaternionic Logic* (DOI 10.5281/zenodo.19561634) and *Pre-Logical States and the Birth of Information* (DOI 10.5281/zenodo.19561722)
 
 ### Pending — High Priority
 
 - [ ] **CI/CD** — No GitHub Actions. Minimum: lint + validation script runner on push.
-- [ ] **Complete inter-rater data** — Only Mathematics_rater2.csv exists. Need remaining 8 domains for full external verification.
+- [ ] **Complete K2 human-vs-human inter-rater data** — Only Mathematics_rater2.csv exists. Need remaining 8 domains for full external verification. Note: Q32 model-vs-human is computed for 8 domains but does NOT substitute for K2 (κ ≤ 0.11 across all domains shows the trained model does not recover expert classifications).
 - [ ] **Publish model weights** — v5_frozen and v6 checkpoints not publicly available. Options: GitHub Releases or HuggingFace Hub.
 - [ ] **Rerun neural probes Q1-Q8 with v6 model** — Current results computed with 65-bit v2/v3 model, not current 72-bit.
 

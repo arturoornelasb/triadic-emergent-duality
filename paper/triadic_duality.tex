@@ -330,22 +330,25 @@ move:stillness = mortal\_obs:eternal\_obs & 0.989 & 0.931 \\
 \small
 \begin{tabular}{clll}
 \toprule
-\textbf{Probe} & \textbf{Question} & \textbf{Result} & \textbf{$p$-value} \\
+\textbf{Probe} & \textbf{Question} & \textbf{Result} & \textbf{$p$-value / detail} \\
 \midrule
-Q1 & Layer order in representations?   & \textbf{Null}              & 0.713 \\
-Q2 & Dual anti-correlation?            & \textbf{5/13 significant}  & $<0.018$ (BH) \\
-Q3 & DAG recovery?                     & \textbf{Above random}      & 0.001 \\
-Q5 & Phase transition?                 & \textbf{Yes, step 6000}    & 0.0004 \\
-Q4 & Triadic dependencies?             & Null                       & 1.000 \\
-Q6 & Unsupervised discovery?           & Null                       & 1.000 \\
-Q7 & Causal verification?              & Null                       & 1.000 \\
+Q1  & Layer order in representations?           & \textbf{Null} (cascade, not order)  & 0.713 \\
+Q2  & Dual anti-correlation?                    & \textbf{5/13 significant}           & $<0.018$ (BH) \\
+Q3  & DAG recovery?                             & \textbf{Above random}               & 0.001 \\
+Q4  & Triadic dependencies?                     & Null                                & 1.000 \\
+Q5  & Phase transition?                         & \textbf{Yes, step 6000}             & 0.0004 \\
+Q6  & Unsupervised discovery?                   & Null                                & 1.000 \\
+Q7  & Causal verification?                      & Null                                & 1.000 \\
+Q13 & Algebraic Markov blanket (FTA-guaranteed) & \textbf{PASS 100\%}                 & 0/500K pairs violate \\
+Q13 & MI between coprime interiors              & v8 NEG / v9 MIXED                   & T2 PASS, T4 FAIL \\
+Q18 & Quaternionic product axioms               & \textbf{VERIFIED} (T1--T7)          & all axioms hold \\
 \bottomrule
 \end{tabular}
-\caption{Neural probe results. The model learns relational but not ordinal structure.}
+\caption{Neural probe results. The model learns relational structure (Q2, Q3, Q5); the algebraic structure imposed by unique prime assignment is preserved by construction (Q13 algebraic) and lifts to the quaternionic product (Q18). Statistical recovery of DAG edges via partial correlations (Q13 MI) is only partial in v9 and absent in v8.}
 \label{tab:probes}
 \end{table}
 
-\noindent\textbf{Interpretation}: The model learns \emph{relational} structure (analogies, some dual axes, DAG edges) but does not recover \emph{ordinal} structure (layer ordering, ternary dependencies). This is consistent with the frozen-base design: the head projects semantics into bit space without restructuring the backbone's internal representations.
+\noindent\textbf{Interpretation}: The model learns \emph{relational} structure (analogies, some dual axes, DAG edges) but does not recover \emph{ordinal} structure (layer ordering, ternary dependencies). Q13 algebraic is a verification of an FTA-guaranteed property (gcd of coprime interiors $=1$ by construction of the unique prime assignment), confirming implementation correctness rather than emergent structure. Q18 shows that the quaternionic algebra defined over the learned coordinates closes under Hamilton product with the expected non-commutativity. Q13 MI shows that this algebraic structure does not translate to statistical d-separation between bit pairs, consistent with the frozen-base design: the head projects semantics into bit space without restructuring the backbone's internal representations.
 
 \subsection{V6: Extended Corpus (2{,}166 Concepts)}
 
@@ -408,7 +411,7 @@ The Emergent Duality framework makes two testable claims:
 \subsection{Honest Limitations}
 
 \begin{enumerate}[nosep, leftmargin=*]
-    \item \textbf{Self-evaluated classifications}: All D-A-N assignments were made by the framework author. Inter-rater data exists for only 1/9 domains (Mathematics). The permutation tests validate internal consistency but not external agreement.
+    \item \textbf{Self-evaluated classifications}: All D-A-N assignments were made by the framework author. Independent human inter-rater data (K2 protocol, human vs.\ human) exists for only 1/9 domains (Mathematics). A complementary probe (Q32) computed Cohen's $\kappa$ between expert classifications and a model-derived second rater (activation-rate thresholding) across 8 of 9 domains. All values fall in the slight-to-poor range ($\kappa \in [-0.082, 0.111]$), with Philosophy highest and Chemistry lowest. This indicates the trained 72-bit code does not recover the expert D-A-N distinctions and \emph{does not substitute} for human inter-rater validation. The permutation tests validate internal consistency; external agreement remains the critical open task.
     \item \textbf{Underpowered rank correlations}: With $n = 7$ (circle) or $n = 14$ (combined), Spearman correlations cannot achieve significance at $\alpha = 0.05$ even for moderate effects.
     \item \textbf{DVS variation across positives}: The composite 6-metric DVS reveals genuine variation among positive domains (0.719--0.876), with Mathematics weakest and Psychology strongest. The original 2-metric IDVS assigned 1.000 to all positives, masking this variation. While the composite metric is more informative, the gap between worst positive (0.719) and best negative (0.486) is only 0.233---a second positive domain near the Mathematics end could narrow this margin.
     \item \textbf{Neural probes}: 5/8 probes returned null results in v8. Cross-architecture replication (v9, GPT-Neo~125M) confirms Q1 and Q2 remain null, while Q5 (phase transition) replicates as positive ($p$~=~0.018). A new probe Q9 (structural conservation) shows topology is conserved cross-model ($>$90\% agreement on active ratio, duals, deps) but S/C/E/A composition diverges ($\chi^2$ $p<$0.001). The null Q1 result is now understood: high-resolution X-ray reveals that emergence follows a cascade pattern, not a fixed layer ordering. The model does not recover L1$\to$L6 because no such universal ordering exists during training---what exists is architecture-dependent wave propagation through the bit space.
@@ -425,7 +428,7 @@ This work opens several lines of investigation:
     \item \textbf{Cross-lingual validation}: All primitives are currently named and evaluated in a Spanish-language conceptual frame. Testing whether the same DAG structure holds when primitives are derived independently from other linguistic traditions would strengthen universality claims.
     \item \textbf{Relational prime chains}: Extending the triadic head with compositional prime chain verification for O(1) anti-hallucination---a natural application of the algebraic structure to production AI systems.
     \item \textbf{Expanded corpus training}: V5 was trained on WikiText-103. Training on multilingual or domain-specific corpora could reveal whether the 72-primitive structure generalizes beyond English-language distributional semantics.
-    \item \textbf{Additional dualities}: Preliminary analysis of the first-principles corpus (92 files across 14 scientific domains) suggests candidate dualities beyond the 14 validated here. Ongoing training runs are evaluating these extensions against the full primitive dataset; results will be incorporated in future revisions.
+    \item \textbf{Additional dualities}: Preliminary analysis of the first-principles corpus (92 files across 14 scientific domains) suggests candidate dualities beyond the 14 validated here. A specific candidate is formally proposed in the framework documentation as \textbf{D15: Collapse/Superposition}---the missing internal operator of layer~6 (probabilistic algebra $\{0,?\}$), with \textit{temporal\_obs} and \textit{eterno\_obs} reassigned as anchors. D15 closes the layer pattern from $1{,}1{,}2{,}2{,}1{,}0$ to the symmetric $1{,}1{,}2{,}2{,}1{,}1$ but is not yet empirically validated. Ongoing training runs are evaluating this and other candidates against the full primitive dataset; results will be incorporated in future revisions.
 \end{enumerate}
 
 % ============================================================
@@ -461,7 +464,7 @@ Our framework differs in proposing (a)~a specific algebraic chain governing emer
 % ============================================================
 \section{Conclusion}
 
-We have presented a candidate ontological framework of 14 proposed dualities organized across 6 algebraic layers, grounded in 72 semantic primitives. The framework achieves perfect IDVS scores across 8 disciplines while correctly rejecting a negative control, with statistical hardening via permutation tests, null baselines, and Bayesian model comparison (decisive against reversed ordering, but only anecdotal against alternative philosophical orderings). A neurosymbolic model (GPT-2 + triadic head) learns the proposed structure at 90.8\% accuracy without degrading language ability, exhibiting near-perfect relational preservation (cosine 0.996). However, the neural validation provides limited support: only 3/8 probes reach significance, and the two most theoretically important---layer ordering ($p$~=~0.71) and triadic dependencies ($p$~=~1.0)---are null. This suggests the model learns surface relational structure but not the deep algebraic properties the framework proposes.
+We have presented a candidate ontological framework of 14 proposed dualities organized across 6 algebraic layers, grounded in 72 semantic primitives. The framework achieves perfect IDVS scores across 8 disciplines while correctly rejecting a negative control, with statistical hardening via permutation tests, null baselines, and Bayesian model comparison (decisive against reversed ordering, but only anecdotal against alternative philosophical orderings). A neurosymbolic model (GPT-2 + triadic head) learns the proposed structure at 90.8\% accuracy without degrading language ability, exhibiting near-perfect relational preservation (cosine 0.996). The neural validation is mixed: 3/9 statistical probes reach significance (Q2, Q3, Q5); the two most theoretically important---layer ordering ($p$~=~0.71) and triadic dependencies ($p$~=~1.0)---are null, and the layer order has been reformulated as a cascade rather than an ordering. The algebraic Markov blanket and quaternionic product axioms (Q13 algebraic, Q18) hold by construction over the learned codes. A model-derived second rater (Q32) does not recover expert D-A-N classifications ($\kappa \leq 0.11$ across 8 domains), so the trained model cannot substitute for human inter-rater validation.
 
 The main open question is external validation: independent human evaluators must confirm the D-A-N classifications before universality claims can be considered robust. We release all data, scripts, and model code to enable replication.
 
@@ -480,12 +483,15 @@ The repository also includes a structured compilation of first principles across
 
 \subsection*{Companion Papers}
 
-This work is part of a four-paper program on triadic neurosymbolic representations. The present paper's claims are evaluated independently; companion results provide additional context but are not required for the conclusions drawn here. Each companion component has its own publication and repository:
+This work is part of a multi-paper program on triadic neurosymbolic representations. The present paper's claims are evaluated independently; companion results provide additional context but are not required for the conclusions drawn here. Each companion component has its own publication and repository:
 
 \begin{itemize}[nosep, leftmargin=*]
     \item \textbf{Triadic Neurosymbolic Engine}: Ornelas Brand, J.~A. (2026). \emph{Prime Factorization as a Neurosymbolic Bridge: Projecting Continuous Embeddings into Discrete Algebraic Space for Deterministic Verification.} Paper: \href{https://doi.org/10.5281/zenodo.19205805}{10.5281/zenodo.19205805}. Repository: \href{https://doi.org/10.5281/zenodo.18748671}{10.5281/zenodo.18748671}.
     \item \textbf{reptimeline}: Ornelas Brand, J.~A. (2026). \emph{Tracking Discrete Representation Evolution During Neural Network Training.} Paper: \href{https://doi.org/10.5281/zenodo.19208672}{10.5281/zenodo.19208672}. Repository: \href{https://doi.org/10.5281/zenodo.19208628}{10.5281/zenodo.19208628}.
     \item \textbf{triadic-microgpt}: Ornelas Brand, J.~A. (2026). \emph{End-to-End Prime Factorization in a Generative Language Model: Learned Algebraic Encoding from Joint Training.} Paper: \href{https://doi.org/10.5281/zenodo.19206545}{10.5281/zenodo.19206545}. Repository: \href{https://doi.org/10.5281/zenodo.19207845}{10.5281/zenodo.19207845}.
+    \item \textbf{Duality Synthesis in Quaternionic Logic}: Ornelas Brand, J.~A. (2026). \emph{How Opposites Generate Truth.} Paper: \href{https://doi.org/10.5281/zenodo.19561634}{10.5281/zenodo.19561634}. Defines synthesis $a \oplus \bar{a} = \mathrm{lcm}(\Phi(a),\Phi(\bar{a}))$ on the prime algebra and verifies the quaternionic product axioms exercised in Q18 above.
+    \item \textbf{Pre-Logical States and the Birth of Information}: Ornelas Brand, J.~A. (2026). \emph{How Reasoning Operates Before Truth Exists.} Paper: \href{https://doi.org/10.5281/zenodo.19561722}{10.5281/zenodo.19561722}. Formalizes pre-logical states in the quaternionic framework, connecting collapse to Friston's free energy minimization.
+    \item \textbf{The Adjacent Possible Has a Lattice} (in preparation): Ornelas Brand, J.~A. (2026). Formalizes Kauffman's adjacent possible via prime product spaces. Supplementary data in \texttt{data/adjacent\_possible\_paper/}.
 \end{itemize}
 
 % ============================================================

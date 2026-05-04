@@ -177,6 +177,13 @@ python compare_runs.py v5_frozen <version>
 - Phase transition at step 55,000 (warmup boundary), **inverted layer emergence** (L6 before L1)
 - 501 discovered dependencies, 1,714 triadic dependencies
 
+### Algebraic and inter-rater probes (v8 / v9)
+- **Q13 algebraic Markov blanket** — PASS 100% (500K pairs, 0 violations) on both v8 and v9; verifies FTA-guaranteed gcd(μ₁,μ₂)=1 over learned codes (implementation correctness, not emergent property)
+- **Q13 MI probe** — v8 NEGATIVE / v9 MIXED; T2 layer-hierarchy ratio non-adj/adj < 0.8 passes (0.50 / 0.67), T4 non-edge partial correlation fails (~49%)
+- **Q18 quaternionic product** — VERIFIED on v8 (closure, associativity, inverses, ij=k, non-commutativity, layer recovery, 14 dual products)
+- **Q32 model vs human inter-rater** — Cohen's κ ∈ [-0.082, 0.111] across 8 domains (Philosophy highest, Chemistry lowest); the trained model does NOT recover expert D-A-N classifications and does not substitute for K2 human-vs-human validation
+- **D15 formal proposal** — `docs/teoria/37_operador_capa6_D15.md` proposes Collapse/Superposition as the layer-6 internal operator, closing the symmetric pattern 1,1,2,2,1,1 (not yet empirically validated)
+
 ## Documents
 
 | Location | Topic |
@@ -215,6 +222,18 @@ This project is part of a family of papers. The first four have DOIs on Zenodo; 
 
 - **Paper:** Ornelas Brand, J. A. (2026). *End-to-End Prime Factorization in a Generative Language Model: Emergent Algebraic Semantics from Joint Training.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19206545.svg)](https://doi.org/10.5281/zenodo.19206545)
 - **Repository:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19207845.svg)](https://doi.org/10.5281/zenodo.19207845)
+
+### Duality Synthesis in Quaternionic Logic
+
+- **Paper:** Ornelas Brand, J. A. (2026). *Duality Synthesis in Quaternionic Logic: How Opposites Generate Truth.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19561634.svg)](https://doi.org/10.5281/zenodo.19561634)
+- Defines synthesis $a \oplus \bar{a} = \mathrm{lcm}(\Phi(a),\Phi(\bar{a}))$ on the prime algebra; verifies the quaternionic product axioms exercised in Q18.
+- **Source/PDF:** [`data/adjacent_possible_paper/duality_synthesis.tex`](data/adjacent_possible_paper/duality_synthesis.tex)
+
+### Pre-Logical States and the Birth of Information
+
+- **Paper:** Ornelas Brand, J. A. (2026). *Pre-Logical States and the Birth of Information: How Reasoning Operates Before Truth Exists.* Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19561722.svg)](https://doi.org/10.5281/zenodo.19561722)
+- Formalizes pre-logical states in the quaternionic framework, connecting collapse to Friston's free energy minimization.
+- **Source/PDF:** [`data/adjacent_possible_paper/pre_logical_states.tex`](data/adjacent_possible_paper/pre_logical_states.tex)
 
 ### The Adjacent Possible Has a Lattice (in preparation)
 
