@@ -23,6 +23,11 @@ keywords:
   - algebraic structure
   - domain validation
   - Bayesian model comparison
+  - Markov blanket
+  - quaternionic logic
+  - GPT-2
+  - phase transition
+  - cascade emergence
 license: BUSL-1.1
-version: 0.1.0
-date-released: "2026-04-01"
+version: 0.2.0
+date-released: "2026-05-03"

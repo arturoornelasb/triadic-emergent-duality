@@ -20,7 +20,12 @@
         "neurosymbolic AI",
         "algebraic structure",
         "domain validation",
-        "Bayesian model comparison"
+        "Bayesian model comparison",
+        "Markov blanket",
+        "quaternionic logic",
+        "GPT-2",
+        "phase transition",
+        "cascade emergence"
     ],
     "related_identifiers": [
         {
@@ -48,6 +53,18 @@
         },
         {
             "identifier": "10.5281/zenodo.19208672",
+            "relation": "references",
+            "resource_type": "publication-preprint",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "10.5281/zenodo.19561634",
+            "relation": "references",
+            "resource_type": "publication-preprint",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "10.5281/zenodo.19561722",
             "relation": "references",
             "resource_type": "publication-preprint",
             "scheme": "doi"
