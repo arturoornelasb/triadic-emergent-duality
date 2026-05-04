@@ -39,7 +39,7 @@ We present a formal ontological framework in which conceptual complexity emerges
 % ============================================================
 \section{Introduction}
 
-The search for universal semantic primitives---irreducible conceptual atoms from which all meaning is composed---spans philosophy (Leibniz's \emph{characteristica universalis}), linguistics (Wierzbicka's Natural Semantic Metalanguage), and computational semantics (ConceptNet, FrameNet). Existing approaches either lack formal algebraic structure or fail to demonstrate empirical universality across domains.
+The search for universal semantic primitives---irreducible conceptual atoms from which all meaning is composed---spans philosophy (Leibniz's \emph{characteristica universalis}), linguistics (Wierz\-bic\-ka's NSM), and computational semantics (ConceptNet, FrameNet). Existing approaches either lack formal algebraic structure or fail to demonstrate empirical universality across domains.
 
 We propose that conceptual complexity emerges through a specific sequence of \textbf{dualities}---paired oppositions that each require all previous dualities as prerequisites. This emergence follows an algebraic chain:
 
@@ -327,7 +327,7 @@ move:stillness = mortal\_obs:eternal\_obs & 0.989 & 0.931 \\
 
 \begin{table}[ht]
 \centering
-\small
+\footnotesize
 \begin{tabular}{clll}
 \toprule
 \textbf{Probe} & \textbf{Question} & \textbf{Result} & \textbf{$p$-value / detail} \\
@@ -428,7 +428,7 @@ This work opens several lines of investigation:
     \item \textbf{Cross-lingual validation}: All primitives are currently named and evaluated in a Spanish-language conceptual frame. Testing whether the same DAG structure holds when primitives are derived independently from other linguistic traditions would strengthen universality claims.
     \item \textbf{Relational prime chains}: Extending the triadic head with compositional prime chain verification for O(1) anti-hallucination---a natural application of the algebraic structure to production AI systems.
     \item \textbf{Expanded corpus training}: V5 was trained on WikiText-103. Training on multilingual or domain-specific corpora could reveal whether the 72-primitive structure generalizes beyond English-language distributional semantics.
-    \item \textbf{Additional dualities}: Preliminary analysis of the first-principles corpus (92 files across 14 scientific domains) suggests candidate dualities beyond the 14 validated here. A specific candidate is formally proposed in the framework documentation as \textbf{D15: Collapse/Superposition}---the missing internal operator of layer~6 (probabilistic algebra $\{0,?\}$), with \textit{temporal\_obs} and \textit{eterno\_obs} reassigned as anchors. D15 closes the layer pattern from $1{,}1{,}2{,}2{,}1{,}0$ to the symmetric $1{,}1{,}2{,}2{,}1{,}1$ but is not yet empirically validated. Ongoing training runs are evaluating this and other candidates against the full primitive dataset; results will be incorporated in future revisions.
+    \item \textbf{Additional dualities}: The first-principles corpus (92 files, 14 sciences) suggests candidate dualities beyond the 14 validated here. One candidate formally proposed in the documentation is \textbf{D15: Collapse/Superposition}, the missing internal operator of layer~6 (probabilistic algebra), with \textit{temporal\_obs} and \textit{eterno\_obs} as anchors. D15 closes the per-layer operator pattern from $(1,1,2,2,1,0)$ to the symmetric $(1,1,2,2,1,1)$ but is not yet empirically validated. Future revisions will report results from ongoing training runs evaluating these candidates.
 \end{enumerate}
 
 % ============================================================
@@ -476,10 +476,13 @@ All code and data are available under BUSL-1.1 at:
     \item Neurosymbolic training pipeline (GPT-2 + triadic head): \texttt{triadic-microgpt} repository.
     \item Representation lifecycle tracking: \texttt{reptimeline} (also available on PyPI).
     \item Triadic projection head (standalone): \texttt{triadic-head} (also available on PyPI).
-    \item Pre-trained weights (V5\_frozen GPT-2 Medium, production milestone): \href{https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v5}{huggingface.co/arturoornelasb/triadic-gpt2-medium-v5}
-    \item Pre-trained weights (V6 GPT-2 Medium, extended corpus 2{,}166 concepts): \href{https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v6}{huggingface.co/arturoornelasb/triadic-gpt2-medium-v6}
-    \item Pre-trained weights (V8 GPT-2 Medium, deep head + X-ray base): \href{https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v8}{huggingface.co/arturoornelasb/triadic-gpt2-medium-v8}
-    \item Pre-trained weights (V9 GPT-Neo 125M, cross-architecture replication): \href{https://huggingface.co/arturoornelasb/triadic-gptneo-125m-v9}{huggingface.co/arturoornelasb/triadic-gptneo-125m-v9}
+    \item Pre-trained weights on HuggingFace (under user \texttt{arturoornelasb}):
+    \begin{itemize}[nosep, leftmargin=*]
+        \item \href{https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v5}{\texttt{triadic-gpt2-medium-v5}} --- production milestone (frozen base, 72 primitives).
+        \item \href{https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v6}{\texttt{triadic-gpt2-medium-v6}} --- extended corpus (2{,}166 concepts).
+        \item \href{https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v8}{\texttt{triadic-gpt2-medium-v8}} --- deep head, X-ray base.
+        \item \href{https://huggingface.co/arturoornelasb/triadic-gptneo-125m-v9}{\texttt{triadic-gptneo-125m-v9}} --- cross-architecture replication.
+    \end{itemize}
 \end{itemize}
 The repository also includes a structured compilation of first principles across 14 scientific domains (92 files organized hierarchically from mathematics to interdisciplinary fields), used by the algebraic gap analysis to search for candidate operators in uncovered inter-layer connections.
 
