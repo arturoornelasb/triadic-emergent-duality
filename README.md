@@ -1,7 +1,7 @@
 # Triadic Emergent Duality
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19375167.svg)](https://doi.org/10.5281/zenodo.19375167) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19374914.svg)](https://doi.org/10.5281/zenodo.19374914)
-[![HF V8](https://img.shields.io/badge/%F0%9F%A4%97-triadic--gpt2--medium--v8-yellow)](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v8) [![HF V9](https://img.shields.io/badge/%F0%9F%A4%97-triadic--gptneo--125m--v9-yellow)](https://huggingface.co/arturoornelasb/triadic-gptneo-125m-v9)
+[![HF V5](https://img.shields.io/badge/%F0%9F%A4%97-triadic--gpt2--medium--v5-yellow)](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v5) [![HF V6](https://img.shields.io/badge/%F0%9F%A4%97-triadic--gpt2--medium--v6-yellow)](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v6) [![HF V8](https://img.shields.io/badge/%F0%9F%A4%97-triadic--gpt2--medium--v8-yellow)](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v8) [![HF V9](https://img.shields.io/badge/%F0%9F%A4%97-triadic--gptneo--125m--v9-yellow)](https://huggingface.co/arturoornelasb/triadic-gptneo-125m-v9)
 
 Research framework proposing that conceptual complexity emerges from 14+ candidate dualities organized in 6 algebraic layers. Combines philosophical formalization (poset theory, category theory, modal logic) with empirical evaluation across 8 disciplines + 3 negative controls and a neurosymbolic language model (GPT-2 Medium + 72-bit triadic head).
 
@@ -199,10 +199,12 @@ python compare_runs.py v5_frozen <version>
 
 | Model | HuggingFace | Files |
 |-------|-------------|-------|
+| V5_frozen GPT-2 Medium (355M) | [arturoornelasb/triadic-gpt2-medium-v5](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v5) | best.pt, run_config.json, gold_primitivos_72.json, results.json, training_log.csv |
+| V6 GPT-2 Medium (355M) | [arturoornelasb/triadic-gpt2-medium-v6](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v6) | best.pt, run_config.json, gold_extended_v6.json, results.json, training_log.csv |
 | V8 GPT-2 Medium (345M) | [arturoornelasb/triadic-gpt2-medium-v8](https://huggingface.co/arturoornelasb/triadic-gpt2-medium-v8) | best.pt, step_30000.pt (X-ray base), run_config.json, gold |
 | V9 GPT-Neo 125M | [arturoornelasb/triadic-gptneo-125m-v9](https://huggingface.co/arturoornelasb/triadic-gptneo-125m-v9) | best.pt, step_5000.pt (X-ray base), run_config.json, gold |
 
-Both repos include base checkpoints (`step_*`) for reproducing the telescopic X-ray analysis (cascade detection).
+V5 and V6 ship the production-milestone weights (frozen-base, 72-bit head). V8 and V9 also include base checkpoints (`step_*`) for reproducing the telescopic X-ray analysis (cascade detection).
 
 ## Companion Papers
 

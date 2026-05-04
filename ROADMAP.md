@@ -36,7 +36,7 @@ Status snapshot as of 2026-03-25. Items reflect actual repository state.
 
 - [ ] **CI/CD** — No GitHub Actions. Minimum: lint + validation script runner on push.
 - [ ] **Complete K2 human-vs-human inter-rater data** — Only Mathematics_rater2.csv exists. Need remaining 8 domains for full external verification. Note: Q32 model-vs-human is computed for 8 domains but does NOT substitute for K2 (κ ≤ 0.11 across all domains shows the trained model does not recover expert classifications).
-- [ ] **Publish model weights** — v5_frozen and v6 checkpoints not publicly available. Options: GitHub Releases or HuggingFace Hub.
+- [x] **Publish model weights** — v5_frozen and v6 best.pt + metadata published on HuggingFace (`arturoornelasb/triadic-gpt2-medium-v5` and `triadic-gpt2-medium-v6`); v8 and v9 already there. Step checkpoints for reptimeline reproduction (Capa 2) still local-only.
 - [ ] **Rerun neural probes Q1-Q8 with v6 model** — Current results computed with 65-bit v2/v3 model, not current 72-bit.
 
 ### Pending — Medium Priority
@@ -77,7 +77,7 @@ Status snapshot as of 2026-03-25. Items reflect actual repository state.
 
 | Blocker | Severity | Impact |
 |---------|----------|--------|
-| No published model weights | High | Results not reproducible by third parties |
+| ~~No published model weights~~ (resolved) | ~~High~~ | v5/v6/v8/v9 best.pt all on HuggingFace; final metrics reproducible |
 | Inter-rater data incomplete (1/9 domains) | High | IDVS metric not externally verifiable for 8 domains |
 | Neural probes Q1-Q8 from 65-bit model | Medium | Probe results do not reflect current 72-bit architecture |
 | Underpowered statistics (n=7/14) | High | Peer reviewers may reject ordering claims without more evidence |
