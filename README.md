@@ -7,6 +7,8 @@ Research framework proposing that conceptual complexity emerges from 14+ candida
 
 **Author:** J. Arturo Ornelas Brand — Independent Researcher — arturoornelas62@gmail.com
 
+> 📍 **Part of a larger research program.** This repository corresponds to **P4** in a multi-paper program on neurosymbolic representations and quaternionic logic (P1–P4 computational substrate, P11–P13 formal algebraic framework). See the **[full research overview](https://github.com/arturoornelasb)** for the program structure, motivation, and connections between papers.
+
 ## Core thesis
 
 14 dualities emerge across 6 algebraic layers, each presupposing all previous ones:
